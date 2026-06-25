@@ -1,0 +1,29 @@
+{
+  "run_id": "04a6b7a737",
+  "stage": "series",
+  "series_id": "68c169ef",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 3 of 3\nName: 6.58 in (Power)\nColour: #a0522d\nLine style: solid\nX axis ID: x_top\nY axis ID: y_power\nAxis selection reason: Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).\nVisual description: Top curve in the bottom Power-Hp panel\nIdentification confidence: 1.00",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/68c169ef/attempt_01/overlay.png",
+      "request_path": "series/68c169ef/attempt_01/request.json",
+      "response_path": "series/68c169ef/attempt_01/response.json",
+      "parsed_path": "series/68c169ef/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 3 of 3\nName: 6.58 in (Power)\nColour: #a0522d\nLine style: solid\nX axis ID: x_top\nY axis ID: y_power\nAxis selection reason: Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).\nVisual description: Top curve in the bottom Power-Hp panel\nIdentification confidence: 1.00",
+      "source_image_path": "series/68c169ef/attempt_01/overlay.png",
+      "overlay_path": "series/68c169ef/attempt_02/overlay.png",
+      "request_path": "series/68c169ef/attempt_02/request.json",
+      "response_path": "series/68c169ef/attempt_02/response.json",
+      "parsed_path": "series/68c169ef/attempt_02/parsed.json"
+    }
+  ]
+}

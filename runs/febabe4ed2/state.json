@@ -1,0 +1,1635 @@
+{
+  "run_id": "febabe4ed2",
+  "created_at": "2026-06-18T02:45:35.322828+00:00",
+  "updated_at": "2026-06-18T02:53:18.897406+00:00",
+  "stage": "complete",
+  "active_job": null,
+  "settings": {
+    "model_id": "gpt-5.5",
+    "image_detail": "high",
+    "reasoning_effort": "medium",
+    "mock_mode": false
+  },
+  "prompt_metadata": {
+    "prompt_pack": "prompts.yaml",
+    "prompt_version": "2026-06-04-v1",
+    "prompt_hash": "33c5a44b7a2cf476"
+  },
+  "upload_filename": "pump_curve_08.png",
+  "original_path": "uploads/original.png",
+  "pages": [
+    {
+      "path": "pages/page_001.png",
+      "width": 860,
+      "height": 1040,
+      "label": "Image"
+    }
+  ],
+  "selected_page_index": 0,
+  "canonical_image": {
+    "path": "pages/page_001.png",
+    "width": 860,
+    "height": 1040,
+    "label": "Image"
+  },
+  "crop": {
+    "bbox_full_norm": {
+      "left": 0,
+      "top": 0,
+      "right": 999,
+      "bottom": 999
+    },
+    "bbox_full_px": {
+      "left": 0.0,
+      "top": 0.0,
+      "right": 860.0,
+      "bottom": 1040.0
+    },
+    "image": {
+      "path": "crop/approved_crop.png",
+      "width": 860,
+      "height": 1040,
+      "label": null
+    },
+    "approved": true,
+    "warnings": []
+  },
+  "calibration": {
+    "identified_axes": [
+      {
+        "axis_id": "top_panel_x_flow_shared_unlabeled",
+        "direction": "x",
+        "name": "FLOW",
+        "unit": "l/s",
+        "quantity": "flow rate",
+        "location_description": "Top power panel, horizontal axis along the bottom of the top plot area; tick labels and title are not shown in this panel, but the axis appears aligned with the lower panel's FLOW axis.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.72
+      },
+      {
+        "axis_id": "top_panel_y_power_hp",
+        "direction": "y",
+        "name": "POWER",
+        "unit": "hp",
+        "quantity": "power",
+        "location_description": "Top power panel, left vertical axis labeled POWER with unit [hp]; used for Input power and Shaft power curves.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.98
+      },
+      {
+        "axis_id": "bottom_panel_x_flow_lps",
+        "direction": "x",
+        "name": "FLOW",
+        "unit": "l/s",
+        "quantity": "flow rate",
+        "location_description": "Bottom main panel, bottom horizontal axis labeled FLOW with unit [l/s] at lower right.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "bottom_panel_y_head_m",
+        "direction": "y",
+        "name": "HEAD",
+        "unit": "m",
+        "quantity": "head",
+        "location_description": "Bottom main panel, left vertical axis labeled HEAD with unit [m] near the upper left of the plot.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "bottom_panel_y_npshr_m",
+        "direction": "y",
+        "name": "NPSHR",
+        "unit": "m",
+        "quantity": "net positive suction head required",
+        "location_description": "Bottom main panel, right-side inner vertical axis at the plot boundary, labeled NPSHR [m], with scale from about 0.0 to 15.0.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "bottom_panel_y_efficiency_percent",
+        "direction": "y",
+        "name": "EFF",
+        "unit": "%",
+        "quantity": "efficiency",
+        "location_description": "Bottom main panel, right-side outer vertical axis, labeled EFF [%], with percentage tick labels.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.98
+      }
+    ],
+    "calibrated_axes": [
+      {
+        "axis_id": "top_panel_x_flow_shared_unlabeled",
+        "direction": "x",
+        "name": "FLOW",
+        "unit": "l/s",
+        "quantity": "flow rate",
+        "location_description": "Top power panel, horizontal axis along the bottom of the top plot area; tick labels and title are not shown in this panel, but the axis appears aligned with the lower panel's FLOW axis.",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 100,
+              "y": 324
+            },
+            "crop_image_px": {
+              "x": 85.98598598598599,
+              "y": 336.97297297297297
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "l/s"
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 761,
+              "y": 324
+            },
+            "crop_image_px": {
+              "x": 654.3533533533534,
+              "y": 336.97297297297297
+            },
+            "chart_value": {
+              "value_raw": "100",
+              "value_type": "number",
+              "parsed_value": 100.0,
+              "parsed_datetime": null,
+              "unit": "l/s"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.86,
+        "warnings": [
+          "Top panel x-axis tick labels and title are not visible; x-values are inferred from the aligned lower panel FLOW axis. Points are placed on the bottom border of the top plot area at matching vertical gridline positions."
+        ]
+      },
+      {
+        "axis_id": "top_panel_y_power_hp",
+        "direction": "y",
+        "name": "POWER",
+        "unit": "hp",
+        "quantity": "power",
+        "location_description": "Top power panel, left vertical axis labeled POWER with unit [hp]; used for Input power and Shaft power curves.",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 100,
+              "y": 70
+            },
+            "crop_image_px": {
+              "x": 85.98598598598599,
+              "y": 72.8028028028028
+            },
+            "chart_value": {
+              "value_raw": "24",
+              "value_type": "number",
+              "parsed_value": 24.0,
+              "parsed_datetime": null,
+              "unit": "hp"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 100,
+              "y": 324
+            },
+            "crop_image_px": {
+              "x": 85.98598598598599,
+              "y": 336.97297297297297
+            },
+            "chart_value": {
+              "value_raw": "10",
+              "value_type": "number",
+              "parsed_value": 10.0,
+              "parsed_datetime": null,
+              "unit": "hp"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.96,
+        "warnings": []
+      },
+      {
+        "axis_id": "bottom_panel_x_flow_lps",
+        "direction": "x",
+        "name": "FLOW",
+        "unit": "l/s",
+        "quantity": "flow rate",
+        "location_description": "Bottom main panel, bottom horizontal axis labeled FLOW with unit [l/s] at lower right.",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 100,
+              "y": 901
+            },
+            "crop_image_px": {
+              "x": 85.98598598598599,
+              "y": 937.0760760760761
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "l/s"
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 763,
+              "y": 901
+            },
+            "crop_image_px": {
+              "x": 656.073073073073,
+              "y": 937.0760760760761
+            },
+            "chart_value": {
+              "value_raw": "100",
+              "value_type": "number",
+              "parsed_value": 100.0,
+              "parsed_datetime": null,
+              "unit": "l/s"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.91,
+        "warnings": []
+      },
+      {
+        "axis_id": "bottom_panel_y_head_m",
+        "direction": "y",
+        "name": "HEAD",
+        "unit": "m",
+        "quantity": "head",
+        "location_description": "Bottom main panel, left vertical axis labeled HEAD with unit [m] near the upper left of the plot.",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 100,
+              "y": 899
+            },
+            "crop_image_px": {
+              "x": 85.98598598598599,
+              "y": 934.995995995996
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "m"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 100,
+              "y": 471
+            },
+            "crop_image_px": {
+              "x": 85.98598598598599,
+              "y": 489.8588588588588
+            },
+            "chart_value": {
+              "value_raw": "25",
+              "value_type": "number",
+              "parsed_value": 25.0,
+              "parsed_datetime": null,
+              "unit": "m"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.94,
+        "warnings": []
+      },
+      {
+        "axis_id": "bottom_panel_y_npshr_m",
+        "direction": "y",
+        "name": "NPSHR",
+        "unit": "m",
+        "quantity": "net positive suction head required",
+        "location_description": "Bottom main panel, right-side inner vertical axis at the plot boundary, labeled NPSHR [m], with scale from about 0.0 to 15.0.",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 865,
+              "y": 386
+            },
+            "crop_image_px": {
+              "x": 743.7787787787788,
+              "y": 401.4554554554555
+            },
+            "chart_value": {
+              "value_raw": "15.0",
+              "value_type": "number",
+              "parsed_value": 15.0,
+              "parsed_datetime": null,
+              "unit": "m"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 865,
+              "y": 900
+            },
+            "crop_image_px": {
+              "x": 743.7787787787788,
+              "y": 936.0360360360361
+            },
+            "chart_value": {
+              "value_raw": "0.0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "m"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.94,
+        "warnings": []
+      },
+      {
+        "axis_id": "bottom_panel_y_efficiency_percent",
+        "direction": "y",
+        "name": "EFF",
+        "unit": "%",
+        "quantity": "efficiency",
+        "location_description": "Bottom main panel, right-side outer vertical axis, labeled EFF [%], with percentage tick labels.",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 890,
+              "y": 900
+            },
+            "crop_image_px": {
+              "x": 765.2752752752752,
+              "y": 936.0360360360361
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "%"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 890,
+              "y": 500
+            },
+            "crop_image_px": {
+              "x": 765.2752752752752,
+              "y": 520.0200200200201
+            },
+            "chart_value": {
+              "value_raw": "70",
+              "value_type": "number",
+              "parsed_value": 70.0,
+              "parsed_datetime": null,
+              "unit": "%"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.89,
+        "warnings": []
+      }
+    ],
+    "x_points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 100,
+          "y": 324
+        },
+        "crop_image_px": {
+          "x": 85.98598598598599,
+          "y": 336.97297297297297
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 761,
+          "y": 324
+        },
+        "crop_image_px": {
+          "x": 654.3533533533534,
+          "y": 336.97297297297297
+        },
+        "chart_value": {
+          "value_raw": "100",
+          "value_type": "number",
+          "parsed_value": 100.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        }
+      }
+    ],
+    "y_points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 100,
+          "y": 70
+        },
+        "crop_image_px": {
+          "x": 85.98598598598599,
+          "y": 72.8028028028028
+        },
+        "chart_value": {
+          "value_raw": "24",
+          "value_type": "number",
+          "parsed_value": 24.0,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 100,
+          "y": 324
+        },
+        "crop_image_px": {
+          "x": 85.98598598598599,
+          "y": 336.97297297297297
+        },
+        "chart_value": {
+          "value_raw": "10",
+          "value_type": "number",
+          "parsed_value": 10.0,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      }
+    ],
+    "approved_x": true,
+    "approved_y": true,
+    "warnings": [
+      "The top panel's x-axis has no visible tick labels or axis title; FLOW [l/s] is inferred from the aligned lower panel axis and shared chart context.",
+      "Two bottom-panel y-axes use metres as their unit, but they measure different quantities: HEAD and NPSHR. Both are retained as primary axes."
+    ]
+  },
+  "pending_series": [],
+  "series": [
+    {
+      "id": "48a245f6",
+      "name": "Top panel Input power",
+      "llm_series_name": "Top panel Input power",
+      "visual_description": "Upper dark gray solid curve in the top power panel; gently dips at low-to-mid flow, rises slightly, then falls near the right edge; identified from the legend label “Input power.”",
+      "line_color": "#4d4d4d",
+      "line_style": "solid",
+      "x_axis_id": "top_panel_x_flow_shared_unlabeled",
+      "y_axis_id": "top_panel_y_power_hp",
+      "axis_selection_reason": "The curve is in the top power panel and corresponds to POWER [hp] versus the shared FLOW axis.",
+      "confidence": 0.91,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 100,
+            "y": 90
+          },
+          "crop_image_px": {
+            "x": 85.98598598598599,
+            "y": 93.6036036036036
+          },
+          "chart_x": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.8976",
+            "value_type": "number",
+            "parsed_value": 22.897637795275593,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 166,
+            "y": 98
+          },
+          "crop_image_px": {
+            "x": 142.73673673673673,
+            "y": 101.92392392392392
+          },
+          "chart_x": {
+            "value_raw": "9.98487",
+            "value_type": "number",
+            "parsed_value": 9.984871406959149,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.4567",
+            "value_type": "number",
+            "parsed_value": 22.456692913385826,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 232,
+            "y": 104
+          },
+          "crop_image_px": {
+            "x": 199.4874874874875,
+            "y": 108.16416416416416
+          },
+          "chart_x": {
+            "value_raw": "19.9697",
+            "value_type": "number",
+            "parsed_value": 19.969742813918305,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.126",
+            "value_type": "number",
+            "parsed_value": 22.125984251968504,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 298,
+            "y": 107
+          },
+          "crop_image_px": {
+            "x": 256.23823823823824,
+            "y": 111.28428428428428
+          },
+          "chart_x": {
+            "value_raw": "29.9546",
+            "value_type": "number",
+            "parsed_value": 29.954614220877453,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "21.9606",
+            "value_type": "number",
+            "parsed_value": 21.960629921259844,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 364,
+            "y": 106
+          },
+          "crop_image_px": {
+            "x": 312.988988988989,
+            "y": 110.24424424424424
+          },
+          "chart_x": {
+            "value_raw": "39.9395",
+            "value_type": "number",
+            "parsed_value": 39.9394856278366,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.0157",
+            "value_type": "number",
+            "parsed_value": 22.015748031496063,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 431,
+            "y": 102
+          },
+          "crop_image_px": {
+            "x": 370.59959959959957,
+            "y": 106.08408408408408
+          },
+          "chart_x": {
+            "value_raw": "50.0756",
+            "value_type": "number",
+            "parsed_value": 50.07564296520422,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.2362",
+            "value_type": "number",
+            "parsed_value": 22.236220472440944,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 497,
+            "y": 98
+          },
+          "crop_image_px": {
+            "x": 427.35035035035037,
+            "y": 101.92392392392392
+          },
+          "chart_x": {
+            "value_raw": "60.0605",
+            "value_type": "number",
+            "parsed_value": 60.06051437216339,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.4567",
+            "value_type": "number",
+            "parsed_value": 22.456692913385826,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 563,
+            "y": 94
+          },
+          "crop_image_px": {
+            "x": 484.10110110110105,
+            "y": 97.76376376376376
+          },
+          "chart_x": {
+            "value_raw": "70.0454",
+            "value_type": "number",
+            "parsed_value": 70.04538577912251,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.6772",
+            "value_type": "number",
+            "parsed_value": 22.677165354330707,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 629,
+            "y": 94
+          },
+          "crop_image_px": {
+            "x": 540.8518518518518,
+            "y": 97.76376376376376
+          },
+          "chart_x": {
+            "value_raw": "80.0303",
+            "value_type": "number",
+            "parsed_value": 80.03025718608168,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.6772",
+            "value_type": "number",
+            "parsed_value": 22.677165354330707,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 695,
+            "y": 100
+          },
+          "crop_image_px": {
+            "x": 597.6026026026026,
+            "y": 104.00400400400402
+          },
+          "chart_x": {
+            "value_raw": "90.0151",
+            "value_type": "number",
+            "parsed_value": 90.01512859304083,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "22.3465",
+            "value_type": "number",
+            "parsed_value": 22.346456692913385,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 761,
+            "y": 116
+          },
+          "crop_image_px": {
+            "x": 654.3533533533534,
+            "y": 120.64464464464466
+          },
+          "chart_x": {
+            "value_raw": "100",
+            "value_type": "number",
+            "parsed_value": 100.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "21.4646",
+            "value_type": "number",
+            "parsed_value": 21.46456692913386,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 794,
+            "y": 131
+          },
+          "crop_image_px": {
+            "x": 682.7287287287287,
+            "y": 136.24524524524523
+          },
+          "chart_x": {
+            "value_raw": "104.992",
+            "value_type": "number",
+            "parsed_value": 104.99243570347956,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "20.6378",
+            "value_type": "number",
+            "parsed_value": 20.637795275590552,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 827,
+            "y": 150
+          },
+          "crop_image_px": {
+            "x": 711.1041041041041,
+            "y": 156.006006006006
+          },
+          "chart_x": {
+            "value_raw": "109.985",
+            "value_type": "number",
+            "parsed_value": 109.98487140695914,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "19.5906",
+            "value_type": "number",
+            "parsed_value": 19.590551181102363,
+            "parsed_datetime": null,
+            "unit": "hp"
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "48f53339",
+      "name": "Bottom panel Head",
+      "llm_series_name": "Bottom panel Head",
+      "visual_description": "Blue solid line in the bottom panel descending nearly linearly from high head at zero flow to low head at the far right; identified from the legend label “Head.”",
+      "line_color": "#1f77b4",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow_lps",
+      "y_axis_id": "bottom_panel_y_head_m",
+      "axis_selection_reason": "The blue curve is plotted against the bottom panel FLOW [l/s] axis and the left HEAD [m] axis.",
+      "confidence": 0.99,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 100,
+            "y": 385
+          },
+          "crop_image_px": {
+            "x": 85.98598598598599,
+            "y": 400.4154154154154
+          },
+          "chart_x": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "30.0234",
+            "value_type": "number",
+            "parsed_value": 30.023364485981308,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 282,
+            "y": 492
+          },
+          "crop_image_px": {
+            "x": 242.4804804804805,
+            "y": 511.6996996996997
+          },
+          "chart_x": {
+            "value_raw": "27.451",
+            "value_type": "number",
+            "parsed_value": 27.450980392156865,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "23.7734",
+            "value_type": "number",
+            "parsed_value": 23.773364485981308,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 465,
+            "y": 599
+          },
+          "crop_image_px": {
+            "x": 399.83483483483485,
+            "y": 622.983983983984
+          },
+          "chart_x": {
+            "value_raw": "55.0528",
+            "value_type": "number",
+            "parsed_value": 55.052790346908,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "17.5234",
+            "value_type": "number",
+            "parsed_value": 17.523364485981308,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 647,
+            "y": 706
+          },
+          "crop_image_px": {
+            "x": 556.3293293293293,
+            "y": 734.2682682682682
+          },
+          "chart_x": {
+            "value_raw": "82.5038",
+            "value_type": "number",
+            "parsed_value": 82.50377073906486,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "11.2734",
+            "value_type": "number",
+            "parsed_value": 11.273364485981311,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 829,
+            "y": 813
+          },
+          "crop_image_px": {
+            "x": 712.8238238238238,
+            "y": 845.5525525525526
+          },
+          "chart_x": {
+            "value_raw": "109.955",
+            "value_type": "number",
+            "parsed_value": 109.95475113122173,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "5.02336",
+            "value_type": "number",
+            "parsed_value": 5.023364485981309,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "9f596891",
+      "name": "Bottom panel Overall efficiency",
+      "llm_series_name": "Bottom panel Overall efficiency",
+      "visual_description": "Orange solid arch-shaped curve in the bottom panel, lower than the green hydraulic efficiency curve, peaking around mid flow; identified from the legend label “Overall efficiency.”",
+      "line_color": "#ff7f0e",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow_lps",
+      "y_axis_id": "bottom_panel_y_efficiency_percent",
+      "axis_selection_reason": "The overall efficiency curve uses the bottom FLOW [l/s] axis and the right-side outer EFF [%] axis.",
+      "confidence": 0.86,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 100,
+            "y": 900
+          },
+          "crop_image_px": {
+            "x": 85.98598598598599,
+            "y": 936.0360360360361
+          },
+          "chart_x": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 166,
+            "y": 834
+          },
+          "crop_image_px": {
+            "x": 142.73673673673673,
+            "y": 867.3933933933934
+          },
+          "chart_x": {
+            "value_raw": "9.95475",
+            "value_type": "number",
+            "parsed_value": 9.954751131221718,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "11.55",
+            "value_type": "number",
+            "parsed_value": 11.550000000000015,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 233,
+            "y": 782
+          },
+          "crop_image_px": {
+            "x": 200.34734734734735,
+            "y": 813.3113113113113
+          },
+          "chart_x": {
+            "value_raw": "20.0603",
+            "value_type": "number",
+            "parsed_value": 20.060331825037707,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "20.65",
+            "value_type": "number",
+            "parsed_value": 20.650000000000006,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 299,
+            "y": 740
+          },
+          "crop_image_px": {
+            "x": 257.09809809809815,
+            "y": 769.6296296296296
+          },
+          "chart_x": {
+            "value_raw": "30.0151",
+            "value_type": "number",
+            "parsed_value": 30.015082956259437,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "28",
+            "value_type": "number",
+            "parsed_value": 28.00000000000002,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 363,
+            "y": 709
+          },
+          "crop_image_px": {
+            "x": 312.1291291291291,
+            "y": 737.3883883883884
+          },
+          "chart_x": {
+            "value_raw": "39.6682",
+            "value_type": "number",
+            "parsed_value": 39.66817496229261,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "33.425",
+            "value_type": "number",
+            "parsed_value": 33.425000000000004,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 433,
+            "y": 689
+          },
+          "crop_image_px": {
+            "x": 372.31931931931933,
+            "y": 716.5875875875876
+          },
+          "chart_x": {
+            "value_raw": "50.2262",
+            "value_type": "number",
+            "parsed_value": 50.226244343891416,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "36.925",
+            "value_type": "number",
+            "parsed_value": 36.92500000000001,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 498,
+            "y": 681
+          },
+          "crop_image_px": {
+            "x": 428.21021021021016,
+            "y": 708.2672672672672
+          },
+          "chart_x": {
+            "value_raw": "60.0302",
+            "value_type": "number",
+            "parsed_value": 60.03016591251884,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "38.325",
+            "value_type": "number",
+            "parsed_value": 38.32500000000002,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 531,
+            "y": 680
+          },
+          "crop_image_px": {
+            "x": 456.5855855855856,
+            "y": 707.2272272272272
+          },
+          "chart_x": {
+            "value_raw": "65.0075",
+            "value_type": "number",
+            "parsed_value": 65.00754147812971,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "38.5",
+            "value_type": "number",
+            "parsed_value": 38.500000000000014,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 564,
+            "y": 682
+          },
+          "crop_image_px": {
+            "x": 484.960960960961,
+            "y": 709.3073073073074
+          },
+          "chart_x": {
+            "value_raw": "69.9849",
+            "value_type": "number",
+            "parsed_value": 69.98491704374058,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "38.15",
+            "value_type": "number",
+            "parsed_value": 38.14999999999999,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 630,
+            "y": 695
+          },
+          "crop_image_px": {
+            "x": 541.7117117117117,
+            "y": 722.8278278278278
+          },
+          "chart_x": {
+            "value_raw": "79.9397",
+            "value_type": "number",
+            "parsed_value": 79.93966817496229,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "35.875",
+            "value_type": "number",
+            "parsed_value": 35.87500000000001,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 697,
+            "y": 723
+          },
+          "crop_image_px": {
+            "x": 599.3223223223224,
+            "y": 751.948948948949
+          },
+          "chart_x": {
+            "value_raw": "90.0452",
+            "value_type": "number",
+            "parsed_value": 90.0452488687783,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "30.975",
+            "value_type": "number",
+            "parsed_value": 30.974999999999998,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 763,
+            "y": 757
+          },
+          "crop_image_px": {
+            "x": 656.073073073073,
+            "y": 787.3103103103103
+          },
+          "chart_x": {
+            "value_raw": "100",
+            "value_type": "number",
+            "parsed_value": 100.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "25.025",
+            "value_type": "number",
+            "parsed_value": 25.025000000000002,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 816,
+            "y": 791
+          },
+          "crop_image_px": {
+            "x": 701.6456456456457,
+            "y": 822.6716716716717
+          },
+          "chart_x": {
+            "value_raw": "107.994",
+            "value_type": "number",
+            "parsed_value": 107.99396681749624,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "19.075",
+            "value_type": "number",
+            "parsed_value": 19.075000000000006,
+            "parsed_datetime": null,
+            "unit": "%"
+          }
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "attempts": [
+    {
+      "id": "axis-identification-01",
+      "stage": "axis_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "axis_identification/attempt_01/request.json",
+      "response_path": "axis_identification/attempt_01/response.json",
+      "parsed_path": "axis_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.9416666666666668,
+      "warnings": [
+        "The top panel's x-axis has no visible tick labels or axis title; FLOW [l/s] is inferred from the aligned lower panel axis and shared chart context.",
+        "Two bottom-panel y-axes use metres as their unit, but they measure different quantities: HEAD and NPSHR. Both are retained as primary axes."
+      ]
+    },
+    {
+      "id": "axis_top_panel_x_flow_shared_unlabeled-01",
+      "stage": "axis_top_panel_x_flow_shared_unlabeled",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_top_panel_x_flow_shared_unlabeled/attempt_01/request.json",
+      "response_path": "axis_top_panel_x_flow_shared_unlabeled/attempt_01/response.json",
+      "parsed_path": "axis_top_panel_x_flow_shared_unlabeled/attempt_01/parsed.json",
+      "overlay_path": "axis_top_panel_x_flow_shared_unlabeled/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.86,
+      "warnings": [
+        "Top panel x-axis tick labels and title are not visible; x-values are inferred from the aligned lower panel FLOW axis. Points are placed on the bottom border of the top plot area at matching vertical gridline positions."
+      ]
+    },
+    {
+      "id": "axis_top_panel_x_flow_shared_unlabeled-02",
+      "stage": "axis_top_panel_x_flow_shared_unlabeled",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_top_panel_x_flow_shared_unlabeled/attempt_02/request.json",
+      "response_path": "axis_top_panel_x_flow_shared_unlabeled/attempt_02/response.json",
+      "parsed_path": "axis_top_panel_x_flow_shared_unlabeled/attempt_02/parsed.json",
+      "overlay_path": "axis_top_panel_x_flow_shared_unlabeled/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.86,
+      "warnings": [
+        "Top panel x-axis tick labels and title are not visible; x-values are inferred from the aligned lower panel FLOW axis. Points are placed on the bottom border of the top plot area at matching vertical gridline positions."
+      ]
+    },
+    {
+      "id": "axis_top_panel_y_power_hp-01",
+      "stage": "axis_top_panel_y_power_hp",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_top_panel_y_power_hp/attempt_01/request.json",
+      "response_path": "axis_top_panel_y_power_hp/attempt_01/response.json",
+      "parsed_path": "axis_top_panel_y_power_hp/attempt_01/parsed.json",
+      "overlay_path": "axis_top_panel_y_power_hp/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "axis_top_panel_y_power_hp-02",
+      "stage": "axis_top_panel_y_power_hp",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_top_panel_y_power_hp/attempt_02/request.json",
+      "response_path": "axis_top_panel_y_power_hp/attempt_02/response.json",
+      "parsed_path": "axis_top_panel_y_power_hp/attempt_02/parsed.json",
+      "overlay_path": "axis_top_panel_y_power_hp/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "axis_bottom_panel_x_flow_lps-01",
+      "stage": "axis_bottom_panel_x_flow_lps",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_bottom_panel_x_flow_lps/attempt_01/request.json",
+      "response_path": "axis_bottom_panel_x_flow_lps/attempt_01/response.json",
+      "parsed_path": "axis_bottom_panel_x_flow_lps/attempt_01/parsed.json",
+      "overlay_path": "axis_bottom_panel_x_flow_lps/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.91,
+      "warnings": []
+    },
+    {
+      "id": "axis_bottom_panel_x_flow_lps-02",
+      "stage": "axis_bottom_panel_x_flow_lps",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_bottom_panel_x_flow_lps/attempt_02/request.json",
+      "response_path": "axis_bottom_panel_x_flow_lps/attempt_02/response.json",
+      "parsed_path": "axis_bottom_panel_x_flow_lps/attempt_02/parsed.json",
+      "overlay_path": "axis_bottom_panel_x_flow_lps/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.91,
+      "warnings": []
+    },
+    {
+      "id": "axis_bottom_panel_y_head_m-01",
+      "stage": "axis_bottom_panel_y_head_m",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_bottom_panel_y_head_m/attempt_01/request.json",
+      "response_path": "axis_bottom_panel_y_head_m/attempt_01/response.json",
+      "parsed_path": "axis_bottom_panel_y_head_m/attempt_01/parsed.json",
+      "overlay_path": "axis_bottom_panel_y_head_m/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.94,
+      "warnings": []
+    },
+    {
+      "id": "axis_bottom_panel_y_head_m-02",
+      "stage": "axis_bottom_panel_y_head_m",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_bottom_panel_y_head_m/attempt_02/request.json",
+      "response_path": "axis_bottom_panel_y_head_m/attempt_02/response.json",
+      "parsed_path": "axis_bottom_panel_y_head_m/attempt_02/parsed.json",
+      "overlay_path": "axis_bottom_panel_y_head_m/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.94,
+      "warnings": []
+    },
+    {
+      "id": "axis_bottom_panel_y_npshr_m-01",
+      "stage": "axis_bottom_panel_y_npshr_m",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_bottom_panel_y_npshr_m/attempt_01/request.json",
+      "response_path": "axis_bottom_panel_y_npshr_m/attempt_01/response.json",
+      "parsed_path": "axis_bottom_panel_y_npshr_m/attempt_01/parsed.json",
+      "overlay_path": "axis_bottom_panel_y_npshr_m/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.94,
+      "warnings": []
+    },
+    {
+      "id": "axis_bottom_panel_y_npshr_m-02",
+      "stage": "axis_bottom_panel_y_npshr_m",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_bottom_panel_y_npshr_m/attempt_02/request.json",
+      "response_path": "axis_bottom_panel_y_npshr_m/attempt_02/response.json",
+      "parsed_path": "axis_bottom_panel_y_npshr_m/attempt_02/parsed.json",
+      "overlay_path": "axis_bottom_panel_y_npshr_m/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.94,
+      "warnings": []
+    },
+    {
+      "id": "axis_bottom_panel_y_efficiency_percent-01",
+      "stage": "axis_bottom_panel_y_efficiency_percent",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_bottom_panel_y_efficiency_percent/attempt_01/request.json",
+      "response_path": "axis_bottom_panel_y_efficiency_percent/attempt_01/response.json",
+      "parsed_path": "axis_bottom_panel_y_efficiency_percent/attempt_01/parsed.json",
+      "overlay_path": "axis_bottom_panel_y_efficiency_percent/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.89,
+      "warnings": []
+    },
+    {
+      "id": "axis_bottom_panel_y_efficiency_percent-02",
+      "stage": "axis_bottom_panel_y_efficiency_percent",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_bottom_panel_y_efficiency_percent/attempt_02/request.json",
+      "response_path": "axis_bottom_panel_y_efficiency_percent/attempt_02/response.json",
+      "parsed_path": "axis_bottom_panel_y_efficiency_percent/attempt_02/parsed.json",
+      "overlay_path": "axis_bottom_panel_y_efficiency_percent/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.89,
+      "warnings": []
+    },
+    {
+      "id": "series-identification-01",
+      "stage": "series_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "series_identification/attempt_01/request.json",
+      "response_path": "series_identification/attempt_01/response.json",
+      "parsed_path": "series_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.9666666666666667,
+      "warnings": []
+    },
+    {
+      "id": "series-48a245f6-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/48a245f6/attempt_01/request.json",
+      "response_path": "series/48a245f6/attempt_01/response.json",
+      "parsed_path": "series/48a245f6/attempt_01/parsed.json",
+      "overlay_path": "series/48a245f6/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.91,
+      "warnings": []
+    },
+    {
+      "id": "series-48a245f6-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/48a245f6/attempt_02/request.json",
+      "response_path": "series/48a245f6/attempt_02/response.json",
+      "parsed_path": "series/48a245f6/attempt_02/parsed.json",
+      "overlay_path": "series/48a245f6/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.91,
+      "warnings": []
+    },
+    {
+      "id": "series-48f53339-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/48f53339/attempt_01/request.json",
+      "response_path": "series/48f53339/attempt_01/response.json",
+      "parsed_path": "series/48f53339/attempt_01/parsed.json",
+      "overlay_path": "series/48f53339/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-48f53339-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/48f53339/attempt_02/request.json",
+      "response_path": "series/48f53339/attempt_02/response.json",
+      "parsed_path": "series/48f53339/attempt_02/parsed.json",
+      "overlay_path": "series/48f53339/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-9f596891-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/9f596891/attempt_01/request.json",
+      "response_path": "series/9f596891/attempt_01/response.json",
+      "parsed_path": "series/9f596891/attempt_01/parsed.json",
+      "overlay_path": "series/9f596891/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.86,
+      "warnings": []
+    },
+    {
+      "id": "series-9f596891-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/9f596891/attempt_02/request.json",
+      "response_path": "series/9f596891/attempt_02/response.json",
+      "parsed_path": "series/9f596891/attempt_02/parsed.json",
+      "overlay_path": "series/9f596891/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.86,
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "active_step_status": null
+}

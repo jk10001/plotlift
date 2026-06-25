@@ -1,0 +1,75 @@
+{
+  "axes": [
+    {
+      "axis_id": "top_panel_x_flow_shared_unlabeled",
+      "direction": "x",
+      "name": "FLOW",
+      "unit": "l/s",
+      "quantity": "flow rate",
+      "location_description": "Top power panel, horizontal axis along the bottom of the top plot area; tick labels and title are not shown in this panel, but the axis appears aligned with the lower panel's FLOW axis.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.72
+    },
+    {
+      "axis_id": "top_panel_y_power_hp",
+      "direction": "y",
+      "name": "POWER",
+      "unit": "hp",
+      "quantity": "power",
+      "location_description": "Top power panel, left vertical axis labeled POWER with unit [hp]; used for Input power and Shaft power curves.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.98
+    },
+    {
+      "axis_id": "bottom_panel_x_flow_lps",
+      "direction": "x",
+      "name": "FLOW",
+      "unit": "l/s",
+      "quantity": "flow rate",
+      "location_description": "Bottom main panel, bottom horizontal axis labeled FLOW with unit [l/s] at lower right.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    },
+    {
+      "axis_id": "bottom_panel_y_head_m",
+      "direction": "y",
+      "name": "HEAD",
+      "unit": "m",
+      "quantity": "head",
+      "location_description": "Bottom main panel, left vertical axis labeled HEAD with unit [m] near the upper left of the plot.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    },
+    {
+      "axis_id": "bottom_panel_y_npshr_m",
+      "direction": "y",
+      "name": "NPSHR",
+      "unit": "m",
+      "quantity": "net positive suction head required",
+      "location_description": "Bottom main panel, right-side inner vertical axis at the plot boundary, labeled NPSHR [m], with scale from about 0.0 to 15.0.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    },
+    {
+      "axis_id": "bottom_panel_y_efficiency_percent",
+      "direction": "y",
+      "name": "EFF",
+      "unit": "%",
+      "quantity": "efficiency",
+      "location_description": "Bottom main panel, right-side outer vertical axis, labeled EFF [%], with percentage tick labels.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.98
+    }
+  ],
+  "warnings": [
+    "The top panel's x-axis has no visible tick labels or axis title; FLOW [l/s] is inferred from the aligned lower panel axis and shared chart context.",
+    "Two bottom-panel y-axes use metres as their unit, but they measure different quantities: HEAD and NPSHR. Both are retained as primary axes."
+  ],
+  "unsupported_flags": []
+}

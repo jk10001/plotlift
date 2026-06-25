@@ -1,0 +1,48 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "axis": "y",
+    "points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 862,
+          "y": 385
+        },
+        "crop_image_px": {
+          "x": 741.1991991991991,
+          "y": 400.4154154154154
+        },
+        "chart_value": {
+          "value_raw": "15.0",
+          "value_type": "number",
+          "parsed_value": 15.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 862,
+          "y": 900
+        },
+        "crop_image_px": {
+          "x": 741.1991991991991,
+          "y": 936.0360360360361
+        },
+        "chart_value": {
+          "value_raw": "0.0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      }
+    ],
+    "confidence": 0.94,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

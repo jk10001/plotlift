@@ -1,0 +1,275 @@
+{
+  "model": "gpt-5.5",
+  "instructions": "You are calibrating a line chart axis from a cropped chart image.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 999 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn coordinates relative to the cropped image in crop_image_norm.\nValues on the axis must be represented separately from units or labels.\nOnly linear numeric and date/time axes are supported.\nIf possible, identify the line or tick mark associated with an axis label and provide coordinates exactly on that line or tick mark. Do not confuse series lines with gridlines or tickmarks associated with axis labels.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+  "input": {
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "This is the first x-axis attempt. Use response_kind \"proposal\".\nCalibrate only the x-axis described below.\nAxis ID: top_panel_x_flow_shared_unlabeled\nDirection: x\nName: FLOW\nUnit: l/s\nQuantity: flow rate\nLocation: Top power panel, horizontal axis along the bottom of the top plot area; tick labels and title are not shown in this panel, but the axis appears aligned with the lower panel's FLOW axis.\n\nChoose two clear points on this x-axis line or matching tick/gridline positions.\nThe two points should have the same image y coordinate because the x-axis is assumed horizontal.\nThe proposal object must return x1 and x2 with their chart-space values.\n"
+      },
+      {
+        "type": "input_image",
+        "image_url": "<data-url omitted; see attempt image artifacts>",
+        "detail": "high"
+      }
+    ]
+  },
+  "store": true,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "name": "XAxisCalibrationDecision",
+      "schema": {
+        "$defs": {
+          "AxisCalibrationOutput": {
+            "properties": {
+              "axis": {
+                "enum": [
+                  "x",
+                  "y"
+                ],
+                "title": "Axis",
+                "type": "string"
+              },
+              "points": {
+                "items": {
+                  "$ref": "#/$defs/CalibrationPoint"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "title": "Points",
+                "type": "array"
+              },
+              "confidence": {
+                "anyOf": [
+                  {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Confidence"
+              },
+              "warnings": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Warnings",
+                "type": "array"
+              },
+              "unsupported_flags": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Unsupported Flags",
+                "type": "array"
+              }
+            },
+            "required": [
+              "axis",
+              "points",
+              "confidence",
+              "warnings",
+              "unsupported_flags"
+            ],
+            "title": "AxisCalibrationOutput",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "CalibrationPoint": {
+            "properties": {
+              "label": {
+                "enum": [
+                  "x1",
+                  "x2",
+                  "y1",
+                  "y2"
+                ],
+                "title": "Label",
+                "type": "string"
+              },
+              "crop_image_norm": {
+                "$ref": "#/$defs/NormPoint"
+              },
+              "crop_image_px": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/PixelPoint"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "chart_value": {
+                "$ref": "#/$defs/ChartValue"
+              }
+            },
+            "required": [
+              "label",
+              "crop_image_norm",
+              "crop_image_px",
+              "chart_value"
+            ],
+            "title": "CalibrationPoint",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "ChartValue": {
+            "properties": {
+              "value_raw": {
+                "title": "Value Raw",
+                "type": "string"
+              },
+              "value_type": {
+                "enum": [
+                  "number",
+                  "datetime",
+                  "unknown"
+                ],
+                "title": "Value Type",
+                "type": "string"
+              },
+              "parsed_value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Parsed Value"
+              },
+              "parsed_datetime": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Parsed Datetime"
+              },
+              "unit": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Unit"
+              }
+            },
+            "required": [
+              "value_raw",
+              "value_type",
+              "parsed_value",
+              "parsed_datetime",
+              "unit"
+            ],
+            "title": "ChartValue",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "NormPoint": {
+            "properties": {
+              "x": {
+                "maximum": 999,
+                "minimum": 0,
+                "title": "X",
+                "type": "integer"
+              },
+              "y": {
+                "maximum": 999,
+                "minimum": 0,
+                "title": "Y",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "x",
+              "y"
+            ],
+            "title": "NormPoint",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "PixelPoint": {
+            "properties": {
+              "x": {
+                "title": "X",
+                "type": "number"
+              },
+              "y": {
+                "title": "Y",
+                "type": "number"
+              }
+            },
+            "required": [
+              "x",
+              "y"
+            ],
+            "title": "PixelPoint",
+            "type": "object",
+            "additionalProperties": false
+          }
+        },
+        "properties": {
+          "response_kind": {
+            "enum": [
+              "proposal",
+              "accept_previous",
+              "revise_previous"
+            ],
+            "title": "Response Kind",
+            "type": "string"
+          },
+          "revision_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision Reason"
+          },
+          "proposal": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/AxisCalibrationOutput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "response_kind",
+          "revision_reason",
+          "proposal"
+        ],
+        "title": "AxisCalibrationConversationResponse",
+        "type": "object",
+        "additionalProperties": false
+      },
+      "strict": true
+    }
+  },
+  "prompt_cache_key": "plotlift:febabe4ed2:axis_top_panel_x_flow_shared_unlabeled",
+  "reasoning": {
+    "effort": "medium"
+  },
+  "source_image_path": "crop/approved_crop.png",
+  "target_axis": "Axis ID: top_panel_x_flow_shared_unlabeled\nDirection: x\nName: FLOW\nUnit: l/s\nQuantity: flow rate\nLocation: Top power panel, horizontal axis along the bottom of the top plot area; tick labels and title are not shown in this panel, but the axis appears aligned with the lower panel's FLOW axis."
+}

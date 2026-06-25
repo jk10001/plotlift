@@ -1,0 +1,50 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "axis": "x",
+    "points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 100,
+          "y": 324
+        },
+        "crop_image_px": {
+          "x": 85.98598598598599,
+          "y": 336.97297297297297
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 761,
+          "y": 324
+        },
+        "crop_image_px": {
+          "x": 654.3533533533534,
+          "y": 336.97297297297297
+        },
+        "chart_value": {
+          "value_raw": "100",
+          "value_type": "number",
+          "parsed_value": 100.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        }
+      }
+    ],
+    "confidence": 0.86,
+    "warnings": [
+      "Top panel x-axis tick labels and title are not visible; x-values are inferred from the aligned lower panel FLOW axis. Points are placed on the bottom border of the top plot area at matching vertical gridline positions."
+    ],
+    "unsupported_flags": []
+  }
+}

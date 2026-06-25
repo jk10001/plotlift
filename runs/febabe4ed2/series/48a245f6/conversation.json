@@ -1,0 +1,29 @@
+{
+  "run_id": "febabe4ed2",
+  "stage": "series",
+  "series_id": "48a245f6",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 3\nName: Top panel Input power\nColour: #4d4d4d\nLine style: solid\nX axis ID: top_panel_x_flow_shared_unlabeled\nY axis ID: top_panel_y_power_hp\nAxis selection reason: The curve is in the top power panel and corresponds to POWER [hp] versus the shared FLOW axis.\nVisual description: Upper dark gray solid curve in the top power panel; gently dips at low-to-mid flow, rises slightly, then falls near the right edge; identified from the legend label “Input power.”\nIdentification confidence: 0.97",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/48a245f6/attempt_01/overlay.png",
+      "request_path": "series/48a245f6/attempt_01/request.json",
+      "response_path": "series/48a245f6/attempt_01/response.json",
+      "parsed_path": "series/48a245f6/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 3\nName: Top panel Input power\nColour: #4d4d4d\nLine style: solid\nX axis ID: top_panel_x_flow_shared_unlabeled\nY axis ID: top_panel_y_power_hp\nAxis selection reason: The curve is in the top power panel and corresponds to POWER [hp] versus the shared FLOW axis.\nVisual description: Upper dark gray solid curve in the top power panel; gently dips at low-to-mid flow, rises slightly, then falls near the right edge; identified from the legend label “Input power.”\nIdentification confidence: 0.97",
+      "source_image_path": "series/48a245f6/attempt_01/overlay.png",
+      "overlay_path": "series/48a245f6/attempt_02/overlay.png",
+      "request_path": "series/48a245f6/attempt_02/request.json",
+      "response_path": "series/48a245f6/attempt_02/response.json",
+      "parsed_path": "series/48a245f6/attempt_02/parsed.json"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "axes": [
+    {
+      "axis_id": "y_left_head_m",
+      "direction": "y",
+      "name": "Head",
+      "unit": "m",
+      "quantity": "head",
+      "location_description": "Left y-axis, inner metric scale closest to the plot body, labeled in meters from 0 to 14.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.98
+    },
+    {
+      "axis_id": "y_left_head_ft",
+      "direction": "y",
+      "name": "Head",
+      "unit": "ft",
+      "quantity": "head",
+      "location_description": "Left y-axis, outer imperial scale farther left from the plot body, labeled in feet from 0 to 45.",
+      "is_primary_for_digitization": false,
+      "ignore_reason": "Duplicate y-axis for the same quantity (head) in feet; use the inner metric meter axis for digitization.",
+      "confidence": 0.96
+    },
+    {
+      "axis_id": "x_bottom_flow_lpm",
+      "direction": "x",
+      "name": "Flow",
+      "unit": "LPM",
+      "quantity": "flow rate",
+      "location_description": "Primary bottom x-axis closest to the plot body, labeled in liters per minute from 0 to 400.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.98
+    },
+    {
+      "axis_id": "x_bottom_flow_gpm",
+      "direction": "x",
+      "name": "Flow",
+      "unit": "GPM",
+      "quantity": "flow rate",
+      "location_description": "Secondary bottom x-axis below the plot body, labeled in gallons per minute from 0 to 100.",
+      "is_primary_for_digitization": false,
+      "ignore_reason": "Duplicate x-axis for the same quantity (flow rate) in GPM; use the primary metric LPM axis for digitization.",
+      "confidence": 0.97
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

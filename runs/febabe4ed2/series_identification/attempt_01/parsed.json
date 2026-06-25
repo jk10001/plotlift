@@ -1,0 +1,66 @@
+{
+  "series": [
+    {
+      "series_name": "Top panel Input power",
+      "visual_description": "Upper dark gray solid curve in the top power panel; gently dips at low-to-mid flow, rises slightly, then falls near the right edge; identified from the legend label “Input power.”",
+      "line_color": "#4d4d4d",
+      "line_style": "solid",
+      "x_axis_id": "top_panel_x_flow_shared_unlabeled",
+      "y_axis_id": "top_panel_y_power_hp",
+      "axis_selection_reason": "The curve is in the top power panel and corresponds to POWER [hp] versus the shared FLOW axis.",
+      "confidence": 0.97
+    },
+    {
+      "series_name": "Top panel Shaft power",
+      "visual_description": "Lower medium-gray solid curve in the top power panel; similar shape to input power but consistently below it; identified from the legend label “Shaft power.”",
+      "line_color": "gray",
+      "line_style": "solid",
+      "x_axis_id": "top_panel_x_flow_shared_unlabeled",
+      "y_axis_id": "top_panel_y_power_hp",
+      "axis_selection_reason": "The curve is in the top power panel and corresponds to POWER [hp] versus the shared FLOW axis.",
+      "confidence": 0.97
+    },
+    {
+      "series_name": "Bottom panel Head",
+      "visual_description": "Blue solid line in the bottom panel descending nearly linearly from high head at zero flow to low head at the far right; identified from the legend label “Head.”",
+      "line_color": "#1f77b4",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow_lps",
+      "y_axis_id": "bottom_panel_y_head_m",
+      "axis_selection_reason": "The blue curve is plotted against the bottom panel FLOW [l/s] axis and the left HEAD [m] axis.",
+      "confidence": 0.98
+    },
+    {
+      "series_name": "Bottom panel Hydraulic efficiency",
+      "visual_description": "Green solid arch-shaped curve in the bottom panel, rising from near zero at low flow to a peak around mid/high flow and then falling; identified from the legend label “Hydraulic efficiency.”",
+      "line_color": "#2ca02c",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow_lps",
+      "y_axis_id": "bottom_panel_y_efficiency_percent",
+      "axis_selection_reason": "The efficiency curve uses the bottom FLOW [l/s] axis and the right-side outer EFF [%] axis.",
+      "confidence": 0.96
+    },
+    {
+      "series_name": "Bottom panel Overall efficiency",
+      "visual_description": "Orange solid arch-shaped curve in the bottom panel, lower than the green hydraulic efficiency curve, peaking around mid flow; identified from the legend label “Overall efficiency.”",
+      "line_color": "#ff7f0e",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow_lps",
+      "y_axis_id": "bottom_panel_y_efficiency_percent",
+      "axis_selection_reason": "The overall efficiency curve uses the bottom FLOW [l/s] axis and the right-side outer EFF [%] axis.",
+      "confidence": 0.96
+    },
+    {
+      "series_name": "Bottom panel NPSHR",
+      "visual_description": "Purple solid U-shaped curve in the bottom panel, visible over the mid-to-high flow range; decreases to a shallow minimum near mid flow and rises toward the right; identified from the legend label “NPSHR.”",
+      "line_color": "#9467bd",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow_lps",
+      "y_axis_id": "bottom_panel_y_npshr_m",
+      "axis_selection_reason": "The NPSHR curve uses the bottom FLOW [l/s] axis and the right-side inner NPSHR [m] axis.",
+      "confidence": 0.96
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

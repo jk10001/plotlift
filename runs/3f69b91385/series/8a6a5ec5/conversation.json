@@ -1,0 +1,29 @@
+{
+  "run_id": "3f69b91385",
+  "stage": "series",
+  "series_id": "8a6a5ec5",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 2\nName: 800\nColour: #0b638b\nLine style: solid\nX axis ID: single_panel_x_top_q_l_per_h\nY axis ID: single_panel_y_right_h_m\nAxis selection reason: The provided calibrated axes for this single panel are the top Q (l/h) x-axis and the right H (m) y-axis; the curve is plotted in that panel.\nVisual description: Middle-left descending solid curve, labelled “800”, beginning near the left side above the 550 curve and curving downward to the bottom around the central-right portion of the panel.\nIdentification confidence: 0.96",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/8a6a5ec5/attempt_01/overlay.png",
+      "request_path": "series/8a6a5ec5/attempt_01/request.json",
+      "response_path": "series/8a6a5ec5/attempt_01/response.json",
+      "parsed_path": "series/8a6a5ec5/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 2\nName: 800\nColour: #0b638b\nLine style: solid\nX axis ID: single_panel_x_top_q_l_per_h\nY axis ID: single_panel_y_right_h_m\nAxis selection reason: The provided calibrated axes for this single panel are the top Q (l/h) x-axis and the right H (m) y-axis; the curve is plotted in that panel.\nVisual description: Middle-left descending solid curve, labelled “800”, beginning near the left side above the 550 curve and curving downward to the bottom around the central-right portion of the panel.\nIdentification confidence: 0.96",
+      "source_image_path": "series/8a6a5ec5/attempt_01/overlay.png",
+      "overlay_path": "series/8a6a5ec5/attempt_02/overlay.png",
+      "request_path": "series/8a6a5ec5/attempt_02/request.json",
+      "response_path": "series/8a6a5ec5/attempt_02/response.json",
+      "parsed_path": "series/8a6a5ec5/attempt_02/parsed.json"
+    }
+  ]
+}

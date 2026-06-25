@@ -1,0 +1,285 @@
+{
+  "raw": {
+    "created_at": 1781750756.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying axes in a cropped line chart before calibration.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify every visible x-axis and y-axis in every panel, including secondary axes on the top, bottom, left, or right.\nFor each axis, provide a stable axis_id, direction, name, unit, quantity being measured, and a brief location description.\nIn multi-panel charts include panel location or panel title in location_description.\nIf multiple axes measure the same quantity in different units, mark exactly one metric axis closest to the chart body as is_primary_for_digitization=true.\nMark other duplicate axes as is_primary_for_digitization=false and explain the ignore_reason.\nIf multiple axes measure different quantities, mark all of them as is_primary_for_digitization=true because different curves may use them.\nPrefer metric units over imperial or US customary units. If more than one metric axis measures the same quantity, choose the one closest to the chart body.\nDo not return calibration points in this step.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.5-2026-04-23",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0d73bc88ebb8e7f1006a335be53f788198818a4303d12a508a",
+        "summary": null,
+        "type": "reasoning",
+        "content": null,
+        "encrypted_content": null,
+        "status": null
+      },
+      {
+        "id": "msg_0d73bc88ebb8e7f1006a335bfef3648198978c8403067ec290",
+        "content": {
+          "annotations": null,
+          "text": "{\"axes\":[{\"axis_id\":\"top_panel_x_flow_shared_unlabeled\",\"direction\":\"x\",\"name\":\"FLOW\",\"unit\":\"l/s\",\"quantity\":\"flow rate\",\"location_description\":\"Top power panel, horizontal axis along the bottom of the top plot area; tick labels and title are not shown in this panel, but the axis appears aligned with the lower panel's FLOW axis.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.72},{\"axis_id\":\"top_panel_y_power_hp\",\"direction\":\"y\",\"name\":\"POWER\",\"unit\":\"hp\",\"quantity\":\"power\",\"location_description\":\"Top power panel, left vertical axis labeled POWER with unit [hp]; used for Input power and Shaft power curves.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.98},{\"axis_id\":\"bottom_panel_x_flow_lps\",\"direction\":\"x\",\"name\":\"FLOW\",\"unit\":\"l/s\",\"quantity\":\"flow rate\",\"location_description\":\"Bottom main panel, bottom horizontal axis labeled FLOW with unit [l/s] at lower right.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"bottom_panel_y_head_m\",\"direction\":\"y\",\"name\":\"HEAD\",\"unit\":\"m\",\"quantity\":\"head\",\"location_description\":\"Bottom main panel, left vertical axis labeled HEAD with unit [m] near the upper left of the plot.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"bottom_panel_y_npshr_m\",\"direction\":\"y\",\"name\":\"NPSHR\",\"unit\":\"m\",\"quantity\":\"net positive suction head required\",\"location_description\":\"Bottom main panel, right-side inner vertical axis at the plot boundary, labeled NPSHR [m], with scale from about 0.0 to 15.0.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"bottom_panel_y_efficiency_percent\",\"direction\":\"y\",\"name\":\"EFF\",\"unit\":\"%\",\"quantity\":\"efficiency\",\"location_description\":\"Bottom main panel, right-side outer vertical axis, labeled EFF [%], with percentage tick labels.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.98}],\"warnings\":[\"The top panel's x-axis has no visible tick labels or axis title; FLOW [l/s] is inferred from the aligned lower panel axis and shared chart context.\",\"Two bottom-panel y-axes use metres as their unit, but they measure different quantities: HEAD and NPSHR. Both are retained as primary axes.\"],\"unsupported_flags\":[]}",
+          "type": "output_text",
+          "logprobs": null
+        },
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": null,
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1781750789.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:febabe4ed2:axis_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "context": "current_turn"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "AxisIdentification",
+        "schema_": {
+          "$defs": {
+            "IdentifiedAxis": {
+              "properties": {
+                "axis_id": {
+                  "title": "Axis Id",
+                  "type": "string"
+                },
+                "direction": {
+                  "enum": [
+                    "x",
+                    "y"
+                  ],
+                  "title": "Direction",
+                  "type": "string"
+                },
+                "name": {
+                  "title": "Name",
+                  "type": "string"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                },
+                "quantity": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Quantity"
+                },
+                "location_description": {
+                  "title": "Location Description",
+                  "type": "string"
+                },
+                "is_primary_for_digitization": {
+                  "title": "Is Primary For Digitization",
+                  "type": "boolean"
+                },
+                "ignore_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Ignore Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "required": [
+                "axis_id",
+                "direction",
+                "name",
+                "unit",
+                "quantity",
+                "location_description",
+                "is_primary_for_digitization",
+                "ignore_reason",
+                "confidence"
+              ],
+              "title": "IdentifiedAxis",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "axes": {
+              "items": {
+                "$ref": "#/$defs/IdentifiedAxis"
+              },
+              "title": "Axes",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "AxisIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "axes",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 1707,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 1578,
+      "output_tokens_details": {
+        "reasoning_tokens": 1034
+      },
+      "total_tokens": 3285
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "moderation": null,
+    "presence_penalty": 0.0,
+    "store": true
+  },
+  "text": "{\"axes\":[{\"axis_id\":\"top_panel_x_flow_shared_unlabeled\",\"direction\":\"x\",\"name\":\"FLOW\",\"unit\":\"l/s\",\"quantity\":\"flow rate\",\"location_description\":\"Top power panel, horizontal axis along the bottom of the top plot area; tick labels and title are not shown in this panel, but the axis appears aligned with the lower panel's FLOW axis.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.72},{\"axis_id\":\"top_panel_y_power_hp\",\"direction\":\"y\",\"name\":\"POWER\",\"unit\":\"hp\",\"quantity\":\"power\",\"location_description\":\"Top power panel, left vertical axis labeled POWER with unit [hp]; used for Input power and Shaft power curves.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.98},{\"axis_id\":\"bottom_panel_x_flow_lps\",\"direction\":\"x\",\"name\":\"FLOW\",\"unit\":\"l/s\",\"quantity\":\"flow rate\",\"location_description\":\"Bottom main panel, bottom horizontal axis labeled FLOW with unit [l/s] at lower right.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"bottom_panel_y_head_m\",\"direction\":\"y\",\"name\":\"HEAD\",\"unit\":\"m\",\"quantity\":\"head\",\"location_description\":\"Bottom main panel, left vertical axis labeled HEAD with unit [m] near the upper left of the plot.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"bottom_panel_y_npshr_m\",\"direction\":\"y\",\"name\":\"NPSHR\",\"unit\":\"m\",\"quantity\":\"net positive suction head required\",\"location_description\":\"Bottom main panel, right-side inner vertical axis at the plot boundary, labeled NPSHR [m], with scale from about 0.0 to 15.0.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"bottom_panel_y_efficiency_percent\",\"direction\":\"y\",\"name\":\"EFF\",\"unit\":\"%\",\"quantity\":\"efficiency\",\"location_description\":\"Bottom main panel, right-side outer vertical axis, labeled EFF [%], with percentage tick labels.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.98}],\"warnings\":[\"The top panel's x-axis has no visible tick labels or axis title; FLOW [l/s] is inferred from the aligned lower panel axis and shared chart context.\",\"Two bottom-panel y-axes use metres as their unit, but they measure different quantities: HEAD and NPSHR. Both are retained as primary axes.\"],\"unsupported_flags\":[]}",
+  "json": {
+    "axes": [
+      {
+        "axis_id": "top_panel_x_flow_shared_unlabeled",
+        "direction": "x",
+        "name": "FLOW",
+        "unit": "l/s",
+        "quantity": "flow rate",
+        "location_description": "Top power panel, horizontal axis along the bottom of the top plot area; tick labels and title are not shown in this panel, but the axis appears aligned with the lower panel's FLOW axis.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.72
+      },
+      {
+        "axis_id": "top_panel_y_power_hp",
+        "direction": "y",
+        "name": "POWER",
+        "unit": "hp",
+        "quantity": "power",
+        "location_description": "Top power panel, left vertical axis labeled POWER with unit [hp]; used for Input power and Shaft power curves.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.98
+      },
+      {
+        "axis_id": "bottom_panel_x_flow_lps",
+        "direction": "x",
+        "name": "FLOW",
+        "unit": "l/s",
+        "quantity": "flow rate",
+        "location_description": "Bottom main panel, bottom horizontal axis labeled FLOW with unit [l/s] at lower right.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "bottom_panel_y_head_m",
+        "direction": "y",
+        "name": "HEAD",
+        "unit": "m",
+        "quantity": "head",
+        "location_description": "Bottom main panel, left vertical axis labeled HEAD with unit [m] near the upper left of the plot.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "bottom_panel_y_npshr_m",
+        "direction": "y",
+        "name": "NPSHR",
+        "unit": "m",
+        "quantity": "net positive suction head required",
+        "location_description": "Bottom main panel, right-side inner vertical axis at the plot boundary, labeled NPSHR [m], with scale from about 0.0 to 15.0.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "bottom_panel_y_efficiency_percent",
+        "direction": "y",
+        "name": "EFF",
+        "unit": "%",
+        "quantity": "efficiency",
+        "location_description": "Bottom main panel, right-side outer vertical axis, labeled EFF [%], with percentage tick labels.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.98
+      }
+    ],
+    "warnings": [
+      "The top panel's x-axis has no visible tick labels or axis title; FLOW [l/s] is inferred from the aligned lower panel axis and shared chart context.",
+      "Two bottom-panel y-axes use metres as their unit, but they measure different quantities: HEAD and NPSHR. Both are retained as primary axes."
+    ],
+    "unsupported_flags": null
+  }
+}

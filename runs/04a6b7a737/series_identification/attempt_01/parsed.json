@@ -1,0 +1,76 @@
+{
+  "series": [
+    {
+      "series_name": "6.58 in (Head)",
+      "visual_description": "Topmost curve in the top Head-ft panel",
+      "line_color": "dimgray",
+      "line_style": "solid",
+      "x_axis_id": "axis_id=x_top",
+      "y_axis_id": "axis_id=y_head",
+      "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+      "confidence": 1.0
+    },
+    {
+      "series_name": "5.82 in (Head)",
+      "visual_description": "Middle curve in the top Head-ft panel",
+      "line_color": "dimgray",
+      "line_style": "solid",
+      "x_axis_id": "axis_id=x_top",
+      "y_axis_id": "axis_id=y_head",
+      "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+      "confidence": 1.0
+    },
+    {
+      "series_name": "5.18 in (Head)",
+      "visual_description": "Lowest curve in the top Head-ft panel",
+      "line_color": "dimgray",
+      "line_style": "solid",
+      "x_axis_id": "axis_id=x_top",
+      "y_axis_id": "axis_id=y_head",
+      "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+      "confidence": 1.0
+    },
+    {
+      "series_name": "NPSH",
+      "visual_description": "Single blue curve in the middle NPSH-ft panel",
+      "line_color": "darkblue",
+      "line_style": "solid",
+      "x_axis_id": "axis_id=x_top",
+      "y_axis_id": "axis_id=y_npsh",
+      "axis_selection_reason": "Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).",
+      "confidence": 1.0
+    },
+    {
+      "series_name": "6.58 in (Power)",
+      "visual_description": "Top curve in the bottom Power-Hp panel",
+      "line_color": "sienna",
+      "line_style": "solid",
+      "x_axis_id": "axis_id=x_bottom",
+      "y_axis_id": "axis_id=y_power",
+      "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+      "confidence": 1.0
+    },
+    {
+      "series_name": "5.82 in (Power)",
+      "visual_description": "Middle curve in the bottom Power-Hp panel",
+      "line_color": "peru",
+      "line_style": "solid",
+      "x_axis_id": "axis_id=x_bottom",
+      "y_axis_id": "axis_id=y_power",
+      "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+      "confidence": 1.0
+    },
+    {
+      "series_name": "5.18 in (Power)",
+      "visual_description": "Bottom curve in the bottom Power-Hp panel",
+      "line_color": "burlywood",
+      "line_style": "solid",
+      "x_axis_id": "axis_id=x_bottom",
+      "y_axis_id": "axis_id=y_power",
+      "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+      "confidence": 1.0
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

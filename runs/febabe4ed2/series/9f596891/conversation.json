@@ -1,0 +1,29 @@
+{
+  "run_id": "febabe4ed2",
+  "stage": "series",
+  "series_id": "9f596891",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 3 of 3\nName: Bottom panel Overall efficiency\nColour: #ff7f0e\nLine style: solid\nX axis ID: bottom_panel_x_flow_lps\nY axis ID: bottom_panel_y_efficiency_percent\nAxis selection reason: The overall efficiency curve uses the bottom FLOW [l/s] axis and the right-side outer EFF [%] axis.\nVisual description: Orange solid arch-shaped curve in the bottom panel, lower than the green hydraulic efficiency curve, peaking around mid flow; identified from the legend label “Overall efficiency.”\nIdentification confidence: 0.96",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/9f596891/attempt_01/overlay.png",
+      "request_path": "series/9f596891/attempt_01/request.json",
+      "response_path": "series/9f596891/attempt_01/response.json",
+      "parsed_path": "series/9f596891/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 3 of 3\nName: Bottom panel Overall efficiency\nColour: #ff7f0e\nLine style: solid\nX axis ID: bottom_panel_x_flow_lps\nY axis ID: bottom_panel_y_efficiency_percent\nAxis selection reason: The overall efficiency curve uses the bottom FLOW [l/s] axis and the right-side outer EFF [%] axis.\nVisual description: Orange solid arch-shaped curve in the bottom panel, lower than the green hydraulic efficiency curve, peaking around mid flow; identified from the legend label “Overall efficiency.”\nIdentification confidence: 0.96",
+      "source_image_path": "series/9f596891/attempt_01/overlay.png",
+      "overlay_path": "series/9f596891/attempt_02/overlay.png",
+      "request_path": "series/9f596891/attempt_02/request.json",
+      "response_path": "series/9f596891/attempt_02/response.json",
+      "parsed_path": "series/9f596891/attempt_02/parsed.json"
+    }
+  ]
+}

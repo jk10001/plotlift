@@ -1,0 +1,29 @@
+{
+  "run_id": "04a6b7a737",
+  "stage": "series",
+  "series_id": "2b9c640b",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 2 of 3\nName: NPSH\nColour: #00008b\nLine style: solid\nX axis ID: x_top\nY axis ID: y_npsh\nAxis selection reason: Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).\nVisual description: Single blue curve in the middle NPSH-ft panel\nIdentification confidence: 1.00",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/2b9c640b/attempt_01/overlay.png",
+      "request_path": "series/2b9c640b/attempt_01/request.json",
+      "response_path": "series/2b9c640b/attempt_01/response.json",
+      "parsed_path": "series/2b9c640b/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 2 of 3\nName: NPSH\nColour: #00008b\nLine style: solid\nX axis ID: x_top\nY axis ID: y_npsh\nAxis selection reason: Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).\nVisual description: Single blue curve in the middle NPSH-ft panel\nIdentification confidence: 1.00",
+      "source_image_path": "series/2b9c640b/attempt_01/overlay.png",
+      "overlay_path": "series/2b9c640b/attempt_02/overlay.png",
+      "request_path": "series/2b9c640b/attempt_02/request.json",
+      "response_path": "series/2b9c640b/attempt_02/response.json",
+      "parsed_path": "series/2b9c640b/attempt_02/parsed.json"
+    }
+  ]
+}

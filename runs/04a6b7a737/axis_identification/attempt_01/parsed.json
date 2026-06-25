@@ -1,0 +1,72 @@
+{
+  "axes": [
+    {
+      "axis_id": "y_head",
+      "direction": "y",
+      "name": "Head",
+      "unit": "ft",
+      "quantity": "head",
+      "location_description": "Left side of the top panel",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 1.0
+    },
+    {
+      "axis_id": "x_top",
+      "direction": "x",
+      "name": "Flow rate",
+      "unit": "US gpm",
+      "quantity": "flow rate",
+      "location_description": "Bottom of the top panel",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 1.0
+    },
+    {
+      "axis_id": "y_npsh",
+      "direction": "y",
+      "name": "NPSH",
+      "unit": "ft",
+      "quantity": "NPSH",
+      "location_description": "Left side of the middle panel",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 1.0
+    },
+    {
+      "axis_id": "x_middle",
+      "direction": "x",
+      "name": "Flow rate",
+      "unit": "US gpm",
+      "quantity": "flow rate",
+      "location_description": "Bottom of the middle panel",
+      "is_primary_for_digitization": false,
+      "ignore_reason": "Shares scale with top and bottom x-axes and has no numeric labels.",
+      "confidence": 0.9
+    },
+    {
+      "axis_id": "y_power",
+      "direction": "y",
+      "name": "Power",
+      "unit": "Hp",
+      "quantity": "power",
+      "location_description": "Left side of the bottom panel",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 1.0
+    },
+    {
+      "axis_id": "x_bottom",
+      "direction": "x",
+      "name": "Flow rate",
+      "unit": "US gpm",
+      "quantity": "flow rate",
+      "location_description": "Bottom of the bottom panel",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 1.0
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

@@ -1,0 +1,205 @@
+{
+  "raw": {
+    "sdk_http_response": {
+      "headers": {
+        "x-gemini-service-tier": "standard",
+        "content-type": "application/json; charset=UTF-8",
+        "vary": "Origin, X-Origin, Referer",
+        "content-encoding": "gzip",
+        "date": "Mon, 22 Jun 2026 02:40:30 GMT",
+        "server": "scaffolding on HTTPServer2",
+        "x-xss-protection": "0",
+        "x-frame-options": "SAMEORIGIN",
+        "x-content-type-options": "nosniff",
+        "server-timing": "gfet4t7; dur=5698",
+        "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+        "transfer-encoding": "chunked"
+      },
+      "body": null
+    },
+    "candidates": {
+      "content": {
+        "parts": {
+          "media_resolution": null,
+          "code_execution_result": null,
+          "executable_code": null,
+          "file_data": null,
+          "function_call": null,
+          "function_response": null,
+          "inline_data": null,
+          "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"x\",\n    \"points\": [\n      {\n        \"label\": \"x1\",\n        \"crop_image_norm\": {\n          \"x\": 55,\n          \"y\": 959\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        }\n      },\n      {\n        \"label\": \"x2\",\n        \"crop_image_norm\": {\n          \"x\": 959,\n          \"y\": 959\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"2000\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 2000.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        }\n      }\n    ],\n    \"confidence\": 1.0,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+          "thought": null,
+          "video_metadata": null,
+          "tool_call": null,
+          "tool_response": null,
+          "part_metadata": null
+        },
+        "role": "model"
+      },
+      "citation_metadata": null,
+      "finish_message": null,
+      "token_count": null,
+      "finish_reason": "STOP",
+      "grounding_metadata": null,
+      "avg_logprobs": null,
+      "index": 0,
+      "logprobs_result": null,
+      "safety_ratings": null,
+      "url_context_metadata": null
+    },
+    "create_time": null,
+    "model_version": "gemini-3.5-flash",
+    "prompt_feedback": null,
+    "usage_metadata": {
+      "cache_tokens_details": null,
+      "cached_content_token_count": null,
+      "candidates_token_count": 316,
+      "candidates_tokens_details": null,
+      "prompt_token_count": 1613,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 521
+        },
+        {
+          "modality": "IMAGE",
+          "token_count": 1092
+        }
+      ],
+      "thoughts_token_count": 867,
+      "tool_use_prompt_token_count": null,
+      "tool_use_prompt_tokens_details": null,
+      "total_token_count": 2796,
+      "traffic_type": null
+    },
+    "model_status": null,
+    "automatic_function_calling_history": null,
+    "parsed": {
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "proposal": {
+        "axis": "x",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 55,
+              "y": 959
+            },
+            "crop_image_px": null,
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "US gpm"
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 959,
+              "y": 959
+            },
+            "crop_image_px": null,
+            "chart_value": {
+              "value_raw": "2000",
+              "value_type": "number",
+              "parsed_value": 2000.0,
+              "parsed_datetime": null,
+              "unit": "US gpm"
+            }
+          }
+        ],
+        "confidence": 1.0,
+        "warnings": null,
+        "unsupported_flags": null
+      }
+    }
+  },
+  "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"x\",\n    \"points\": [\n      {\n        \"label\": \"x1\",\n        \"crop_image_norm\": {\n          \"x\": 55,\n          \"y\": 959\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        }\n      },\n      {\n        \"label\": \"x2\",\n        \"crop_image_norm\": {\n          \"x\": 959,\n          \"y\": 959\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"2000\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 2000.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        }\n      }\n    ],\n    \"confidence\": 1.0,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+  "json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "x",
+      "points": [
+        {
+          "label": "x1",
+          "crop_image_norm": {
+            "x": 55,
+            "y": 958
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "US gpm"
+          }
+        },
+        {
+          "label": "x2",
+          "crop_image_norm": {
+            "x": 958,
+            "y": 958
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "2000",
+            "value_type": "number",
+            "parsed_value": 2000.0,
+            "parsed_datetime": null,
+            "unit": "US gpm"
+          }
+        }
+      ],
+      "confidence": 1.0,
+      "warnings": null,
+      "unsupported_flags": null
+    }
+  },
+  "provider_json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "x",
+      "points": [
+        {
+          "label": "x1",
+          "crop_image_norm": {
+            "x": 55,
+            "y": 959
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "US gpm"
+          }
+        },
+        {
+          "label": "x2",
+          "crop_image_norm": {
+            "x": 959,
+            "y": 959
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "2000",
+            "value_type": "number",
+            "parsed_value": 2000.0,
+            "parsed_datetime": null,
+            "unit": "US gpm"
+          }
+        }
+      ],
+      "confidence": 1.0,
+      "warnings": null,
+      "unsupported_flags": null
+    }
+  }
+}

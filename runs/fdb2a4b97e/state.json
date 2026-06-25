@@ -1,0 +1,1581 @@
+{
+  "run_id": "fdb2a4b97e",
+  "created_at": "2026-06-20T03:39:36.047609+00:00",
+  "updated_at": "2026-06-20T03:45:29.317873+00:00",
+  "stage": "complete",
+  "active_job": null,
+  "settings": {
+    "model_id": "gpt-5.4-mini",
+    "image_detail": "high",
+    "reasoning_effort": "medium",
+    "mock_mode": false
+  },
+  "prompt_metadata": {
+    "prompt_pack": "prompts.yaml",
+    "prompt_version": "2026-06-04-v1",
+    "prompt_hash": "33c5a44b7a2cf476"
+  },
+  "upload_filename": "pump_curve_01.png",
+  "original_path": "uploads/original.png",
+  "pages": [
+    {
+      "path": "pages/page_001.png",
+      "width": 610,
+      "height": 500,
+      "label": "Image"
+    }
+  ],
+  "selected_page_index": 0,
+  "canonical_image": {
+    "path": "pages/page_001.png",
+    "width": 610,
+    "height": 500,
+    "label": "Image"
+  },
+  "crop": {
+    "bbox_full_norm": {
+      "left": 17,
+      "top": 24,
+      "right": 999,
+      "bottom": 929
+    },
+    "bbox_full_px": {
+      "left": 10.363363363363364,
+      "top": 11.987987987987989,
+      "right": 609.0,
+      "bottom": 464.03503503503504
+    },
+    "image": {
+      "path": "crop/approved_crop.png",
+      "width": 599,
+      "height": 452,
+      "label": null
+    },
+    "approved": true,
+    "warnings": []
+  },
+  "calibration": {
+    "identified_axes": [
+      {
+        "axis_id": "y_left_head_m",
+        "direction": "y",
+        "name": "Head",
+        "unit": "m",
+        "quantity": "head",
+        "location_description": "Left y-axis, inner metric scale closest to the plot body, labeled in meters from 0 to 14.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.98
+      },
+      {
+        "axis_id": "y_left_head_ft",
+        "direction": "y",
+        "name": "Head",
+        "unit": "ft",
+        "quantity": "head",
+        "location_description": "Left y-axis, outer imperial scale farther left from the plot body, labeled in feet from 0 to 45.",
+        "is_primary_for_digitization": false,
+        "ignore_reason": "Duplicate y-axis for the same quantity (head) in feet; use the inner metric meter axis for digitization.",
+        "confidence": 0.96
+      },
+      {
+        "axis_id": "x_bottom_flow_lpm",
+        "direction": "x",
+        "name": "Flow",
+        "unit": "LPM",
+        "quantity": "flow rate",
+        "location_description": "Primary bottom x-axis closest to the plot body, labeled in liters per minute from 0 to 400.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.98
+      },
+      {
+        "axis_id": "x_bottom_flow_gpm",
+        "direction": "x",
+        "name": "Flow",
+        "unit": "GPM",
+        "quantity": "flow rate",
+        "location_description": "Secondary bottom x-axis below the plot body, labeled in gallons per minute from 0 to 100.",
+        "is_primary_for_digitization": false,
+        "ignore_reason": "Duplicate x-axis for the same quantity (flow rate) in GPM; use the primary metric LPM axis for digitization.",
+        "confidence": 0.97
+      }
+    ],
+    "calibrated_axes": [
+      {
+        "axis_id": "y_left_head_m",
+        "direction": "y",
+        "name": "Head",
+        "unit": "m",
+        "quantity": "head",
+        "location_description": "Left y-axis, inner metric scale closest to the plot body, labeled in meters from 0 to 14.",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 116,
+              "y": 92
+            },
+            "crop_image_px": {
+              "x": 69.43743743743744,
+              "y": 41.533533533533536
+            },
+            "chart_value": {
+              "value_raw": "14",
+              "value_type": "number",
+              "parsed_value": 14.0,
+              "parsed_datetime": null,
+              "unit": "m"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 116,
+              "y": 816
+            },
+            "crop_image_px": {
+              "x": 69.43743743743744,
+              "y": 368.3843843843844
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "m"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": []
+      },
+      {
+        "axis_id": "x_bottom_flow_lpm",
+        "direction": "x",
+        "name": "Flow",
+        "unit": "LPM",
+        "quantity": "flow rate",
+        "location_description": "Primary bottom x-axis closest to the plot body, labeled in liters per minute from 0 to 400.",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 118,
+              "y": 816
+            },
+            "crop_image_px": {
+              "x": 70.63463463463464,
+              "y": 368.3843843843844
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "LPM"
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 897,
+              "y": 816
+            },
+            "crop_image_px": {
+              "x": 536.942942942943,
+              "y": 368.3843843843844
+            },
+            "chart_value": {
+              "value_raw": "400",
+              "value_type": "number",
+              "parsed_value": 400.0,
+              "parsed_datetime": null,
+              "unit": "LPM"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.96,
+        "warnings": []
+      }
+    ],
+    "x_points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 118,
+          "y": 816
+        },
+        "crop_image_px": {
+          "x": 70.63463463463464,
+          "y": 368.3843843843844
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 897,
+          "y": 816
+        },
+        "crop_image_px": {
+          "x": 536.942942942943,
+          "y": 368.3843843843844
+        },
+        "chart_value": {
+          "value_raw": "400",
+          "value_type": "number",
+          "parsed_value": 400.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        }
+      }
+    ],
+    "y_points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 116,
+          "y": 92
+        },
+        "crop_image_px": {
+          "x": 69.43743743743744,
+          "y": 41.533533533533536
+        },
+        "chart_value": {
+          "value_raw": "14",
+          "value_type": "number",
+          "parsed_value": 14.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 116,
+          "y": 816
+        },
+        "crop_image_px": {
+          "x": 69.43743743743744,
+          "y": 368.3843843843844
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      }
+    ],
+    "approved_x": true,
+    "approved_y": true,
+    "warnings": []
+  },
+  "pending_series": [],
+  "series": [
+    {
+      "id": "94d7e029",
+      "name": "IM-743",
+      "llm_series_name": "IM-743",
+      "visual_description": "Upper gray solid curve in the single panel, descending smoothly from the upper-left toward the lower-right; labeled directly on the line near the left side.",
+      "line_color": "#b3b3b3",
+      "line_style": "solid",
+      "x_axis_id": "x_bottom_flow_lpm",
+      "y_axis_id": "y_left_head_m",
+      "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+      "confidence": 0.96,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 118,
+            "y": 195
+          },
+          "crop_image_px": {
+            "x": 70.63463463463464,
+            "y": 88.03303303303302
+          },
+          "chart_x": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "12.0083",
+            "value_type": "number",
+            "parsed_value": 12.00828729281768,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 196,
+            "y": 232
+          },
+          "crop_image_px": {
+            "x": 117.32532532532532,
+            "y": 104.73673673673675
+          },
+          "chart_x": {
+            "value_raw": "40.0513",
+            "value_type": "number",
+            "parsed_value": 40.051347881899865,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "11.2928",
+            "value_type": "number",
+            "parsed_value": 11.292817679558011,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 274,
+            "y": 278
+          },
+          "crop_image_px": {
+            "x": 164.016016016016,
+            "y": 125.50350350350351
+          },
+          "chart_x": {
+            "value_raw": "80.1027",
+            "value_type": "number",
+            "parsed_value": 80.10269576379973,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "10.4033",
+            "value_type": "number",
+            "parsed_value": 10.403314917127071,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 352,
+            "y": 325
+          },
+          "crop_image_px": {
+            "x": 210.7067067067067,
+            "y": 146.7217217217217
+          },
+          "chart_x": {
+            "value_raw": "120.154",
+            "value_type": "number",
+            "parsed_value": 120.15404364569959,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "9.49448",
+            "value_type": "number",
+            "parsed_value": 9.494475138121548,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 430,
+            "y": 382
+          },
+          "crop_image_px": {
+            "x": 257.3973973973974,
+            "y": 172.45445445445444
+          },
+          "chart_x": {
+            "value_raw": "160.205",
+            "value_type": "number",
+            "parsed_value": 160.20539152759946,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "8.39227",
+            "value_type": "number",
+            "parsed_value": 8.392265193370168,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 510,
+            "y": 437
+          },
+          "crop_image_px": {
+            "x": 305.2852852852853,
+            "y": 197.2842842842843
+          },
+          "chart_x": {
+            "value_raw": "201.284",
+            "value_type": "number",
+            "parsed_value": 201.28369704749676,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "7.32873",
+            "value_type": "number",
+            "parsed_value": 7.328729281767956,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 588,
+            "y": 505
+          },
+          "crop_image_px": {
+            "x": 351.9759759759759,
+            "y": 227.982982982983
+          },
+          "chart_x": {
+            "value_raw": "241.335",
+            "value_type": "number",
+            "parsed_value": 241.33504492939656,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "6.01381",
+            "value_type": "number",
+            "parsed_value": 6.013812154696131,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 678,
+            "y": 603
+          },
+          "crop_image_px": {
+            "x": 405.8498498498499,
+            "y": 272.22522522522524
+          },
+          "chart_x": {
+            "value_raw": "287.548",
+            "value_type": "number",
+            "parsed_value": 287.54813863928115,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "4.11878",
+            "value_type": "number",
+            "parsed_value": 4.1187845303867405,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 758,
+            "y": 701
+          },
+          "crop_image_px": {
+            "x": 453.73773773773775,
+            "y": 316.46746746746743
+          },
+          "chart_x": {
+            "value_raw": "328.626",
+            "value_type": "number",
+            "parsed_value": 328.6264441591784,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "2.22376",
+            "value_type": "number",
+            "parsed_value": 2.22375690607735,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 817,
+            "y": 788
+          },
+          "crop_image_px": {
+            "x": 489.05505505505505,
+            "y": 355.7437437437437
+          },
+          "chart_x": {
+            "value_raw": "358.922",
+            "value_type": "number",
+            "parsed_value": 358.92169448010264,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "0.541436",
+            "value_type": "number",
+            "parsed_value": 0.5414364640883988,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "39bdf7a6",
+      "name": "IM-618",
+      "llm_series_name": "IM-618",
+      "visual_description": "Upper gold/brown solid curve below IM-743, descending smoothly from left to right; labeled directly on the line near the left side.",
+      "line_color": "#a88f1f",
+      "line_style": "solid",
+      "x_axis_id": "x_bottom_flow_lpm",
+      "y_axis_id": "y_left_head_m",
+      "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+      "confidence": 0.97,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 118,
+            "y": 283
+          },
+          "crop_image_px": {
+            "x": 70.63463463463464,
+            "y": 127.76076076076076
+          },
+          "chart_x": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "10.3066",
+            "value_type": "number",
+            "parsed_value": 10.306629834254144,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 196,
+            "y": 330
+          },
+          "crop_image_px": {
+            "x": 117.32532532532532,
+            "y": 148.97897897897897
+          },
+          "chart_x": {
+            "value_raw": "40.0513",
+            "value_type": "number",
+            "parsed_value": 40.051347881899865,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "9.39779",
+            "value_type": "number",
+            "parsed_value": 9.397790055248619,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 274,
+            "y": 371
+          },
+          "crop_image_px": {
+            "x": 164.016016016016,
+            "y": 167.48848848848849
+          },
+          "chart_x": {
+            "value_raw": "80.1027",
+            "value_type": "number",
+            "parsed_value": 80.10269576379973,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "8.60497",
+            "value_type": "number",
+            "parsed_value": 8.604972375690608,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 350,
+            "y": 409
+          },
+          "crop_image_px": {
+            "x": 209.5095095095095,
+            "y": 184.64364364364363
+          },
+          "chart_x": {
+            "value_raw": "119.127",
+            "value_type": "number",
+            "parsed_value": 119.12708600770216,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "7.87017",
+            "value_type": "number",
+            "parsed_value": 7.8701657458563545,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 430,
+            "y": 451
+          },
+          "crop_image_px": {
+            "x": 257.3973973973974,
+            "y": 203.6046046046046
+          },
+          "chart_x": {
+            "value_raw": "160.205",
+            "value_type": "number",
+            "parsed_value": 160.20539152759946,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "7.05801",
+            "value_type": "number",
+            "parsed_value": 7.058011049723758,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 505,
+            "y": 507
+          },
+          "crop_image_px": {
+            "x": 302.2922922922923,
+            "y": 228.8858858858859
+          },
+          "chart_x": {
+            "value_raw": "198.716",
+            "value_type": "number",
+            "parsed_value": 198.7163029525032,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "5.97514",
+            "value_type": "number",
+            "parsed_value": 5.975138121546962,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 584,
+            "y": 592
+          },
+          "crop_image_px": {
+            "x": 349.5815815815816,
+            "y": 267.25925925925924
+          },
+          "chart_x": {
+            "value_raw": "239.281",
+            "value_type": "number",
+            "parsed_value": 239.28112965340173,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "4.33149",
+            "value_type": "number",
+            "parsed_value": 4.331491712707184,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 663,
+            "y": 713
+          },
+          "crop_image_px": {
+            "x": 396.8708708708709,
+            "y": 321.8848848848849
+          },
+          "chart_x": {
+            "value_raw": "279.846",
+            "value_type": "number",
+            "parsed_value": 279.8459563543003,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "1.99171",
+            "value_type": "number",
+            "parsed_value": 1.9917127071823195,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 698,
+            "y": 786
+          },
+          "crop_image_px": {
+            "x": 417.82182182182186,
+            "y": 354.8408408408409
+          },
+          "chart_x": {
+            "value_raw": "297.818",
+            "value_type": "number",
+            "parsed_value": 297.8177150192554,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "0.58011",
+            "value_type": "number",
+            "parsed_value": 0.5801104972375679,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "8b8ef0e8",
+      "name": "IM-285",
+      "llm_series_name": "IM-285",
+      "visual_description": "Lower gold/brown solid curve, starting around the mid-left and dropping steeply toward the bottom near the center-right; labeled directly on the line near the left side.",
+      "line_color": "#a88f1f",
+      "line_style": "solid",
+      "x_axis_id": "x_bottom_flow_lpm",
+      "y_axis_id": "y_left_head_m",
+      "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+      "confidence": 0.98,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 118,
+            "y": 506
+          },
+          "crop_image_px": {
+            "x": 70.63463463463464,
+            "y": 228.43443443443445
+          },
+          "chart_x": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "5.99448",
+            "value_type": "number",
+            "parsed_value": 5.994475138121546,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 169,
+            "y": 535
+          },
+          "crop_image_px": {
+            "x": 101.16316316316316,
+            "y": 241.52652652652654
+          },
+          "chart_x": {
+            "value_raw": "26.1874",
+            "value_type": "number",
+            "parsed_value": 26.18741976893453,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "5.4337",
+            "value_type": "number",
+            "parsed_value": 5.433701657458563,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 216,
+            "y": 559
+          },
+          "crop_image_px": {
+            "x": 129.2972972972973,
+            "y": 252.3613613613614
+          },
+          "chart_x": {
+            "value_raw": "50.3209",
+            "value_type": "number",
+            "parsed_value": 50.32092426187419,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "4.96961",
+            "value_type": "number",
+            "parsed_value": 4.969613259668508,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 262,
+            "y": 582
+          },
+          "crop_image_px": {
+            "x": 156.83283283283282,
+            "y": 262.7447447447447
+          },
+          "chart_x": {
+            "value_raw": "73.9409",
+            "value_type": "number",
+            "parsed_value": 73.94094993581513,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "4.52486",
+            "value_type": "number",
+            "parsed_value": 4.52486187845304,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 314,
+            "y": 618
+          },
+          "crop_image_px": {
+            "x": 187.95995995995997,
+            "y": 278.99699699699704
+          },
+          "chart_x": {
+            "value_raw": "100.642",
+            "value_type": "number",
+            "parsed_value": 100.6418485237484,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "3.82873",
+            "value_type": "number",
+            "parsed_value": 3.828729281767954,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 354,
+            "y": 655
+          },
+          "crop_image_px": {
+            "x": 211.9039039039039,
+            "y": 295.7007007007007
+          },
+          "chart_x": {
+            "value_raw": "121.181",
+            "value_type": "number",
+            "parsed_value": 121.18100128369704,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "3.11326",
+            "value_type": "number",
+            "parsed_value": 3.113259668508288,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 381,
+            "y": 700
+          },
+          "crop_image_px": {
+            "x": 228.06606606606607,
+            "y": 316.016016016016
+          },
+          "chart_x": {
+            "value_raw": "135.045",
+            "value_type": "number",
+            "parsed_value": 135.04492939666238,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "2.24309",
+            "value_type": "number",
+            "parsed_value": 2.2430939226519353,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 405,
+            "y": 747
+          },
+          "crop_image_px": {
+            "x": 242.43243243243245,
+            "y": 337.23423423423424
+          },
+          "chart_x": {
+            "value_raw": "147.368",
+            "value_type": "number",
+            "parsed_value": 147.36842105263156,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "1.33425",
+            "value_type": "number",
+            "parsed_value": 1.33425414364641,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 428,
+            "y": 806
+          },
+          "crop_image_px": {
+            "x": 256.2002002002002,
+            "y": 363.8698698698699
+          },
+          "chart_x": {
+            "value_raw": "159.178",
+            "value_type": "number",
+            "parsed_value": 159.17843388960202,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "0.19337",
+            "value_type": "number",
+            "parsed_value": 0.19337016574585597,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "af03c017",
+      "name": "IM-463",
+      "llm_series_name": "IM-463",
+      "visual_description": "Middle gray solid curve between IM-618 and IM-285, descending smoothly and ending near the lower center; labeled directly on the line near the center.",
+      "line_color": "#b3b3b3",
+      "line_style": "solid",
+      "x_axis_id": "x_bottom_flow_lpm",
+      "y_axis_id": "y_left_head_m",
+      "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+      "confidence": 0.95,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 117,
+            "y": 398
+          },
+          "crop_image_px": {
+            "x": 70.03603603603604,
+            "y": 179.67767767767768
+          },
+          "chart_x": {
+            "value_raw": "-0.513479",
+            "value_type": "number",
+            "parsed_value": -0.5134788189987167,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "8.08287",
+            "value_type": "number",
+            "parsed_value": 8.082872928176794,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 157,
+            "y": 433
+          },
+          "crop_image_px": {
+            "x": 93.97997997997999,
+            "y": 195.47847847847848
+          },
+          "chart_x": {
+            "value_raw": "20.0257",
+            "value_type": "number",
+            "parsed_value": 20.025673940949936,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "7.40608",
+            "value_type": "number",
+            "parsed_value": 7.406077348066298,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 206,
+            "y": 459
+          },
+          "crop_image_px": {
+            "x": 123.3113113113113,
+            "y": 207.21621621621622
+          },
+          "chart_x": {
+            "value_raw": "45.1861",
+            "value_type": "number",
+            "parsed_value": 45.18613607188702,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "6.90331",
+            "value_type": "number",
+            "parsed_value": 6.903314917127071,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 254,
+            "y": 490
+          },
+          "crop_image_px": {
+            "x": 152.04404404404403,
+            "y": 221.2112112112112
+          },
+          "chart_x": {
+            "value_raw": "69.8331",
+            "value_type": "number",
+            "parsed_value": 69.83311938382539,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "6.30387",
+            "value_type": "number",
+            "parsed_value": 6.303867403314918,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 314,
+            "y": 516
+          },
+          "crop_image_px": {
+            "x": 187.95995995995997,
+            "y": 232.94894894894895
+          },
+          "chart_x": {
+            "value_raw": "100.642",
+            "value_type": "number",
+            "parsed_value": 100.6418485237484,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "5.8011",
+            "value_type": "number",
+            "parsed_value": 5.80110497237569,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 375,
+            "y": 563
+          },
+          "crop_image_px": {
+            "x": 224.47447447447445,
+            "y": 254.16716716716715
+          },
+          "chart_x": {
+            "value_raw": "131.964",
+            "value_type": "number",
+            "parsed_value": 131.96405648267003,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "4.89227",
+            "value_type": "number",
+            "parsed_value": 4.892265193370166,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 413,
+            "y": 607
+          },
+          "crop_image_px": {
+            "x": 247.2212212212212,
+            "y": 274.03103103103103
+          },
+          "chart_x": {
+            "value_raw": "151.476",
+            "value_type": "number",
+            "parsed_value": 151.47625160462127,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "4.04144",
+            "value_type": "number",
+            "parsed_value": 4.041436464088399,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 445,
+            "y": 654
+          },
+          "crop_image_px": {
+            "x": 266.37637637637636,
+            "y": 295.24924924924926
+          },
+          "chart_x": {
+            "value_raw": "167.908",
+            "value_type": "number",
+            "parsed_value": 167.90757381258018,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "3.1326",
+            "value_type": "number",
+            "parsed_value": 3.1325966850828717,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 471,
+            "y": 699
+          },
+          "crop_image_px": {
+            "x": 281.9399399399399,
+            "y": 315.56456456456453
+          },
+          "chart_x": {
+            "value_raw": "181.258",
+            "value_type": "number",
+            "parsed_value": 181.2580231065468,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "2.26243",
+            "value_type": "number",
+            "parsed_value": 2.2624309392265225,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 496,
+            "y": 766
+          },
+          "crop_image_px": {
+            "x": 296.9049049049049,
+            "y": 345.8118118118118
+          },
+          "chart_x": {
+            "value_raw": "194.095",
+            "value_type": "number",
+            "parsed_value": 194.09499358151476,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "0.966851",
+            "value_type": "number",
+            "parsed_value": 0.9668508287292834,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 507,
+            "y": 796
+          },
+          "crop_image_px": {
+            "x": 303.4894894894895,
+            "y": 359.35535535535536
+          },
+          "chart_x": {
+            "value_raw": "199.743",
+            "value_type": "number",
+            "parsed_value": 199.7432605905006,
+            "parsed_datetime": null,
+            "unit": "LPM"
+          },
+          "chart_y": {
+            "value_raw": "0.38674",
+            "value_type": "number",
+            "parsed_value": 0.3867403314917155,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "attempts": [
+    {
+      "id": "axis-identification-01",
+      "stage": "axis_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "axis_identification/attempt_01/request.json",
+      "response_path": "axis_identification/attempt_01/response.json",
+      "parsed_path": "axis_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.9724999999999999,
+      "warnings": []
+    },
+    {
+      "id": "axis_y_left_head_m-01",
+      "stage": "axis_y_left_head_m",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_y_left_head_m/attempt_01/request.json",
+      "response_path": "axis_y_left_head_m/attempt_01/response.json",
+      "parsed_path": "axis_y_left_head_m/attempt_01/parsed.json",
+      "overlay_path": "axis_y_left_head_m/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_y_left_head_m-02",
+      "stage": "axis_y_left_head_m",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_y_left_head_m/attempt_02/request.json",
+      "response_path": "axis_y_left_head_m/attempt_02/response.json",
+      "parsed_path": "axis_y_left_head_m/attempt_02/parsed.json",
+      "overlay_path": "axis_y_left_head_m/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_x_bottom_flow_lpm-01",
+      "stage": "axis_x_bottom_flow_lpm",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_x_bottom_flow_lpm/attempt_01/request.json",
+      "response_path": "axis_x_bottom_flow_lpm/attempt_01/response.json",
+      "parsed_path": "axis_x_bottom_flow_lpm/attempt_01/parsed.json",
+      "overlay_path": "axis_x_bottom_flow_lpm/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "axis_x_bottom_flow_lpm-02",
+      "stage": "axis_x_bottom_flow_lpm",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_x_bottom_flow_lpm/attempt_02/request.json",
+      "response_path": "axis_x_bottom_flow_lpm/attempt_02/response.json",
+      "parsed_path": "axis_x_bottom_flow_lpm/attempt_02/parsed.json",
+      "overlay_path": "axis_x_bottom_flow_lpm/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "series-identification-01",
+      "stage": "series_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "series_identification/attempt_01/request.json",
+      "response_path": "series_identification/attempt_01/response.json",
+      "parsed_path": "series_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "series-94d7e029-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/94d7e029/attempt_01/request.json",
+      "response_path": "series/94d7e029/attempt_01/response.json",
+      "parsed_path": "series/94d7e029/attempt_01/parsed.json",
+      "overlay_path": "series/94d7e029/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "series-94d7e029-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/94d7e029/attempt_02/request.json",
+      "response_path": "series/94d7e029/attempt_02/response.json",
+      "parsed_path": "series/94d7e029/attempt_02/parsed.json",
+      "overlay_path": "series/94d7e029/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "series-39bdf7a6-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/39bdf7a6/attempt_01/request.json",
+      "response_path": "series/39bdf7a6/attempt_01/response.json",
+      "parsed_path": "series/39bdf7a6/attempt_01/parsed.json",
+      "overlay_path": "series/39bdf7a6/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.97,
+      "warnings": []
+    },
+    {
+      "id": "series-39bdf7a6-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/39bdf7a6/attempt_02/request.json",
+      "response_path": "series/39bdf7a6/attempt_02/response.json",
+      "parsed_path": "series/39bdf7a6/attempt_02/parsed.json",
+      "overlay_path": "series/39bdf7a6/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.97,
+      "warnings": []
+    },
+    {
+      "id": "series-8b8ef0e8-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/8b8ef0e8/attempt_01/request.json",
+      "response_path": "series/8b8ef0e8/attempt_01/response.json",
+      "parsed_path": "series/8b8ef0e8/attempt_01/parsed.json",
+      "overlay_path": "series/8b8ef0e8/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "series-8b8ef0e8-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "needs_review",
+      "request_path": "series/8b8ef0e8/attempt_02/request.json",
+      "response_path": "series/8b8ef0e8/attempt_02/response.json",
+      "parsed_path": "series/8b8ef0e8/attempt_02/parsed.json",
+      "overlay_path": "series/8b8ef0e8/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.98,
+      "warnings": [
+        "The overlay follows the target series generally well, but the middle-to-right portion is slightly too low and too straight through the steep bend near the end. I’m revising the curve with a few additional control points and a tighter bend near the drop to zero."
+      ]
+    },
+    {
+      "id": "series-8b8ef0e8-03",
+      "stage": "series",
+      "attempt_number": 3,
+      "status": "accepted",
+      "request_path": "series/8b8ef0e8/attempt_03/request.json",
+      "response_path": "series/8b8ef0e8/attempt_03/response.json",
+      "parsed_path": "series/8b8ef0e8/attempt_03/parsed.json",
+      "overlay_path": "series/8b8ef0e8/attempt_03/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.98,
+      "warnings": []
+    },
+    {
+      "id": "series-af03c017-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/af03c017/attempt_01/request.json",
+      "response_path": "series/af03c017/attempt_01/response.json",
+      "parsed_path": "series/af03c017/attempt_01/parsed.json",
+      "overlay_path": "series/af03c017/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.93,
+      "warnings": []
+    },
+    {
+      "id": "series-af03c017-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "needs_review",
+      "request_path": "series/af03c017/attempt_02/request.json",
+      "response_path": "series/af03c017/attempt_02/response.json",
+      "parsed_path": "series/af03c017/attempt_02/parsed.json",
+      "overlay_path": "series/af03c017/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": [
+        "The previous polyline tracks the IM-463 curve reasonably well, but the mid-to-lower right portion sits a bit low relative to the visible gray series. I am nudging the descending tail upward and smoothing the bend toward the endpoint."
+      ]
+    },
+    {
+      "id": "series-af03c017-03",
+      "stage": "series",
+      "attempt_number": 3,
+      "status": "accepted",
+      "request_path": "series/af03c017/attempt_03/request.json",
+      "response_path": "series/af03c017/attempt_03/response.json",
+      "parsed_path": "series/af03c017/attempt_03/parsed.json",
+      "overlay_path": "series/af03c017/attempt_03/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "active_step_status": null
+}

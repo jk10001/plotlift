@@ -1,0 +1,234 @@
+{
+  "provider": "gemini",
+  "model": "gemini-3.5-flash",
+  "coordinate_scale": "0-1000",
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "inline_data": {
+            "mime_type": "image/png",
+            "data": "<bytes omitted; see attempt image artifacts>"
+          },
+          "media_resolution": {
+            "level": "media_resolution_high"
+          }
+        },
+        {
+          "text": "This is the first attempt for a new series. Use response_kind \"proposal\".\nDigitise only the series described below.\nSeries 2 of 3\nName: NPSH\nColour: #00008b\nLine style: solid\nX axis ID: x_top\nY axis ID: y_npsh\nAxis selection reason: Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).\nVisual description: Single blue curve in the middle NPSH-ft panel\nIdentification confidence: 1.00\n\nThe proposal object must return confidence and 5 to 30 points. Do not return descriptive series metadata in the proposal.\n"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": {
+        "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"points\": [\n      {\n        \"point_index\": 0,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"31\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 31,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 1,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"500\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 500,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"31\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 31,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 2,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1000\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1000,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"31\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 31,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 3,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1100\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1100,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"31.2\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 31.2,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 4,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1200\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1200,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"33.5\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 33.5,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 5,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1300\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1300,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"36.5\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 36.5,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 6,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1400\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1400,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"40.5\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 40.5,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 7,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1500\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1500,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"46.5\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 46.5,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 8,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1600\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1600,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"53\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 53,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 9,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1700\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1700,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"60.5\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 60.5,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 10,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1800\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1800,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"67.5\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 67.5,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"point_index\": 11,\n        \"segment_index\": 0,\n        \"chart_x\": {\n          \"value_raw\": \"1850\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 1850,\n          \"parsed_datetime\": null,\n          \"unit\": \"US gpm\"\n        },\n        \"chart_y\": {\n          \"value_raw\": \"70.5\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 70.5,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      }\n    ],\n    \"confidence\": 1.0,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}"
+      }
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "inline_data": {
+            "mime_type": "image/png",
+            "data": "<bytes omitted; see attempt image artifacts>"
+          },
+          "media_resolution": {
+            "level": "media_resolution_high"
+          }
+        },
+        {
+          "text": "This is a review attempt for the same series. Review the overlay image of your proposed points and connecting line and compare to the target series line.\nThe overlay shows only the series currently being digitised. Proposed points are marked with X symbols, and each X has its point_index displayed beside it in small text starting at 0.\nThe overlay is rendered by projecting your chart_x/chart_y values through the calibrated axes into image space.\nContinue digitising only the series described below.\nSeries 2 of 3\nName: NPSH\nColour: #00008b\nLine style: solid\nX axis ID: x_top\nY axis ID: y_npsh\nAxis selection reason: Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).\nVisual description: Single blue curve in the middle NPSH-ft panel\nIdentification confidence: 1.00\n\nIf the proposed points accurately follow the chosen series, use response_kind \"accept_previous\" with proposal null.\nOtherwise use response_kind \"revise_previous\" and provide a complete replacement proposal for the same series.\n\nAttempt to get the points as close as possible to the target series, so that the overlay line is directly on top of the series line. Do not adjust points that are on top of the target series line, keep the same point coordinates. Only adjust points that are off the target series line.\n"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "system_instruction": "You are an expert in digitising line charts and are digitising one specified visible line series from a cropped line chart. Your goal is to trace the line as accurately as possible, including any bends, inflections, and discontinuities, while using as few points as necessary to capture the shape.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 1000 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn points in chart-space values as chart_x and chart_y using the selected axis units/types.\nPoints must be ordered visually from left to right along the line, even if chart-space x is reversed.\nUse 5 to 30 representative polyline control points: include start/end, extrema, bends, inflections, and visible discontinuity-adjacent points.\nPoints do not need to be equally spaced. Straight or gently curved segments can be represented with fewer points, while sharply curved segments may require more points to capture the shape accurately.\nDo not return every marker unless the line only has a few markers.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "response_mime_type": "application/json",
+    "response_json_schema": {
+      "$defs": {
+        "ChartValue": {
+          "properties": {
+            "value_raw": {
+              "title": "Value Raw",
+              "type": "string"
+            },
+            "value_type": {
+              "enum": [
+                "number",
+                "datetime",
+                "unknown"
+              ],
+              "title": "Value Type",
+              "type": "string"
+            },
+            "parsed_value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Parsed Value"
+            },
+            "parsed_datetime": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Parsed Datetime"
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Unit"
+            }
+          },
+          "required": [
+            "value_raw",
+            "value_type",
+            "parsed_value",
+            "parsed_datetime",
+            "unit"
+          ],
+          "title": "ChartValue",
+          "type": "object"
+        },
+        "SeriesDigitizationOutput": {
+          "properties": {
+            "points": {
+              "items": {
+                "$ref": "#/$defs/SeriesPointProposal"
+              },
+              "title": "Points",
+              "type": "array",
+              "minItems": 5
+            },
+            "confidence": {
+              "anyOf": [
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Confidence"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesDigitizationOutput",
+          "type": "object",
+          "required": [
+            "points",
+            "confidence",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "SeriesPointProposal": {
+          "properties": {
+            "point_index": {
+              "minimum": 0,
+              "title": "Point Index",
+              "type": "integer"
+            },
+            "segment_index": {
+              "minimum": 0,
+              "title": "Segment Index",
+              "type": "integer"
+            },
+            "chart_x": {
+              "$ref": "#/$defs/ChartValue"
+            },
+            "chart_y": {
+              "$ref": "#/$defs/ChartValue"
+            }
+          },
+          "required": [
+            "point_index",
+            "segment_index",
+            "chart_x",
+            "chart_y"
+          ],
+          "title": "SeriesPointProposal",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "response_kind": {
+          "enum": [
+            "proposal",
+            "accept_previous",
+            "revise_previous"
+          ],
+          "title": "Response Kind",
+          "type": "string"
+        },
+        "revision_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Revision Reason"
+        },
+        "proposal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SeriesDigitizationOutput"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "response_kind",
+        "revision_reason",
+        "proposal"
+      ],
+      "title": "SeriesDigitizationConversationResponse",
+      "type": "object"
+    },
+    "thinking_config": {
+      "thinking_level": "medium"
+    }
+  },
+  "prompt_cache_key": "plotlift:04a6b7a737:series:2b9c640b",
+  "source_image_path": "series/2b9c640b/attempt_01/overlay.png",
+  "target_series": "Series 2 of 3\nName: NPSH\nColour: #00008b\nLine style: solid\nX axis ID: x_top\nY axis ID: y_npsh\nAxis selection reason: Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).\nVisual description: Single blue curve in the middle NPSH-ft panel\nIdentification confidence: 1.00"
+}

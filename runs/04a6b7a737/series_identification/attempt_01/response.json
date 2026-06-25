@@ -1,0 +1,307 @@
+{
+  "raw": {
+    "sdk_http_response": {
+      "headers": {
+        "x-gemini-service-tier": "standard",
+        "content-type": "application/json; charset=UTF-8",
+        "vary": "Origin, X-Origin, Referer",
+        "content-encoding": "gzip",
+        "date": "Mon, 22 Jun 2026 02:42:32 GMT",
+        "server": "scaffolding on HTTPServer2",
+        "x-xss-protection": "0",
+        "x-frame-options": "SAMEORIGIN",
+        "x-content-type-options": "nosniff",
+        "server-timing": "gfet4t7; dur=12678",
+        "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+        "transfer-encoding": "chunked"
+      },
+      "body": null
+    },
+    "candidates": {
+      "content": {
+        "parts": {
+          "media_resolution": null,
+          "code_execution_result": null,
+          "executable_code": null,
+          "file_data": null,
+          "function_call": null,
+          "function_response": null,
+          "inline_data": null,
+          "text": "{\n  \"series\": [\n    {\n      \"series_name\": \"6.58 in (Head)\",\n      \"visual_description\": \"Topmost curve in the top Head-ft panel\",\n      \"line_color\": \"dimgray\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_top\",\n      \"y_axis_id\": \"axis_id=y_head\",\n      \"axis_selection_reason\": \"Located in the top panel showing Head (ft) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"5.82 in (Head)\",\n      \"visual_description\": \"Middle curve in the top Head-ft panel\",\n      \"line_color\": \"dimgray\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_top\",\n      \"y_axis_id\": \"axis_id=y_head\",\n      \"axis_selection_reason\": \"Located in the top panel showing Head (ft) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"5.18 in (Head)\",\n      \"visual_description\": \"Lowest curve in the top Head-ft panel\",\n      \"line_color\": \"dimgray\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_top\",\n      \"y_axis_id\": \"axis_id=y_head\",\n      \"axis_selection_reason\": \"Located in the top panel showing Head (ft) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"NPSH\",\n      \"visual_description\": \"Single blue curve in the middle NPSH-ft panel\",\n      \"line_color\": \"darkblue\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_top\",\n      \"y_axis_id\": \"axis_id=y_npsh\",\n      \"axis_selection_reason\": \"Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"6.58 in (Power)\",\n      \"visual_description\": \"Top curve in the bottom Power-Hp panel\",\n      \"line_color\": \"sienna\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_bottom\",\n      \"y_axis_id\": \"axis_id=y_power\",\n      \"axis_selection_reason\": \"Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"5.82 in (Power)\",\n      \"visual_description\": \"Middle curve in the bottom Power-Hp panel\",\n      \"line_color\": \"peru\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_bottom\",\n      \"y_axis_id\": \"axis_id=y_power\",\n      \"axis_selection_reason\": \"Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"5.18 in (Power)\",\n      \"visual_description\": \"Bottom curve in the bottom Power-Hp panel\",\n      \"line_color\": \"burlywood\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_bottom\",\n      \"y_axis_id\": \"axis_id=y_power\",\n      \"axis_selection_reason\": \"Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+          "thought": null,
+          "video_metadata": null,
+          "tool_call": null,
+          "tool_response": null,
+          "part_metadata": null
+        },
+        "role": "model"
+      },
+      "citation_metadata": null,
+      "finish_message": null,
+      "token_count": null,
+      "finish_reason": "STOP",
+      "grounding_metadata": null,
+      "avg_logprobs": null,
+      "index": 0,
+      "logprobs_result": null,
+      "safety_ratings": null,
+      "url_context_metadata": null
+    },
+    "create_time": null,
+    "model_version": "gemini-3.5-flash",
+    "prompt_feedback": null,
+    "usage_metadata": {
+      "cache_tokens_details": null,
+      "cached_content_token_count": null,
+      "candidates_token_count": 968,
+      "candidates_tokens_details": null,
+      "prompt_token_count": 1636,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 544
+        },
+        {
+          "modality": "IMAGE",
+          "token_count": 1092
+        }
+      ],
+      "thoughts_token_count": 1867,
+      "tool_use_prompt_token_count": null,
+      "tool_use_prompt_tokens_details": null,
+      "total_token_count": 4471,
+      "traffic_type": null
+    },
+    "model_status": null,
+    "automatic_function_calling_history": null,
+    "parsed": {
+      "series": [
+        {
+          "series_name": "6.58 in (Head)",
+          "visual_description": "Topmost curve in the top Head-ft panel",
+          "line_color": "dimgray",
+          "line_style": "solid",
+          "x_axis_id": "axis_id=x_top",
+          "y_axis_id": "axis_id=y_head",
+          "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+          "confidence": 1.0
+        },
+        {
+          "series_name": "5.82 in (Head)",
+          "visual_description": "Middle curve in the top Head-ft panel",
+          "line_color": "dimgray",
+          "line_style": "solid",
+          "x_axis_id": "axis_id=x_top",
+          "y_axis_id": "axis_id=y_head",
+          "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+          "confidence": 1.0
+        },
+        {
+          "series_name": "5.18 in (Head)",
+          "visual_description": "Lowest curve in the top Head-ft panel",
+          "line_color": "dimgray",
+          "line_style": "solid",
+          "x_axis_id": "axis_id=x_top",
+          "y_axis_id": "axis_id=y_head",
+          "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+          "confidence": 1.0
+        },
+        {
+          "series_name": "NPSH",
+          "visual_description": "Single blue curve in the middle NPSH-ft panel",
+          "line_color": "darkblue",
+          "line_style": "solid",
+          "x_axis_id": "axis_id=x_top",
+          "y_axis_id": "axis_id=y_npsh",
+          "axis_selection_reason": "Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).",
+          "confidence": 1.0
+        },
+        {
+          "series_name": "6.58 in (Power)",
+          "visual_description": "Top curve in the bottom Power-Hp panel",
+          "line_color": "sienna",
+          "line_style": "solid",
+          "x_axis_id": "axis_id=x_bottom",
+          "y_axis_id": "axis_id=y_power",
+          "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+          "confidence": 1.0
+        },
+        {
+          "series_name": "5.82 in (Power)",
+          "visual_description": "Middle curve in the bottom Power-Hp panel",
+          "line_color": "peru",
+          "line_style": "solid",
+          "x_axis_id": "axis_id=x_bottom",
+          "y_axis_id": "axis_id=y_power",
+          "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+          "confidence": 1.0
+        },
+        {
+          "series_name": "5.18 in (Power)",
+          "visual_description": "Bottom curve in the bottom Power-Hp panel",
+          "line_color": "burlywood",
+          "line_style": "solid",
+          "x_axis_id": "axis_id=x_bottom",
+          "y_axis_id": "axis_id=y_power",
+          "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+          "confidence": 1.0
+        }
+      ],
+      "warnings": null,
+      "unsupported_flags": null
+    }
+  },
+  "text": "{\n  \"series\": [\n    {\n      \"series_name\": \"6.58 in (Head)\",\n      \"visual_description\": \"Topmost curve in the top Head-ft panel\",\n      \"line_color\": \"dimgray\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_top\",\n      \"y_axis_id\": \"axis_id=y_head\",\n      \"axis_selection_reason\": \"Located in the top panel showing Head (ft) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"5.82 in (Head)\",\n      \"visual_description\": \"Middle curve in the top Head-ft panel\",\n      \"line_color\": \"dimgray\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_top\",\n      \"y_axis_id\": \"axis_id=y_head\",\n      \"axis_selection_reason\": \"Located in the top panel showing Head (ft) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"5.18 in (Head)\",\n      \"visual_description\": \"Lowest curve in the top Head-ft panel\",\n      \"line_color\": \"dimgray\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_top\",\n      \"y_axis_id\": \"axis_id=y_head\",\n      \"axis_selection_reason\": \"Located in the top panel showing Head (ft) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"NPSH\",\n      \"visual_description\": \"Single blue curve in the middle NPSH-ft panel\",\n      \"line_color\": \"darkblue\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_top\",\n      \"y_axis_id\": \"axis_id=y_npsh\",\n      \"axis_selection_reason\": \"Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"6.58 in (Power)\",\n      \"visual_description\": \"Top curve in the bottom Power-Hp panel\",\n      \"line_color\": \"sienna\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_bottom\",\n      \"y_axis_id\": \"axis_id=y_power\",\n      \"axis_selection_reason\": \"Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"5.82 in (Power)\",\n      \"visual_description\": \"Middle curve in the bottom Power-Hp panel\",\n      \"line_color\": \"peru\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_bottom\",\n      \"y_axis_id\": \"axis_id=y_power\",\n      \"axis_selection_reason\": \"Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    },\n    {\n      \"series_name\": \"5.18 in (Power)\",\n      \"visual_description\": \"Bottom curve in the bottom Power-Hp panel\",\n      \"line_color\": \"burlywood\",\n      \"line_style\": \"solid\",\n      \"x_axis_id\": \"axis_id=x_bottom\",\n      \"y_axis_id\": \"axis_id=y_power\",\n      \"axis_selection_reason\": \"Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).\",\n      \"confidence\": 1.0\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+  "json": {
+    "series": [
+      {
+        "series_name": "6.58 in (Head)",
+        "visual_description": "Topmost curve in the top Head-ft panel",
+        "line_color": "dimgray",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_top",
+        "y_axis_id": "axis_id=y_head",
+        "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "5.82 in (Head)",
+        "visual_description": "Middle curve in the top Head-ft panel",
+        "line_color": "dimgray",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_top",
+        "y_axis_id": "axis_id=y_head",
+        "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "5.18 in (Head)",
+        "visual_description": "Lowest curve in the top Head-ft panel",
+        "line_color": "dimgray",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_top",
+        "y_axis_id": "axis_id=y_head",
+        "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "NPSH",
+        "visual_description": "Single blue curve in the middle NPSH-ft panel",
+        "line_color": "darkblue",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_top",
+        "y_axis_id": "axis_id=y_npsh",
+        "axis_selection_reason": "Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "6.58 in (Power)",
+        "visual_description": "Top curve in the bottom Power-Hp panel",
+        "line_color": "sienna",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_bottom",
+        "y_axis_id": "axis_id=y_power",
+        "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "5.82 in (Power)",
+        "visual_description": "Middle curve in the bottom Power-Hp panel",
+        "line_color": "peru",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_bottom",
+        "y_axis_id": "axis_id=y_power",
+        "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "5.18 in (Power)",
+        "visual_description": "Bottom curve in the bottom Power-Hp panel",
+        "line_color": "burlywood",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_bottom",
+        "y_axis_id": "axis_id=y_power",
+        "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      }
+    ],
+    "warnings": null,
+    "unsupported_flags": null
+  },
+  "provider_json": {
+    "series": [
+      {
+        "series_name": "6.58 in (Head)",
+        "visual_description": "Topmost curve in the top Head-ft panel",
+        "line_color": "dimgray",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_top",
+        "y_axis_id": "axis_id=y_head",
+        "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "5.82 in (Head)",
+        "visual_description": "Middle curve in the top Head-ft panel",
+        "line_color": "dimgray",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_top",
+        "y_axis_id": "axis_id=y_head",
+        "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "5.18 in (Head)",
+        "visual_description": "Lowest curve in the top Head-ft panel",
+        "line_color": "dimgray",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_top",
+        "y_axis_id": "axis_id=y_head",
+        "axis_selection_reason": "Located in the top panel showing Head (ft) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "NPSH",
+        "visual_description": "Single blue curve in the middle NPSH-ft panel",
+        "line_color": "darkblue",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_top",
+        "y_axis_id": "axis_id=y_npsh",
+        "axis_selection_reason": "Located in the middle panel showing NPSH (ft) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "6.58 in (Power)",
+        "visual_description": "Top curve in the bottom Power-Hp panel",
+        "line_color": "sienna",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_bottom",
+        "y_axis_id": "axis_id=y_power",
+        "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "5.82 in (Power)",
+        "visual_description": "Middle curve in the bottom Power-Hp panel",
+        "line_color": "peru",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_bottom",
+        "y_axis_id": "axis_id=y_power",
+        "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      },
+      {
+        "series_name": "5.18 in (Power)",
+        "visual_description": "Bottom curve in the bottom Power-Hp panel",
+        "line_color": "burlywood",
+        "line_style": "solid",
+        "x_axis_id": "axis_id=x_bottom",
+        "y_axis_id": "axis_id=y_power",
+        "axis_selection_reason": "Located in the bottom panel showing Power (Hp) vs Flow rate (US gpm).",
+        "confidence": 1.0
+      }
+    ],
+    "warnings": null,
+    "unsupported_flags": null
+  }
+}

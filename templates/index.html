@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PlotLift</title>
+    <link rel="stylesheet" href="/static/styles.css?v=20260601-delete-run">
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-lockup">
+        <h1>PlotLift</h1>
+        <span class="brand-descriptor">Chart Digitiser</span>
+      </div>
+      <div class="mode-row">
+        <span id="modeBadge" class="badge">Loading</span>
+        <span id="stageBadge" class="badge muted">Idle</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section id="runBar" class="settings-panel run-bar" aria-label="Run setup">
+        <div class="run-actions">
+          <button id="newRunToggleBtn" class="run-action-button secondary-button" type="button">New Run</button>
+          <div class="previous-run-menu-wrap">
+            <button id="loadPreviousRunBtn" class="run-action-button secondary-button" type="button">Load Previous Run</button>
+            <div id="previousRunMenu" class="previous-run-menu" aria-label="Previous runs"></div>
+          </div>
+        </div>
+
+        <form id="uploadForm" class="setup-grid new-run-entry" hidden>
+          <label>
+            File
+            <input id="fileInput" name="file" type="file" accept=".png,.jpg,.jpeg,.webp,.pdf" required>
+          </label>
+          <label>
+            Model
+            <select id="modelSelect" name="model_id"></select>
+          </label>
+          <label>
+            Detail
+            <select id="detailSelect" name="image_detail"></select>
+          </label>
+          <label>
+            Reasoning
+            <select id="reasoningSelect" name="reasoning_effort"></select>
+          </label>
+          <button id="initiateRunBtn" type="submit">Initiate Run</button>
+        </form>
+
+        <div id="runInfoBar" class="run-info-bar" aria-label="Current run information">
+          <div class="run-info-item">
+            <span>Run</span>
+            <strong id="runInfoName">No run loaded</strong>
+          </div>
+          <div class="run-info-item">
+            <span>File</span>
+            <strong id="runInfoFile">-</strong>
+          </div>
+          <div class="run-info-item">
+            <span>Model</span>
+            <strong id="runInfoModel">-</strong>
+          </div>
+          <div class="run-info-item">
+            <span>Image detail</span>
+            <strong id="runInfoDetail">-</strong>
+          </div>
+          <div class="run-info-item">
+            <span>Reasoning</span>
+            <strong id="runInfoReasoning">-</strong>
+          </div>
+          <div class="run-info-item">
+            <span>Modified</span>
+            <strong id="runInfoModified">-</strong>
+          </div>
+          <button id="deleteRunBtn" type="button">Delete Run</button>
+        </div>
+      </section>
+
+      <nav id="stageControls" class="stepper workflow-controls" aria-label="Workflow stages" hidden>
+        <section id="cropStep" class="step-group">
+          <div class="step-group-head">
+            <span class="step-number">1</span>
+            <div>
+              <h2>Crop</h2>
+              <p id="cropStepStatus">Not started</p>
+            </div>
+          </div>
+          <div class="button-row">
+            <button id="cropJobBtn" type="button">Auto Crop</button>
+            <button id="approveCropBtn" type="button">Confirm Crop</button>
+          </div>
+        </section>
+        <section id="axisStep" class="step-group">
+          <div class="step-group-head">
+            <span class="step-number">2</span>
+            <div>
+              <h2>Axes</h2>
+              <p id="axisStepStatus">Waiting for crop</p>
+            </div>
+          </div>
+          <div class="button-row">
+            <button id="axisJobBtn" type="button">Auto Calibration</button>
+            <button id="approveAxisBtn" type="button">Confirm Calibration</button>
+          </div>
+        </section>
+        <section id="seriesStep" class="step-group">
+          <div class="step-group-head">
+            <span class="step-number">3</span>
+            <div>
+              <h2>Series</h2>
+              <p id="seriesStepStatus">Waiting for axes</p>
+            </div>
+          </div>
+          <div class="button-row">
+            <button id="seriesJobBtn" type="button">Auto Digitise Series</button>
+            <button id="confirmSeriesBtn" type="button">Confirm Series</button>
+          </div>
+        </section>
+        <section id="exportStep" class="step-group">
+          <div class="step-group-head">
+            <span class="step-number">4</span>
+            <div>
+              <h2>Export</h2>
+              <p id="exportStepStatus">Waiting for series</p>
+            </div>
+          </div>
+          <div class="export-actions">
+            <div class="button-row">
+              <a id="csvLink" class="button-link" href="#">CSV</a>
+              <a id="xlsxLink" class="button-link" href="#">XLSX</a>
+              <a id="archiveLink" class="button-link" href="#">Archive</a>
+            </div>
+            <label class="check-row"><input id="debugExport" type="checkbox"> Debug Data</label>
+          </div>
+        </section>
+      </nav>
+
+      <section id="pageChooser" class="page-strip" aria-label="PDF pages" hidden></section>
+
+      <section id="workflowArea" class="main-grid" hidden>
+        <div class="image-stage-shell">
+          <div id="imageStage" class="image-stage">
+            <div id="imageWrap" class="image-wrap">
+              <img id="chartImage" alt="Chart workspace image">
+              <svg id="overlaySvg" aria-label="Interactive chart overlay"></svg>
+              <div id="pointTooltip" class="point-tooltip" hidden></div>
+              <div id="dragLoupe" class="drag-loupe" aria-hidden="true" hidden></div>
+            </div>
+            <div id="imageBusyOverlay" class="image-busy-overlay" aria-label="LLM process running" hidden>
+              <div class="busy-stack">
+                <div class="busy-spinner" aria-hidden="true"></div>
+                <div id="imageBusyStatus" class="busy-status" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+          <div class="chart-toolbar" aria-label="Chart zoom controls">
+            <button id="zoomOutBtn" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+            <span id="zoomLevel" aria-live="polite">100%</span>
+            <button id="zoomInBtn" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+          </div>
+        </div>
+
+        <aside class="side-panel">
+          <details id="calibrationDetails" class="editor-section" open>
+            <summary>
+              <span>Axis Calibration</span>
+              <span id="calibrationStatus" class="mini-status">Not complete</span>
+            </summary>
+            <div id="calibrationEditor" class="compact-stack"></div>
+          </details>
+          <details id="seriesDetails" class="editor-section" open>
+            <summary>
+              <span>Series</span>
+              <span id="seriesStatus" class="mini-status">Not complete</span>
+            </summary>
+            <div class="button-row">
+              <button id="addSeriesBtn" type="button">Add Series</button>
+            </div>
+            <div id="seriesEditor" class="compact-stack"></div>
+          </details>
+        </aside>
+      </section>
+
+      <section id="statusGrid" class="bottom-grid">
+        <section>
+          <h2>Run Log</h2>
+          <div id="eventLog" class="log" aria-live="polite"></div>
+        </section>
+        <section>
+          <h2>Artifacts</h2>
+          <div id="artifactList" class="artifact-list"></div>
+        </section>
+        <section>
+          <details>
+            <summary>Coordinate Debug</summary>
+            <pre id="debugPanel"></pre>
+          </details>
+        </section>
+      </section>
+    </main>
+
+    <div id="seriesChoiceModal" class="modal-backdrop" hidden>
+      <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="seriesChoiceTitle">
+        <header class="modal-header">
+          <h2 id="seriesChoiceTitle">Choose Series</h2>
+        </header>
+        <div id="seriesChoiceList" class="series-choice-list"></div>
+        <footer class="modal-actions">
+          <button id="seriesChoiceCancelBtn" class="secondary-button" type="button">Cancel</button>
+          <button id="seriesChoiceConfirmBtn" type="button">Digitise Selected</button>
+        </footer>
+      </section>
+    </div>
+
+    <script>
+      window.INITIAL_RUN_ID = {{ initial_run_id | tojson }};
+    </script>
+    <script src="/static/app.js?v=20260601-delete-run"></script>
+  </body>
+</html>

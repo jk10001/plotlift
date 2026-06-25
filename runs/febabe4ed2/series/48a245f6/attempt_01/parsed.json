@@ -1,0 +1,245 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "points": [
+      {
+        "point_index": 0,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.9",
+          "value_type": "number",
+          "parsed_value": 22.9,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 1,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "10",
+          "value_type": "number",
+          "parsed_value": 10.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.45",
+          "value_type": "number",
+          "parsed_value": 22.45,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 2,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "20",
+          "value_type": "number",
+          "parsed_value": 20.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.15",
+          "value_type": "number",
+          "parsed_value": 22.15,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 3,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "30",
+          "value_type": "number",
+          "parsed_value": 30.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "21.95",
+          "value_type": "number",
+          "parsed_value": 21.95,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 4,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "40",
+          "value_type": "number",
+          "parsed_value": 40.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.02",
+          "value_type": "number",
+          "parsed_value": 22.02,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 5,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "50",
+          "value_type": "number",
+          "parsed_value": 50.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.22",
+          "value_type": "number",
+          "parsed_value": 22.22,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 6,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "60",
+          "value_type": "number",
+          "parsed_value": 60.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.45",
+          "value_type": "number",
+          "parsed_value": 22.45,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 7,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "70",
+          "value_type": "number",
+          "parsed_value": 70.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.65",
+          "value_type": "number",
+          "parsed_value": 22.65,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 8,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "80",
+          "value_type": "number",
+          "parsed_value": 80.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.70",
+          "value_type": "number",
+          "parsed_value": 22.7,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 9,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "90",
+          "value_type": "number",
+          "parsed_value": 90.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "22.35",
+          "value_type": "number",
+          "parsed_value": 22.35,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 10,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "100",
+          "value_type": "number",
+          "parsed_value": 100.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "21.45",
+          "value_type": "number",
+          "parsed_value": 21.45,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 11,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "105",
+          "value_type": "number",
+          "parsed_value": 105.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "20.65",
+          "value_type": "number",
+          "parsed_value": 20.65,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      },
+      {
+        "point_index": 12,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "110",
+          "value_type": "number",
+          "parsed_value": 110.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "19.6",
+          "value_type": "number",
+          "parsed_value": 19.6,
+          "parsed_datetime": null,
+          "unit": "hp"
+        }
+      }
+    ],
+    "confidence": 0.91,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

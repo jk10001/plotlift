@@ -1,0 +1,214 @@
+{
+  "model": "gpt-5.5",
+  "instructions": "You are an expert in digitising line charts and are digitising one specified visible line series from a cropped line chart. Your goal is to trace the line as accurately as possible, including any bends, inflections, and discontinuities, while using as few points as necessary to capture the shape.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 999 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn points in chart-space values as chart_x and chart_y using the selected axis units/types.\nPoints must be ordered visually from left to right along the line, even if chart-space x is reversed.\nUse 5 to 30 representative polyline control points: include start/end, extrema, bends, inflections, and visible discontinuity-adjacent points.\nPoints do not need to be equally spaced. Straight or gently curved segments can be represented with fewer points, while sharply curved segments may require more points to capture the shape accurately.\nDo not return every marker unless the line only has a few markers.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+  "input": {
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "This is the first attempt for a new series. Use response_kind \"proposal\".\nDigitise only the series described below.\nSeries 2 of 3\nName: Bottom panel Head\nColour: #1f77b4\nLine style: solid\nX axis ID: bottom_panel_x_flow_lps\nY axis ID: bottom_panel_y_head_m\nAxis selection reason: The blue curve is plotted against the bottom panel FLOW [l/s] axis and the left HEAD [m] axis.\nVisual description: Blue solid line in the bottom panel descending nearly linearly from high head at zero flow to low head at the far right; identified from the legend label “Head.”\nIdentification confidence: 0.98\n\nThe proposal object must return confidence and 5 to 30 points. Do not return descriptive series metadata in the proposal.\n"
+      },
+      {
+        "type": "input_image",
+        "image_url": "<data-url omitted; see attempt image artifacts>",
+        "detail": "high"
+      }
+    ]
+  },
+  "store": true,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "name": "SeriesDigitizationDecision",
+      "schema": {
+        "$defs": {
+          "ChartValue": {
+            "properties": {
+              "value_raw": {
+                "title": "Value Raw",
+                "type": "string"
+              },
+              "value_type": {
+                "enum": [
+                  "number",
+                  "datetime",
+                  "unknown"
+                ],
+                "title": "Value Type",
+                "type": "string"
+              },
+              "parsed_value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Parsed Value"
+              },
+              "parsed_datetime": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Parsed Datetime"
+              },
+              "unit": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Unit"
+              }
+            },
+            "required": [
+              "value_raw",
+              "value_type",
+              "parsed_value",
+              "parsed_datetime",
+              "unit"
+            ],
+            "title": "ChartValue",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "SeriesDigitizationOutput": {
+            "properties": {
+              "points": {
+                "items": {
+                  "$ref": "#/$defs/SeriesPointProposal"
+                },
+                "title": "Points",
+                "type": "array",
+                "minItems": 5,
+                "maxItems": 30
+              },
+              "confidence": {
+                "anyOf": [
+                  {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Confidence"
+              },
+              "warnings": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Warnings",
+                "type": "array"
+              },
+              "unsupported_flags": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Unsupported Flags",
+                "type": "array"
+              }
+            },
+            "title": "SeriesDigitizationOutput",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "points",
+              "confidence",
+              "warnings",
+              "unsupported_flags"
+            ]
+          },
+          "SeriesPointProposal": {
+            "properties": {
+              "point_index": {
+                "minimum": 0,
+                "title": "Point Index",
+                "type": "integer"
+              },
+              "segment_index": {
+                "minimum": 0,
+                "title": "Segment Index",
+                "type": "integer"
+              },
+              "chart_x": {
+                "$ref": "#/$defs/ChartValue"
+              },
+              "chart_y": {
+                "$ref": "#/$defs/ChartValue"
+              }
+            },
+            "required": [
+              "point_index",
+              "segment_index",
+              "chart_x",
+              "chart_y"
+            ],
+            "title": "SeriesPointProposal",
+            "type": "object",
+            "additionalProperties": false
+          }
+        },
+        "properties": {
+          "response_kind": {
+            "enum": [
+              "proposal",
+              "accept_previous",
+              "revise_previous"
+            ],
+            "title": "Response Kind",
+            "type": "string"
+          },
+          "revision_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision Reason"
+          },
+          "proposal": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/SeriesDigitizationOutput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "response_kind",
+          "revision_reason",
+          "proposal"
+        ],
+        "title": "SeriesDigitizationConversationResponse",
+        "type": "object",
+        "additionalProperties": false
+      },
+      "strict": true
+    }
+  },
+  "prompt_cache_key": "plotlift:febabe4ed2:series:48f53339",
+  "reasoning": {
+    "effort": "medium"
+  },
+  "source_image_path": "crop/approved_crop.png",
+  "target_series": "Series 2 of 3\nName: Bottom panel Head\nColour: #1f77b4\nLine style: solid\nX axis ID: bottom_panel_x_flow_lps\nY axis ID: bottom_panel_y_head_m\nAxis selection reason: The blue curve is plotted against the bottom panel FLOW [l/s] axis and the left HEAD [m] axis.\nVisual description: Blue solid line in the bottom panel descending nearly linearly from high head at zero flow to low head at the far right; identified from the legend label “Head.”\nIdentification confidence: 0.98"
+}

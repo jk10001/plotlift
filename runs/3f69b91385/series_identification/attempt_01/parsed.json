@@ -1,0 +1,46 @@
+{
+  "series": [
+    {
+      "series_name": "550",
+      "visual_description": "Lower-left steep descending solid curve, labelled “550”, starting near the left side around mid height and curving down to the bottom before the plot midpoint.",
+      "line_color": "#0b638b",
+      "line_style": "solid",
+      "x_axis_id": "single_panel_x_top_q_l_per_h",
+      "y_axis_id": "single_panel_y_right_h_m",
+      "axis_selection_reason": "The provided calibrated axes for this single panel are the top Q (l/h) x-axis and the right H (m) y-axis; the curve is plotted in that panel.",
+      "confidence": 0.96
+    },
+    {
+      "series_name": "800",
+      "visual_description": "Middle-left descending solid curve, labelled “800”, beginning near the left side above the 550 curve and curving downward to the bottom around the central-right portion of the panel.",
+      "line_color": "#0b638b",
+      "line_style": "solid",
+      "x_axis_id": "single_panel_x_top_q_l_per_h",
+      "y_axis_id": "single_panel_y_right_h_m",
+      "axis_selection_reason": "The provided calibrated axes for this single panel are the top Q (l/h) x-axis and the right H (m) y-axis; the curve is plotted in that panel.",
+      "confidence": 0.96
+    },
+    {
+      "series_name": "1300",
+      "visual_description": "Long descending solid line/very gently curved series, labelled “1300”, running diagonally from the upper-left area toward the lower-right area below the 1420 series.",
+      "line_color": "#0b638b",
+      "line_style": "solid",
+      "x_axis_id": "single_panel_x_top_q_l_per_h",
+      "y_axis_id": "single_panel_y_right_h_m",
+      "axis_selection_reason": "The provided calibrated axes for this single panel are the top Q (l/h) x-axis and the right H (m) y-axis; the curve is plotted in that panel.",
+      "confidence": 0.95
+    },
+    {
+      "series_name": "1420",
+      "visual_description": "Uppermost long descending solid line, labelled “1420”, running diagonally from near the top-left border toward the bottom-right edge of the panel.",
+      "line_color": "#0b638b",
+      "line_style": "solid",
+      "x_axis_id": "single_panel_x_top_q_l_per_h",
+      "y_axis_id": "single_panel_y_right_h_m",
+      "axis_selection_reason": "The provided calibrated axes for this single panel are the top Q (l/h) x-axis and the right H (m) y-axis; the curve is plotted in that panel.",
+      "confidence": 0.95
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

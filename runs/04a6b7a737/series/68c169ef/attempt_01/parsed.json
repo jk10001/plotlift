@@ -1,0 +1,209 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "points": [
+      {
+        "point_index": 0,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "40.5",
+          "value_type": "number",
+          "parsed_value": 40.5,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 1,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "200",
+          "value_type": "number",
+          "parsed_value": 200.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "43.0",
+          "value_type": "number",
+          "parsed_value": 43.0,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 2,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "400",
+          "value_type": "number",
+          "parsed_value": 400.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "46.5",
+          "value_type": "number",
+          "parsed_value": 46.5,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 3,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "600",
+          "value_type": "number",
+          "parsed_value": 600.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "51.0",
+          "value_type": "number",
+          "parsed_value": 51.0,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 4,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "800",
+          "value_type": "number",
+          "parsed_value": 800.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "55.5",
+          "value_type": "number",
+          "parsed_value": 55.5,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 5,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1000",
+          "value_type": "number",
+          "parsed_value": 1000.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "61.2",
+          "value_type": "number",
+          "parsed_value": 61.2,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 6,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1200",
+          "value_type": "number",
+          "parsed_value": 1200.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "65.5",
+          "value_type": "number",
+          "parsed_value": 65.5,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 7,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1400",
+          "value_type": "number",
+          "parsed_value": 1400.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "68.5",
+          "value_type": "number",
+          "parsed_value": 68.5,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 8,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1600",
+          "value_type": "number",
+          "parsed_value": 1600.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "70.5",
+          "value_type": "number",
+          "parsed_value": 70.5,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 9,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1800",
+          "value_type": "number",
+          "parsed_value": 1800.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "72.0",
+          "value_type": "number",
+          "parsed_value": 72.0,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      },
+      {
+        "point_index": 10,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1850",
+          "value_type": "number",
+          "parsed_value": 1850.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "72.3",
+          "value_type": "number",
+          "parsed_value": 72.3,
+          "parsed_datetime": null,
+          "unit": "Hp"
+        }
+      }
+    ],
+    "confidence": 1.0,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

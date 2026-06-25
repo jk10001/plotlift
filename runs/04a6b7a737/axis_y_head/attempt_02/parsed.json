@@ -1,0 +1,48 @@
+{
+  "response_kind": "revise_previous",
+  "revision_reason": "Adjusted the y1 coordinate to align precisely with the 200 tick mark, which is at y=169 instead of 178.",
+  "proposal": {
+    "axis": "y",
+    "points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 55,
+          "y": 169
+        },
+        "crop_image_px": {
+          "x": 56.871871871871875,
+          "y": 125.18518518518518
+        },
+        "chart_value": {
+          "value_raw": "200",
+          "value_type": "number",
+          "parsed_value": 200.0,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 55,
+          "y": 608
+        },
+        "crop_image_px": {
+          "x": 56.871871871871875,
+          "y": 450.3703703703704
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      }
+    ],
+    "confidence": 1.0,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

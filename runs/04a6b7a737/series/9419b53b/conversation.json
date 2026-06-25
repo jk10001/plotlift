@@ -1,0 +1,40 @@
+{
+  "run_id": "04a6b7a737",
+  "stage": "series",
+  "series_id": "9419b53b",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 3\nName: 6.58 in (Head)\nColour: dimgray\nLine style: solid\nX axis ID: x_top\nY axis ID: y_head\nAxis selection reason: Located in the top panel showing Head (ft) vs Flow rate (US gpm).\nVisual description: Topmost curve in the top Head-ft panel\nIdentification confidence: 1.00",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/9419b53b/attempt_01/overlay.png",
+      "request_path": "series/9419b53b/attempt_01/request.json",
+      "response_path": "series/9419b53b/attempt_01/response.json",
+      "parsed_path": "series/9419b53b/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "revise_previous",
+      "revision_reason": "The digitized points from x=600 to x=1850 were consistently slightly below the target curve in the overlay. I have adjusted the y-values slightly upward to match the curve more accurately.",
+      "target_series": "Series 1 of 3\nName: 6.58 in (Head)\nColour: dimgray\nLine style: solid\nX axis ID: x_top\nY axis ID: y_head\nAxis selection reason: Located in the top panel showing Head (ft) vs Flow rate (US gpm).\nVisual description: Topmost curve in the top Head-ft panel\nIdentification confidence: 1.00",
+      "source_image_path": "series/9419b53b/attempt_01/overlay.png",
+      "overlay_path": "series/9419b53b/attempt_02/overlay.png",
+      "request_path": "series/9419b53b/attempt_02/request.json",
+      "response_path": "series/9419b53b/attempt_02/response.json",
+      "parsed_path": "series/9419b53b/attempt_02/parsed.json"
+    },
+    {
+      "attempt": 3,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 3\nName: 6.58 in (Head)\nColour: dimgray\nLine style: solid\nX axis ID: x_top\nY axis ID: y_head\nAxis selection reason: Located in the top panel showing Head (ft) vs Flow rate (US gpm).\nVisual description: Topmost curve in the top Head-ft panel\nIdentification confidence: 1.00",
+      "source_image_path": "series/9419b53b/attempt_02/overlay.png",
+      "overlay_path": "series/9419b53b/attempt_03/overlay.png",
+      "request_path": "series/9419b53b/attempt_03/request.json",
+      "response_path": "series/9419b53b/attempt_03/response.json",
+      "parsed_path": "series/9419b53b/attempt_03/parsed.json"
+    }
+  ]
+}

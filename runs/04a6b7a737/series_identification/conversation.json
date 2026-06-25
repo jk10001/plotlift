@@ -1,0 +1,14 @@
+{
+  "run_id": "04a6b7a737",
+  "stage": "series_identification",
+  "series_id": null,
+  "attempts": {
+    "attempt": 1,
+    "series_count": 7,
+    "source_image_path": "crop/approved_crop.png",
+    "request_path": "series_identification/attempt_01/request.json",
+    "response_path": "series_identification/attempt_01/response.json",
+    "parsed_path": "series_identification/attempt_01/parsed.json",
+    "prompt_cache_key": "plotlift:04a6b7a737:series_identification"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "run_id": "3f69b91385",
+  "stage": "series",
+  "series_id": "083048f4",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 2 of 2\nName: 1420\nColour: #0b638b\nLine style: solid\nX axis ID: single_panel_x_top_q_l_per_h\nY axis ID: single_panel_y_right_h_m\nAxis selection reason: The provided calibrated axes for this single panel are the top Q (l/h) x-axis and the right H (m) y-axis; the curve is plotted in that panel.\nVisual description: Uppermost long descending solid line, labelled “1420”, running diagonally from near the top-left border toward the bottom-right edge of the panel.\nIdentification confidence: 0.95",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/083048f4/attempt_01/overlay.png",
+      "request_path": "series/083048f4/attempt_01/request.json",
+      "response_path": "series/083048f4/attempt_01/response.json",
+      "parsed_path": "series/083048f4/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 2 of 2\nName: 1420\nColour: #0b638b\nLine style: solid\nX axis ID: single_panel_x_top_q_l_per_h\nY axis ID: single_panel_y_right_h_m\nAxis selection reason: The provided calibrated axes for this single panel are the top Q (l/h) x-axis and the right H (m) y-axis; the curve is plotted in that panel.\nVisual description: Uppermost long descending solid line, labelled “1420”, running diagonally from near the top-left border toward the bottom-right edge of the panel.\nIdentification confidence: 0.95",
+      "source_image_path": "series/083048f4/attempt_01/overlay.png",
+      "overlay_path": "series/083048f4/attempt_02/overlay.png",
+      "request_path": "series/083048f4/attempt_02/request.json",
+      "response_path": "series/083048f4/attempt_02/response.json",
+      "parsed_path": "series/083048f4/attempt_02/parsed.json"
+    }
+  ]
+}

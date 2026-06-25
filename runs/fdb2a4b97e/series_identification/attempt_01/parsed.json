@@ -1,0 +1,46 @@
+{
+  "series": [
+    {
+      "series_name": "IM-743",
+      "visual_description": "Upper gray solid curve in the single panel, descending smoothly from the upper-left toward the lower-right; labeled directly on the line near the left side.",
+      "line_color": "#b3b3b3",
+      "line_style": "solid",
+      "x_axis_id": "x_bottom_flow_lpm",
+      "y_axis_id": "y_left_head_m",
+      "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+      "confidence": 0.97
+    },
+    {
+      "series_name": "IM-618",
+      "visual_description": "Upper gold/brown solid curve below IM-743, descending smoothly from left to right; labeled directly on the line near the left side.",
+      "line_color": "#a88f1f",
+      "line_style": "solid",
+      "x_axis_id": "x_bottom_flow_lpm",
+      "y_axis_id": "y_left_head_m",
+      "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+      "confidence": 0.96
+    },
+    {
+      "series_name": "IM-285",
+      "visual_description": "Lower gold/brown solid curve, starting around the mid-left and dropping steeply toward the bottom near the center-right; labeled directly on the line near the left side.",
+      "line_color": "#a88f1f",
+      "line_style": "solid",
+      "x_axis_id": "x_bottom_flow_lpm",
+      "y_axis_id": "y_left_head_m",
+      "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+      "confidence": 0.95
+    },
+    {
+      "series_name": "IM-463",
+      "visual_description": "Middle gray solid curve between IM-618 and IM-285, descending smoothly and ending near the lower center; labeled directly on the line near the center.",
+      "line_color": "#b3b3b3",
+      "line_style": "solid",
+      "x_axis_id": "x_bottom_flow_lpm",
+      "y_axis_id": "y_left_head_m",
+      "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+      "confidence": 0.96
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

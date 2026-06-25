@@ -1,0 +1,101 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "points": [
+      {
+        "point_index": 0,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "30",
+          "value_type": "number",
+          "parsed_value": 30.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 1,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "27.5",
+          "value_type": "number",
+          "parsed_value": 27.5,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "23.75",
+          "value_type": "number",
+          "parsed_value": 23.75,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 2,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "55",
+          "value_type": "number",
+          "parsed_value": 55.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "17.5",
+          "value_type": "number",
+          "parsed_value": 17.5,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 3,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "82.5",
+          "value_type": "number",
+          "parsed_value": 82.5,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "11.25",
+          "value_type": "number",
+          "parsed_value": 11.25,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 4,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "110",
+          "value_type": "number",
+          "parsed_value": 110.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "5",
+          "value_type": "number",
+          "parsed_value": 5.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      }
+    ],
+    "confidence": 0.99,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

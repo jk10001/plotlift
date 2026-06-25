@@ -1,0 +1,245 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "points": [
+      {
+        "point_index": 0,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 1,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "10",
+          "value_type": "number",
+          "parsed_value": 10.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "11.5",
+          "value_type": "number",
+          "parsed_value": 11.5,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 2,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "20",
+          "value_type": "number",
+          "parsed_value": 20.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "20.7",
+          "value_type": "number",
+          "parsed_value": 20.7,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 3,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "30",
+          "value_type": "number",
+          "parsed_value": 30.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "28.0",
+          "value_type": "number",
+          "parsed_value": 28.0,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 4,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "40",
+          "value_type": "number",
+          "parsed_value": 40.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "33.1",
+          "value_type": "number",
+          "parsed_value": 33.1,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 5,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "50",
+          "value_type": "number",
+          "parsed_value": 50.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "36.3",
+          "value_type": "number",
+          "parsed_value": 36.3,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 6,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "60",
+          "value_type": "number",
+          "parsed_value": 60.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "38.3",
+          "value_type": "number",
+          "parsed_value": 38.3,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 7,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "65",
+          "value_type": "number",
+          "parsed_value": 65.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "38.5",
+          "value_type": "number",
+          "parsed_value": 38.5,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 8,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "70",
+          "value_type": "number",
+          "parsed_value": 70.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "38.2",
+          "value_type": "number",
+          "parsed_value": 38.2,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 9,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "80",
+          "value_type": "number",
+          "parsed_value": 80.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "35.8",
+          "value_type": "number",
+          "parsed_value": 35.8,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 10,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "90",
+          "value_type": "number",
+          "parsed_value": 90.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "31.0",
+          "value_type": "number",
+          "parsed_value": 31.0,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 11,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "100",
+          "value_type": "number",
+          "parsed_value": 100.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "25.1",
+          "value_type": "number",
+          "parsed_value": 25.1,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      },
+      {
+        "point_index": 12,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "108",
+          "value_type": "number",
+          "parsed_value": 108.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "19.0",
+          "value_type": "number",
+          "parsed_value": 19.0,
+          "parsed_datetime": null,
+          "unit": "%"
+        }
+      }
+    ],
+    "confidence": 0.86,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

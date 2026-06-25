@@ -1,0 +1,29 @@
+{
+  "run_id": "fdb2a4b97e",
+  "stage": "series",
+  "series_id": "94d7e029",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 4\nName: IM-743\nColour: #b3b3b3\nLine style: solid\nX axis ID: x_bottom_flow_lpm\nY axis ID: y_left_head_m\nAxis selection reason: Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\nVisual description: Upper gray solid curve in the single panel, descending smoothly from the upper-left toward the lower-right; labeled directly on the line near the left side.\nIdentification confidence: 0.97",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/94d7e029/attempt_01/overlay.png",
+      "request_path": "series/94d7e029/attempt_01/request.json",
+      "response_path": "series/94d7e029/attempt_01/response.json",
+      "parsed_path": "series/94d7e029/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 4\nName: IM-743\nColour: #b3b3b3\nLine style: solid\nX axis ID: x_bottom_flow_lpm\nY axis ID: y_left_head_m\nAxis selection reason: Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\nVisual description: Upper gray solid curve in the single panel, descending smoothly from the upper-left toward the lower-right; labeled directly on the line near the left side.\nIdentification confidence: 0.97",
+      "source_image_path": "series/94d7e029/attempt_01/overlay.png",
+      "overlay_path": "series/94d7e029/attempt_02/overlay.png",
+      "request_path": "series/94d7e029/attempt_02/request.json",
+      "response_path": "series/94d7e029/attempt_02/response.json",
+      "parsed_path": "series/94d7e029/attempt_02/parsed.json"
+    }
+  ]
+}

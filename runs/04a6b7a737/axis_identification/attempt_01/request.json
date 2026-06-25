@@ -1,0 +1,154 @@
+{
+  "provider": "gemini",
+  "model": "gemini-3.5-flash",
+  "coordinate_scale": "0-1000",
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "inline_data": {
+            "mime_type": "image/png",
+            "data": "<bytes omitted; see attempt image artifacts>"
+          },
+          "media_resolution": {
+            "level": "media_resolution_high"
+          }
+        },
+        {
+          "text": "Inspect the cropped chart image and list all visible axes.\nDistinguish duplicate unit axes from axes measuring different quantities, including axes that repeat across different panels.\nReturn ignored duplicate axes for audit, but only mark usable axes as primary for digitisation.\n"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "system_instruction": "You are identifying axes in a cropped line chart before calibration.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify every visible x-axis and y-axis in every panel, including secondary axes on the top, bottom, left, or right.\nFor each axis, provide a stable axis_id, direction, name, unit, quantity being measured, and a brief location description.\nIn multi-panel charts include panel location or panel title in location_description.\nIf multiple axes measure the same quantity in different units, mark exactly one metric axis closest to the chart body as is_primary_for_digitization=true.\nMark other duplicate axes as is_primary_for_digitization=false and explain the ignore_reason.\nIf multiple axes measure different quantities, mark all of them as is_primary_for_digitization=true because different curves may use them.\nPrefer metric units over imperial or US customary units. If more than one metric axis measures the same quantity, choose the one closest to the chart body.\nDo not return calibration points in this step.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "response_mime_type": "application/json",
+    "response_json_schema": {
+      "$defs": {
+        "IdentifiedAxis": {
+          "properties": {
+            "axis_id": {
+              "title": "Axis Id",
+              "type": "string"
+            },
+            "direction": {
+              "enum": [
+                "x",
+                "y"
+              ],
+              "title": "Direction",
+              "type": "string"
+            },
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Unit"
+            },
+            "quantity": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Quantity"
+            },
+            "location_description": {
+              "title": "Location Description",
+              "type": "string"
+            },
+            "is_primary_for_digitization": {
+              "title": "Is Primary For Digitization",
+              "type": "boolean"
+            },
+            "ignore_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Ignore Reason"
+            },
+            "confidence": {
+              "anyOf": [
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Confidence"
+            }
+          },
+          "required": [
+            "axis_id",
+            "direction",
+            "name",
+            "unit",
+            "quantity",
+            "location_description",
+            "is_primary_for_digitization",
+            "ignore_reason",
+            "confidence"
+          ],
+          "title": "IdentifiedAxis",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "axes": {
+          "items": {
+            "$ref": "#/$defs/IdentifiedAxis"
+          },
+          "title": "Axes",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "unsupported_flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Unsupported Flags",
+          "type": "array"
+        }
+      },
+      "title": "AxisIdentificationOutput",
+      "type": "object",
+      "required": [
+        "axes",
+        "warnings",
+        "unsupported_flags"
+      ]
+    },
+    "thinking_config": {
+      "thinking_level": "medium"
+    }
+  },
+  "prompt_cache_key": "plotlift:04a6b7a737:axis_identification",
+  "source_image_path": "crop/approved_crop.png"
+}

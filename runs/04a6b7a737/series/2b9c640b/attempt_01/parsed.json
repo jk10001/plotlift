@@ -1,0 +1,227 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "points": [
+      {
+        "point_index": 0,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "31",
+          "value_type": "number",
+          "parsed_value": 31.0,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 1,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "500",
+          "value_type": "number",
+          "parsed_value": 500.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "31",
+          "value_type": "number",
+          "parsed_value": 31.0,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 2,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1000",
+          "value_type": "number",
+          "parsed_value": 1000.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "31",
+          "value_type": "number",
+          "parsed_value": 31.0,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 3,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1100",
+          "value_type": "number",
+          "parsed_value": 1100.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "31.2",
+          "value_type": "number",
+          "parsed_value": 31.2,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 4,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1200",
+          "value_type": "number",
+          "parsed_value": 1200.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "33.5",
+          "value_type": "number",
+          "parsed_value": 33.5,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 5,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1300",
+          "value_type": "number",
+          "parsed_value": 1300.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "36.5",
+          "value_type": "number",
+          "parsed_value": 36.5,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 6,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1400",
+          "value_type": "number",
+          "parsed_value": 1400.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "40.5",
+          "value_type": "number",
+          "parsed_value": 40.5,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 7,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1500",
+          "value_type": "number",
+          "parsed_value": 1500.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "46.5",
+          "value_type": "number",
+          "parsed_value": 46.5,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 8,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1600",
+          "value_type": "number",
+          "parsed_value": 1600.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "53",
+          "value_type": "number",
+          "parsed_value": 53.0,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 9,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1700",
+          "value_type": "number",
+          "parsed_value": 1700.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "60.5",
+          "value_type": "number",
+          "parsed_value": 60.5,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 10,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1800",
+          "value_type": "number",
+          "parsed_value": 1800.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "67.5",
+          "value_type": "number",
+          "parsed_value": 67.5,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      },
+      {
+        "point_index": 11,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1850",
+          "value_type": "number",
+          "parsed_value": 1850.0,
+          "parsed_datetime": null,
+          "unit": "US gpm"
+        },
+        "chart_y": {
+          "value_raw": "70.5",
+          "value_type": "number",
+          "parsed_value": 70.5,
+          "parsed_datetime": null,
+          "unit": "ft"
+        }
+      }
+    ],
+    "confidence": 1.0,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

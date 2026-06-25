@@ -1,0 +1,142 @@
+{
+  "models": [
+    {
+      "id": "gpt-5.5",
+      "label": "GPT-5.5",
+      "family": "gpt-5.5",
+      "provider": "openai",
+      "default": true,
+      "enabled": true,
+      "reasoning_efforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "high",
+        "auto",
+        "low",
+        "original"
+      ],
+      "default_image_detail": "high"
+    },
+    {
+      "id": "gpt-5.4",
+      "label": "GPT-5.4",
+      "family": "gpt-5.4",
+      "provider": "openai",
+      "default": false,
+      "enabled": true,
+      "reasoning_efforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "high",
+        "auto",
+        "low",
+        "original"
+      ],
+      "default_image_detail": "high"
+    },
+    {
+      "id": "gpt-5.4-mini",
+      "label": "GPT-5.4 mini",
+      "family": "gpt-5.4",
+      "provider": "openai",
+      "default": false,
+      "enabled": true,
+      "reasoning_efforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "high",
+        "auto",
+        "low",
+        "original"
+      ],
+      "default_image_detail": "high"
+    },
+    {
+      "id": "gpt-5.4-nano",
+      "label": "GPT-5.4 nano",
+      "family": "gpt-5.4",
+      "provider": "openai",
+      "default": false,
+      "enabled": true,
+      "reasoning_efforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "high",
+        "auto",
+        "low",
+        "original"
+      ],
+      "default_image_detail": "high"
+    },
+    {
+      "id": "gemini-3.1-pro-preview",
+      "label": "Gemini 3.1 Pro Preview",
+      "family": "gemini-3.1",
+      "provider": "gemini",
+      "default": false,
+      "enabled": true,
+      "reasoning_efforts": [
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "auto",
+        "low",
+        "medium",
+        "high",
+        "ultra_high"
+      ],
+      "default_image_detail": "high"
+    },
+    {
+      "id": "gemini-3.5-flash",
+      "label": "Gemini 3.5 Flash",
+      "family": "gemini-3.5",
+      "provider": "gemini",
+      "default": false,
+      "enabled": true,
+      "reasoning_efforts": [
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "auto",
+        "low",
+        "medium",
+        "high",
+        "ultra_high"
+      ],
+      "default_image_detail": "high"
+    }
+  ]
+}

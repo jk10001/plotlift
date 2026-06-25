@@ -1,0 +1,29 @@
+{
+  "run_id": "febabe4ed2",
+  "stage": "series",
+  "series_id": "48f53339",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 2 of 3\nName: Bottom panel Head\nColour: #1f77b4\nLine style: solid\nX axis ID: bottom_panel_x_flow_lps\nY axis ID: bottom_panel_y_head_m\nAxis selection reason: The blue curve is plotted against the bottom panel FLOW [l/s] axis and the left HEAD [m] axis.\nVisual description: Blue solid line in the bottom panel descending nearly linearly from high head at zero flow to low head at the far right; identified from the legend label “Head.”\nIdentification confidence: 0.98",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/48f53339/attempt_01/overlay.png",
+      "request_path": "series/48f53339/attempt_01/request.json",
+      "response_path": "series/48f53339/attempt_01/response.json",
+      "parsed_path": "series/48f53339/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 2 of 3\nName: Bottom panel Head\nColour: #1f77b4\nLine style: solid\nX axis ID: bottom_panel_x_flow_lps\nY axis ID: bottom_panel_y_head_m\nAxis selection reason: The blue curve is plotted against the bottom panel FLOW [l/s] axis and the left HEAD [m] axis.\nVisual description: Blue solid line in the bottom panel descending nearly linearly from high head at zero flow to low head at the far right; identified from the legend label “Head.”\nIdentification confidence: 0.98",
+      "source_image_path": "series/48f53339/attempt_01/overlay.png",
+      "overlay_path": "series/48f53339/attempt_02/overlay.png",
+      "request_path": "series/48f53339/attempt_02/request.json",
+      "response_path": "series/48f53339/attempt_02/response.json",
+      "parsed_path": "series/48f53339/attempt_02/parsed.json"
+    }
+  ]
+}

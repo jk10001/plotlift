@@ -1,0 +1,50 @@
+{
+  "axes": [
+    {
+      "axis_id": "single_panel_x_top_q_l_per_h",
+      "direction": "x",
+      "name": "Q",
+      "unit": "l/h",
+      "quantity": "volumetric flow rate",
+      "location_description": "Top x-axis of the single chart panel, labelled Q (l/h) with tick labels along the upper border.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.98
+    },
+    {
+      "axis_id": "single_panel_x_bottom_q_gal_per_h",
+      "direction": "x",
+      "name": "Q",
+      "unit": "gal/h",
+      "quantity": "volumetric flow rate",
+      "location_description": "Bottom x-axis of the single chart panel, labelled Q (gal/h) with tick labels along the lower border.",
+      "is_primary_for_digitization": false,
+      "ignore_reason": "Duplicate flow-rate axis in non-metric gallons per hour; the top metric Q (l/h) axis is preferred for digitisation.",
+      "confidence": 0.98
+    },
+    {
+      "axis_id": "single_panel_y_right_h_m",
+      "direction": "y",
+      "name": "H",
+      "unit": "m",
+      "quantity": "head / height",
+      "location_description": "Right y-axis of the single chart panel, labelled H (m) with metre tick labels using comma decimals.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.98
+    },
+    {
+      "axis_id": "single_panel_y_left_h_ft",
+      "direction": "y",
+      "name": "H",
+      "unit": "ft",
+      "quantity": "head / height",
+      "location_description": "Left y-axis of the single chart panel, labelled H (ft) with foot tick labels.",
+      "is_primary_for_digitization": false,
+      "ignore_reason": "Duplicate head/height axis in non-metric feet; the right metric H (m) axis is preferred for digitisation.",
+      "confidence": 0.98
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

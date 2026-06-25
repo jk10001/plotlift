@@ -1,0 +1,27 @@
+{
+  "run_id": "fdb2a4b97e",
+  "stage": "axis_x_bottom_flow_lpm",
+  "series_id": null,
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "axis_x_bottom_flow_lpm/attempt_01/overlay.png",
+      "request_path": "axis_x_bottom_flow_lpm/attempt_01/request.json",
+      "response_path": "axis_x_bottom_flow_lpm/attempt_01/response.json",
+      "parsed_path": "axis_x_bottom_flow_lpm/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "source_image_path": "axis_x_bottom_flow_lpm/attempt_01/overlay.png",
+      "overlay_path": "axis_x_bottom_flow_lpm/attempt_02/overlay.png",
+      "request_path": "axis_x_bottom_flow_lpm/attempt_02/request.json",
+      "response_path": "axis_x_bottom_flow_lpm/attempt_02/response.json",
+      "parsed_path": "axis_x_bottom_flow_lpm/attempt_02/parsed.json"
+    }
+  ]
+}

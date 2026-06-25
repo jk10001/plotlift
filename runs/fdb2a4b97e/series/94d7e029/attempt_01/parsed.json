@@ -1,0 +1,191 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "points": [
+      {
+        "point_index": 0,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "12.0",
+          "value_type": "number",
+          "parsed_value": 12.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 1,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "40",
+          "value_type": "number",
+          "parsed_value": 40.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "11.3",
+          "value_type": "number",
+          "parsed_value": 11.3,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 2,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "80",
+          "value_type": "number",
+          "parsed_value": 80.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "10.4",
+          "value_type": "number",
+          "parsed_value": 10.4,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 3,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "120",
+          "value_type": "number",
+          "parsed_value": 120.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "9.5",
+          "value_type": "number",
+          "parsed_value": 9.5,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 4,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "160",
+          "value_type": "number",
+          "parsed_value": 160.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "8.4",
+          "value_type": "number",
+          "parsed_value": 8.4,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 5,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "200",
+          "value_type": "number",
+          "parsed_value": 200.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "7.2",
+          "value_type": "number",
+          "parsed_value": 7.2,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 6,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "240",
+          "value_type": "number",
+          "parsed_value": 240.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "5.7",
+          "value_type": "number",
+          "parsed_value": 5.7,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 7,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "280",
+          "value_type": "number",
+          "parsed_value": 280.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "4.0",
+          "value_type": "number",
+          "parsed_value": 4.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 8,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "320",
+          "value_type": "number",
+          "parsed_value": 320.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "2.0",
+          "value_type": "number",
+          "parsed_value": 2.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 9,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "360",
+          "value_type": "number",
+          "parsed_value": 360.0,
+          "parsed_datetime": null,
+          "unit": "LPM"
+        },
+        "chart_y": {
+          "value_raw": "0.1",
+          "value_type": "number",
+          "parsed_value": 0.1,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      }
+    ],
+    "confidence": 0.96,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "provider": "gemini",
+  "model": "gemini-3.5-flash",
+  "coordinate_scale": "0-1000",
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "inline_data": {
+            "mime_type": "image/png",
+            "data": "<bytes omitted; see attempt image artifacts>"
+          },
+          "media_resolution": {
+            "level": "media_resolution_high"
+          }
+        },
+        {
+          "text": "Inspect the cropped chart image and list every visible line series in every panel.\nAvailable calibrated axes:\naxis_id=y_head | direction=y | name=Head | unit=ft | quantity=head | location=Left side of the top panel\naxis_id=x_top | direction=x | name=Flow rate | unit=US gpm | quantity=flow rate | location=Bottom of the top panel\naxis_id=y_npsh | direction=y | name=NPSH | unit=ft | quantity=NPSH | location=Left side of the middle panel\naxis_id=y_power | direction=y | name=Power | unit=Hp | quantity=power | location=Left side of the bottom panel\naxis_id=x_bottom | direction=x | name=Flow rate | unit=US gpm | quantity=flow rate | location=Bottom of the bottom panel\n\nInclude series that are partially overlapping, faint, or visually similar if they can be distinguished.\nIf a legend label is ambiguous or absent, choose a concise descriptive name based on appearance or position.\n"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "system_instruction": "You are identifying every visible line series in a cropped line chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line series in every visible panel. Do not stop after five or any other arbitrary count.\nFor each series, provide its name, colour, line style, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "response_mime_type": "application/json",
+    "response_json_schema": {
+      "$defs": {
+        "SeriesIdentification": {
+          "properties": {
+            "series_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Series Name"
+            },
+            "visual_description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Visual Description"
+            },
+            "line_color": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Line colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+              "title": "Line Color"
+            },
+            "line_style": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Line Style"
+            },
+            "x_axis_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X Axis Id"
+            },
+            "y_axis_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Y Axis Id"
+            },
+            "axis_selection_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Axis Selection Reason"
+            },
+            "confidence": {
+              "anyOf": [
+                {
+                  "maximum": 1,
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Confidence"
+            }
+          },
+          "title": "SeriesIdentification",
+          "type": "object",
+          "required": [
+            "series_name",
+            "visual_description",
+            "line_color",
+            "line_style",
+            "x_axis_id",
+            "y_axis_id",
+            "axis_selection_reason",
+            "confidence"
+          ]
+        }
+      },
+      "properties": {
+        "series": {
+          "items": {
+            "$ref": "#/$defs/SeriesIdentification"
+          },
+          "title": "Series",
+          "type": "array"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        },
+        "unsupported_flags": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Unsupported Flags",
+          "type": "array"
+        }
+      },
+      "title": "SeriesIdentificationOutput",
+      "type": "object",
+      "required": [
+        "series",
+        "warnings",
+        "unsupported_flags"
+      ]
+    },
+    "thinking_config": {
+      "thinking_level": "medium"
+    }
+  },
+  "prompt_cache_key": "plotlift:04a6b7a737:series_identification",
+  "source_image_path": "crop/approved_crop.png",
+  "available_axes": "axis_id=y_head | direction=y | name=Head | unit=ft | quantity=head | location=Left side of the top panel\naxis_id=x_top | direction=x | name=Flow rate | unit=US gpm | quantity=flow rate | location=Bottom of the top panel\naxis_id=y_npsh | direction=y | name=NPSH | unit=ft | quantity=NPSH | location=Left side of the middle panel\naxis_id=y_power | direction=y | name=Power | unit=Hp | quantity=power | location=Left side of the bottom panel\naxis_id=x_bottom | direction=x | name=Flow rate | unit=US gpm | quantity=flow rate | location=Bottom of the bottom panel"
+}

@@ -1,0 +1,276 @@
+{
+  "raw": {
+    "created_at": 1781926878.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying every visible line series in a cropped line chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line series in every visible panel. Do not stop after five or any other arbitrary count.\nFor each series, provide its name, colour, line style, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.4-mini-2026-03-17",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0d70af78f33233fd006a360bde9bf4819ba58d8f7e2adcfc40",
+        "summary": null,
+        "type": "reasoning",
+        "content": null,
+        "encrypted_content": null,
+        "status": null
+      },
+      {
+        "id": "msg_0d70af78f33233fd006a360be1d26c819b8aebf721177e0d03",
+        "content": {
+          "annotations": null,
+          "text": "{\"series\":[{\"series_name\":\"IM-743\",\"visual_description\":\"Upper gray solid curve in the single panel, descending smoothly from the upper-left toward the lower-right; labeled directly on the line near the left side.\",\"line_color\":\"#b3b3b3\",\"line_style\":\"solid\",\"x_axis_id\":\"x_bottom_flow_lpm\",\"y_axis_id\":\"y_left_head_m\",\"axis_selection_reason\":\"Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\",\"confidence\":0.97},{\"series_name\":\"IM-618\",\"visual_description\":\"Upper gold/brown solid curve below IM-743, descending smoothly from left to right; labeled directly on the line near the left side.\",\"line_color\":\"#a88f1f\",\"line_style\":\"solid\",\"x_axis_id\":\"x_bottom_flow_lpm\",\"y_axis_id\":\"y_left_head_m\",\"axis_selection_reason\":\"Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\",\"confidence\":0.96},{\"series_name\":\"IM-285\",\"visual_description\":\"Lower gold/brown solid curve, starting around the mid-left and dropping steeply toward the bottom near the center-right; labeled directly on the line near the left side.\",\"line_color\":\"#a88f1f\",\"line_style\":\"solid\",\"x_axis_id\":\"x_bottom_flow_lpm\",\"y_axis_id\":\"y_left_head_m\",\"axis_selection_reason\":\"Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\",\"confidence\":0.95},{\"series_name\":\"IM-463\",\"visual_description\":\"Middle gray solid curve between IM-618 and IM-285, descending smoothly and ending near the lower center; labeled directly on the line near the center.\",\"line_color\":\"#b3b3b3\",\"line_style\":\"solid\",\"x_axis_id\":\"x_bottom_flow_lpm\",\"y_axis_id\":\"y_left_head_m\",\"axis_selection_reason\":\"Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\",\"confidence\":0.96}],\"warnings\":[],\"unsupported_flags\":[]}",
+          "type": "output_text",
+          "logprobs": null
+        },
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": null,
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1781926883.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:fdb2a4b97e:series_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "context": "current_turn"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesIdentification",
+        "schema_": {
+          "$defs": {
+            "SeriesIdentification": {
+              "properties": {
+                "series_name": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Series Name"
+                },
+                "visual_description": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Visual Description"
+                },
+                "line_color": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Line colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+                  "title": "Line Color"
+                },
+                "line_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Line Style"
+                },
+                "x_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "X Axis Id"
+                },
+                "y_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Y Axis Id"
+                },
+                "axis_selection_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Axis Selection Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "title": "SeriesIdentification",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "series_name",
+                "visual_description",
+                "line_color",
+                "line_style",
+                "x_axis_id",
+                "y_axis_id",
+                "axis_selection_reason",
+                "confidence"
+              ]
+            }
+          },
+          "properties": {
+            "series": {
+              "items": {
+                "$ref": "#/$defs/SeriesIdentification"
+              },
+              "title": "Series",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "series",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 1093,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 967,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 2060
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "moderation": null,
+    "presence_penalty": 0.0,
+    "store": true
+  },
+  "text": "{\"series\":[{\"series_name\":\"IM-743\",\"visual_description\":\"Upper gray solid curve in the single panel, descending smoothly from the upper-left toward the lower-right; labeled directly on the line near the left side.\",\"line_color\":\"#b3b3b3\",\"line_style\":\"solid\",\"x_axis_id\":\"x_bottom_flow_lpm\",\"y_axis_id\":\"y_left_head_m\",\"axis_selection_reason\":\"Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\",\"confidence\":0.97},{\"series_name\":\"IM-618\",\"visual_description\":\"Upper gold/brown solid curve below IM-743, descending smoothly from left to right; labeled directly on the line near the left side.\",\"line_color\":\"#a88f1f\",\"line_style\":\"solid\",\"x_axis_id\":\"x_bottom_flow_lpm\",\"y_axis_id\":\"y_left_head_m\",\"axis_selection_reason\":\"Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\",\"confidence\":0.96},{\"series_name\":\"IM-285\",\"visual_description\":\"Lower gold/brown solid curve, starting around the mid-left and dropping steeply toward the bottom near the center-right; labeled directly on the line near the left side.\",\"line_color\":\"#a88f1f\",\"line_style\":\"solid\",\"x_axis_id\":\"x_bottom_flow_lpm\",\"y_axis_id\":\"y_left_head_m\",\"axis_selection_reason\":\"Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\",\"confidence\":0.95},{\"series_name\":\"IM-463\",\"visual_description\":\"Middle gray solid curve between IM-618 and IM-285, descending smoothly and ending near the lower center; labeled directly on the line near the center.\",\"line_color\":\"#b3b3b3\",\"line_style\":\"solid\",\"x_axis_id\":\"x_bottom_flow_lpm\",\"y_axis_id\":\"y_left_head_m\",\"axis_selection_reason\":\"Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.\",\"confidence\":0.96}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "series": [
+      {
+        "series_name": "IM-743",
+        "visual_description": "Upper gray solid curve in the single panel, descending smoothly from the upper-left toward the lower-right; labeled directly on the line near the left side.",
+        "line_color": "#b3b3b3",
+        "line_style": "solid",
+        "x_axis_id": "x_bottom_flow_lpm",
+        "y_axis_id": "y_left_head_m",
+        "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+        "confidence": 0.97
+      },
+      {
+        "series_name": "IM-618",
+        "visual_description": "Upper gold/brown solid curve below IM-743, descending smoothly from left to right; labeled directly on the line near the left side.",
+        "line_color": "#a88f1f",
+        "line_style": "solid",
+        "x_axis_id": "x_bottom_flow_lpm",
+        "y_axis_id": "y_left_head_m",
+        "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+        "confidence": 0.96
+      },
+      {
+        "series_name": "IM-285",
+        "visual_description": "Lower gold/brown solid curve, starting around the mid-left and dropping steeply toward the bottom near the center-right; labeled directly on the line near the left side.",
+        "line_color": "#a88f1f",
+        "line_style": "solid",
+        "x_axis_id": "x_bottom_flow_lpm",
+        "y_axis_id": "y_left_head_m",
+        "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+        "confidence": 0.95
+      },
+      {
+        "series_name": "IM-463",
+        "visual_description": "Middle gray solid curve between IM-618 and IM-285, descending smoothly and ending near the lower center; labeled directly on the line near the center.",
+        "line_color": "#b3b3b3",
+        "line_style": "solid",
+        "x_axis_id": "x_bottom_flow_lpm",
+        "y_axis_id": "y_left_head_m",
+        "axis_selection_reason": "Single panel uses the primary bottom Flow (LPM) x-axis and left Head (m) y-axis.",
+        "confidence": 0.96
+      }
+    ],
+    "warnings": null,
+    "unsupported_flags": null
+  }
+}

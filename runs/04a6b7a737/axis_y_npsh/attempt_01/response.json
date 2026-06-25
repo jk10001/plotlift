@@ -1,0 +1,205 @@
+{
+  "raw": {
+    "sdk_http_response": {
+      "headers": {
+        "x-gemini-service-tier": "standard",
+        "content-type": "application/json; charset=UTF-8",
+        "vary": "Origin, X-Origin, Referer",
+        "content-encoding": "gzip",
+        "date": "Mon, 22 Jun 2026 02:40:08 GMT",
+        "server": "scaffolding on HTTPServer2",
+        "x-xss-protection": "0",
+        "x-frame-options": "SAMEORIGIN",
+        "x-content-type-options": "nosniff",
+        "server-timing": "gfet4t7; dur=5045",
+        "alt-svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000",
+        "transfer-encoding": "chunked"
+      },
+      "body": null
+    },
+    "candidates": {
+      "content": {
+        "parts": {
+          "media_resolution": null,
+          "code_execution_result": null,
+          "executable_code": null,
+          "file_data": null,
+          "function_call": null,
+          "function_response": null,
+          "inline_data": null,
+          "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"y\",\n    \"points\": [\n      {\n        \"label\": \"y1\",\n        \"crop_image_norm\": {\n          \"x\": 56,\n          \"y\": 632\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"80\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 80.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"label\": \"y2\",\n        \"crop_image_norm\": {\n          \"x\": 56,\n          \"y\": 776\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      }\n    ],\n    \"confidence\": 1.0,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+          "thought": null,
+          "video_metadata": null,
+          "tool_call": null,
+          "tool_response": null,
+          "part_metadata": null
+        },
+        "role": "model"
+      },
+      "citation_metadata": null,
+      "finish_message": null,
+      "token_count": null,
+      "finish_reason": "STOP",
+      "grounding_metadata": null,
+      "avg_logprobs": null,
+      "index": 0,
+      "logprobs_result": null,
+      "safety_ratings": null,
+      "url_context_metadata": null
+    },
+    "create_time": null,
+    "model_version": "gemini-3.5-flash",
+    "prompt_feedback": null,
+    "usage_metadata": {
+      "cache_tokens_details": null,
+      "cached_content_token_count": null,
+      "candidates_token_count": 309,
+      "candidates_tokens_details": null,
+      "prompt_token_count": 1615,
+      "prompt_tokens_details": [
+        {
+          "modality": "IMAGE",
+          "token_count": 1092
+        },
+        {
+          "modality": "TEXT",
+          "token_count": 523
+        }
+      ],
+      "thoughts_token_count": 639,
+      "tool_use_prompt_token_count": null,
+      "tool_use_prompt_tokens_details": null,
+      "total_token_count": 2563,
+      "traffic_type": null
+    },
+    "model_status": null,
+    "automatic_function_calling_history": null,
+    "parsed": {
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "proposal": {
+        "axis": "y",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 56,
+              "y": 632
+            },
+            "crop_image_px": null,
+            "chart_value": {
+              "value_raw": "80",
+              "value_type": "number",
+              "parsed_value": 80.0,
+              "parsed_datetime": null,
+              "unit": "ft"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 56,
+              "y": 776
+            },
+            "crop_image_px": null,
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "ft"
+            }
+          }
+        ],
+        "confidence": 1.0,
+        "warnings": null,
+        "unsupported_flags": null
+      }
+    }
+  },
+  "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"y\",\n    \"points\": [\n      {\n        \"label\": \"y1\",\n        \"crop_image_norm\": {\n          \"x\": 56,\n          \"y\": 632\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"80\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 80.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      },\n      {\n        \"label\": \"y2\",\n        \"crop_image_norm\": {\n          \"x\": 56,\n          \"y\": 776\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"ft\"\n        }\n      }\n    ],\n    \"confidence\": 1.0,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+  "json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "y",
+      "points": [
+        {
+          "label": "y1",
+          "crop_image_norm": {
+            "x": 56,
+            "y": 631
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "80",
+            "value_type": "number",
+            "parsed_value": 80.0,
+            "parsed_datetime": null,
+            "unit": "ft"
+          }
+        },
+        {
+          "label": "y2",
+          "crop_image_norm": {
+            "x": 56,
+            "y": 775
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "ft"
+          }
+        }
+      ],
+      "confidence": 1.0,
+      "warnings": null,
+      "unsupported_flags": null
+    }
+  },
+  "provider_json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "y",
+      "points": [
+        {
+          "label": "y1",
+          "crop_image_norm": {
+            "x": 56,
+            "y": 632
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "80",
+            "value_type": "number",
+            "parsed_value": 80.0,
+            "parsed_datetime": null,
+            "unit": "ft"
+          }
+        },
+        {
+          "label": "y2",
+          "crop_image_norm": {
+            "x": 56,
+            "y": 776
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "ft"
+          }
+        }
+      ],
+      "confidence": 1.0,
+      "warnings": null,
+      "unsupported_flags": null
+    }
+  }
+}
