@@ -100,7 +100,7 @@ A run passes through five reviewable stages.
 
 ### 1. Upload And Page Selection
 
-Create a run by uploading an image or PDF and choosing a model, image-detail setting, and reasoning effort.
+Create a run by uploading an image or PDF and choosing a model, image-detail setting, and reasoning effort. For best results, use `gpt-5.5`.
 
 Images are converted to a canonical PNG. PDF pages are rasterised at the configured DPI. For a multi-page PDF, select the page containing the chart to digitise.
 
@@ -314,4 +314,4 @@ Attempt directories contain the resolved request, raw response, parsed result, v
 - `.env` contains local API keys and runtime settings.
 - `requirements.txt` contains Python dependencies.
 
-The default enabled model is currently `gpt-5.4-mini`; change the `default` flag in `models.json` to select another default.
+The default enabled model is currently `gpt-5.5`; change the `default` flag in `models.json` to select another default.
