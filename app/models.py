@@ -10,7 +10,7 @@ from .series_point_limits import series_data_point_limits
 
 ProviderName = Literal["openai", "gemini"]
 ImageDetail = Literal["high", "medium", "auto", "low", "original", "ultra_high"]
-ReasoningEffort = Literal["none", "minimal", "low", "medium", "high", "xhigh"]
+ReasoningEffort = Literal["none", "minimal", "low", "medium", "high", "xhigh", "max"]
 ValueType = Literal["number", "datetime", "unknown"]
 AxisDirection = Literal["x", "y"]
 StageName = Literal[

@@ -100,7 +100,7 @@ A run passes through five reviewable stages.
 
 ### 1. Upload And Page Selection
 
-Create a run by uploading an image or PDF and choosing a model, image-detail setting, and reasoning effort. For best results, use `gpt-5.5`.
+Create a run by uploading an image or PDF and choosing a model, image-detail setting, and reasoning effort. For reasonable results at low cost, use `gpt-5.6-luna`.
 
 Images are converted to a canonical PNG. PDF pages are rasterised at the configured DPI. For a multi-page PDF, select the page containing the chart to digitise.
 

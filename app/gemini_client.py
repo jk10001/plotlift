@@ -202,7 +202,7 @@ def _adapt_schema_node(node: Any) -> None:
     if isinstance(node, dict):
         node.pop("additionalProperties", None)
         max_items = node.get("maxItems")
-        if isinstance(max_items, int) and max_items > GEMINI_MAX_BOUNDED_ARRAY_ITEMS:
+        if isinstance(max_items, int) and max_items >= GEMINI_MAX_BOUNDED_ARRAY_ITEMS:
             # Gemini can reject high-cardinality nested array schemas as too complex.
             # The app still enforces configured point limits after parsing the response.
             node.pop("maxItems", None)

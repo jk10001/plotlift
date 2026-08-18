@@ -27,17 +27,19 @@ def test_gemini_schema_uses_provider_coordinate_scale() -> None:
     assert "additionalProperties" not in schema["$defs"]["NormBBox"]
 
 
-def test_gemini_schema_relaxes_large_series_point_array_bounds(monkeypatch) -> None:
+def test_gemini_schema_relaxes_series_point_array_bounds_at_complexity_limit(monkeypatch) -> None:
     monkeypatch.setenv("SERIES_MIN_DATA_POINTS", "5")
-    monkeypatch.setenv("SERIES_MAX_DATA_POINTS", "30")
 
-    openai_schema = strict_json_schema(SeriesDigitizationConversationResponse)
-    gemini_adapted = gemini_schema(openai_schema)
-    points_schema = gemini_adapted["$defs"]["SeriesDigitizationOutput"]["properties"]["points"]
+    for max_points, should_relax in ((19, False), (20, True), (30, True)):
+        monkeypatch.setenv("SERIES_MAX_DATA_POINTS", str(max_points))
+        openai_schema = strict_json_schema(SeriesDigitizationConversationResponse)
+        gemini_adapted = gemini_schema(openai_schema)
+        openai_points = openai_schema["$defs"]["SeriesDigitizationOutput"]["properties"]["points"]
+        gemini_points = gemini_adapted["$defs"]["SeriesDigitizationOutput"]["properties"]["points"]
 
-    assert openai_schema["$defs"]["SeriesDigitizationOutput"]["properties"]["points"]["maxItems"] == 30
-    assert points_schema["minItems"] == 5
-    assert "maxItems" not in points_schema
+        assert openai_points["maxItems"] == max_points
+        assert gemini_points["minItems"] == 5
+        assert ("maxItems" not in gemini_points) is should_relax
 
 
 def test_gemini_prompt_coordinate_contract_uses_provider_scale() -> None:
@@ -63,6 +65,19 @@ def test_gemini_35_flash_is_enabled_with_expected_options() -> None:
     assert model.image_detail_options == ["auto", "low", "medium", "high", "ultra_high"]
     assert model.default_image_detail == "high"
     validate_run_settings(RunSettings(model_id="gemini-3.5-flash", image_detail="high", reasoning_effort="medium"))
+
+
+def test_gemini_36_flash_is_enabled_with_expected_options() -> None:
+    model = load_models().get_enabled("gemini-3.6-flash")
+
+    assert model.label == "Gemini 3.6 Flash"
+    assert model.family == "gemini-3.6"
+    assert model.provider == "gemini"
+    assert model.reasoning_efforts == ["minimal", "low", "medium", "high"]
+    assert model.default_reasoning_effort == "medium"
+    assert model.image_detail_options == ["auto", "low", "medium", "high", "ultra_high"]
+    assert model.default_image_detail == "high"
+    validate_run_settings(RunSettings(model_id="gemini-3.6-flash", image_detail="ultra_high", reasoning_effort="medium"))
 
 
 def test_gemini_generate_content_config_uses_sdk_schema_fields() -> None:
