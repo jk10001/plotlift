@@ -917,6 +917,17 @@ h2 {
   cursor: grab;
 }
 
+#overlaySvg .calibration-point {
+  pointer-events: all;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  cursor: grab;
+}
+
+#overlaySvg .calibration-point.locked-overlay {
+  cursor: default;
+}
+
 .x-point {
   fill: var(--x-axis);
 }

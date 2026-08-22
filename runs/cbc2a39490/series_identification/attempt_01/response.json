@@ -1,0 +1,278 @@
+{
+  "raw": {
+    "created_at": 1787307466.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying every visible line series in a cropped line chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line series in every visible panel. Do not stop after five or any other arbitrary count.\nFor each series, provide its name, colour, line style, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_09784e37d5cb6955006a8825cc1d8487d086003bfe15fe7885",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqiCXO_tEEOKLvYL1nVf4Qh5lp9A7VyV1DoPj8byON40T22f-qLI0n3IdQtQMB7QCAyorMm_9KZVLmuRsGbVlDgdjGfgFWGn4fJr7kRQCEm65YxTxze-QXsEl2rctL9WvlrM7GElIhj2mDegcIwsGa2qU12oW8LxxBfxBkLKjBUAceWJsbkcfqiDykckroTNs80Fw4LV0MzsYDHaP-HSy6MxGtYO5d1m4VuyKG4E51ga99ikafOIRRH66JDi6jICZxwZl1fAYlNqfs5xg3vkmEe-oSTbEmBvKKDGYGNubYVogYlzYyAaJKL5VwG1DZTnOdG-v7qblskhe70psz3T9VEGhSac2T3a6KZjW_WmMG1QF1JD96ntJx00Xzod2uSvFJrmBewfxS9y3JfNVmSyZ7ITrJt3XkpM8YDZPfq-F_cLPemaDrnVkODIhK_P74X4y_UQ_Xz6tlsc1C3zArbmJzdwdkjIKFqpxLoEafwa18ZaKcHeuhTAEAqwKqd754LxIR12DXdOI1A6CZAdk2mLLMYDetdjAxqMUVhCcPi1vphwWrG4270VWcR5rc17grEC6Pf-720ILdcWLqhfK7Khv5-ogy4_WGcyOyB1P_ABRj7ESw89i3YN46-GDrw65d61w0pcMgTOKA4Edm-EM7VZZjvvy6UzP-R0sqBaSJmBTkbwQniceFKDzUED4ToxzxuZ2L3h9loKEzlTuLn8HM6-I4qsU3_LFaedRxBdc60nNJZ8lBqWoge0Wj0evXPkqlTyw-RTyPETU3Ls2MnZsnAMDuZ_N-OWPkgY_MCiFgdxoMHnKvgBg12l3DKDYw4KktS12rz44SUi1l3QPySJSkPhuha7o5yXH8Ti0v7rFxfriMOWJtqQiOcC9IWggPZK6bVFWuWreTms3wAMCdS-IkZNuaZO5bkN6BZgLoeQjonjvElDDszgQwV-4Onhaw-VYkJ3-Vdb_c6m5Nsq_kh2naXYLznSG935ORnyh6RX9w8d_-aEJ_msS6Ox9QK76Fllr_-1Zo4peAzCCdELTPo_e93Ny7Jz-Kn_8KTchTORfBeS_AvKCDvjFHBK73AgpzkCaATSpQqJ4o9K-b0sz5YAFmquBnhBxmcgYitZ7qj8GP4pei21hTLOcPD2PglBevScVg90Mtpge6s3svGHYgX3oBJsxFp98aLi-8j1tcAKSrErh267v8V9E7C9NaxOLagYVmleE3IP-2t7wObkmeotsRZRzhgelzVJLXF8XCB_Lwnu4oaHir4sv4NQ9hhFhUrGkEtYo2IogEle4mbH70bETv1d7qhd--ijxMMNGCVefpht7lH_YB0sVwjKHaZoBconPjXj8Vbf_sgRK9ib14xu1s3mc3jpKiWFQZ8ZmXfZlavade_yUziffD0NyBt67nffJMM6DfMYJ6I0ov9odHUcxbRwIB-ZsNyQ==",
+        "status": null
+      },
+      {
+        "id": "msg_09784e37d5cb6955006a8825ccc79c87d0b65746c2f12e7018",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"series\":[{\"series_name\":\"60 Hz\",\"visual_description\":\"Solid black curve in the main chart panel; starts near 78 psi at low flow, rises slightly, then declines to about 6 psi at high flow.\",\"line_color\":\"black\",\"line_style\":\"solid\",\"x_axis_id\":\"main_panel_x_flow_rate\",\"y_axis_id\":\"main_panel_y_pressure\",\"axis_selection_reason\":\"The series is plotted in the main panel against the labeled Flow rate (gallon/h) horizontal axis and Pressure (psi) vertical axis.\",\"confidence\":0.99},{\"series_name\":\"50 Hz\",\"visual_description\":\"Dashed black curve in the main chart panel; starts near 57 psi at low flow and declines to about 7 psi at a flow rate slightly above 5,800 gallon/h.\",\"line_color\":\"black\",\"line_style\":\"dashed\",\"x_axis_id\":\"main_panel_x_flow_rate\",\"y_axis_id\":\"main_panel_y_pressure\",\"axis_selection_reason\":\"The series is plotted in the main panel against the labeled Flow rate (gallon/h) horizontal axis and Pressure (psi) vertical axis.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787307470.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:cbc2a39490:series_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesIdentification",
+        "schema_": {
+          "$defs": {
+            "SeriesIdentification": {
+              "properties": {
+                "series_name": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Series Name"
+                },
+                "visual_description": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Visual Description"
+                },
+                "line_color": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Line colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+                  "title": "Line Color"
+                },
+                "line_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Line Style"
+                },
+                "x_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "X Axis Id"
+                },
+                "y_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Y Axis Id"
+                },
+                "axis_selection_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Axis Selection Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "title": "SeriesIdentification",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "series_name",
+                "visual_description",
+                "line_color",
+                "line_style",
+                "x_axis_id",
+                "y_axis_id",
+                "axis_selection_reason",
+                "confidence"
+              ]
+            }
+          },
+          "properties": {
+            "series": {
+              "items": {
+                "$ref": "#/$defs/SeriesIdentification"
+              },
+              "title": "Series",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "series",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 1459,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1456
+      },
+      "output_tokens": 287,
+      "output_tokens_details": {
+        "reasoning_tokens": 42
+      },
+      "total_tokens": 1746
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"series\":[{\"series_name\":\"60 Hz\",\"visual_description\":\"Solid black curve in the main chart panel; starts near 78 psi at low flow, rises slightly, then declines to about 6 psi at high flow.\",\"line_color\":\"black\",\"line_style\":\"solid\",\"x_axis_id\":\"main_panel_x_flow_rate\",\"y_axis_id\":\"main_panel_y_pressure\",\"axis_selection_reason\":\"The series is plotted in the main panel against the labeled Flow rate (gallon/h) horizontal axis and Pressure (psi) vertical axis.\",\"confidence\":0.99},{\"series_name\":\"50 Hz\",\"visual_description\":\"Dashed black curve in the main chart panel; starts near 57 psi at low flow and declines to about 7 psi at a flow rate slightly above 5,800 gallon/h.\",\"line_color\":\"black\",\"line_style\":\"dashed\",\"x_axis_id\":\"main_panel_x_flow_rate\",\"y_axis_id\":\"main_panel_y_pressure\",\"axis_selection_reason\":\"The series is plotted in the main panel against the labeled Flow rate (gallon/h) horizontal axis and Pressure (psi) vertical axis.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "series": [
+      {
+        "series_name": "60 Hz",
+        "visual_description": "Solid black curve in the main chart panel; starts near 78 psi at low flow, rises slightly, then declines to about 6 psi at high flow.",
+        "line_color": "black",
+        "line_style": "solid",
+        "x_axis_id": "main_panel_x_flow_rate",
+        "y_axis_id": "main_panel_y_pressure",
+        "axis_selection_reason": "The series is plotted in the main panel against the labeled Flow rate (gallon/h) horizontal axis and Pressure (psi) vertical axis.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "50 Hz",
+        "visual_description": "Dashed black curve in the main chart panel; starts near 57 psi at low flow and declines to about 7 psi at a flow rate slightly above 5,800 gallon/h.",
+        "line_color": "black",
+        "line_style": "dashed",
+        "x_axis_id": "main_panel_x_flow_rate",
+        "y_axis_id": "main_panel_y_pressure",
+        "axis_selection_reason": "The series is plotted in the main panel against the labeled Flow rate (gallon/h) horizontal axis and Pressure (psi) vertical axis.",
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

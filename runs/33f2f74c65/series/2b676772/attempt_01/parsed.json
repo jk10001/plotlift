@@ -1,0 +1,137 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "points": [
+      {
+        "point_index": 0,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "30",
+          "value_type": "number",
+          "parsed_value": 30.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 1,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "20",
+          "value_type": "number",
+          "parsed_value": 20.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "25.45",
+          "value_type": "number",
+          "parsed_value": 25.45,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 2,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "40",
+          "value_type": "number",
+          "parsed_value": 40.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "20.91",
+          "value_type": "number",
+          "parsed_value": 20.91,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 3,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "60",
+          "value_type": "number",
+          "parsed_value": 60.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "16.36",
+          "value_type": "number",
+          "parsed_value": 16.36,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 4,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "80",
+          "value_type": "number",
+          "parsed_value": 80.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "11.82",
+          "value_type": "number",
+          "parsed_value": 11.82,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 5,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "100",
+          "value_type": "number",
+          "parsed_value": 100.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "7.27",
+          "value_type": "number",
+          "parsed_value": 7.27,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "point_index": 6,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "110",
+          "value_type": "number",
+          "parsed_value": 110.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        },
+        "chart_y": {
+          "value_raw": "5",
+          "value_type": "number",
+          "parsed_value": 5.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      }
+    ],
+    "confidence": 0.99,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

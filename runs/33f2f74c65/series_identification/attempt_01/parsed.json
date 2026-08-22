@@ -1,0 +1,68 @@
+{
+  "series": [
+    {
+      "series_name": "Input power",
+      "visual_description": "Top panel, dark gray solid line; gently dips near the left-middle, rises slightly to a broad maximum, then declines sharply toward the right edge.",
+      "line_color": "#4d4d4d",
+      "line_style": "solid",
+      "x_axis_id": null,
+      "y_axis_id": "top_panel_y_power",
+      "axis_selection_reason": "This line is identified by the top-panel legend as Input power and is plotted against the POWER [hp] axis on the left of the top panel. No calibrated horizontal axis is provided for the top panel.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Shaft power",
+      "visual_description": "Top panel, light gray solid line; starts near 20 hp, dips modestly, rises to a shallow maximum, then falls toward the right edge.",
+      "line_color": "#808080",
+      "line_style": "solid",
+      "x_axis_id": null,
+      "y_axis_id": "top_panel_y_power",
+      "axis_selection_reason": "This line is identified by the top-panel legend as Shaft power and uses the top-panel POWER [hp] axis. No calibrated horizontal axis is provided for the top panel.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Head",
+      "visual_description": "Bottom panel, blue solid line; decreases almost linearly from about 30 m at zero flow to about 5 m at the high-flow end.",
+      "line_color": "#1f77b4",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow",
+      "y_axis_id": "bottom_panel_y_head",
+      "axis_selection_reason": "The legend identifies this as Head; it corresponds to the left-side HEAD [m] scale and the bottom FLOW [l/s] axis.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Hydraulic efficiency",
+      "visual_description": "Bottom panel, green solid arch-shaped curve; rises from zero, peaks near the middle of the flow range, then declines at high flow.",
+      "line_color": "#1a9d1a",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow",
+      "y_axis_id": "bottom_panel_y_efficiency",
+      "axis_selection_reason": "The legend identifies this as Hydraulic efficiency; its plotted magnitude aligns with the outer right-side EFF [%] scale, alongside the bottom FLOW [l/s] axis.",
+      "confidence": 0.97
+    },
+    {
+      "series_name": "Overall efficiency",
+      "visual_description": "Bottom panel, orange solid arch-shaped curve; rises from zero to a lower peak than hydraulic efficiency and then declines toward the right.",
+      "line_color": "#ff7f0e",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow",
+      "y_axis_id": "bottom_panel_y_efficiency",
+      "axis_selection_reason": "The legend identifies this as Overall efficiency; it uses the outer right-side EFF [%] scale and the bottom FLOW [l/s] axis.",
+      "confidence": 0.97
+    },
+    {
+      "series_name": "NPSHR",
+      "visual_description": "Bottom panel, purple solid curve; starts at a moderate value, declines to a shallow minimum around the middle, then rises toward the right.",
+      "line_color": "#9467bd",
+      "line_style": "solid",
+      "x_axis_id": "bottom_panel_x_flow",
+      "y_axis_id": "bottom_panel_y_npshr",
+      "axis_selection_reason": "The legend identifies this as NPSHR; its values align with the inner right-side NPSHR [m] scale from 0 to 15, using the bottom FLOW [l/s] axis.",
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [
+    "The top panel has no calibrated horizontal axis among the provided axis IDs, so its x_axis_id is null."
+  ],
+  "unsupported_flags": []
+}

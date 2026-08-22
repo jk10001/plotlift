@@ -1,0 +1,28 @@
+{
+  "axes": [
+    {
+      "axis_id": "x_axis",
+      "direction": "x",
+      "name": "Flow rate",
+      "unit": "gallon/h",
+      "quantity": "Flow rate",
+      "location_description": "Bottom horizontal axis measuring flow rate",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.98
+    },
+    {
+      "axis_id": "y_axis",
+      "direction": "y",
+      "name": "Pressure",
+      "unit": "psi",
+      "quantity": "Pressure",
+      "location_description": "Left vertical axis measuring pressure",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.98
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

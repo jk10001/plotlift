@@ -1,0 +1,29 @@
+{
+  "run_id": "cbc2a39490",
+  "stage": "series",
+  "series_id": "adb0eb29",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 2 of 2\nName: 50 Hz\nColour: black\nLine style: dashed\nX axis ID: main_panel_x_flow_rate\nY axis ID: main_panel_y_pressure\nAxis selection reason: The curve is plotted in the main chart panel against the horizontal Flow rate (gallon/h) axis and vertical Pressure (psi) axis.\nVisual description: Main-panel dashed black curve; starts near 57 psi at low flow and declines to approximately 7 psi at a lower maximum flow than the 60 Hz curve.\nIdentification confidence: 0.99",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/adb0eb29/attempt_01/overlay.png",
+      "request_path": "series/adb0eb29/attempt_01/request.json",
+      "response_path": "series/adb0eb29/attempt_01/response.json",
+      "parsed_path": "series/adb0eb29/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 2 of 2\nName: 50 Hz\nColour: black\nLine style: dashed\nX axis ID: main_panel_x_flow_rate\nY axis ID: main_panel_y_pressure\nAxis selection reason: The curve is plotted in the main chart panel against the horizontal Flow rate (gallon/h) axis and vertical Pressure (psi) axis.\nVisual description: Main-panel dashed black curve; starts near 57 psi at low flow and declines to approximately 7 psi at a lower maximum flow than the 60 Hz curve.\nIdentification confidence: 0.99",
+      "source_image_path": "series/adb0eb29/attempt_01/overlay.png",
+      "overlay_path": "series/adb0eb29/attempt_02/overlay.png",
+      "request_path": "series/adb0eb29/attempt_02/request.json",
+      "response_path": "series/adb0eb29/attempt_02/response.json",
+      "parsed_path": "series/adb0eb29/attempt_02/parsed.json"
+    }
+  ]
+}

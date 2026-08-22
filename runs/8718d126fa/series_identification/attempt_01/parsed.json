@@ -1,0 +1,26 @@
+{
+  "series": [
+    {
+      "series_name": "60 Hz",
+      "visual_description": "Solid black curve starting at around 78 psi at 0 gallon/h and dropping towards ~6 psi around 6400 gallon/h.",
+      "line_color": "black",
+      "line_style": "solid",
+      "x_axis_id": "x_axis",
+      "y_axis_id": "y_axis",
+      "axis_selection_reason": "Single panel chart plotting pressure against flow rate.",
+      "confidence": 1.0
+    },
+    {
+      "series_name": "50 Hz",
+      "visual_description": "Dashed black curve starting at around 57 psi at 0 gallon/h and dropping towards ~9 psi around 5850 gallon/h.",
+      "line_color": "black",
+      "line_style": "dashed",
+      "x_axis_id": "x_axis",
+      "y_axis_id": "y_axis",
+      "axis_selection_reason": "Single panel chart plotting pressure against flow rate.",
+      "confidence": 1.0
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

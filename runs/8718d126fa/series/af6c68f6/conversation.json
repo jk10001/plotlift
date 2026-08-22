@@ -1,0 +1,29 @@
+{
+  "run_id": "8718d126fa",
+  "stage": "series",
+  "series_id": "af6c68f6",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 2 of 2\nName: 50 Hz\nColour: black\nLine style: dashed\nX axis ID: x_axis\nY axis ID: y_axis\nAxis selection reason: Single panel chart plotting pressure against flow rate.\nVisual description: Dashed black curve starting at around 57 psi at 0 gallon/h and dropping towards ~9 psi around 5850 gallon/h.\nIdentification confidence: 1.00",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/af6c68f6/attempt_01/overlay.png",
+      "request_path": "series/af6c68f6/attempt_01/request.json",
+      "response_path": "series/af6c68f6/attempt_01/response.json",
+      "parsed_path": "series/af6c68f6/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 2 of 2\nName: 50 Hz\nColour: black\nLine style: dashed\nX axis ID: x_axis\nY axis ID: y_axis\nAxis selection reason: Single panel chart plotting pressure against flow rate.\nVisual description: Dashed black curve starting at around 57 psi at 0 gallon/h and dropping towards ~9 psi around 5850 gallon/h.\nIdentification confidence: 1.00",
+      "source_image_path": "series/af6c68f6/attempt_01/overlay.png",
+      "overlay_path": "series/af6c68f6/attempt_02/overlay.png",
+      "request_path": "series/af6c68f6/attempt_02/request.json",
+      "response_path": "series/af6c68f6/attempt_02/response.json",
+      "parsed_path": "series/af6c68f6/attempt_02/parsed.json"
+    }
+  ]
+}

@@ -309,7 +309,7 @@ Attempt directories contain the resolved request, raw response, parsed result, v
 
 ## Configuration
 
-- `models.json` controls the model dropdown and each model's detail and reasoning options.
+- `models.json` controls the model dropdown, each model's detail and reasoning options, and its USD input, cached-input, output, and applicable long-context prices per million tokens. API usage log entries use these rates to show the call cost and cumulative run cost.
 - `prompts.yaml` contains the versioned prompts for crop, axes, and series stages.
 - `.env` contains local API keys and runtime settings.
 - `requirements.txt` contains Python dependencies.

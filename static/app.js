@@ -884,10 +884,12 @@ function updateCropEdgeHandle(edge, b, size) {
 function updateLiveCalibrationOverlay() {
   for (const axis of calibratedAxes()) {
     for (const point of axis.points || []) {
-    const p = point.crop_image_px;
-    if (!p) continue;
+      const p = point.crop_image_px;
+      if (!p) continue;
       const key = calibrationPointKey(axis.axis_id, point.label);
-      setSvgAttrs(els.overlaySvg.querySelector(`[data-cal-key="${cssAttr(key)}"]`), { cx: p.x, cy: p.y, r: cssPxToSvgUnits(8) });
+      setSvgAttrs(els.overlaySvg.querySelector(`[data-cal-key="${cssAttr(key)}"]`), {
+        d: calibrationMarkerPath(p),
+      });
       setSvgAttrs(els.overlaySvg.querySelector(`[data-label="${cssAttr(key)}"]`), calibrationLabelAttrs(point));
     }
   }
@@ -1044,6 +1046,18 @@ function fixedSquareAttrs(cx, cy, sizePx) {
   };
 }
 
+function calibrationMarkerPath(point) {
+  const radius = cssPxToSvgUnits(8);
+  const crossHalfSize = cssPxToSvgUnits(11);
+  return [
+    `M ${point.x - radius} ${point.y}`,
+    `a ${radius} ${radius} 0 1 0 ${radius * 2} 0`,
+    `a ${radius} ${radius} 0 1 0 ${-radius * 2} 0`,
+    `M ${point.x - crossHalfSize} ${point.y} H ${point.x + crossHalfSize}`,
+    `M ${point.x} ${point.y - crossHalfSize} V ${point.y + crossHalfSize}`,
+  ].join(" ");
+}
+
 function calibrationLabelAttrs(point) {
   const p = point.crop_image_px;
   const offset = cssPxToSvgUnits(10);
@@ -1193,15 +1207,20 @@ function renderCalibrationOverlay() {
       const p = point.crop_image_px;
       if (!p) continue;
       const key = calibrationPointKey(axis.axis_id, point.label);
-      svgEl("circle", {
-        class: `point ${locked ? "locked-overlay" : "interactive"}`,
-        cx: p.x,
-        cy: p.y,
-        r: cssPxToSvgUnits(8),
-        fill: color,
+      svgEl("path", {
+        class: `calibration-point ${locked ? "locked-overlay" : "interactive"}`,
+        d: calibrationMarkerPath(p),
+        fill: "none",
+        stroke: color,
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round",
         "data-cal-key": key,
         "data-axis-id": axis.axis_id,
         "data-point-label": point.label,
+        "data-tooltip-calibration-point": "true",
+        "data-tooltip-axis": axis.name || axis.axis_id,
+        "data-tooltip-label": point.label,
+        "data-tooltip-value": formatTooltipChartValue(point.chart_value),
         ...(locked ? {} : { "data-drag": "calibration" }),
       });
       svgText(point.label, p.x, p.y, color, { "data-label": key, ...calibrationLabelAttrs(point) });
@@ -1264,14 +1283,14 @@ function renderSeriesOverlay() {
 
 function onOverlayPointerOver(event) {
   if (stateRef.drag || llmJobActive()) return;
-  const target = event.target.closest?.("[data-tooltip-series-point]");
+  const target = overlayTooltipTarget(event.target);
   if (!target) return;
   showPointTooltip(target, event);
 }
 
 function onOverlayPointerHoverMove(event) {
   if (stateRef.drag || els.pointTooltip.hidden) return;
-  const target = event.target.closest?.("[data-tooltip-series-point]");
+  const target = overlayTooltipTarget(event.target);
   if (!target) {
     hidePointTooltip();
     return;
@@ -1280,14 +1299,27 @@ function onOverlayPointerHoverMove(event) {
 }
 
 function onOverlayPointerOut(event) {
-  const target = event.target.closest?.("[data-tooltip-series-point]");
+  const target = overlayTooltipTarget(event.target);
   if (!target) return;
-  const related = event.relatedTarget?.closest?.("[data-tooltip-series-point]");
+  const related = overlayTooltipTarget(event.relatedTarget);
   if (related === target) return;
   hidePointTooltip();
 }
 
+function overlayTooltipTarget(element) {
+  return element?.closest?.("[data-tooltip-series-point], [data-tooltip-calibration-point]") || null;
+}
+
 function showPointTooltip(target, event) {
+  if (target.dataset.tooltipCalibrationPoint) {
+    const axis = target.dataset.tooltipAxis || "Axis";
+    const label = target.dataset.tooltipLabel || "";
+    const value = target.dataset.tooltipValue || "?";
+    els.pointTooltip.innerHTML = `<div>${escapeHtml(axis)}</div><div>${escapeHtml(label)}&nbsp;${escapeHtml(value)}</div>`;
+    els.pointTooltip.hidden = false;
+    positionPointTooltip(svgPoint(event));
+    return;
+  }
   const x = target.dataset.tooltipX || "";
   const y = target.dataset.tooltipY || "";
   if (!x && !y) return;

@@ -1,0 +1,28 @@
+{
+  "axes": [
+    {
+      "axis_id": "main_panel_x_flow_rate",
+      "direction": "x",
+      "name": "Flow rate",
+      "unit": "gallon/h",
+      "quantity": "Flow rate",
+      "location_description": "Bottom horizontal axis of the main chart panel, labeled “Flow rate (gallon/h)”",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    },
+    {
+      "axis_id": "main_panel_y_pressure",
+      "direction": "y",
+      "name": "Pressure",
+      "unit": "psi",
+      "quantity": "Pressure",
+      "location_description": "Left vertical axis of the main chart panel, labeled “Pressure (psi)”",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

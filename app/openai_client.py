@@ -6,10 +6,11 @@ from typing import Any, TypeVar
 
 from pydantic import BaseModel
 
+from .config import load_models
 from .image_io import image_to_data_url
 from .logging_utils import emit_event
 from .models import RunSettings
-from .token_usage import openai_token_usage_message
+from .token_usage import RunCostTracker
 
 T = TypeVar("T", bound=BaseModel)
 
@@ -21,6 +22,7 @@ class OpenAIChartClient:
         self.run_dir = run_dir
         self.run_id = run_id
         self._client = None
+        self._cost_tracker = RunCostTracker(run_dir)
 
     @property
     def client(self) -> Any:
@@ -107,7 +109,7 @@ class OpenAIChartClient:
             request["reasoning"] = reasoning
         response = self.client.responses.create(**request)
         response_dict = response.model_dump(mode="json") if hasattr(response, "model_dump") else response.to_dict()
-        emit_event(self.run_dir, "API", openai_token_usage_message(response_dict), run_id=self.run_id, stage="crop")
+        self._emit_usage(response_dict, settings, stage="crop")
         call = self._extract_function_call(response_dict)
         args = json.loads(call.get("arguments", "{}"))
         return request, {"raw": response_dict, "arguments": args, "response_id": response_dict.get("id"), "function_call_id": call.get("call_id")}
@@ -149,9 +151,22 @@ class OpenAIChartClient:
             request["reasoning"] = reasoning
         response = self.client.responses.create(**request)
         response_dict = response.model_dump(mode="json") if hasattr(response, "model_dump") else response.to_dict()
-        emit_event(self.run_dir, "API", openai_token_usage_message(response_dict), run_id=self.run_id)
+        self._emit_usage(response_dict, settings)
         text = getattr(response, "output_text", None) or self._extract_output_text(response_dict)
         return request, {"raw": response_dict, "text": text, "json": json.loads(text), "response_id": response_dict.get("id")}
+
+    def _emit_usage(self, response: dict[str, Any], settings: RunSettings, *, stage: str | None = None) -> None:
+        model = load_models().get_enabled(settings.model_id)
+        cost = self._cost_tracker.record_openai(response, model)
+        emit_event(
+            self.run_dir,
+            "API",
+            cost.message,
+            run_id=self.run_id,
+            stage=stage,
+            call_cost_usd=cost.call_cost_usd,
+            run_cost_usd=cost.run_cost_usd,
+        )
 
     def _extract_function_arguments(self, response: dict[str, Any]) -> dict[str, Any]:
         return json.loads(self._extract_function_call(response).get("arguments", "{}"))

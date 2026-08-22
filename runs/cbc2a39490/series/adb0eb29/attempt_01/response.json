@@ -1,0 +1,572 @@
+{
+  "raw": {
+    "created_at": 1787226485.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are an expert in digitising line charts and are digitising one specified visible line series from a cropped line chart. Your goal is to trace the line as accurately as possible, including any bends, inflections, and discontinuities, while using as few points as necessary to capture the shape.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 999 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn points in chart-space values as chart_x and chart_y using the selected axis units/types.\nPoints must be ordered visually from left to right along the line, even if chart-space x is reversed.\nUse 5 to 20 representative polyline control points: include start/end, extrema, bends, inflections, and visible discontinuity-adjacent points.\nPoints do not need to be equally spaced. Straight or gently curved segments can be represented with fewer points, while sharply curved segments may require more points to capture the shape accurately.\nDo not return every marker unless the line only has a few markers.\nIdentify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_02396b7aeba3011e006a86e976a84487d08afaec573a51a1fd",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqhumCmBuLrEO2WQM1jM6zwhr0yudQymvtc-nb3mHsYHABBhVfXJXiF_6l6rkCe5xxa4RP_EUqXP-uMbFcDG39G-il9kiyOwVn7R7U6eF6QC4rqWXd6BIrZSc8YAV3r3QZkK64bWfSGwNmPtI7XPAUYc9O4X4E5xCY6xYTjqg_ix5vFHdMKYaw2Ncqb7jMIAm-1LfkzojrORldeBZuyDN9BRLz-nENBOA2Bo9eoj-R4xvqyuBClkaQEI2d8jfP6c-iMhQ8JcO1m2NEVsIlgByeREVxsFXK4kKpDEZctzrT6RUzhSJIgW1JxYS11gli80WsxRDCS4rCdDzukFpEuEYhwbo2erNPtnDlaBkwiJerhtBeIO1rI7MCjRcyuW58EomqAPi9AmRLSRcAu-syClXxWAKsM81GCcEH_4WzeArBmma8YT39qH58PSk6qXl0L368HUyoxq9wKX6y33SUl0CpmxQoypHWaRkoGuSb8koyP8aa_1ysGEw_9I-EphooSMg6xDtIsvizPn_pR_dBtVpCFgiSmSDQW42_3TRHdd926BY0LSPBC66ioe32BkeVM1Jc9dKbJKy7SVgyeTE6Bu2uyt0ORzQzEN86bl7DxSka3A3bEBQavsU88jy6Ih_iueplAvJPHJtjDK9PPoleGH_7FVqh2n3jDqldOj406-NAh-FDhC_2uzaYWD0QJF8139fFWz5NUDKruI-4WWTKeqlTVHfne3q3BOfjUH8ksH05hXMT8Vnt1h2U13FsQWc70eACBhBXcmGA02XS2UQn-payLd91J59IePMRnPg0tHn-aZr7lIOTopK4uqndY2kkhuJ4saa4Gy1XY76auiO_yuwMpBEvl3N7M6Lt6GttsdFo-psa95l3Jd8Q7emdOtjUAumjvMqTkhMBZWDt7y86b45IlQ3vQlh-LTmWAxTMYz6sMEmDzVj-ESAqqFcdEyxgu94_gpnJk5yxgFbUuri91j0-JkAmxzc-t6svaGxt_JEp79p7HXKx7jliIV7NRZh_xCtRBFSVs2sS-dXX32nn3Pc_7dnh7L9ZPoJcN7zp5lMjqxJY1F8S4q-BOrdUoxWBC9FrizG7wep8J9b-YLFGp1sbsmpXt54_TN5WJt1AqWrX-vCBqiRXBDAXWZVjxP4GMB8xT_MenYFReapfjVjl1LEultSAafH0xldstIkQntpz8yZtU6y8J55O_r-ehofcLCNznhgN4wK60ppSedLZAHcmc6gccgfBv79XUlTsc35jO2bUKDf1VFegZMx-Fbh6X8abqrSks0UwI-9SuUI7IMTLD3BSprOXy33dR-8El8VL119GOz3WQ2Cdjb043OsR2eJOnKNwAq_1I5vnre8jY-IQooJIRH0BcrbjABcqCQS-NBLKZiZcDAMB4vOrp-I4lwolnxfLrBmhgP-7FXVnnddHxNCz263KSkwlzugf8QfcxzVe_lX2Tnzn8foxs6KUviuyddfjg-pRAMjqRJfjImvOGowUeveZtVUIo1FzcLsDbEfhLw-mwVI1Ebw7eUBJyrLkRoGVHKBPBpfvMaLXoQ7DvtXeizTPolzXBQyVVKPY8eh70KFZyTC58ahFdXNLptXiXW4liS_KSis1XUyq-Dfz1DmLq2X-YEV3vQTs56JguJzNb7lQgU4FgDAQsx_NWr28vyEsCBtig15SSZ8-DNMIChkArvgfu7U9an7938AwXBPuGmHDvnvthHhVqrZcfN6272fam1hWcsiKD0iQHHxUCB7fNnHIFPpuU-KOIGWKrnuGwMAHC7kwyI1JNJV4LRicnvVLErsaaqJCGrOJtmdjtnNIdXjSeH51ah6LFmu41AD0ypOf0FLvGF2HxlzY-OlEIck5hwt2plmhspTQaYrjbb5JptuhnqCuadbyinDg-JX9vUmeehYXm6D-_fwIypcNTieK0J_PpRTmMDEEpurL8r2Nh6XX3ChMnKfolTg_Q-EhCcVbmND_Z1MiQgSGaV-ho8xFCaRLsbLjKPLepHfze-FaLlfQ17VBt12xe14xO-i50-Zo39OiY2o99SFsNbF3Xf5BvXrdV1CGTd_SlxaJt8JPhEntUqiQLtVTqLnPLckA6BNHnNSlSdttth0ZSLzDqhbgpozJaM8sws93qX9vh-su-78Bm2wN2KGyBpKaZ0olXybpG4-pTgarzg6y6RAcZe5ocp6O_UtvgGOYUlUuAWgKm36zmVv8hEhrx_RvvqQE-hu3d9G_EAP2Zj7jSZrDHswfOMQmdGgTv-ius6Ab7pxhqXRluWdhHrAjxXhS_BhPvdVxhTJZVqAtB1MzNeO7QIukW7U_7v7w1FsB_EtCPnCkkto5ngU2tCZP2Ss_9GaWLR2BFfkhyhh-S3LulneRDd6SYOaz7hLFrJnpzXunaSsAFe0ymsagQYhASSZzNgM4nZREG09Gx1hv0PXligf_O-uJ",
+        "status": null
+      },
+      {
+        "id": "msg_02396b7aeba3011e006a86e979f42c87d09a009bad21c34af0",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"proposal\",\"revision_reason\":null,\"proposal\":{\"points\":[{\"point_index\":0,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"0\",\"value_type\":\"number\",\"parsed_value\":0,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"57.2\",\"value_type\":\"number\",\"parsed_value\":57.2,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":1,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"500\",\"value_type\":\"number\",\"parsed_value\":500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"56.8\",\"value_type\":\"number\",\"parsed_value\":56.8,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":2,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1000\",\"value_type\":\"number\",\"parsed_value\":1000,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"55.7\",\"value_type\":\"number\",\"parsed_value\":55.7,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":3,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1500\",\"value_type\":\"number\",\"parsed_value\":1500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"53.9\",\"value_type\":\"number\",\"parsed_value\":53.9,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":4,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"2000\",\"value_type\":\"number\",\"parsed_value\":2000,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"51.6\",\"value_type\":\"number\",\"parsed_value\":51.6,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":5,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"2500\",\"value_type\":\"number\",\"parsed_value\":2500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"48.8\",\"value_type\":\"number\",\"parsed_value\":48.8,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":6,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3000\",\"value_type\":\"number\",\"parsed_value\":3000,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"45.5\",\"value_type\":\"number\",\"parsed_value\":45.5,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":7,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3500\",\"value_type\":\"number\",\"parsed_value\":3500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"42\",\"value_type\":\"number\",\"parsed_value\":42,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":8,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4000\",\"value_type\":\"number\",\"parsed_value\":4000,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"38\",\"value_type\":\"number\",\"parsed_value\":38,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":9,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4500\",\"value_type\":\"number\",\"parsed_value\":4500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"32.5\",\"value_type\":\"number\",\"parsed_value\":32.5,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":10,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4800\",\"value_type\":\"number\",\"parsed_value\":4800,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"28.3\",\"value_type\":\"number\",\"parsed_value\":28.3,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":11,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5100\",\"value_type\":\"number\",\"parsed_value\":5100,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"23.4\",\"value_type\":\"number\",\"parsed_value\":23.4,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":12,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5400\",\"value_type\":\"number\",\"parsed_value\":5400,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"18\",\"value_type\":\"number\",\"parsed_value\":18,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":13,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5600\",\"value_type\":\"number\",\"parsed_value\":5600,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"13.5\",\"value_type\":\"number\",\"parsed_value\":13.5,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":14,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5800\",\"value_type\":\"number\",\"parsed_value\":5800,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"7\",\"value_type\": \"number\",\"parsed_value\":7,\"parsed_datetime\":null,\"unit\":\"psi\"}}],\"confidence\":0.96,\"warnings\":[],\"unsupported_flags\":[]}}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787226498.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:cbc2a39490:series:adb0eb29",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "context": "all_turns",
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesDigitizationDecision",
+        "schema_": {
+          "$defs": {
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "SeriesDigitizationOutput": {
+              "properties": {
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/SeriesPointProposal"
+                  },
+                  "title": "Points",
+                  "type": "array",
+                  "minItems": 5,
+                  "maxItems": 20
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "title": "SeriesDigitizationOutput",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ]
+            },
+            "SeriesPointProposal": {
+              "properties": {
+                "point_index": {
+                  "minimum": 0,
+                  "title": "Point Index",
+                  "type": "integer"
+                },
+                "segment_index": {
+                  "minimum": 0,
+                  "title": "Segment Index",
+                  "type": "integer"
+                },
+                "chart_x": {
+                  "$ref": "#/$defs/ChartValue"
+                },
+                "chart_y": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "point_index",
+                "segment_index",
+                "chart_x",
+                "chart_y"
+              ],
+              "title": "SeriesPointProposal",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SeriesDigitizationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "SeriesDigitizationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 1730,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1727
+      },
+      "output_tokens": 1408,
+      "output_tokens_details": {
+        "reasoning_tokens": 276
+      },
+      "total_tokens": 3138
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "moderation": null,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"proposal\",\"revision_reason\":null,\"proposal\":{\"points\":[{\"point_index\":0,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"0\",\"value_type\":\"number\",\"parsed_value\":0,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"57.2\",\"value_type\":\"number\",\"parsed_value\":57.2,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":1,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"500\",\"value_type\":\"number\",\"parsed_value\":500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"56.8\",\"value_type\":\"number\",\"parsed_value\":56.8,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":2,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1000\",\"value_type\":\"number\",\"parsed_value\":1000,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"55.7\",\"value_type\":\"number\",\"parsed_value\":55.7,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":3,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1500\",\"value_type\":\"number\",\"parsed_value\":1500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"53.9\",\"value_type\":\"number\",\"parsed_value\":53.9,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":4,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"2000\",\"value_type\":\"number\",\"parsed_value\":2000,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"51.6\",\"value_type\":\"number\",\"parsed_value\":51.6,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":5,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"2500\",\"value_type\":\"number\",\"parsed_value\":2500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"48.8\",\"value_type\":\"number\",\"parsed_value\":48.8,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":6,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3000\",\"value_type\":\"number\",\"parsed_value\":3000,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"45.5\",\"value_type\":\"number\",\"parsed_value\":45.5,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":7,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3500\",\"value_type\":\"number\",\"parsed_value\":3500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"42\",\"value_type\":\"number\",\"parsed_value\":42,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":8,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4000\",\"value_type\":\"number\",\"parsed_value\":4000,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"38\",\"value_type\":\"number\",\"parsed_value\":38,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":9,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4500\",\"value_type\":\"number\",\"parsed_value\":4500,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"32.5\",\"value_type\":\"number\",\"parsed_value\":32.5,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":10,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4800\",\"value_type\":\"number\",\"parsed_value\":4800,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"28.3\",\"value_type\":\"number\",\"parsed_value\":28.3,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":11,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5100\",\"value_type\":\"number\",\"parsed_value\":5100,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"23.4\",\"value_type\":\"number\",\"parsed_value\":23.4,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":12,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5400\",\"value_type\":\"number\",\"parsed_value\":5400,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"18\",\"value_type\":\"number\",\"parsed_value\":18,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":13,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5600\",\"value_type\":\"number\",\"parsed_value\":5600,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"13.5\",\"value_type\":\"number\",\"parsed_value\":13.5,\"parsed_datetime\":null,\"unit\":\"psi\"}},{\"point_index\":14,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5800\",\"value_type\":\"number\",\"parsed_value\":5800,\"parsed_datetime\":null,\"unit\":\"gallon/h\"},\"chart_y\":{\"value_raw\":\"7\",\"value_type\": \"number\",\"parsed_value\":7,\"parsed_datetime\":null,\"unit\":\"psi\"}}],\"confidence\":0.96,\"warnings\":[],\"unsupported_flags\":[]}}",
+  "json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "57.2",
+            "value_type": "number",
+            "parsed_value": 57.2,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "500",
+            "value_type": "number",
+            "parsed_value": 500,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "56.8",
+            "value_type": "number",
+            "parsed_value": 56.8,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "1000",
+            "value_type": "number",
+            "parsed_value": 1000,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "55.7",
+            "value_type": "number",
+            "parsed_value": 55.7,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "1500",
+            "value_type": "number",
+            "parsed_value": 1500,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "53.9",
+            "value_type": "number",
+            "parsed_value": 53.9,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "2000",
+            "value_type": "number",
+            "parsed_value": 2000,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "51.6",
+            "value_type": "number",
+            "parsed_value": 51.6,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "2500",
+            "value_type": "number",
+            "parsed_value": 2500,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "48.8",
+            "value_type": "number",
+            "parsed_value": 48.8,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "3000",
+            "value_type": "number",
+            "parsed_value": 3000,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "45.5",
+            "value_type": "number",
+            "parsed_value": 45.5,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "3500",
+            "value_type": "number",
+            "parsed_value": 3500,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "42",
+            "value_type": "number",
+            "parsed_value": 42,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "4000",
+            "value_type": "number",
+            "parsed_value": 4000,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "38",
+            "value_type": "number",
+            "parsed_value": 38,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "4500",
+            "value_type": "number",
+            "parsed_value": 4500,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "32.5",
+            "value_type": "number",
+            "parsed_value": 32.5,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "4800",
+            "value_type": "number",
+            "parsed_value": 4800,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "28.3",
+            "value_type": "number",
+            "parsed_value": 28.3,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "5100",
+            "value_type": "number",
+            "parsed_value": 5100,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "23.4",
+            "value_type": "number",
+            "parsed_value": 23.4,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "5400",
+            "value_type": "number",
+            "parsed_value": 5400,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "18",
+            "value_type": "number",
+            "parsed_value": 18,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 13,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "5600",
+            "value_type": "number",
+            "parsed_value": 5600,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "13.5",
+            "value_type": "number",
+            "parsed_value": 13.5,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "point_index": 14,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "5800",
+            "value_type": "number",
+            "parsed_value": 5800,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          },
+          "chart_y": {
+            "value_raw": "7",
+            "value_type": "number",
+            "parsed_value": 7,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        }
+      ],
+      "confidence": 0.96,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  }
+}

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from app.config import load_models, validate_run_settings
 from app.gemini_client import GeminiChartClient, _gemini_coordinate_prompt, _thinking_config, gemini_schema, gemini_to_internal_coordinates
 from app.models import CropConversationResponse, RunSettings, SeriesDigitizationConversationResponse
@@ -67,17 +69,19 @@ def test_gemini_35_flash_is_enabled_with_expected_options() -> None:
     validate_run_settings(RunSettings(model_id="gemini-3.5-flash", image_detail="high", reasoning_effort="medium"))
 
 
-def test_gemini_36_flash_is_enabled_with_expected_options() -> None:
-    model = load_models().get_enabled("gemini-3.6-flash")
+def test_gemini_37_flash_is_enabled_with_expected_options() -> None:
+    model = load_models().get_enabled("gemini-3.7-flash")
 
-    assert model.label == "Gemini 3.6 Flash"
-    assert model.family == "gemini-3.6"
+    assert model.label == "Gemini 3.7 Flash"
+    assert model.family == "gemini-3.7"
     assert model.provider == "gemini"
-    assert model.reasoning_efforts == ["minimal", "low", "medium", "high"]
+    assert model.reasoning_efforts == ["low", "medium", "high"]
     assert model.default_reasoning_effort == "medium"
     assert model.image_detail_options == ["auto", "low", "medium", "high", "ultra_high"]
     assert model.default_image_detail == "high"
-    validate_run_settings(RunSettings(model_id="gemini-3.6-flash", image_detail="ultra_high", reasoning_effort="medium"))
+    validate_run_settings(RunSettings(model_id="gemini-3.7-flash", image_detail="ultra_high", reasoning_effort="medium"))
+    with pytest.raises(ValueError, match="reasoning effort"):
+        validate_run_settings(RunSettings(model_id="gemini-3.7-flash", image_detail="high", reasoning_effort="minimal"))
 
 
 def test_gemini_generate_content_config_uses_sdk_schema_fields() -> None:
