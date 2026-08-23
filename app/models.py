@@ -39,6 +39,13 @@ class ModelOption(BaseModel):
     label: str
     family: str
     provider: ProviderName = "openai"
+    input_cost_per_million_tokens_usd: float = Field(ge=0)
+    cached_input_cost_per_million_tokens_usd: float = Field(ge=0)
+    output_cost_per_million_tokens_usd: float = Field(ge=0)
+    long_context_threshold_tokens: int | None = Field(default=None, ge=0)
+    long_context_input_cost_per_million_tokens_usd: float | None = Field(default=None, ge=0)
+    long_context_cached_input_cost_per_million_tokens_usd: float | None = Field(default=None, ge=0)
+    long_context_output_cost_per_million_tokens_usd: float | None = Field(default=None, ge=0)
     default: bool = False
     enabled: bool = True
     reasoning_efforts: list[ReasoningEffort] = Field(default_factory=list)
@@ -158,6 +165,8 @@ class EventRecord(BaseModel):
     stage: str | None = None
     attempt: int | None = None
     artifact_path: str | None = None
+    call_cost_usd: float | None = None
+    run_cost_usd: float | None = None
 
 
 class AttemptRecord(BaseModel):

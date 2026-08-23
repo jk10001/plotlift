@@ -5,9 +5,10 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .config import load_models
 from .logging_utils import emit_event
 from .models import RunSettings
-from .token_usage import gemini_token_usage_message
+from .token_usage import RunCostTracker
 
 GEMINI_COORDINATE_MAX = 1000
 INTERNAL_COORDINATE_MAX = 999
@@ -21,6 +22,7 @@ class GeminiChartClient:
         self.run_dir = run_dir
         self.run_id = run_id
         self._client = None
+        self._cost_tracker = RunCostTracker(run_dir)
 
     @property
     def client(self) -> Any:
@@ -104,7 +106,16 @@ class GeminiChartClient:
             config=config,
         )
         response_dict = response.model_dump(mode="json") if hasattr(response, "model_dump") else {}
-        emit_event(self.run_dir, "API", gemini_token_usage_message(response_dict), run_id=self.run_id)
+        model = load_models().get_enabled(settings.model_id)
+        cost = self._cost_tracker.record_gemini(response_dict, model)
+        emit_event(
+            self.run_dir,
+            "API",
+            cost.message,
+            run_id=self.run_id,
+            call_cost_usd=cost.call_cost_usd,
+            run_cost_usd=cost.run_cost_usd,
+        )
         text = getattr(response, "text", None) or self._extract_text(response_dict)
         provider_json = json.loads(text)
         internal_json = gemini_to_internal_coordinates(provider_json)

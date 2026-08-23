@@ -30,6 +30,8 @@ def emit_event(
     stage: str | None = None,
     attempt: int | None = None,
     artifact_path: str | None = None,
+    call_cost_usd: float | None = None,
+    run_cost_usd: float | None = None,
 ) -> EventRecord:
     event = EventRecord(
         category=category,
@@ -38,6 +40,8 @@ def emit_event(
         stage=stage,
         attempt=attempt,
         artifact_path=artifact_path,
+        call_cost_usd=call_cost_usd,
+        run_cost_usd=run_cost_usd,
     )
     prefix = f"[{event.ts}][{category}]"
     if run_id:

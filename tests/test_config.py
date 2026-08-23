@@ -32,3 +32,20 @@ def test_gpt_56_family_is_enabled_with_documented_options() -> None:
         config_module.validate_run_settings(
             RunSettings(model_id=model_id, image_detail="original", reasoning_effort="max")
         )
+
+
+def test_all_models_have_non_negative_token_prices() -> None:
+    for model in config_module.load_models().models:
+        assert model.input_cost_per_million_tokens_usd >= 0
+        assert model.cached_input_cost_per_million_tokens_usd >= 0
+        assert model.output_cost_per_million_tokens_usd >= 0
+        assert model.cached_input_cost_per_million_tokens_usd <= model.input_cost_per_million_tokens_usd
+        long_context_prices = (
+            model.long_context_input_cost_per_million_tokens_usd,
+            model.long_context_cached_input_cost_per_million_tokens_usd,
+            model.long_context_output_cost_per_million_tokens_usd,
+        )
+        if model.long_context_threshold_tokens is None:
+            assert long_context_prices == (None, None, None)
+        else:
+            assert all(price is not None for price in long_context_prices)
