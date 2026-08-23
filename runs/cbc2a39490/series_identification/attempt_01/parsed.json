@@ -2,22 +2,22 @@
   "series": [
     {
       "series_name": "60 Hz",
-      "visual_description": "Solid black curve in the main chart panel; starts near 78 psi at low flow, rises slightly, then declines to about 6 psi at high flow.",
+      "visual_description": "Solid black curve in the main panel, starting near 78 psi at low flow and declining to approximately 6 psi at high flow.",
       "line_color": "black",
       "line_style": "solid",
       "x_axis_id": "main_panel_x_flow_rate",
       "y_axis_id": "main_panel_y_pressure",
-      "axis_selection_reason": "The series is plotted in the main panel against the labeled Flow rate (gallon/h) horizontal axis and Pressure (psi) vertical axis.",
+      "axis_selection_reason": "The series is plotted in the main chart panel against the bottom Flow rate (gallon/h) axis and left Pressure (psi) axis.",
       "confidence": 0.99
     },
     {
       "series_name": "50 Hz",
-      "visual_description": "Dashed black curve in the main chart panel; starts near 57 psi at low flow and declines to about 7 psi at a flow rate slightly above 5,800 gallon/h.",
+      "visual_description": "Dashed black curve below the 60 Hz curve, starting near 57 psi at low flow and declining to approximately 8 psi at high flow.",
       "line_color": "black",
       "line_style": "dashed",
       "x_axis_id": "main_panel_x_flow_rate",
       "y_axis_id": "main_panel_y_pressure",
-      "axis_selection_reason": "The series is plotted in the main panel against the labeled Flow rate (gallon/h) horizontal axis and Pressure (psi) vertical axis.",
+      "axis_selection_reason": "The series is plotted in the main chart panel against the bottom Flow rate (gallon/h) axis and left Pressure (psi) axis.",
       "confidence": 0.99
     }
   ],

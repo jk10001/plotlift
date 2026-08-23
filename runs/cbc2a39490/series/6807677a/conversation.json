@@ -1,0 +1,29 @@
+{
+  "run_id": "cbc2a39490",
+  "stage": "series",
+  "series_id": "6807677a",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 2\nName: 60 Hz\nColour: black\nLine style: solid\nX axis ID: main_panel_x_flow_rate\nY axis ID: main_panel_y_pressure\nAxis selection reason: The series is plotted in the main chart panel against the bottom Flow rate (gallon/h) axis and left Pressure (psi) axis.\nVisual description: Solid black curve in the main panel, starting near 78 psi at low flow and declining to approximately 6 psi at high flow.\nIdentification confidence: 0.99",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/6807677a/attempt_01/overlay.png",
+      "request_path": "series/6807677a/attempt_01/request.json",
+      "response_path": "series/6807677a/attempt_01/response.json",
+      "parsed_path": "series/6807677a/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 2\nName: 60 Hz\nColour: black\nLine style: solid\nX axis ID: main_panel_x_flow_rate\nY axis ID: main_panel_y_pressure\nAxis selection reason: The series is plotted in the main chart panel against the bottom Flow rate (gallon/h) axis and left Pressure (psi) axis.\nVisual description: Solid black curve in the main panel, starting near 78 psi at low flow and declining to approximately 6 psi at high flow.\nIdentification confidence: 0.99",
+      "source_image_path": "series/6807677a/attempt_01/overlay.png",
+      "overlay_path": "series/6807677a/attempt_02/overlay.png",
+      "request_path": "series/6807677a/attempt_02/request.json",
+      "response_path": "series/6807677a/attempt_02/response.json",
+      "parsed_path": "series/6807677a/attempt_02/parsed.json"
+    }
+  ]
+}
