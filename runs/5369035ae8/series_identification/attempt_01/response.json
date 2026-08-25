@@ -1,0 +1,352 @@
+{
+  "raw": {
+    "created_at": 1787647651.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying every visible line and scatter series in a cropped chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line and scatter series in every visible panel. Do not stop after five or any other arbitrary count.\nClassify a series as line when its data is visibly connected, including lines that also have markers. Classify unconnected data markers as scatter. A fitted or reference line over scatter data is a separate line series.\nFor each series, provide its name, series_type, colour, line style, marker style, estimated point count, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nUse marker_style to describe scatter marker shape and fill, such as filled circle, hollow square, diamond, triangle, plus, or x. It may be null for a line without relevant markers.\nSet estimated_total_points to the number of individually visible scatter markers. It may be null for line series.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0c2a884cf25102c4006a8d56a466c887d09d3d78ad4b6831f7",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjVas2GABg3gAJ48dD3xw32zQqajetfrnUSjYn6pO77pnuhGofHOT0PgSLr5gKSsXxPfjP2SLbDj82xa5_2kbtC3ILqUnwaBSI4WpVgCJ0Xr_nS1igf-i4pwWgLHG2EkmDDbk2dFKRYhYg98X8I7c-s_BT1EMTIWGIMD0wn5a8CPJifmqqu0-n9i6hcEXOklwC4YLkSEArEHegSKvlfEwsczjYsDkTM14TF6UFZkULv5ZWIRMIbry_xLqrs1Fo9-754IrmdFpCJL2nyYk4Y6m4rJ4MHQTa0_ljtDjVcgGSL4Kb4gv-RMRUtDNMuPPuhX76FG_HFV4WZ-39aCXoUPO4P2oOXe35BjdNyu7YQJ39epY1TG0nCRYUSkHlj_S9QnBVeH0EV5aVaUOO0clVMrsM6WlYm_buufg3XIm3x_ArAzFOVFRQEiooi0Rkdx0hZkwV-OB0Y8lfVukgbI0h1sR91CP6cTGcevYO_A5YdG1BcH7pdY_hAed8eU-ZgQFe7sAOwvp89KXxKthp6vIFkvKCFO0rNW-yqDcVgln1gtTEe7YnwFgjYcXmgdROviQQWbfIHtj5dEyiebqmECD1xaBwjCaTT4mZKHq1c-yL9CeB4nTdjb81JDwzStjJjMZ2NUTMm7CUH1rvqM8MItjz2-P6touGLOw9mttTfpkINZW7-zUe3j-mBSP3hbRZIqS6mrOB3OE-TyRBU-VzNYOTn-nW-PaAXyG6HZOV19LIIP3Q9WcaxqQ0LUn5InDPTurBnU0C1ffHZPD4rnXVcM4FrfkXvEgP5wVXTzPyxm5T0fvd4aKJPUEYidiiJNVID4Evh667ydfnFpVswmBp5sIZJNvj8152f4DWspx8lJjuHCX8dpSiMTvY64xQ-Ge4uDY6kepOSqjr_Jqbu_nGJ92wkbhOIybAQ0OGgBKvX7P88gUTOIuDWVrrRUvagVLTE58m92OP1ExmeiXXpzvT1k3ixnrNLwp1cDWgU8rxnJorv4tEe5J_4aYtktaWt9lZptiVAJpAPDWjn4wYzVUS0aPZEkyaIWQqVOWb-jj6Wf01MU1VlENQfpPODeKZrl6gJL0mAvZsK25vV25Djv-nVvxCXO1KU7duAxWpstQYZPLgSiHDduIq6ah70hfJnBb2-L1lRLurE_IL4bNj5y3vSMIlLX1paPf7_voZd-xH0GOdMHmEyTwmIkao1XcHoYfBqoy2LCR4WCWIaIR-H7y8YbXNrMSS2d-GgxqeLGd-IWxl89bgKxj0N6yErpavCHs66BwFZStcXJMoT7-a2aWsfZ5mCRjMYNW0XaAf--8lx4KSTydvTL1LDH2WHbMKrk1vg0CgNcCEn7NPEwqi0UhKkWOoryUq8AXy1Lx1wPY5O096tcEVJ2F7Yjd4ldNIEfpcEjIvmqEDUrgKNc7I_Z9kZ9n90JNbgXcyLC42M2qU2h5EQxqom2Bj02WvB-VHj-PN5v1MBO-gKzYjJP1aDQduULV1FDpV9hUfECJUoS4pTCpokFtPSGc81OWNddn2gZPk4p4o4B9HIMIKVynCWBifuFbYAkZJHXFGk9PYnfERigPwjaFmc0r0fsxeSu5FcdLXg4-rfxCbExuUOwCRmRYDyh-CGbN9pCn0DPsyRml5XW4QZjZn-8ae06IK-Dbg4sGOgshGJ7X1donOUO6R-bhA6JOwgjiCIWRTrqStj0JPkjqFNSdBY4QZRYJq46EHMyoadWg5_mPBMiKyJyotD_EpQy1a-hfR2drqp2CmqYpoRMqRsMvD-3VIEl_NRgzDQZ3Uy4K1AL_nxezQ-Wlh3Mlr4gW5W621_tMMwkvbqw5HQHIIedXTqbAXLQn8drn8QF8SaZ-6pFVB8yZ_laYBsfaB2wKW_XMbGKSEpDOlzi_EEUZVQA_rARPSrRCfpxLYVH8rW-yMh71IS0C0-qchHiNKm4k685CfDmAakvp9Z15OVVaji9Nn4Ou5upzbcImlYBF8EapOwSv3pEH85_k2AJfR4LLt7PnmUTTAwItJ2b7SevkHNPfEc1MmvkHAsBWCt7QiDTsI4QUcmCML0EO6AOg53uS_779cptoo3q-0I0evgT5aD5hwtQGsBF1_AFlJuhUaXPaKHGaNQz2IXRFI4h5pM9ANV2BmIhvD4dOck9_MJ5Ls_kS8ppt1l9ahmJ4JWImqV1bCSxOdbhoo8U1BlmLksqXmlz-MIJkQetnqhDAYvLZMDALobcpGYoXrl5uGwZLdEje5VRohcMUkc5b9N-p7BK_P094-GnNAtjcDeHl6fAnrrVt2wMukNIzqw7PnuefM4196Jj3zmuNw1u5w-DF6GYwrFcErQ9rEQ==",
+        "status": null
+      },
+      {
+        "id": "rs_0c2a884cf25102c4006a8d56a82a3887d0b5f3670bc53276b2",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjVaslvt7LJJO3bfBVj02CvZlISjB-eW0vJlyb3zUoZhFGuRwXcWOTQBYr2rch7epIAyTOI2EFLOi6MQAcz9M3K_zLxakaC6ix8F8-P7VXE84rTjBjEDuUTU5lSI8F-HMzHM_akvM9AKHQWRc-qnW5uBiW1vVPLc4ZUFiBEH8HnKdVkkmgCBJz2By1bMIu2uAhOISDal-gYjZ2FQR5VB5H7gxMFxv8LvNjR5PBWaqw_nawJhyLL0B7kVKY4MdIaP6Fp3nDX6feS3xR3XnMIi-q6zKe_TlvElzE0qiU_JqyAg9qPTMb9-M21nAA6PM_QqXunFA1LFOPnFfEqAMeU11TRDQ9dfn9UMI46haXyF_AiXYDVjkSofXo6Y0CFLN4TAtR15O0vCo9Gflzkt92zuuVVqVvzkD6Rl7OOJ-CZ45wDO0OF1wqY1QbbGera0qEhieSHUxinJmMQTWBtlSxuP9ljOeZnDOEkHkusZJll_lqmRdAxgBV-nQ5SBviWU8M92H8YVLYo30SW6artKOi0d_88etiHqHJzKhbnuh1z8g21qFrdQGoKfjT0mx4CdwfHKbOfmS3TR1ux0Ts_d3dii13fDlp1a8M9HyWk6Ped4Dh8ViTLhObMT_fzMf8lEmJ-h28mcjt5dcOmCAXg_8deq6MOoiKKYRXSy4AxomEfh6Mbfc-uoAHXDmlfADEiCnDUSnIEfiXXA3GyidaQOl61tWE908wRfti38l62LGOagOCL55pbBeTq-VI_OXiy7j7lsTzrXiBDe3v_8wXrLt3tONcB9FE34zR_SSyEN_Ul1ejcAO66w8RMN3s_DZ5zXQ_zbP0jHAPJguz4ql8cfmR9R54s_VOOgjsp--Hsl-lZs7mIgbvJHjBECphlSRvq0LkuXOrrVAIcC7mnnuyZBqzd9z0ktwhBbgUygqZKJ94pxeRUspYjr-m6Lto2yYHymDuXO9y2JIqX2ohtPGzEr7U5ZaSE0zzXaioGXFDkpaH524DIYT83f8dIuRdv9ydU2waMm4OOFov9xTtgW-nSMeJmOme39VTwzJx57VlVl0kRWGmYcqh8VJi4pCznsm6xHIGHutFQ0KT65ElKVS3eB5F2ywW2lg9tded_A9Syu6qBtiQ5biJix2LAg0gPi3D7V2x-255Q5-83e78Q_MgGtAvaChxnawEAJI-pXv8_EgB664pH_mhIkWth14ksqK21ZvzZLqmzZhnSZMRyeUrYPl3l2UMIhuSBDinslddGgB01KC3NnMAY9tw6ospjmOEzUzc22YpJaJMcQaHjf4o47_CMjHcoBhIMI3K_yrJ64XGHJFDbz9_h3VFd14YYr1pgagfA1_I4AXWNvn4iyAo0wI_Z543eL3mg-IzItcRoDpXlE7DYLIyPwiSQooqbUt4JSaguzcNJhNcf5AN4aXaq0wNntCrCXfKIqKpSqIJrQL3iQn_fBYDuTYWYqCYiI2NvUtHN81FP3b47p36heXCZtq_o6jeGb_tpNFOyttY6KtQMTQJCwGeYMZXNKnE3PvN7LvD4bM7BI0q6exQpP8BC4FBWMC4icf0FVV1BS8eORglkiNM6dmIQRRmuUrp_zWHbz6KQISPaY-rb-aH8SB0A7uPLVN7t-LEKa4EX-LwtzE8P2Pu-ItLBw=",
+        "status": null
+      },
+      {
+        "id": "msg_0c2a884cf25102c4006a8d56a9220887d0ac8f5fd23fc38606",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"series\":[{\"series_name\":\"Series 1\",\"series_type\":\"scatter\",\"visual_description\":\"Black filled circular markers distributed across the single chart panel; no connecting line is visible.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled circle\",\"estimated_total_points\":16,\"x_axis_id\":\"x_axis_main\",\"y_axis_id\":\"y_axis_main\",\"axis_selection_reason\":\"The markers are plotted in the single panel against the bottom X value axis and left Y value axis.\",\"confidence\":0.99},{\"series_name\":\"Series 2\",\"series_type\":\"scatter\",\"visual_description\":\"Black filled square markers distributed across the single chart panel; no connecting line is visible.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled square\",\"estimated_total_points\":16,\"x_axis_id\":\"x_axis_main\",\"y_axis_id\":\"y_axis_main\",\"axis_selection_reason\":\"The markers are plotted in the single panel against the bottom X value axis and left Y value axis.\",\"confidence\":0.99},{\"series_name\":\"Series 3\",\"series_type\":\"scatter\",\"visual_description\":\"Black filled upward-triangle markers distributed across the single chart panel; no connecting line is visible.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled triangle\",\"estimated_total_points\":16,\"x_axis_id\":\"x_axis_main\",\"y_axis_id\":\"y_axis_main\",\"axis_selection_reason\":\"The markers are plotted in the single panel against the bottom X value axis and left Y value axis.\",\"confidence\":0.99},{\"series_name\":\"Series 4\",\"series_type\":\"scatter\",\"visual_description\":\"Black filled diamond markers distributed across the single chart panel; no connecting line is visible.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled diamond\",\"estimated_total_points\":16,\"x_axis_id\":\"x_axis_main\",\"y_axis_id\":\"y_axis_main\",\"axis_selection_reason\":\"The markers are plotted in the single panel against the bottom X value axis and left Y value axis.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787647660.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:5369035ae8:series_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesIdentification",
+        "schema_": {
+          "$defs": {
+            "SeriesIdentification": {
+              "properties": {
+                "series_name": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Series Name"
+                },
+                "series_type": {
+                  "enum": [
+                    "line",
+                    "scatter"
+                  ],
+                  "title": "Series Type",
+                  "type": "string"
+                },
+                "visual_description": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Visual Description"
+                },
+                "line_color": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Series colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+                  "title": "Line Color"
+                },
+                "line_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Line Style"
+                },
+                "marker_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Marker Style"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "x_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "X Axis Id"
+                },
+                "y_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Y Axis Id"
+                },
+                "axis_selection_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Axis Selection Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "title": "SeriesIdentification",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "series_name",
+                "series_type",
+                "visual_description",
+                "line_color",
+                "line_style",
+                "marker_style",
+                "estimated_total_points",
+                "x_axis_id",
+                "y_axis_id",
+                "axis_selection_reason",
+                "confidence"
+              ]
+            }
+          },
+          "properties": {
+            "series": {
+              "items": {
+                "$ref": "#/$defs/SeriesIdentification"
+              },
+              "title": "Series",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "series",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 2700,
+      "input_tokens_details": {
+        "cached_tokens": 2697,
+        "cache_write_tokens": 0
+      },
+      "output_tokens": 1033,
+      "output_tokens_details": {
+        "reasoning_tokens": 609
+      },
+      "total_tokens": 3733
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"series\":[{\"series_name\":\"Series 1\",\"series_type\":\"scatter\",\"visual_description\":\"Black filled circular markers distributed across the single chart panel; no connecting line is visible.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled circle\",\"estimated_total_points\":16,\"x_axis_id\":\"x_axis_main\",\"y_axis_id\":\"y_axis_main\",\"axis_selection_reason\":\"The markers are plotted in the single panel against the bottom X value axis and left Y value axis.\",\"confidence\":0.99},{\"series_name\":\"Series 2\",\"series_type\":\"scatter\",\"visual_description\":\"Black filled square markers distributed across the single chart panel; no connecting line is visible.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled square\",\"estimated_total_points\":16,\"x_axis_id\":\"x_axis_main\",\"y_axis_id\":\"y_axis_main\",\"axis_selection_reason\":\"The markers are plotted in the single panel against the bottom X value axis and left Y value axis.\",\"confidence\":0.99},{\"series_name\":\"Series 3\",\"series_type\":\"scatter\",\"visual_description\":\"Black filled upward-triangle markers distributed across the single chart panel; no connecting line is visible.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled triangle\",\"estimated_total_points\":16,\"x_axis_id\":\"x_axis_main\",\"y_axis_id\":\"y_axis_main\",\"axis_selection_reason\":\"The markers are plotted in the single panel against the bottom X value axis and left Y value axis.\",\"confidence\":0.99},{\"series_name\":\"Series 4\",\"series_type\":\"scatter\",\"visual_description\":\"Black filled diamond markers distributed across the single chart panel; no connecting line is visible.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled diamond\",\"estimated_total_points\":16,\"x_axis_id\":\"x_axis_main\",\"y_axis_id\":\"y_axis_main\",\"axis_selection_reason\":\"The markers are plotted in the single panel against the bottom X value axis and left Y value axis.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "series": [
+      {
+        "series_name": "Series 1",
+        "series_type": "scatter",
+        "visual_description": "Black filled circular markers distributed across the single chart panel; no connecting line is visible.",
+        "line_color": "black",
+        "line_style": null,
+        "marker_style": "filled circle",
+        "estimated_total_points": 16,
+        "x_axis_id": "x_axis_main",
+        "y_axis_id": "y_axis_main",
+        "axis_selection_reason": "The markers are plotted in the single panel against the bottom X value axis and left Y value axis.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "Series 2",
+        "series_type": "scatter",
+        "visual_description": "Black filled square markers distributed across the single chart panel; no connecting line is visible.",
+        "line_color": "black",
+        "line_style": null,
+        "marker_style": "filled square",
+        "estimated_total_points": 16,
+        "x_axis_id": "x_axis_main",
+        "y_axis_id": "y_axis_main",
+        "axis_selection_reason": "The markers are plotted in the single panel against the bottom X value axis and left Y value axis.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "Series 3",
+        "series_type": "scatter",
+        "visual_description": "Black filled upward-triangle markers distributed across the single chart panel; no connecting line is visible.",
+        "line_color": "black",
+        "line_style": null,
+        "marker_style": "filled triangle",
+        "estimated_total_points": 16,
+        "x_axis_id": "x_axis_main",
+        "y_axis_id": "y_axis_main",
+        "axis_selection_reason": "The markers are plotted in the single panel against the bottom X value axis and left Y value axis.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "Series 4",
+        "series_type": "scatter",
+        "visual_description": "Black filled diamond markers distributed across the single chart panel; no connecting line is visible.",
+        "line_color": "black",
+        "line_style": null,
+        "marker_style": "filled diamond",
+        "estimated_total_points": 16,
+        "x_axis_id": "x_axis_main",
+        "y_axis_id": "y_axis_main",
+        "axis_selection_reason": "The markers are plotted in the single panel against the bottom X value axis and left Y value axis.",
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

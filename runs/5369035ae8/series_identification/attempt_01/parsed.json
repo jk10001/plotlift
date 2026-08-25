@@ -1,0 +1,58 @@
+{
+  "series": [
+    {
+      "series_name": "Series 1",
+      "series_type": "scatter",
+      "visual_description": "Black filled circular markers distributed across the single chart panel; no connecting line is visible.",
+      "line_color": "black",
+      "line_style": null,
+      "marker_style": "filled circle",
+      "estimated_total_points": 16,
+      "x_axis_id": "x_axis_main",
+      "y_axis_id": "y_axis_main",
+      "axis_selection_reason": "The markers are plotted in the single panel against the bottom X value axis and left Y value axis.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Series 2",
+      "series_type": "scatter",
+      "visual_description": "Black filled square markers distributed across the single chart panel; no connecting line is visible.",
+      "line_color": "black",
+      "line_style": null,
+      "marker_style": "filled square",
+      "estimated_total_points": 16,
+      "x_axis_id": "x_axis_main",
+      "y_axis_id": "y_axis_main",
+      "axis_selection_reason": "The markers are plotted in the single panel against the bottom X value axis and left Y value axis.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Series 3",
+      "series_type": "scatter",
+      "visual_description": "Black filled upward-triangle markers distributed across the single chart panel; no connecting line is visible.",
+      "line_color": "black",
+      "line_style": null,
+      "marker_style": "filled triangle",
+      "estimated_total_points": 16,
+      "x_axis_id": "x_axis_main",
+      "y_axis_id": "y_axis_main",
+      "axis_selection_reason": "The markers are plotted in the single panel against the bottom X value axis and left Y value axis.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Series 4",
+      "series_type": "scatter",
+      "visual_description": "Black filled diamond markers distributed across the single chart panel; no connecting line is visible.",
+      "line_color": "black",
+      "line_style": null,
+      "marker_style": "filled diamond",
+      "estimated_total_points": 16,
+      "x_axis_id": "x_axis_main",
+      "y_axis_id": "y_axis_main",
+      "axis_selection_reason": "The markers are plotted in the single panel against the bottom X value axis and left Y value axis.",
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

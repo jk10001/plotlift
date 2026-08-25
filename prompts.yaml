@@ -1,4 +1,4 @@
-version: "2026-08-24-mixed-series-v1"
+version: "2026-08-25-chart-space-digitization-v3"
 
 shared:
   coordinate_contract: |
@@ -121,7 +121,6 @@ series:
     If a legend label is ambiguous or absent, choose a concise descriptive name based on appearance or position.
   line_digitization_system: |
     You are an expert in digitising line charts and are digitising one specified visible line series from a cropped line chart. Your goal is to trace the line as accurately as possible, including any bends, inflections, and discontinuities, while using as few points as necessary to capture the shape.
-    {{ coordinate_contract }}
     {{ conversation_decision_contract }}
     {{ multipanel_contract }}
     Return points in chart-space values as chart_x and chart_y using the selected axis units/types.
@@ -138,7 +137,8 @@ series:
     The proposal object must return confidence and {{ line_series_min_data_points }} to {{ line_series_max_data_points }} points. Do not return descriptive series metadata in the proposal.
   line_digitization_confirm: |
     This is a review attempt for the same series. Review the overlay image of your proposed points and connecting line and compare to the target series line.
-    The overlay shows only the series currently being digitised. Proposed points are marked with X symbols, and each X has its point_index displayed beside it in small text starting at 0.
+    Every red X, red point_index label, and red connecting line is a PlotLift-generated diagnostic annotation, not part of the original chart. The diagnostic style deliberately does not match the target series colour or marker style.
+    The overlay shows only the series currently being digitised. Proposed points are marked with red X symbols, and each X has its point_index displayed beside it in small red text starting at 0.
     The overlay is rendered by projecting your chart_x/chart_y values through the calibrated axes into image space.
     Continue digitising only the series described below.
     {{ target_series }}
@@ -149,7 +149,6 @@ series:
     Attempt to get the points as close as possible to the target series, so that the overlay line is directly on top of the series line. Do not adjust points that are on top of the target series line, keep the same point coordinates. Only adjust points that are off the target series line.
   scatter_digitization_system: |
     You are an expert in digitising scatter charts and are digitising one specified visible scatter series from a cropped chart.
-    {{ coordinate_contract }}
     {{ conversation_decision_contract }}
     {{ multipanel_contract }}
     Return one point for every individually visible marker in the target scatter series as chart_x and chart_y using the selected axis units/types.
@@ -166,7 +165,8 @@ series:
     The proposal must contain at least one point and no more than {{ scatter_series_max_data_points }} points. Do not return descriptive series metadata in the proposal.
   scatter_digitization_confirm: |
     This is a review attempt for the same scatter series. Review the overlay image and compare every numbered overlay marker with the target scatter markers.
-    The overlay contains no connecting line. Check marker membership, completeness up to the configured limit, order, and coordinate placement.
+    Every red X and red point_index label is a PlotLift-generated diagnostic annotation, not part of the original chart. The diagnostic X style deliberately does not match the target series colour or marker style.
+    The overlay contains red X markers with small red point_index labels and no connecting line. Check marker membership, completeness up to the configured limit, order, and coordinate placement.
     Continue digitising only the scatter series described below.
     {{ target_series }}
 

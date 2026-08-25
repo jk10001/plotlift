@@ -1,0 +1,338 @@
+{
+  "raw": {
+    "created_at": 1787647688.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are an expert in digitising scatter charts and are digitising one specified visible scatter series from a cropped chart.\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn one point for every individually visible marker in the target scatter series as chart_x and chart_y using the selected axis units/types.\nNever connect or interpolate between scatter markers. Do not include markers belonging to other series, legend samples, line control points, grid intersections, or error-bar endpoints.\nOrder markers visually from left to right. For markers with the same visual x position, order them from top to bottom.\nReturn at most 100 points. If more markers are visible, return the first 100 in that visual order, set series_truncated to true, and estimate the complete marker count in estimated_total_points.\nIf all visible markers are returned, set series_truncated to false and set estimated_total_points to the returned point count.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_001fed8636bfcef2006a8d56c93e1487d098ed25fc45459580",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjVbgmx2yO94_Ljrzme9e-WE2qlcviB3UfUvaoTUNm8Y5_tOs0h1NxybwcWGGgT89nMy3txh9eZzk5vTjs1vA5ojdlvdoiKzVlHRTU1ReMFLiNuz_R-_gBp5rzRdYrDZuyomgeNUbD-NlKQK7jG2QJwnTImja02Zz9U4StwpbYZgo6qZv6UHLeGF49FcvQeZp8NKGLOEcBHiEHWTUSNpRXMaEDbOM79Yqjr8NPjjJZNtoN_BjkLhmwyFkna9YZke4rtnarkz_0LDHeYElozjjnySVFIbtDeRZJjg2AxFzgmCyVZo8G2-Ka1pK3Yj8ngZ1wyI23rtC1zg9byyEjWAtWv-LuRqHkivqTT2DmL76CVXwr7x4_39eEnYUvvSRDP5F2LgCOwuimRIQigyG3mrsvvNyRaZx2r_Hj48JKm7Dzw2MJfxSuvu2RtxhcsIbHTWHII35QEgoZtFpWB3ai9Ip-td8mID3wkr9QM7gYj_BpuPMB3JTWecDEHiVcYHpG1e-2haWju-OVF8FDxe36ixiV7T3OB3heixNVnp-6m4mEVfEoI-1BMx1zcHKTXsBqf-Zhi78sb94tfYhFkmLdFoUMO04qZSnUFVLaUpni1KouOEYkiydE2NIoLyDfwIQ7AE8s55i4YujgxX9ToLLnJL6OcM268FYBUMb075p64gaaBKPA47WCDFffjOEPcFPlsqnPua9HDzpoNZHEC0rWTuy8KWIRycwVbgFA5rxjELxbt2ErNQa1vPIzeI3o-YbAag6CEzXjyiRlCK4rAS2dKV0nmjDiLVBV7OU43qj3URZJxU8hPL6SnNOxzh6IeGHX2TI0FV5eTUtn0KFAX9SEwmt9AfQ6OLNpYtzveVKDnsQYj-fDLTSJJcslwVt0n4KPqdVRZcrv4_38z6BCQYCzJohc8pFtKJYhzlbS1v3YAk2tPzRH0Ou0ZkFQBehFkFxwSmcarRIxPwek-5849UCBYmJTek7T16ljHFr9OurFdz49-1N0mUHB5EtFL-4cFZJ7IoQC4O8xVtPS19Nt6uDNdrfmtZ5loeM842x-Vsvfpbmqq50eRrQo9kSEVvl-VDVlWZXipRCuoak392NchD8aqHMZT2qEDtz3DdDtnpQTEZVplT7D8FR9UjlXLqhvtYxaHENlAcfl9Dixtx3m6DVfuyqZbRXgzx3xwHBbzEtamBBs-Bvqwi4aywLYLPAKtBKV5RKh5SIMPGvynGo0AvWIjoh0Hy1QekJP2Sw5A6vZDcRQPfXeyjMZvgG7k1onGowRwi-vF2DT8mzdEIWNAqZM91Awn3YOObpcgVd3pK1H-dqM_vEQLpzRn87ajO2ZAL0lr5y3RYVAMv7EvNW1G22IFgPmg6TNvIok4S-2LxgDtgqNbF12c4CUOz-Cdwxw9OckZlCBGYcg3N9fjP6n2NHDlgCCqa7PKx7bD51SNEmUQF174Pfc9W4UJlh8vB4J1xAAqo39Zb8RNrjQ5uguIteh7kMVFW9n4HAng7BGlVkpUUJDh0sRxVjcAAlFXBKtDE2Y3x9_YpRsZMzdeK9s8Y_75ryDFnHwmqIC4sUh4L862zYXgWWW8oI-TQ6H_scWuEg-mIMcTtaLEqZWnGE6CvZGnBJTRDKJQoiAob68S_7WKmIjk-lsNlobcNNk0ZydqQmaQG_x2XH6gTdaV6YLc7OybDb9T3T74y4GN8U1NQn9N5s-Y2QeZVIT_TucsXgwu_BAMNxp5Te7GDYepZHrRIMVTLXTW9aWmSuj06ESjvYMiY6q6wyCouzN2V4KxVjmvgOgFItsof4LCLQvwHbE2iCxLcix2SJoJXxw7tCNYaW_nZOWxsoHRBWVTZcLU_fbyUM2rFIsy0m8f6KDpCCB8_SpC9Lj61QHI3GRYjij1Lt2-BqAEh3lAGh3qADsttG6VLe8MZ-q2CAijhOu_d3J3qdb1RewErkFee2RYg5yHGYVyLu2_ADBxWiTO-lcUaTEZoOFcjdgXNKYubBVMyI9vWtSrKQpXmtRzl1iok3wmCG3lyzjU8T3L6AFH2DXZEk85a7JtvHNbDDX8pUrFfm-l0zdT0XQHqaQjSkHYXhz6vrrLTERyvoWcZxrFT7CL1zMOpjOlKH01YQPTnxIXwqGGGcTkjKMWvN-b9dFTyJFMJbs_94WitR03luykNGADkTT4AT1zKDTLuQ0hR6Nm75BjUJLECBJfpymRPv40bgmz1c1nGd5q7M6CgoZnl4k9EuBO5zTJlKrXAkAmbAQnwcZVnqGUpq2W80l90forXB9xHRLoEB5dfG-U5h9O5-oExamAsuNTPRyvqFbey8vxK3OBNSNOtqjWEL-FdFENtEHOw83BnYUp4UJZBnbsEk3-TyTNcA97zwHdVomPfK-Yz5vyYoHh7n5zJRtL3wdZTvurlmc9_aNTxpw3tcfYt5Buu3ai4Hp9em4aC8jUU06XMvZrfRiW2BKrVJjqeNXn-_f6HE-Dwc4gg22Qy1JjSkDmSCljHip7PjoJMCDUQhuSoAuj5sRWuH130_THknYTIILw3YBmd-fAGI9H0Tp1dhL0m4EDrXm1C6Efktzpy_nepwpxb32DXOwsWfpI_mNQFXDvx7XnTRa1SelrxmqukzgqvpI3oLJSMnb-mDldeFOv_tvkQJJiMBH7R2FBvxq35koJPbHZ4xsew_k6NqT6Mdqiju4yrHmddhKwSj3rJXc0kD-0uF6U0s--DemNWu3l3mFMo4vtdDlo2Nm8VBJMUevazv-jSOwTfFL3zGlPtoxEDcR7XGTXn_hSkH0x_As53cpI5SvigQradWbVkCiyx8svnps-IlFozoVFdLy1bl7_SR8oURkHFAED8I7HWwqEMzxCbYmccb283svEpq0qLdfr27EODOySP3xjN-ZH-wRXQYQ49ycVFuBJg32m6tqsvmsbNjlnepBN-VDVYGsv1CrGKkP7xISu78XtC-794xJx-EZtEQ85qsf1C8Vnbjt6Nr8_3KpbGM0tOuQZUx-7uf29gWfd__B9zB-qfEZ0gvQBYtYfUW7xkG_pzE9YXHCA1dzJF7-HD6EFRMpJzw8EhFtpN9Y0ryQSylOk7Pa_TwX77UKvMb99_MiY1hq6o11ZtPxb0jcCN8NflTTJpZUuk3JHyb570p0jiiKSiLOfda2mV4m9-TT2vuCTpj2gvsapqELefDFKo3gm47-x3DIJZs-ngbMQ58xnFOEuX2SDYWi_K1fBNKvMRSpTtt772w-Z4OYynO_8O3_-UdF74dQZChYieB4SJ-ExVmpXdTe5MyIkUGJXd7UXMutQ6_lwm0NnRq7m0cCaCe3nj1P1KFqySlTYCsJs9DZpLePTnmp1hM3GWKgkD3pKt8ODklxMxNasUjTFjuZEmXv-HZwlbOge6bUtYSOeJUTYpfoY_4zNoIzt9MS6mkrgG6-mCWWFPAy9WG0AKMDzRW-JKR7oYQJ55kNBli2AKydCxAABAr0MObqeu9uj4f-TBnWm5UXyXS6VDDyJZaYVWmC6n4oDvzKCwfqP0P11M7VCZhlU-KGbueARymBN5-1HiYYJ9hbO03W6K3MdeZJIJn7WaknUHxEvVetXZFiSUUiF8Zobgbe64WoAvmhCJ9dIpHR-gSQmIC1l6teqVuykFb6D__L9EAVQfI7rHCk-Ki4IhVOCSZgLOaL3zSMr30MFOATrporUv6ll3CW60WuFDnbVZXsHZwF3mavXOcoBgpvTa9R1A4Lfh9GeuZi5wp5DXVBYrkRA==",
+        "status": null
+      },
+      {
+        "id": "rs_001fed8636bfcef2006a8d56cfc6f487d0b765f6b2cd7f286a",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjVbgVrrZCfTheSNdtCtzSFhbLndCmjFvzs9E9t_9f82g4KK7RsPupIX_H4bZZbhLTfwDQLt-uDqt1SIp33XULbrW17ILmi5uUGAztrm_LUZg0Uet-BKCQyGnH2XjRB3ybUhuPhMIyjkgTLh2n42npN3FPPSsiXe1IMivtaLGp3GZ1MjwKc4jkfKV6IHJ6rjBOiiMHCOfvXgj77I0KLAdt4rRiNDpXFn6FQ4sRr_svWU81wrXAp64GWmRJYcILjzxF_HLGK-zADCkAZB1v3C60nIL8vAe1f7aee2I875kbqPHI5TGkDhxQSGAeBCBfKP0e3EWqvpjPs7nNLZCqr90jNuHooatn1oqYYdpato8fDT7Rz9flxI3k3GAtlYkXRaadeGYQoUwXCOKFq5mV_MqFtILiXVoMDcZl_DPCXZtU4CnU6_FMgvtIZ3cY1dUzxRn5rI13gaCpsmoxvf87h7u2PKTlGNVkU8yNEbusS9WQ818wsFXVkK_JIK2IPQviNpyf26sM5a28mqMkX0gtxBw3V15MV1g04bE9M1YyH9mG7d96LuVJIhPZB-4DLIs0V9qConunCAyJcpoodfBwMtrYSayQ7n_VK5pIshbAVipQWwLeNEW5TQwdjHaoILL_xmz2OVPfKGVHcjmt1hpnf23e4KWVFgyTE0VvGmLlRoDxRfJ25_DDne18C9tgb_bAKn3iEoFwqYyNbSvL8LKjRXQ2sUryu_RCxqtjbwT_EqPJfhNsc7MYoG_2zhLgrjTZKoMuPn1XsGPR-Feuk7rOzI8y1OzpguWuFp8fxG2RmeE-xPbcGO5usJwVt5nEZiJ-8r6UyqUZh0AYw4awt6YxDCfEudDpYlGX3UA-GndTzq50UxVQYCX0sb1gUWVP8JcnfrxdcIdyoZ1vH0CBvgaz1Pk-0UzMFBLaMi5H6F-bY9b-tg9lykZ3tQ8omr3_9vwqiPD5b6ycf-PTYE3_7HxrxZYZvskEoI2QU9MDE8xXIaX3LWtGwg6mlv4nKtg7t5jYUii2o-k9FltxkoERlnQU6mS9POQS9yBe9CHtPcNZLUeMhC7ZhNXoztRuRPQDGYOzFc59lJ4QHlY06_8RQw0s5Am4TCPh87S2az1iXaLXUpdTR7cr_GduLx5NW9VPvcZBMkyB4mhfxNI_A-gsqf7Tge49X-n-_51XuuFPOcg0rP7Kp_rNu-Bs9Sh4cVXO0ULtKKuNk50NOUwhVGsOytUkQvaZxfFKGX8LOF5W8uLVWOW6rRC1efl_lRa5kcERStvT8Sv1coosK2PYo5pb7--pk6BZrMu4yjTL0oeAnEZ0Jrml3qxsPpZ60_2SFVNBTHi4g-9uuW0rFVL-6dz4F5-C58HKlg29QND_BB0PwidACR7Zl7sJVuE0n3XOxLbpOCsgVX78bX7JDxKyIJo3ZbsC4gPaxA8Rx_7xBE35RUu8XULQcJkz64qDqLPrJzq21cCNSD5Ep-yMj72bd1JbR2DO_60NOw0ZByMWES_yAtzR1QjagNDwuY33FZRh--RWQ1LhDim4y2VrUbugXfHN-UZ7dwB03oCXobhDY3Sz47L2N_Olg0BBiIX2XGC_nOwUIlJl4j9FsPlAPnmGzoRVZLor2u48qGQ5ImGsKR7d-8Imxh_q5CKqH2R8oNZMdjMxJ1wzIbN3A8nNl-ScAwMwUI-AzJHMmibVm3CL08INM-xdlNq0aJViaCkCg5gcfdIH_dOUOEVWZGNyN3RVok1Rb19HC3cuvGo_gk4sjzbzrXvj4qF3-ylfPK6PA59YdwCQPQNRvSPHZtpakAMNEJ8nhPujgq7FhyrajH5wusX3JTcccaLsXwkqCH5vMCdPnTrbFiad2JUhErWpmA_cFL5RNXsNEE44vL3sxjl6ro7P1em4DxDlTgl5sh3wq4Znh4Wc0apywWYun-8hVgH-dWpv3QDonk7pp_Qm27V4jQzOUvVbQkbpYDCsNMy_441dWeijNDC0QELzJw3kVPqnkXDqy3swPFLPY5f26cynvKlMkBQ_kxmkwmx4nF8XZ0KdY4lNodG85T73hzC3Cj_czGpjvVLKMYr3YiTTK9t7FRALFBfYrhHKM2kLKiS2Qg9_aTyNeAwdIYcSWBx1iqPXZPjRKVgD9U9RzMzaa9QEaBHJYQeTsRe6kQhyI9u-6rmHN3VOOZM4zeUOxts6SYA072iXm036tlwtvDLRgKdQT2HJ-UtVZnvMJV_73BTW_579Kjo48j_yQpRO15i7xJ_tWZnsnAiZqS1I70_UN3q9a4oXZrvpnKRVGkNB7j42v6Z8i1lqCyaf9ppSSX_6FIb-hregnE9QDFRTCLsxSIZTGxg1r_senc0Johswo1PtLK9xzxu9RBt8X1FYlmJsuVnna5Yb58HWLUxcqlC0ho1BaKTSQ95r4KMkxQGy7WkjwArsB31FEYIw_r4oQZiyn17smz2hW30by0BaLO73AmeRruKbxUSiBBKUmTeMWQ0t7kNKRZpl5KxzPQ96xkU7rkzoLuNIZJCzCpa_YAPofsmnZGTUwsUqTSX_SjURtN1LyifkgLtDz53cTE7FCnnMHS55xO4LdIArQpsBtQ-V3w0N8GdRP3A-rl2Yfx12E69afhSHFxjMj5427A1RSMmtPvqx_A4pExU7bk-K4hoZTmwsk0mCz2XbqEbdaRzDj2GSjG2sIVuj6OudMfr7bonxvZ7Op8UuPWycTfaFIqKoRXjz4mu5MJuw9jBseh0LkZ5O6TUgFkZEzq2ct9OY1wgSECMXQZLA4ssgE2WsccsUW_oB-Dg6pfFiFgR0JGK4ZXsZ1UbbKgHHG1xYZVFzgBhjOePj7JLTio4Zo0iotEX8W9r3-OLzX4t6-I714TuN_g8XFSNXvR9UZQ4d5ka2xyA6JxJhPmkGTF52u9aUbm_Qx85j6ETZQCb-uvd1z0YC21DLxGpJv9-VRBX5QCHkpHIZ0dXl4vXN56_nHSHS0uq9A==",
+        "status": null
+      },
+      {
+        "id": "rs_001fed8636bfcef2006a8d56d4a91487d08fbd74b340ce2660",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjVbg-RXcKWfCQjONckVa_vpT0mEvcQlHTcpggvFOXjbemcynDzGzcmFunKdlMs5fJa5wnJ7w1flxIydl2a7o7dS17X9pmG3gLgSQDuDyTJ9WugIY6j09n81nCKdDao3GLkESycceikB7TR3DFryq4XPjeF_L8Pu2zLZDaVFJznOzUP3X5q-ltn0FljzXW4Fuq5AVecybxLql-E4zeKf6HVIKATtXofgI_cayDtzAMkG48gRiOrt07Hoh7CGcMubwExN-To37FvzhoKo_r5gG4QSlI7TTMHrvAujPUyBtiYFjkXJAEEs2Ea8twsv8nUNOni1Nhj37-ELO3xBdLlScCoDRtE5xRhjO7lzGdmssPeZUgD4u3ZhIPIhIkmMrBJzZDi19J4AYVpRmXsw0a-LXdPzXiehoX9e9rGPecB3ZEn8YgMKHOCGPUvtV-My2ys2ls4cgJJI894cK_Qc1AYRNNerg0C6da0PQAhKZQdZ2UWU0kxxHVrvLay4m0A32GzbIPbHhYW16LuNhHlAH_APitx2t53BR66YXf_JzvtvT08w_LPkyOu7LjLEHpWk9qmZRc7Pjczg4CWgdrTHp8_sSetpFGieW3WoMpdI0N6P1C1SNfaPlA2l31FdpfF2A9fjIR2ZNOyxAxK-Hdrv7w74HEdE4D4Myo6Q8_tpZ0PtWyUqKXsnbcUDDpnNgWRS-wlIxyJW8lkgh4f9WuNAVpbi67ocKM2EcBjlFi60L-PHdJ83Va3Kx3ywuSUsEz4mKT3bD8InFYtoAU93_8xwGJxcVuCLml-sjDJUfaZ6Pwtj8df9f9skgxZAMbSXfxZu3ZlPyERudyXSiV9LsP8U6kisXkd17Al12iC46WIRSxuZ72dDSDx3m-wkrfKR2DKeRe8x-GJhNxlCBg37p_Br3vJyQfN8RHae1ovjbtksn_n4VZUbERcMWeW9tZIOSl7PPpdgnnbde5RPaidfLdxtGSD3WOEdxM_kN_gg3-7xxysqDUPaXcJOrsGdfwH3E8iqeQMg3jfKp_ooEQ95nFmZBTR4P4eatg2nSdI2UdmBJyaSp5nsVGcVdCJSouzQ30bK5VIGN22cvJNRbYvUBxDu0F99RgdyGW0TENmsq52DoMICcYwg_k-9dnDRAmM_1uaJIFmvignSgKQFP9Dq0xNRrNwSMFuXXE0YiLgvwL5i9gR7d_jeKa-weBQxueY-Dut9BO4S67CxJv6NuaE3Y682KDR3nRennLCy2hBstTLtAD8pDypKQXbXIffRo9yNg-O7GnvGheVADbfE2gxDSEIxi0cwt1GXMzDzuG8luLTCVAcuh-OFUlbVe0LFJg_dmp9U8chZYu0RrGW-v8WkP2p7OXJXV7Qe7EC0p0Y6ivrpTdA82t73KV42jwz0NRgRegPyDFS4MZhgpR6XrcRLpXJ2UgyWCR_R-h8Sl5E0zNZJU7V-uixAI7SoVDgzzihX0ieIg15ON2wOxN3eNqs5Uez_N8S86UdhZyeZ63fZ8jY6pABTLhXvzOfvrAXvAXtrMAvNVMdw_FeSCu3RBEWlbMGi-3G3fXyBpFve74uX0W9lJH-hrmCN6xpRkpUq3vpYWDAkRmUAAU3cBU-5-9EQXfa6bAjbqa17WsqmBZfNY-RzykJ87PK8f8Jhko9PNcoSr4tGokuKjsPR31D9mmqvLkiTlX4S2DP6Or1-oQGI7--o5AEWHmGrcnA1eBrkO3dnGZ2bq9ISCi8SWrbCkkzoC05GRwT1MB5E7GuCc_rF5jSdB2e1qHcXNb-Y5c764EMV4glr6hLiH-ANJfbD6throbUCR7aSuwwuNV7a3KOnSZcJkKSAHtAtuEypIlmjWM8Yruo7ZfcOD9l-RKRE2fAcr94ZT6IanxWt22Vlylj6wPnxC6A-f7gc23y92rvBRLt6YP_AYwAyI7WqD649aHWEKd91916wChpYlbNOSi1qx2S_F97es5bsHEVlpaegg4CppqbVwzFvVajCKd8hVDW8r5upmUZK4TRKwAxFFIhw5f8u4c6MKFEGnQY7RR7gZLL_9f9Kb6UYYZDKASjrF4qWOdum2zIowGDHBLaPlNB5JIJ6OOutjtxMUqSFW-bF-S8RglCEJyJWqG3kTrnaDiHR0sgo7c2AvbLmcjy6rkt2R-864eV9qwZqtPm8o2yj7tB8COIYdNGZDIfsTI-sUB1MdAgc82MW8DznzxL5NNKr6WJ28ZgkT-lk04sRXRkMhKxCM6r6hMqyGu94uh96OUiXZQNeuHVwcGDPc14uwBqL2vkCOLYXxDtXUFquM5GHt9nxM5XhuuiVFi8yI1VSKfCAn4xZ-V0nm7I2BRDMUI0iYvCv0SUdGjlRRBTQu_9ROC63fEkF2HWHVFr_JdWyM0ptEa6iekIZFdu3-k9duZyKcMUe1yMgLFxDqi8NpcI0uK7IOQ70J0R7S3bjXMY_ybudIytxdi8Teb6mORGePEb_1JDIWF9AS5_97yhgsgFufiDqujdypm2kePYWifd2a3p0ywAhIPK6-VCV1piOkiMf6jvAfd0vdrgXt3k8KmZWjU1siErBFmLyqpkI7a7i3fiPJrZlXWZYIdf4_N0Jcjp8EEaGkFjeH1-m5IGJGWWBUgL_gr2Z3B6k6MOhy8qmQ5vbh4BON93ojMErU3HX0tw2cpc4rMCSAJkl66-HpZpvqEFl9pVA4DC5S8sg6dEbV84zhJ_LGXDPcLfoVnjDPGuDTXl_NmdZalWtBBIUXd7f7ppsSgdklrEqT7O89FIg4KOVbqMTz00uwTpsbHwgGmdwQTWDo7SsT2_Nm-O5f7H8NBjcfapx_qVFOSX53ROcMJsXx-MADVkby8sAIWK1v_gYoUKspFGoO-r8ch4GHIUPvsOF_FhZWcR5VFjX77M-CCDQasP9jcblPa3qtkaIEWR5LF5yeT16Ch0L7EGWP6ApMVvQaMhfdKWpESJ8m8qvK2sk9Zh7hoNToQ_Xgq-cwvff25sSAnn3ktPyqBAhysrENuSfuAKSlUPa2dJrm9Lcoljzotw5TAMthuXy_vQ==",
+        "status": null
+      },
+      {
+        "id": "rs_001fed8636bfcef2006a8d56da276487d0af78588830616882",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjVbgAfNob1PJAnN8H0IfF8KgLt2jFFZ71YXcu_K-78MvFnu3iMyptjuXMfsgar2N6VJgyptZqhdxl5-fQ8-hxSsv27vAEGzrLn49UGBFqZnTI4eCmhe7poD4hJL34ZxovBhy6n6RcnfwGcqFF9evOY2_vQkBJk9-2-7fDppPVS1oVIwgCuBB_pVDZN4wbllt5Pfb_cMsVDZmnndLuKiXShuYMlk-mcOL29n332AUsC4EiytwGKPaLmDey3eQI7k2apBFYAm_5bKKrgm4eQtxLZC2MtPNSk5iL4QoX7e7HN9uaA45iltv7SVhABq8oWvcAa3ZIirM8Ca6Ok3xqDvvDAfzSE8L23KaXFR2B4j2TN2k5qoW2RT5mykoIHBfszbr4DmM5-wktZ5foUlB6SQxdOV9sPtXNto841FwEESINR7YRpkhbcJI_TRKyqH6KzMJwslb6MtKAnoyTHdw_-3ZhSN5v9W9t8A4tWaDB_ayYMXlKiTG1mwleQ6yIt2TGROEbxSdY2Pl1AFhGGKP-xNdy4FNpCi3k4IL3UA3JJDUw9q41cTMiytkfrZy4sRgdA06S1_z-KotTlX9SzZ7T9P1C5QBUEw6w3Pig-UqdnRJ1VTSQfnRfoVrhEviDBfdfnHUYw_bdAScgizoT8aHBV8wGLA0OsV5jmrX1sS_O5QS4cZcnqVSf01fvkw-oAoCBIhf7n_1sojsveuUFWVFUrcDuicjTRz8lcaiMsVJuJf61OqFXzj8zBy5yCfvIJ987QFoSdtHwYvPl7sj7hvJw1mPXsjTwaUBsawVoS41DK0keM_dKVerQJBlvqq2yaSy63PTqdGZl-IMadIxBhS1SRzAURqLKbB3KrJV5t0tvfUej6qRG6E-v9MHrZTgsqrBokca3vITbhCHCrSdzcVCCGtqVnjWOyvu-9CJ3Rwep_l0JEK_l7f0Q48rm-kCv-2h8Anzgf_oSYlYbJ2Wb8Qg75SEWULeRdgdNUaUA9mvDlS2iBv-zAABRZshzZyLLnnCaBfe9BRrKNJ-6Wo-Oi-GhN3ZwGHfptSXHnnkpX2Jd2VtYkQLTQlAx24wH3WuZqv_X6LJRCWPCMr8B4ic_XpkwfMAwZgh2OxX8aH4ADarW3cuo1VF0-9QtCYFOzLfke1RIXzeCKccPRaUs9gNkNeTF5R09_pis92l6ZWGuHx7uBAeyQ2ZRsuaj7E3toVCTcYTZC2qU7dwCDD2m5-hAqhv6OM4BGH0QxbwXM2nwHyJRxmv_r7YNPBA4YwEAVWN0VglSKgr3uPeZLlpi4khb3wGnvTnRa-ZXww659hgLz_Ow0CsU3O6-yAo0TStMT4oAmhlAQxqq-LEw5dz3kszbNszGalRnOJF-MV0bwoP80GT71ZcvamcjMAsSeJ_2twIBbkGPN6_QUkMnWlEwNX-A6b2JJiGDMxKFXWD5jrHtJda8-2sTghASAS9UijGmJNzDf2CiJzys5KLT6la_xMgTA84v1cuK-I9SKHHFGFeai2H9APl4n3PTGYTT53RLDtBIIRjltVCiR21NVY3fmY86z6kZwgPVbuAALHuPh0pSxp8krsGrZfbh8z6hJ7NYyTOtFp-ibKn74d8-HV-itBSCqMc1dhZCYAZYZVphkdyb_xi1yCOAPdKE01TvhVXrR59m0hwq9JN0Pk5GRR4gGxrzbr3kOwkjMxFmaNXiVwjFvMGYVaCWAEayFNlc_lJYhAn2HXMrjsaBvqwAMZGrUpc-zVNqPaWfOeS17_V5s3dnZfKI5hMaeH4sltNHtvv-oWUcXigvcSVDASiNwBJezoUT5HhOksfl1YhEp0pR4nvfqqnNiUKhZYFBdK9MVKMF74Li61das1AkrdSBk0V_eSWSiFYjY1q69pr7Hspr8_bRvajIDDXO7DHfoawA4Wp6Bz4Vdi-Lew7VBgdOwjDIZYaj3S3-A9VwCjgOWZBUgFOAQJmBdV9T6YZkHjHG7fXcl0D1ot0EhnKCjnl0xyCeAhwtCfF2CL0Zkm7mSR-BcEtnL-i-fF6MV0stc1EbSSTlJdX8iXc3FdQMrKW2aUd-VDrfXMY8NDkvm82aICy46wnNBcarwVqCltFIgfadzUfLJJLiGp7Rv1VB94V3euD18F2AcFOWxjFZF29aomzA7V1VYBYxEy3sdS6WLmdxWJuyTjm-2Z0t-iavZfWFCA7ce9LlxP75ae5SLGGFZfRYh-6W1A_53QvHmMFeuIpOYqmtNE5xt54c7IBIOElVh2n4FVUnop5N1pGrN7Xf35txfBo99Y5QNfPMDXocSCfTyJlTf2MSGGeH4_RPzs2-keCeHsAYsSuAq5HOKf_SeFvy4EvmhBfTz7vY2TioSn2GdkimKeQCrg4vQXvMArjRprQE2jBzYPxxkR411fxGF9C3omrUE6XKOw1BMPxSM189k-IRmwGgWiJc16I8Bb87jFAf2Ed9plX69XHxePWIBGH1FSMe_CicJ68EvBJDfmK7pGDx7lHKCnJRNyStmnaFG5UFPBzhiv0J7RL_wmMCw55cUrRPHDp9SAb0fAckBvOsCDrzPSM-V6CZ05N8gMkDaOHXW12DHY5W7gGJ6N6J7BEQHmwMG7C2vDWxFhCHuC4H-1Y0HY6kIUMXVg1iOG5bycgD4x_SegPsKewwFt6ajBXHgXNgXVSn6DX1nQpXoggWa12lGWIFqSGWxQb6SyV3z-O_VZ8dGN7i3X9gI6HCEH2Wbp_kAKdbdwQiqHpNA2fdb4sFJl_u0hdjUFjRK4xnxvS2KJVFBa0cS3Td_08I9ZsffEbwEhRY3iWAB5jsSYp6OrSlzLDjxQ52cirOT3CZOwEn7SLPbOOy_xYYwfPWninx8l2XyTfAvQrG7KlMbLI-avq2OhAijj5FO0kQ-dfrecDf4PLvQDWbQ6dmT2NilAbL6Cf2WScXC7AYRhE-1R2Xl77ScLNsIwsJfjYZiSVWDRqTPwKAAc0r_dlOrKYeRN9Afuj8QCV87Aseg_aErXWLg0ePHp0ouLFAXKTLfPdQAvPMqs3RC0nGUF1EXEwJFbwv6IwWUimI3znrLYJ1l-SGguC3RWXoRsow-bRmW0dxkTEXQcU4aK7JLdPnvfTftfNclL3W4RzneK5mMyOuQE_L3eNHSk-AR7BhcWP0ns66EqLlx-CGwRSW5ZdUZ9pZAAFU7vL8CWti8pEU-Zio5G3YkCF3CmwEOEIuH--RLT4pGIo1nNjvCWDcck9-5F1Cw==",
+        "status": null
+      },
+      {
+        "id": "msg_001fed8636bfcef2006a8d56df3fbc87d0ab473a7a53e1077c",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787647712.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:5369035ae8:series:9707b203",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "ScatterSeriesDigitizationDecision",
+        "schema_": {
+          "$defs": {
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "ScatterSeriesDigitizationOutput": {
+              "properties": {
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/SeriesPointProposal"
+                  },
+                  "title": "Points",
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 100
+                },
+                "series_truncated": {
+                  "title": "Series Truncated",
+                  "type": "boolean"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "title": "ScatterSeriesDigitizationOutput",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "points",
+                "series_truncated",
+                "estimated_total_points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ]
+            },
+            "SeriesPointProposal": {
+              "properties": {
+                "point_index": {
+                  "minimum": 0,
+                  "title": "Point Index",
+                  "type": "integer"
+                },
+                "segment_index": {
+                  "minimum": 0,
+                  "title": "Segment Index",
+                  "type": "integer"
+                },
+                "chart_x": {
+                  "$ref": "#/$defs/ChartValue"
+                },
+                "chart_y": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "point_index",
+                "segment_index",
+                "chart_x",
+                "chart_y"
+              ],
+              "title": "SeriesPointProposal",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ScatterSeriesDigitizationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "ScatterSeriesDigitizationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 6337,
+      "input_tokens_details": {
+        "cached_tokens": 2765,
+        "cache_write_tokens": 3569
+      },
+      "output_tokens": 2062,
+      "output_tokens_details": {
+        "reasoning_tokens": 2033
+      },
+      "total_tokens": 8399
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+  "json": {
+    "response_kind": "accept_previous",
+    "revision_reason": null,
+    "proposal": null
+  }
+}
