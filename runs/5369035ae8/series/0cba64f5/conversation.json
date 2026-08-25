@@ -1,0 +1,29 @@
+{
+  "run_id": "5369035ae8",
+  "stage": "series",
+  "series_id": "0cba64f5",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 3 of 4\nName: Series 3\nSeries type: scatter\nColour: black\nLine style: unknown\nMarker style: filled triangle\nEstimated total points: 16\nX axis ID: x_axis_main\nY axis ID: y_axis_main\nAxis selection reason: The points occupy the single chart panel and use the bottom X value axis and left Y value axis.\nVisual description: Single-panel scatter series shown as black filled upward triangles, matching the legend label Series 3.\nIdentification confidence: 0.99",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/0cba64f5/attempt_01/overlay.png",
+      "request_path": "series/0cba64f5/attempt_01/request.json",
+      "response_path": "series/0cba64f5/attempt_01/response.json",
+      "parsed_path": "series/0cba64f5/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 3 of 4\nName: Series 3\nSeries type: scatter\nColour: black\nLine style: unknown\nMarker style: filled triangle\nEstimated total points: 16\nX axis ID: x_axis_main\nY axis ID: y_axis_main\nAxis selection reason: The points occupy the single chart panel and use the bottom X value axis and left Y value axis.\nVisual description: Single-panel scatter series shown as black filled upward triangles, matching the legend label Series 3.\nIdentification confidence: 0.99",
+      "source_image_path": "series/0cba64f5/attempt_01/overlay.png",
+      "overlay_path": "series/0cba64f5/attempt_02/overlay.png",
+      "request_path": "series/0cba64f5/attempt_02/request.json",
+      "response_path": "series/0cba64f5/attempt_02/response.json",
+      "parsed_path": "series/0cba64f5/attempt_02/parsed.json"
+    }
+  ]
+}

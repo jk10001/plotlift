@@ -1,0 +1,626 @@
+{
+  "raw": {
+    "created_at": 1787649393.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are an expert in digitising scatter charts and are digitising one specified visible scatter series from a cropped chart.\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn one point for every individually visible marker in the target scatter series as chart_x and chart_y using the selected axis units/types.\nNever connect or interpolate between scatter markers. Do not include markers belonging to other series, legend samples, line control points, grid intersections, or error-bar endpoints.\nOrder markers visually from left to right. For markers with the same visual x position, order them from top to bottom.\nReturn at most 100 points. If more markers are visible, return the first 100 in that visual order, set series_truncated to true, and estimate the complete marker count in estimated_total_points.\nIf all visible markers are returned, set series_truncated to false and set estimated_total_points to the returned point count.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0cfbc9a2011a3288006a8d5d72729887d08fb5a9347d581322",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjV2G-o2Lm3OHgqrlQD9D9GhFgJEwZzP_dXa4nrIgOwNGjAtTnIpLchz22pwTTSMthVWrgipBVTzw112TUCH2AamG7kDso9o-2C_NoJRrJ0e8eqBskF9y5FUT-yDJhCaIvvjUp8E_BIJZsjO844tV5URP-4psLDm6Av3EHGbpLQk4HpKcfFagEvG_OW2YPzA-r4iPn7T6kjzt9XZyLtTtNAjSm0B21jT3rzw_zAB4SsUg5b_7k0rbVZojl69_Jh5pF-1enyociLg5TPAt2Yajh18wgBdZUMcUvgEcUbIvhGwdTOK5TG-MtQpJQFdbfrsYXQ1kbjNOEO4293Mv7nyCz0_pjS7wD215cG3mU8YhS6dqRZExC45VW26T2PhH-A6qjgp6Yv1F_8xpHLK5d-ZyixAWZE7HHPPRzF21vpMetmzzzdXguU6N-kkVr9TWG_5RDhanbfy8UIaboH52ogdv-3jVSinw5Am8Hj_DaGx3-0TAexO6--XUJ9lBbuI2oRX5oCy1oJPBbbHnmzw9sqq4R6ZfPry5wAfqgBK5gbPkSBNkuHRgU38tzAjwhN2rd80JkD2cz-HzCtCxNk6iq5MrA38xE5dr4yZeJo1tAgv03zTC7i-2KbVvnxmjw_kDPD5_T1QTM6wLa0m90m9O3l70GX_gpmIlT_wPMB2d8zF6oopxwMZ2ulKwbXcRQO2RRyN_RZxEsFvf7K5x5mjXOYB7d21i_vjHxTZXZUHyfg-Q25mK2IZxGlKg96FCBIHrR2MrVUg3qlGytzW3F6L9DzGp2bbB4xFu8-tdc4FpgNi6RwzLOi6lUNvHASrR41gU_IMF5IWKklaulzk1x2fkSRw07re-FTqoh2ebHHM1jFvenUjGdMf9nmISkAVBfaapapszX9rehFJnlWdkoWL53f1BsAEaGh4HbQQM5Ai0ehVPjbeQF9JEQYN4ZtJOsJSE2xG1a799dtsqhkApKUryfl2P3n0ewlik5eIGDNxkDjRwnA3xHh8bZDVx6tu4KS8DbmCA466uSGhHDEhqgsKrviGcPwveBhxHI8uLOLrEIeWC-36gcAPorLnO7acJv7yY7TCeGPmGzfmK8ZsLLhC_lT_XWvUWAX3haCwhZi6jixaXGlJzhnuPEC7tUY3meOeVUc0gVewt2OEGyE7MKH2vhithEaP-Zni1ZpLEjIyBfCxu_hEFj37uRFV73jaV6zb2GRR-jHgLyNIdCDI7TeaHwfOpwvxpbIZ4ydB6ZQUOgs3lYCwVpQ3KExXAApRhmkcM2Gb8VEi5yRmJcO8Lng4B4-fTQ1TK2RRAGY46dv8Pm3wum7LlyewpUxPa_MqIM-Z4XJik0y3IKPdIidG_BAbRG0_SSFf56oeWPVz-k0xcN-BvDOVy6EkPB7-JCpBhr_VDTsUl9SxJvQ3Fu7qj2EPlUcfShPcZl4NXKgRWQq1UpBf9BF7oZ4YsZbynSR9u5TmtBPWRe-vucdeRpFhjQPN9fkNDhWDXluIRCnuPrApL_raLUFmdg8ci6_rV2WwMZeVWqTifZu0N2EBPkmbBLTqUuyuGcsodVFUk7hGcJuW33IGFBBrtKVBPX_xwspJYzCbKyFpmcYOKmWoT8vNcKvW9rUHAdnT6bTkW0NFZaUjqs9g0qG2I2yB4LHoDB8D9Bka6yBvtjRbzOOC1SpOZmAaec9Z9L1xDuvdAppEVoupu3lyB-HnaDK0r1c0PUmHDc9-loPx4N0ygcrZMCt6pB7_Tr95S1VPJJGKjqrYa9y2G6MXGi0qECvX8M6V3HsTEj8ytPZ1KOpYQ6uTLIGs2rnHQ3SoYbmRv6fXQGQYUYUDAVeVH1y5WUMysX342o3_PiSCZ4K5kJUy061NY9UJostG5toyGVLtnMnibhJ4Bykj5Zf4PhZg7L4TqoMELiHzMyY_1aahF6d9XFxBFotOOcBSKtaco_28WNs7ZdzYAQeHLVuintp4HFVcUeJPXtSK25eFmYGDWQSsEiunQjmWOCFV23dg6nNHP73QrVyGvaoPVuDkzz2pRQR2QhLWk4D0QAeNgN3_bwfzvYPeUkeN7UzhFu0DhjYE5kHAtGUViCbP_wiUStIfxmpAzoOAm4Ba2AknQTXVo3yvefEU12w1F6Xd_EFj9zbcjB7DuTp3YxDL-mMB-hBLz6M0yfynYUfTPnBlAVM1TNxki6I5XWvZBCyHPySJEFk0QwQIMNTmCWRBoSYJ67gXuBRIR4RazZ_Yq7SE_jwIg4V8HCclcuXywrd6tbhe9oVVjURR-HFntpO0FazXaj7U49nWxADVyCmJPu7eILkLpZaDsDdDvqEjLES5DVPKYZWtwj7hnDlUG2S65JyDnDZ8ugo3IVJNJbSEhWA0ntTZiz6TmWDKIvd9-DPx6p82v3OzEGeRV5CA4VskCLAvH_xjevD7BFTyksbQUoEgRP-moAcXuN2Ycx-7Eni1-U82I23rUDb5a0LyNCU2tZAbGFOQJLLg3O7K1Wi8hFAnDUST2z_2nXwZDNY5Oaip665tR4vhSjJ0VpsZQW_ZqaV-gUDS_8Nv7J1QN6pDBsUsarpMLWEM_4mfSRGt9B-ddGiscfbNuPQ9QPkLZvtiosiC74RvinhwO9R3t5rK7lib4e9aJmBpYC_q-a8a69m2GSHagiL8mYA==",
+        "status": null
+      },
+      {
+        "id": "rs_0cfbc9a2011a3288006a8d5d76b82887d0b7a3e3e96c1216f5",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjV2GkxWxQd66fCbQO3uqja5Cvt294yTmtmNgVylVdV-SfLvYgsef7F8maojj2fxI-zFTC4JVVUZDdTdyIqYfa7d-Js8T8kfjOjFvXdpVbtRductnNheh-TckhdUUp4NcKjlbTrsfKkeeY3OuYSLXd3WD2MK60Rv2Ab8Xb2H8DI-3mn7KjCknkItOXSToVjH4_6_uQgX6ZMyz47uUqojFX4gdaMAUkK3Ioad7p_C3xDZfiJuL8Hlw8tXOaDZSBnLaDHMy2AhZzSd3OtGvg2JEdlVYLVSmRvcWdD_m00epLzGl2wMXkQuHujbkzK69nRp1KAFVRN0Sd9fO-pqcaqfdm4LPyQX0gAXFLc0CGZ2tbugGoABAeqlZ2REmjE9DfyGsQadZ2NtCrXhdtyRmQ6re0PefjyhhOUrR6X_X5ZacBQjJ5S8o5fOh4xxQlfwLIg17puHotSj9ZsC2_iB1QPLdc-WkYEFTDM9ix8SfkTICXb4-tMGwk2Lf7R8V0Iiwrxg7e9cJmEbS77EMM_k8fyr9b7pKr4ioDYFJKV0n6x-d5IkmgC4uvUj2kc7h6bs9jHy9V-ylK3wrLWFJR6CC-PgHQcjn5XbiLWEYJrw5aMQsyWLoNvKAeKTwY10DiaM7ZMOmx7xsbI_iYpYi8ZiyTA828NSU4cYsSR9tGsntR2ByiUKPqHM5d-9HBSZQ8gAns-XbO9PuWiGr-YF85FbPdFxekc1fnSQLMiHx_hioPuEi9tP9cN6HMsPm_SFXtGZuwELNNziGJSjEU13FfBgQikfhr5nqrqM_uFzecfwDwzOaMh9ICMvytKqf00c6EGCzg9wj6XA-86sTF2PApK4eAPZpL75eaHf5xynA2VJHdo1LXFnKxLhMG5LNJh8_byQc0Oci-p5R4Fc_57Cu-JmjmfG4d8O52upglQy40w4kT-jOks2mSjwma7jUAV2GDt8uuxf4fJe85r0zTuZZFKeX7G1fqPAjt735ImbvF8edzOJBWH0HiYmTU6Dn4FJMMQZoMKkZRjDTkcjhPbSsQTyD8FxSVXoQlKLjxBaC8-ANIn1rbTeM3rodx8m0eBYBA9uWV8JI6bhCle9TNwN1M7-kmQyoV31PHKMB30kqomlWo3rffv497Pj-NWDw6LMCmZjsMTdTPHd4T7ZE62Q3DKJBMlQAt9sO63V5vKMKJ6xgq5KNbeKWJGxUSNFsrqf5JHi2zD8zO-ojbkPuClkJiatxomMcndVImt8rJ3QI3O8RXop6_2T59NCpPPM_dO5Myg5cWWVI9Rscsann8JQUiawx4LisQIvvC8p1c-WRCRpGS3n8rgUqk2OXMNFFrvK-rMj8eSPPHuH8H7u00-rBUSdjabtgbNorR9eSDaWusRTvF0qJPc5as9zA4brK9CH9njHnD30EL7zDOC5t7Deyxh_m0ar5fnJuSDSKGUn6BTmLhRgH79vKkDzfL0NX1lqtZvmTfXGZoejDCV3rB1li9nE9O41cGUA5Bwoi7CBWxDTPO5ZpOs7MVKsdxLeJvC2QvaE0X9NmPsedasXxf7U3hfc4xTcQttiZySXvxgV_N2XcSKU06McIU3mPAXytolJpGtmWi2D3fLR2AR2UWSt0N0Skd1ePaech85Otq3sSg2BHqE-0WwObNGaGz-U_-pmpL469HYuek3pwS5oszsLLadZIVHPCh2caYg071gc4Zda2rg45Y5huxboEozjwMAZqPcVRWnd-_yu_nLy_sqRBhxcIemfRmbibXDOeYkz7dWq45hFnx4mbKvE9BeV947ZqjqD5Zpajj7H2QlphQNVlVm9nts3xTpU-2shCD1LtKXg88D_DenROVuwXGezO88jia4J_sNDnzFRLA7W8FsNtq9hR4ljwiM0mlLpkjyWp3wyNMZQ8ef6aLNthvhXB_-W7F6MBBknKEgki5Z-YQb4M1A6hL6gT1DrNkcH7gzEKXMzDyt-dM0jr_Ey-0xmCa8pPLzX5JbrUj0BjoMpHUlUGIZXe0DXeGE1VyvZXXawKzEEpu7BMkhlOdlsTtAgrOoV38IzX-t_gklM2P-DoJtrU2kA-gZqxcmT_sAkomJGb8tC60cKE9UfVTWRtCAgqaWRzXFC4gnkWFY6FDihHtasS-l1sdunkYWuFO7o8M9cHGEY3LI2MmzdF1yiFshvdMulxfDmPrXt6WCyEyEHxAVvQxrnMcpeqaU_7DCPHuMO_9b7NZRe2aoPn6DlZSRH_5L-q5DM82FqWK9C10gjyDdO2AnfrVtrzdWIxKrFlZ_nE4iCjk8khZpn1oE2h7gfJURmq879BF4XIuDFWZrUOCkiz6u7kmrDYPZ-SiP5jx41Bm7BBRJYvgMdpgH2VaAtCEgG2E1eg9WcXsuRyVm6lBJa0VUv53JIaV1KGTd9IblusQIZ0EjePRV2RBT0XIOsTREDoXmuPoPvgr25m6MJsRGUGxYbn7iPm8uwVycz3C0M9ZtIH-LtsOfrcECDCmgUiwDCSEmbGNrgrt1B4CFGkXoZr3qVCsF-bSlkTt3OiAyNldAD-m0bvGMFJdRUrL99OHX0lDYF8u--_Mm2myXJKJ7b5ympGwNI6HM-Xnug6OMQj6K601OtVhk_XTc7pcTfyoOCEd7uoWNiwVDuNHVn5TO8ljpolSZA8TWdg1Eud0Wpnm6XMqgHjpj6p6qv-0aXi3M4Qi1ZDbSnhWE5dr2vFKy9tag-6VHfazGd-3dzljoPGEWyAS3RTj2-rxgsx4-G2HAFr2GosYHfEbb_kpUUBP5aD6ccJt-OQw4RvZnJJLEkf5pHa1j8Mp3RuGVNSY_qbmz0s_XS8KnOqyU_PAo8lgdculcuOaLM035Xkja2hstQvCAsz38bk4wudl9-a6kH2oVvctms6gfGarffs",
+        "status": null
+      },
+      {
+        "id": "rs_0cfbc9a2011a3288006a8d5d7bb39487d0b5b5954d436c0348",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjV2GlI9pDIi1JUoYO-9ebIJUFZPG_dQrsyYCV5H6N7L79wBo0UQf7zVNEPJq0nXcjKrVX6zfI4_hcF6TnGOkJfT5Z2BrJNi60ZaCi8EnQLm2H47VJgoiXYptMYhaDgMGYv2zK7zzZHmlJ1I47KQzaBUZDT08h8fv6072FOXTwFdiAhFOxqCgHukDQiHYIrLRnJehBnvMU4zqJNIu4N1aiuQKYM1R_Vmrn4LLQ9opRUsz-IjRxDl2ufe4saEx4muku3wiJI2Z2wh0t_IFnHX79Hs7HgPzkMHN91qGFXB5SBqk9uZLzrftXYvVTFMFV_DrE3Nb5XZB5TGEgfMog4BzlTi9TQ50fp3FfG6mPHz-TsQMm8ipvxXBIOa59pgC0KDWxAhga_UDfLrTne1LFAS-oB2tXHNPEkOBf59r7NFLDNCJh-ALsZEU0Q4aZv3Czmw5GzNgBk5_DPHnazyBt63muroTpjRhQF6PAR7S8gXuw0KNf2IBKPfgafyM9tAccItQOxsaAtvC3_hDTj1S0-odCB3dYyBNAmq5ubw4_cPoJuhC1GI9CYXFmH2VD4dkHyL29trkJexCESaDeolFzm47nuZ_yPUyulF6yhNzfMn8l8vfzdP79flzmAcJZgaXG-cbOpQOriT-ppsuB67_KFdTmikSHi-ArzpZbbRIdh9WJj9LwzceXvxz_3m3kCz-CaVEPyXU0qDqBHjE3awR2x0Gvgw9JxiyiiOahvcuIF1muZle5P1pTuOCxAgVlcvY_0y-FCXBl4VoPSdPiJ2TnCA1GKdrlIJs-cUb0uh7T4UXAjC02RV_GOJh-rMceAIkTAflfgpMQ1Hyx5CWr7YyefMinwBab6PEoeD8ce4q3wvtrRgsxzd8zWCO54hT0SoV04F8HXf_PQJXuEkML8_MDNlVYKD8Bk0EjK568RB0hXtQ2LfDZsDO-WDnj65N5zACU_3ey_rAQD6oJ-nwlBR3uo3cXOmtXRyqggnO77HG_l57UalZU_a6jg6uSqkpv1VxHisknm4WCk0r7xBp1oNmorM3bEct3uWicFGSFewcd61udk11XmkbxD3QohGMPRBXwp-7zftsQiOd7Wm2kFTBhkeMYGadI3BiV3t4HiZ-Tqg-_jTEKxW3eGpoqSc9YjrYoLfKg8sx1dqxf97eq3fA0GCTrQN1bWx5NxmlW-OBcuYfVMLcJJYE_dKRPde4EQsqW9lAvEsLMnD0YV5tFCi_nhxxbgZLiYLwixXM5b8YQ5vuHvrQvEmSE9rc_EH7CTLqcu-UU65G9iySuvg_WFZhM_BNOE86Lq_7nTi90fdecdmhG5fdCdeJmswQvBMNgvuSe9hMDpkzJm5e1Z4u6JINpYKoasCXuhHhBssc2TrnN1kY3G-UvIRcZqflBQzc__wwGu9ZkzyesNZ-sav5Et9c1bo-1N3El42J_37qVVX_nYKhMC_Yd5LGHTWmwfpgAXiXNVzeifbovWvkhYO3l2ZVXFkwjFuePYRxiUK8Gh8taKH1QUJpGpgzMvyxt0ouNtdRZdo1Gx87JhFwmxIa7w1NunACzkyfPru4Y2tFxN9V8HK2IHobfMx-wr4Ma7QCYvb0dAsMxvfkZEzGREwaX8EZ6gIjcwQqDsAAErzTm5d78lap1hcDPRkGygWobi1ZHgicH8yWj6ImcVHa-68qiLutQi9O_KGDReTjziLFpxyUAZ3HgiB8zYik9VvWtXmH3poeLHFu9280Ghg2VQE7nGOP3Lw9tUBAKvdHr55cIISQIJ83J_8efeNZ0sJwzx8uf9VUSryw9gFKhmZeHizj4Vte-TXKs24b2fQTZwRadb1t_o-MbDvXPCWjgFf6j0D4Bs2LtKPlHF4bJb3I2lA2Asxgecj5fsTU165wut-2XHi0HR80JkwxGjZCwM8i4k-sdC-1UqD3H1a1L5xGlCv0KkHJk3BTlH29gczaipcSo0zWK8nPotqStMD1s_XPiEMupb5HlNeOHUO5DLh4hJGKYJBNQtD3uSMyyeyc6-jKRQ6W0zlxLQuTqKn2iusDf221IE-QC6ts_4YrZTwsXDwh_Z7FWpBf37ly2l5b07B67PiHmWy7LMV2agG-bkBKfajjL8CHsuWJGVYMHhvEY3JSmzUJB50fsflAwhXFGqJREA1m2CbyK1B4U0wA3k0rp_fg91EC4KCjn8aJbfPAdpEGn2Bg5y5dZ17L9wzhidQqOds1PKBQE70hxtp3lg6ELdDQgGYBuOtUOjCQU0qVqRHzhRacTyE0dN6AxVo0rYxNN4m2Fy9T06Q9hiw8UEYNvNrqMXWXpK03fTyeKcjTSyBzEdKI88e2TaI35XXPM5nNCIPyk2CjFP5UbEopBpGqc4OujQHBY1PO7YA8",
+        "status": null
+      },
+      {
+        "id": "msg_0cfbc9a2011a3288006a8d5d7efab487d0a033d3a15a7708b7",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"proposal\",\"revision_reason\":null,\"proposal\":{\"points\":[{\"point_index\":1,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"0.5\",\"value_type\":\"number\",\"parsed_value\":0.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"3.2\",\"value_type\":\"number\",\"parsed_value\":3.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":2,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1.1\",\"value_type\":\"number\",\"parsed_value\":1.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"5.3\",\"value_type\":\"number\",\"parsed_value\":5.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":3,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1.5\",\"value_type\":\"number\",\"parsed_value\":1.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"1.2\",\"value_type\":\"number\",\"parsed_value\":1.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":4,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"2.5\",\"value_type\":\"number\",\"parsed_value\":2.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"3.6\",\"value_type\":\"number\",\"parsed_value\":3.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":5,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3.3\",\"value_type\":\"number\",\"parsed_value\":3.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"2.4\",\"value_type\":\"number\",\"parsed_value\":2.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":6,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3.75\",\"value_type\":\"number\",\"parsed_value\":3.75,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"6.7\",\"value_type\":\"number\",\"parsed_value\":6.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":7,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4.1\",\"value_type\":\"number\",\"parsed_value\":4.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.1\",\"value_type\":\"number\",\"parsed_value\":8.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":8,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4.7\",\"value_type\":\"number\",\"parsed_value\":4.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"4.2\",\"value_type\":\"number\",\"parsed_value\":4.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":9,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5.3\",\"value_type\":\"number\",\"parsed_value\":5.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"1.6\",\"value_type\":\"number\",\"parsed_value\":1.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":10,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5.75\",\"value_type\":\"number\",\"parsed_value\":5.75,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"6.2\",\"value_type\":\"number\",\"parsed_value\":6.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":11,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"6.35\",\"value_type\":\"number\",\"parsed_value\":6.35,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"3.7\",\"value_type\":\"number\",\"parsed_value\":3.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":12,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"7.0\",\"value_type\":\"number\",\"parsed_value\":7.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"5.0\",\"value_type\":\"number\",\"parsed_value\":5.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":13,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"7.6\",\"value_type\":\"number\",\"parsed_value\":7.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.3\",\"value_type\":\"number\",\"parsed_value\":7.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":14,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"8.2\",\"value_type\":\"number\",\"parsed_value\":8.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"1.8\",\"value_type\":\"number\",\"parsed_value\":1.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":15,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"8.85\",\"value_type\":\"number\",\"parsed_value\":8.85,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"5.7\",\"value_type\":\"number\",\"parsed_value\":5.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":16,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"9.3\",\"value_type\":\"number\",\"parsed_value\":9.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"4.6\",\"value_type\":\"number\",\"parsed_value\":4.6,\"parsed_datetime\":null,\"unit\":null}}],\"series_truncated\":false,\"estimated_total_points\":16,\"confidence\":0.96,\"warnings\":[],\"unsupported_flags\":[]}}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787649414.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:5369035ae8:series:cad86802",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "ScatterSeriesDigitizationDecision",
+        "schema_": {
+          "$defs": {
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "ScatterSeriesDigitizationOutput": {
+              "properties": {
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/SeriesPointProposal"
+                  },
+                  "title": "Points",
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 100
+                },
+                "series_truncated": {
+                  "title": "Series Truncated",
+                  "type": "boolean"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "title": "ScatterSeriesDigitizationOutput",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "points",
+                "series_truncated",
+                "estimated_total_points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ]
+            },
+            "SeriesPointProposal": {
+              "properties": {
+                "point_index": {
+                  "minimum": 0,
+                  "title": "Point Index",
+                  "type": "integer"
+                },
+                "segment_index": {
+                  "minimum": 0,
+                  "title": "Segment Index",
+                  "type": "integer"
+                },
+                "chart_x": {
+                  "$ref": "#/$defs/ChartValue"
+                },
+                "chart_y": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "point_index",
+                "segment_index",
+                "chart_x",
+                "chart_y"
+              ],
+              "title": "SeriesPointProposal",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ScatterSeriesDigitizationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "ScatterSeriesDigitizationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 2769,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2766
+      },
+      "output_tokens": 2641,
+      "output_tokens_details": {
+        "reasoning_tokens": 1419
+      },
+      "total_tokens": 5410
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"proposal\",\"revision_reason\":null,\"proposal\":{\"points\":[{\"point_index\":1,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"0.5\",\"value_type\":\"number\",\"parsed_value\":0.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"3.2\",\"value_type\":\"number\",\"parsed_value\":3.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":2,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1.1\",\"value_type\":\"number\",\"parsed_value\":1.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"5.3\",\"value_type\":\"number\",\"parsed_value\":5.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":3,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1.5\",\"value_type\":\"number\",\"parsed_value\":1.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"1.2\",\"value_type\":\"number\",\"parsed_value\":1.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":4,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"2.5\",\"value_type\":\"number\",\"parsed_value\":2.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"3.6\",\"value_type\":\"number\",\"parsed_value\":3.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":5,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3.3\",\"value_type\":\"number\",\"parsed_value\":3.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"2.4\",\"value_type\":\"number\",\"parsed_value\":2.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":6,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3.75\",\"value_type\":\"number\",\"parsed_value\":3.75,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"6.7\",\"value_type\":\"number\",\"parsed_value\":6.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":7,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4.1\",\"value_type\":\"number\",\"parsed_value\":4.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.1\",\"value_type\":\"number\",\"parsed_value\":8.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":8,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4.7\",\"value_type\":\"number\",\"parsed_value\":4.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"4.2\",\"value_type\":\"number\",\"parsed_value\":4.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":9,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5.3\",\"value_type\":\"number\",\"parsed_value\":5.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"1.6\",\"value_type\":\"number\",\"parsed_value\":1.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":10,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5.75\",\"value_type\":\"number\",\"parsed_value\":5.75,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"6.2\",\"value_type\":\"number\",\"parsed_value\":6.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":11,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"6.35\",\"value_type\":\"number\",\"parsed_value\":6.35,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"3.7\",\"value_type\":\"number\",\"parsed_value\":3.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":12,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"7.0\",\"value_type\":\"number\",\"parsed_value\":7.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"5.0\",\"value_type\":\"number\",\"parsed_value\":5.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":13,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"7.6\",\"value_type\":\"number\",\"parsed_value\":7.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.3\",\"value_type\":\"number\",\"parsed_value\":7.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":14,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"8.2\",\"value_type\":\"number\",\"parsed_value\":8.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"1.8\",\"value_type\":\"number\",\"parsed_value\":1.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":15,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"8.85\",\"value_type\":\"number\",\"parsed_value\":8.85,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"5.7\",\"value_type\":\"number\",\"parsed_value\":5.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":16,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"9.3\",\"value_type\":\"number\",\"parsed_value\":9.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"4.6\",\"value_type\":\"number\",\"parsed_value\":4.6,\"parsed_datetime\":null,\"unit\":null}}],\"series_truncated\":false,\"estimated_total_points\":16,\"confidence\":0.96,\"warnings\":[],\"unsupported_flags\":[]}}",
+  "json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "points": [
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "0.5",
+            "value_type": "number",
+            "parsed_value": 0.5,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "3.2",
+            "value_type": "number",
+            "parsed_value": 3.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "1.1",
+            "value_type": "number",
+            "parsed_value": 1.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "5.3",
+            "value_type": "number",
+            "parsed_value": 5.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "1.5",
+            "value_type": "number",
+            "parsed_value": 1.5,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "1.2",
+            "value_type": "number",
+            "parsed_value": 1.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "2.5",
+            "value_type": "number",
+            "parsed_value": 2.5,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "3.6",
+            "value_type": "number",
+            "parsed_value": 3.6,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "3.3",
+            "value_type": "number",
+            "parsed_value": 3.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "2.4",
+            "value_type": "number",
+            "parsed_value": 2.4,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "3.75",
+            "value_type": "number",
+            "parsed_value": 3.75,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "6.7",
+            "value_type": "number",
+            "parsed_value": 6.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "4.1",
+            "value_type": "number",
+            "parsed_value": 4.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.1",
+            "value_type": "number",
+            "parsed_value": 8.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "4.7",
+            "value_type": "number",
+            "parsed_value": 4.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "4.2",
+            "value_type": "number",
+            "parsed_value": 4.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "5.3",
+            "value_type": "number",
+            "parsed_value": 5.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "1.6",
+            "value_type": "number",
+            "parsed_value": 1.6,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "5.75",
+            "value_type": "number",
+            "parsed_value": 5.75,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "6.2",
+            "value_type": "number",
+            "parsed_value": 6.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "6.35",
+            "value_type": "number",
+            "parsed_value": 6.35,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "3.7",
+            "value_type": "number",
+            "parsed_value": 3.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "7.0",
+            "value_type": "number",
+            "parsed_value": 7.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "5.0",
+            "value_type": "number",
+            "parsed_value": 5.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 13,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "7.6",
+            "value_type": "number",
+            "parsed_value": 7.6,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.3",
+            "value_type": "number",
+            "parsed_value": 7.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 14,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "8.2",
+            "value_type": "number",
+            "parsed_value": 8.2,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "1.8",
+            "value_type": "number",
+            "parsed_value": 1.8,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 15,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "8.85",
+            "value_type": "number",
+            "parsed_value": 8.85,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "5.7",
+            "value_type": "number",
+            "parsed_value": 5.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 16,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "9.3",
+            "value_type": "number",
+            "parsed_value": 9.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "4.6",
+            "value_type": "number",
+            "parsed_value": 4.6,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        }
+      ],
+      "series_truncated": false,
+      "estimated_total_points": 16,
+      "confidence": 0.96,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  }
+}

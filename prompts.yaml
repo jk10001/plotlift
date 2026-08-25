@@ -166,8 +166,8 @@ series:
   scatter_digitization_confirm: |
     This is a review attempt for the same scatter series. Review the overlay image and compare every numbered overlay marker with the target scatter markers.
     Every red X and red point_index label is a PlotLift-generated diagnostic annotation, not part of the original chart. The diagnostic X style deliberately does not match the target series colour or marker style.
-    The overlay contains red X markers with small red point_index labels and no connecting line. Check marker membership, completeness up to the configured limit, order, and coordinate placement.
-    Continue digitising only the scatter series described below.
+    The overlay contains red X markers with small red point_index labels and no connecting line. Check marker membership, completeness up to the configured limit, order, and coordinate placement. Ensure the diagnostic overlay markers are centred on top of the target scatter markers. If a proposed point is off the target marker, adjust its chart_x/chart_y coordinates to match the target marker.
+    Continue digitizing only the scatter series described below.
     {{ target_series }}
 
     If the proposed points accurately capture the target markers, use response_kind "accept_previous" with proposal null.
