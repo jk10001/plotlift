@@ -1,0 +1,260 @@
+{
+  "raw": {
+    "created_at": 1787627598.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying axes in a cropped line or scatter chart before calibration.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify every visible x-axis and y-axis in every panel, including secondary axes on the top, bottom, left, or right.\nFor each axis, provide a stable axis_id, direction, name, unit, quantity being measured, and a brief location description.\nIn multi-panel charts include panel location or panel title in location_description.\nIf multiple axes measure the same quantity in different units, mark exactly one metric axis closest to the chart body as is_primary_for_digitization=true.\nMark other duplicate axes as is_primary_for_digitization=false and explain the ignore_reason.\nIf multiple axes measure different quantities, mark all of them as is_primary_for_digitization=true because different curves may use them.\nPrefer metric units over imperial or US customary units. If more than one metric axis measures the same quantity, choose the one closest to the chart body.\nDo not return calibration points in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_01de118d9fd0ddce006a8d084f781087d0a4fe16068e2e16ed",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjQhR3Li8nMfHBrYKEF_GoBNq3XPtdE5mIcrLF_ZjYM__qmG5vU7ju-Oc0vwLn-weD7LP4HBYorZnXRhl4IwRf2QkJgH_5wJyNaRhx5HWw-hqu935JaVmR45AsIubwvM-lt3VzTYFB_Wah-n4KVwFl7xh09dPelNQ9bk8EBFyx-6rCJdHZSja5fbM_aDN7byNGHUGMrK9t4MzRCKfAusg-QybsZUZ6eGca_A4HBVbOFWtkh_Zw3SuN5Impw7-zzR9LTS75NQUHA1d6VUJiPPlrhx7jGgsAVlh4Q79Zq-FaP-Z7IGSZlCG83jAXSIx8iZy2wHD5V3GzxwXvZFdTAfX1rRfvKl4hUXufYkXdP6Jnrg0G_UlVFkyf3MOQTFQhE-Cr8Za6tWe35-CLaCninNku4XznMv3C7ZOUKKzbRRPEA3gcTJ4ER67wVkhqKqNTbjCL8eumTVr_1DthWt7u8YDtvrEv9X0c0PhERO2Zh2YRr1VBrAPu96DB_aEXYG5DnPwVdqnjRU-zCOLFB8MrTXJrR4W6hBTCmoRuyUl-A2JquZb8d2stlmQKTLO_nBNLiUpbDZxlob4PM216Pji1aw8fDtI3k0hnyGYIgbydwaN99k9DCGAu4zvKJNmcyRqu790uzKnj6fhWoMdnn9ZTvXZMHY-l1KFWKr3HylIcDeF2XJT-EpXUKJKiIMVggJVr70T3V2dkhWf01uPxNXh5tny-DE95lvX_D2zB8A6eaMjbq-pp9PaPKxmuCCL_yDZX5TG4e0KyDzJMViUnltk0MaPZun97Tbjgw7OZcz5K7N5XKzlNPVungF8NBcEtvVGp2vaNKa2a5vgm5Fj0a-_SKM_qiIGHORMoG2_qP-DGtW4tiIYMzoMdgGFIB-yjQdCNWPt0qmJy_HufZqJxkj1mxG3pjHZP0bYdQ7cQS-XXbUoXgP4MepGim4srWVZ8Qlot4dEyKOgb_7pDk_ub6TEM-UFe0ziYusGfrXui33KFLDDTnDmm01foQaFelYisOBhtmWKJDiUZnIOlAaeQlveEADq4jfb_SC1hnzN2uVcV_HoqY-w8XqD9gSNNpNP25LXfff7I8sNq7Zxgn2_2KqTjQl5BUC-hq_1Jk4jHrsFA8dhAOnmMe1-Q_Ryyj2zwshdFQR7zbSf-BuTUtOMQyhRaZArENxhahfPGqUIY21LjjwfE3ecNC5EdMXhPtcphDUDnGn1bbQ7gQwar6cTvHe0K5YkpcmXQKVO7cIMqgsuhtqupSEvh50L5_gR2p94eZHRDbFegSY9YJZuc0frpRexrePfyRbkVWy2Db7G7eOaqukqv9zRR55wlTqTbM6Zzufmj6loBtGo2ZFgpbxCGfLo2UOXrixYSs1XYiGif4F7KqrZK1EYuP5_i42YzRxXafuBL_gS9ag1KL7XE0iGCmXjE94IBuwFsg==",
+        "status": null
+      },
+      {
+        "id": "msg_01de118d9fd0ddce006a8d08500a7c87d083dcc22eccab4f0a",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"axes\":[{\"axis_id\":\"main_x\",\"direction\":\"x\",\"name\":\"X value\",\"unit\":null,\"quantity\":\"X value\",\"location_description\":\"Bottom horizontal axis of the single chart panel, labeled “X value” with ticks approximately 0–50.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"main_y\",\"direction\":\"y\",\"name\":\"Y value\",\"unit\":null,\"quantity\":\"Y value\",\"location_description\":\"Left vertical axis of the single chart panel, labeled “Y value” with ticks approximately 4–22.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787627601.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:16b233805b:axis_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "AxisIdentification",
+        "schema_": {
+          "$defs": {
+            "IdentifiedAxis": {
+              "properties": {
+                "axis_id": {
+                  "title": "Axis Id",
+                  "type": "string"
+                },
+                "direction": {
+                  "enum": [
+                    "x",
+                    "y"
+                  ],
+                  "title": "Direction",
+                  "type": "string"
+                },
+                "name": {
+                  "title": "Name",
+                  "type": "string"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                },
+                "quantity": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Quantity"
+                },
+                "location_description": {
+                  "title": "Location Description",
+                  "type": "string"
+                },
+                "is_primary_for_digitization": {
+                  "title": "Is Primary For Digitization",
+                  "type": "boolean"
+                },
+                "ignore_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Ignore Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "required": [
+                "axis_id",
+                "direction",
+                "name",
+                "unit",
+                "quantity",
+                "location_description",
+                "is_primary_for_digitization",
+                "ignore_reason",
+                "confidence"
+              ],
+              "title": "IdentifiedAxis",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "axes": {
+              "items": {
+                "$ref": "#/$defs/IdentifiedAxis"
+              },
+              "title": "Axes",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "AxisIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "axes",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 2408,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2405
+      },
+      "output_tokens": 206,
+      "output_tokens_details": {
+        "reasoning_tokens": 48
+      },
+      "total_tokens": 2614
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"axes\":[{\"axis_id\":\"main_x\",\"direction\":\"x\",\"name\":\"X value\",\"unit\":null,\"quantity\":\"X value\",\"location_description\":\"Bottom horizontal axis of the single chart panel, labeled “X value” with ticks approximately 0–50.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"main_y\",\"direction\":\"y\",\"name\":\"Y value\",\"unit\":null,\"quantity\":\"Y value\",\"location_description\":\"Left vertical axis of the single chart panel, labeled “Y value” with ticks approximately 4–22.\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "axes": [
+      {
+        "axis_id": "main_x",
+        "direction": "x",
+        "name": "X value",
+        "unit": null,
+        "quantity": "X value",
+        "location_description": "Bottom horizontal axis of the single chart panel, labeled “X value” with ticks approximately 0–50.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "main_y",
+        "direction": "y",
+        "name": "Y value",
+        "unit": null,
+        "quantity": "Y value",
+        "location_description": "Left vertical axis of the single chart panel, labeled “Y value” with ticks approximately 4–22.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "series": [
+    {
+      "series_name": "Data points",
+      "series_type": "scatter",
+      "visual_description": "Single-panel scatter series of unconnected blue filled circular markers distributed across X values roughly 1–50 and Y values roughly 5–21.5.",
+      "line_color": "blue",
+      "line_style": null,
+      "marker_style": "filled circle",
+      "estimated_total_points": 77,
+      "x_axis_id": "main_x",
+      "y_axis_id": "main_y",
+      "axis_selection_reason": "The markers are plotted against the chart’s sole bottom X value axis and left Y value axis.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "5-point moving average",
+      "series_type": "line",
+      "visual_description": "Single-panel solid orange connected line representing a 5-point moving average, generally increasing from about Y=7.5 near X=3 to Y=18.3 near X=50, with local fluctuations.",
+      "line_color": "orange",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "main_x",
+      "y_axis_id": "main_y",
+      "axis_selection_reason": "The line occupies the sole chart panel and uses the bottom X value axis and left Y value axis.",
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

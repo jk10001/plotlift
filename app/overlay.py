@@ -79,22 +79,22 @@ def _draw_series_marker(
     radius = 5
     if "circle" in style:
         bbox = (x - radius, y - radius, x + radius, y + radius)
-        draw.ellipse(bbox, outline=COLORS["white"], width=5)
+        draw.ellipse(bbox, outline=COLORS["white"], width=4)
         draw.ellipse(bbox, outline=fill, width=2)
     elif "square" in style:
         bbox = (x - radius, y - radius, x + radius, y + radius)
-        draw.rectangle(bbox, outline=COLORS["white"], width=5)
+        draw.rectangle(bbox, outline=COLORS["white"], width=4)
         draw.rectangle(bbox, outline=fill, width=2)
     elif "diamond" in style:
         polygon = [(x, y - 7), (x + 7, y), (x, y + 7), (x - 7, y)]
-        draw.line([*polygon, polygon[0]], fill=COLORS["white"], width=5, joint="curve")
+        draw.line([*polygon, polygon[0]], fill=COLORS["white"], width=4, joint="curve")
         draw.line([*polygon, polygon[0]], fill=fill, width=2, joint="curve")
     elif "triangle" in style:
         polygon = [(x, y - 7), (x + 7, y + 6), (x - 7, y + 6)]
-        draw.line([*polygon, polygon[0]], fill=COLORS["white"], width=5, joint="curve")
+        draw.line([*polygon, polygon[0]], fill=COLORS["white"], width=4, joint="curve")
         draw.line([*polygon, polygon[0]], fill=fill, width=2, joint="curve")
     elif "plus" in style:
-        for width, color in [(5, COLORS["white"]), (2, fill)]:
+        for width, color in [(4, COLORS["white"]), (2, fill)]:
             draw.line((x - 6, y, x + 6, y), fill=color, width=width)
             draw.line((x, y - 6, x, y + 6), fill=color, width=width)
     else:

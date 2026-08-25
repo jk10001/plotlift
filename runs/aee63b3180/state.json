@@ -1,0 +1,509 @@
+{
+  "run_id": "aee63b3180",
+  "created_at": "2026-08-25T03:01:45.765960+00:00",
+  "updated_at": "2026-08-25T03:12:10.011969+00:00",
+  "stage": "series_ready",
+  "active_job": null,
+  "settings": {
+    "model_id": "gpt-5.6-luna",
+    "image_detail": "high",
+    "reasoning_effort": "medium",
+    "mock_mode": false
+  },
+  "prompt_metadata": {
+    "prompt_pack": "prompts.yaml",
+    "prompt_version": "2026-08-24-mixed-series-v1",
+    "prompt_hash": "ff0e586614bc8c89"
+  },
+  "upload_filename": "scatter_plot_5.png",
+  "original_path": "uploads/original.png",
+  "pages": [
+    {
+      "path": "pages/page_001.png",
+      "width": 1448,
+      "height": 1086,
+      "label": "Image"
+    }
+  ],
+  "selected_page_index": 0,
+  "canonical_image": {
+    "path": "pages/page_001.png",
+    "width": 1448,
+    "height": 1086,
+    "label": "Image"
+  },
+  "crop": {
+    "bbox_full_norm": {
+      "left": 0,
+      "top": 55,
+      "right": 999,
+      "bottom": 999
+    },
+    "bbox_full_px": {
+      "left": 0.0,
+      "top": 59.73473473473474,
+      "right": 1447.0,
+      "bottom": 1085.0
+    },
+    "image": {
+      "path": "crop/approved_crop.png",
+      "width": 1447,
+      "height": 1025,
+      "label": null
+    },
+    "approved": true,
+    "warnings": []
+  },
+  "calibration": {
+    "identified_axes": [
+      {
+        "axis_id": "x_main",
+        "direction": "x",
+        "name": "X value",
+        "unit": null,
+        "quantity": "X value",
+        "location_description": "Horizontal axis along the bottom of the single chart panel, labeled 'X value' and spanning approximately 0 to 50.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "y_main",
+        "direction": "y",
+        "name": "Y value",
+        "unit": null,
+        "quantity": "Y value",
+        "location_description": "Vertical axis along the left side of the single chart panel, labeled 'Y value' and spanning approximately 0 to 24.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "calibrated_axes": [
+      {
+        "axis_id": "x_main",
+        "direction": "x",
+        "name": "X value",
+        "unit": null,
+        "quantity": "X value",
+        "location_description": "Horizontal axis along the bottom of the single chart panel, labeled 'X value' and spanning approximately 0 to 50.",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 69,
+              "y": 896
+            },
+            "crop_image_px": {
+              "x": 99.87387387387388,
+              "y": 918.4224224224224
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 974,
+              "y": 896
+            },
+            "crop_image_px": {
+              "x": 1409.8138138138138,
+              "y": 918.4224224224224
+            },
+            "chart_value": {
+              "value_raw": "50",
+              "value_type": "number",
+              "parsed_value": 50.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": []
+      },
+      {
+        "axis_id": "y_main",
+        "direction": "y",
+        "name": "Y value",
+        "unit": null,
+        "quantity": "Y value",
+        "location_description": "Vertical axis along the left side of the single chart panel, labeled 'Y value' and spanning approximately 0 to 24.",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 68,
+              "y": 896
+            },
+            "crop_image_px": {
+              "x": 98.42642642642643,
+              "y": 918.4224224224224
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 68,
+              "y": 13
+            },
+            "crop_image_px": {
+              "x": 98.42642642642643,
+              "y": 13.325325325325325
+            },
+            "chart_value": {
+              "value_raw": "24",
+              "value_type": "number",
+              "parsed_value": 24.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": []
+      }
+    ],
+    "x_points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 69,
+          "y": 896
+        },
+        "crop_image_px": {
+          "x": 99.87387387387388,
+          "y": 918.4224224224224
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 974,
+          "y": 896
+        },
+        "crop_image_px": {
+          "x": 1409.8138138138138,
+          "y": 918.4224224224224
+        },
+        "chart_value": {
+          "value_raw": "50",
+          "value_type": "number",
+          "parsed_value": 50.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      }
+    ],
+    "y_points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 68,
+          "y": 896
+        },
+        "crop_image_px": {
+          "x": 98.42642642642643,
+          "y": 918.4224224224224
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 68,
+          "y": 13
+        },
+        "crop_image_px": {
+          "x": 98.42642642642643,
+          "y": 13.325325325325325
+        },
+        "chart_value": {
+          "value_raw": "24",
+          "value_type": "number",
+          "parsed_value": 24.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      }
+    ],
+    "approved_x": true,
+    "approved_y": true,
+    "warnings": []
+  },
+  "pending_series": [],
+  "series": [],
+  "attempts": [
+    {
+      "id": "axis-identification-01",
+      "stage": "axis_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "axis_identification/attempt_01/request.json",
+      "response_path": "axis_identification/attempt_01/response.json",
+      "parsed_path": "axis_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_x_main-01",
+      "stage": "axis_x_main",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_x_main/attempt_01/request.json",
+      "response_path": "axis_x_main/attempt_01/response.json",
+      "parsed_path": "axis_x_main/attempt_01/parsed.json",
+      "overlay_path": "axis_x_main/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_x_main-02",
+      "stage": "axis_x_main",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_x_main/attempt_02/request.json",
+      "response_path": "axis_x_main/attempt_02/response.json",
+      "parsed_path": "axis_x_main/attempt_02/parsed.json",
+      "overlay_path": "axis_x_main/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_y_main-01",
+      "stage": "axis_y_main",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_y_main/attempt_01/request.json",
+      "response_path": "axis_y_main/attempt_01/response.json",
+      "parsed_path": "axis_y_main/attempt_01/parsed.json",
+      "overlay_path": "axis_y_main/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_y_main-02",
+      "stage": "axis_y_main",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_y_main/attempt_02/request.json",
+      "response_path": "axis_y_main/attempt_02/response.json",
+      "parsed_path": "axis_y_main/attempt_02/parsed.json",
+      "overlay_path": "axis_y_main/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-identification-01",
+      "stage": "series_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "series_identification/attempt_01/request.json",
+      "response_path": "series_identification/attempt_01/response.json",
+      "parsed_path": "series_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-38beaa38-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/38beaa38/attempt_01/request.json",
+      "response_path": "series/38beaa38/attempt_01/response.json",
+      "parsed_path": "series/38beaa38/attempt_01/parsed.json",
+      "overlay_path": "series/38beaa38/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.78,
+      "warnings": [
+        "More than 50 blue filled-circle markers appear visible; only the first 50 in left-to-right order are returned.",
+        "Values are estimated visually from the plotted marker centers."
+      ]
+    },
+    {
+      "id": "series-38beaa38-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/38beaa38/attempt_02/request.json",
+      "response_path": "series/38beaa38/attempt_02/response.json",
+      "parsed_path": "series/38beaa38/attempt_02/parsed.json",
+      "overlay_path": "series/38beaa38/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.78,
+      "warnings": [
+        "More than 50 blue filled-circle markers appear visible; only the first 50 in left-to-right order are returned.",
+        "Values are estimated visually from the plotted marker centers."
+      ]
+    },
+    {
+      "id": "series-43f6fa80-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/43f6fa80/attempt_01/request.json",
+      "response_path": "series/43f6fa80/attempt_01/response.json",
+      "parsed_path": "series/43f6fa80/attempt_01/parsed.json",
+      "overlay_path": "series/43f6fa80/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.93,
+      "warnings": [
+        "Values are visually estimated from the rendered blue line; axis labels are readable and both axes appear linear."
+      ]
+    },
+    {
+      "id": "series-43f6fa80-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "needs_review",
+      "request_path": "series/43f6fa80/attempt_02/request.json",
+      "response_path": "series/43f6fa80/attempt_02/response.json",
+      "parsed_path": "series/43f6fa80/attempt_02/parsed.json",
+      "overlay_path": "series/43f6fa80/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": [
+        "Values are visually estimated from the rendered blue moving-average line; axes are readable and appear linear.",
+        "The previous overlay was generally aligned but several longer interpolated segments cut across visible bends in the moving-average line. Added control points at the omitted integer x positions while retaining the prior coordinates where they were already aligned."
+      ]
+    },
+    {
+      "id": "series-43f6fa80-03",
+      "stage": "series",
+      "attempt_number": 3,
+      "status": "accepted",
+      "request_path": "series/43f6fa80/attempt_03/request.json",
+      "response_path": "series/43f6fa80/attempt_03/response.json",
+      "parsed_path": "series/43f6fa80/attempt_03/parsed.json",
+      "overlay_path": "series/43f6fa80/attempt_03/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": [
+        "Values are visually estimated from the rendered blue moving-average line; axes are readable and appear linear."
+      ]
+    },
+    {
+      "id": "series-31f1dbd5-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/31f1dbd5/attempt_01/request.json",
+      "response_path": "series/31f1dbd5/attempt_01/response.json",
+      "parsed_path": "series/31f1dbd5/attempt_01/parsed.json",
+      "overlay_path": "series/31f1dbd5/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.69,
+      "warnings": [
+        "The visible green-square markers extend beyond the 50-point output limit; the returned points follow visual left-to-right order."
+      ]
+    },
+    {
+      "id": "series-31f1dbd5-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "needs_review",
+      "request_path": "series/31f1dbd5/attempt_02/request.json",
+      "response_path": "series/31f1dbd5/attempt_02/response.json",
+      "parsed_path": "series/31f1dbd5/attempt_02/parsed.json",
+      "overlay_path": "series/31f1dbd5/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.72,
+      "warnings": [
+        "More than 50 green square markers appear visible; the output contains the first 50 in visual left-to-right order.",
+        "The previous proposal missed several visible green markers, included inaccurate placements, and did not maintain complete visual left-to-right coverage through the configured 50-point limit."
+      ]
+    },
+    {
+      "id": "series-31f1dbd5-03",
+      "stage": "series",
+      "attempt_number": 3,
+      "status": "accepted",
+      "request_path": "series/31f1dbd5/attempt_03/request.json",
+      "response_path": "series/31f1dbd5/attempt_03/response.json",
+      "parsed_path": "series/31f1dbd5/attempt_03/parsed.json",
+      "overlay_path": "series/31f1dbd5/attempt_03/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.72,
+      "warnings": [
+        "More than 50 green square markers appear visible; the output contains the first 50 in visual left-to-right order."
+      ]
+    },
+    {
+      "id": "series-2c43f17f-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/2c43f17f/attempt_01/request.json",
+      "response_path": "series/2c43f17f/attempt_01/response.json",
+      "parsed_path": "series/2c43f17f/attempt_01/parsed.json",
+      "overlay_path": "series/2c43f17f/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "series-2c43f17f-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/2c43f17f/attempt_02/request.json",
+      "response_path": "series/2c43f17f/attempt_02/response.json",
+      "parsed_path": "series/2c43f17f/attempt_02/parsed.json",
+      "overlay_path": "series/2c43f17f/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.96,
+      "warnings": []
+    },
+    {
+      "id": "series-identification-01",
+      "stage": "series_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "series_identification/attempt_01/request.json",
+      "response_path": "series_identification/attempt_01/response.json",
+      "parsed_path": "series_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "active_step_status": null
+}

@@ -1,0 +1,1724 @@
+{
+  "raw": {
+    "created_at": 1787627781.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are an expert in digitising scatter charts and are digitising one specified visible scatter series from a cropped chart.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 999 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn one point for every individually visible marker in the target scatter series as chart_x and chart_y using the selected axis units/types.\nNever connect or interpolate between scatter markers. Do not include markers belonging to other series, legend samples, line control points, grid intersections, or error-bar endpoints.\nOrder markers visually from left to right. For markers with the same visual x position, order them from top to bottom.\nReturn at most 100 points. If more markers are visible, return the first 100 in that visual order, set series_truncated to true, and estimate the complete marker count in estimated_total_points.\nIf all visible markers are returned, set series_truncated to false and set estimated_total_points to the returned point count.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0e798c37f1fed57f006a8d090656a087d082d918b0b3a903c8",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjQk3SvneF28r0UM4ANv5nQ-fZVLwDkNHX9uRJu0PZDrxWeEVz4ScuLFjmw0gmmZOa2Ic1eEklu0Fisv70mhV8Zfnu9mwNL6A1b6mPsFQTYe7rpT5n4jF0MJY-eHwz2aSOoAg2VMzatBVkzL_SZGT3gbBI-teaq8GEC8CvXzxNS-QY7KKRYI0z2U2CcPpzWBrNpEW79XD1hCkBYU3xTBulrIpCjOIeKIfwzj6XcTNGIfa-vQHen7TXmQuKvZyBOLOfgfN0ypQNtPbfNbge2dTpfmM3TVwZmYgb3EABpWULhL6ZRTyNvuoO4eUfBtzupxt6-qMMHUvRffPjucaw7n4MCOeWHZ6_otVTTr-2GN3U_56nb0XeIotK8D3RS-EFtkyzhXt-DPuZ-8ZcFmCMgYdryPCx314lLxf6UFaYzuSDi4a2yIQIaZaisjy1tjNmWPPOgZ0I-mjBv1ekFpzYs088SvvkJILZgcu7r0ms3OFqR6E7vz0nikSed5Jm72GgIc6LseDWhm-fCXhUZp6vwMPUHjMAkljYC4cURPOu_PLNlMmIF9eNn-syOUknlXP-Z0gZ0vzp9Ggb4fzUsJ1Vp0HX8Tz2Dl9Wh_JFizZ7Py-Uq0-OmR3w3iFKaD1f9uhZ-kJOmHK-vCMvKDaES6BCZqRLAByKb7EqoKwP38u9GyBxTHviBrWd2tUR8PH0-zW_vXUeF-tAAthlwPa6bam6CPXtqjGAbulTfW3SMcgTkwaw98mMI5-6IroOgNVr9E6syz0DMpJbO2qkZ4LK6aEM0ogx-WpyV954YGu7ThBV59Y5BTAq7jB6rC-4f6z2JmzClftLB1lX1ndLt0OYf9q6JEUu_A9g6qSAS2rfjc3iNI5F50F7BErVEqIR-q_FcHZjlO0ebWCxgEfKUiqGWxpLJwtJOjBavSTgKozxlYtsE2wYL0bdUKlhOdI0YOCxZ5dJiivXP1-6nXV2iGf2rArFlaFc4LSxHX3A_KRfAj2QhkLe4blJAfWVMj6qG16Z3ly8AqQIfgaWpuPABBTFMOCYOgHFoZHDvMa9Vr5sgltpFkgKkxuf1_wDGn98Xd43oO4R0dspNVxhBlOLS5E66UnwbR00dnhZkjygERTIthE2muRkFcI2Fi_b6zHRUSJjPsQcjyxarS68AeHrnBwhSj58mVJHYVae4O_HmUt9ZcdPhDUgWlwxQ590apfTUu9sdINjOfiakFrjRbP91P6BqhXRaOOq4Ymv2cI_gMStIT1BMfYM64wXjZTP4vrgQ2scLg0bbeTD9Q0c122n2BOLIBvl0WOpRq6P9mnyMwptgAmHhQqn1tmZITIiEviEXRr3tC2flRNI1kZYPNl92pcyV6cqtReJ6xvB8l0CGhW2Y3uxIZmEWLdjLpMORv61bysxJzaRKz9eiPUpDVQfUWBiFeykgXSQLoWHOboTDrDxfxT18vph6X0v6lyYBNlIZxaPS0fvXHofxijiHoOQRl84rQlfGvrIKMQE6OfcmdDCFJn66sCQs1Fi0z9uBQ6htq1FtMvE_MPmYQqURfbPmww9A4Dtnm2IHuBxiaEm3Uj6Dccaqfj1v-7hPiMb9rFnIvLdnDQevXCGMOvUW0PmiYOQXk4pJt6T49p9VfwV79vvte-nt1LOPRqqyKegj4CE8ueKFt30wWryZylJVm0WgLfjBNKUXugEyxfw_O2FUClbIGs0-fI4jryqZXvtiPH2lkCdM2JT5SSwTfmyQRBU3pawGgSt3ygUk67f3Uyoixq--k3ETH9Vv9jLA0BagyqdrMZBGnXUhK6NSCH_CM86VmzeYyPuynkU2T8gg1c7vCdlGiFBEJZHNxipVy7nfVnMM7YADrxIGPVfcC6cT8LpylFo6RcjqVcWC7zrBEHRvcmXTQCKzZqCAVIcAmENSySpfpEIyzYXxGcsHJ6YmWZntWLj80y-e5crShSmK2jXcsPvleMl7bKU83eDTMhMnaEeD1FNM0UTPngH7TFAwU7Tn4Vrqke9bvGnPR64mM_NFJljSkKhMx2t4_wtGqMXJsOmd926NpQGne1BnV5_4XNl_Xyb2ILORPqWmd1g1LDcuCFYQGZjkftNOUcr2s0T-CcNVwAiByi6H82Xb6gwSAuw6zIVgMClOEvfF5-xrExXIHkuzYF2gS589U99WTIN_T_lARqTH-brxz24P37TjLfRlyQdJY2bgKkHGD-EzEaN412ypaqE9I48lrMlNzW67c88T_hTXGW2QWPH6rMcHoLmvSs47zckS3uUvfnUzGR4gP8ccWzr41MWJp0KguktD7gpGM1Cx0hKmW-MJHQF94fHmra1kYMWok9PfvGQzkMDWxuKeC3R6an5o2cH-mlRbDB3GAh3vCqsN2nbICRXT0K3oEX1NqkPekTtRsidbhccZXLEFMRzcnHJlyjdsaPBLuypaO-JK2YphMmsbOiEWFNK1SE40JNN-Ti6Pd_o0Sivg4J7IFHOUMqXLuY0E29rgy5J95mEBqBSyHiK-QbmgUasw1xYLvQ6B-n3iL9tXIz1_PFSnWirEFOUFIAg7QDP_8Mxg413qS748t-NR7yiQ4X3YYad1IWQAPKA4YEiyNG6WTrIJetr8D22o2xFox04a3TGrzCyd9fWg1dLvPY-oS5SZ9GlEqcgdamLBcAxqN_qkb4j-7SSWC5QTDoZ1i9AZr2-wwgNwCPS1nWOtWBxB0VLGtEmnziwlSAAIdM_bM_DNfRsBZ4QBuYZomJzrAN6UjXqg2_11YCW2XMkbbXFqRNvcpxecB6kCEgR22BY0TixwMg5ilLCtFuuG2e9tYJj9HFs5fdLJvyCCcxfRr1Ii5deeSA5ujowkqy0nJ0g-xd4qFK9AuLcRz4sJWAOXws64Ebcr87VVvNF4QlL0cUUvenAMH5WIHQq8zSjdW1cqN5cKvPFvWsVJ1w6r8F1r2m-c8d1u4LmPiaSRwdCgTjR8zF56Fumx7sB5-zYxLD9itP3-C07O4rSnHG4YL99jXHUxtPtz2WOuw8Y9D5jEKInpltW9eAJt7anaP8oSjSVjC9X2J2FYITS-DQlv6LC2ljHIATWkzbJcqGp-250tFM7zhK2xoP2be06X5tW--z7hPMLRhcNIjrJMnkOsjoMcMUccffrO36duGEumwYksaSQVD896DvpbjN5657mkJbNVNwrQD0zZuadN_-YQ44uFFPgoQliox8OrD_u3Idy1b0OL4Sx9BlxB63-oKAMmO2g2Kr55bRB-mJKq-W_1qav834QKs4UHsCIvM3ucSxZ4F7VElvJjlHx2ZAkk7qg9D-ig4K20UQb6NcpWl89Kkrvknit9paZw225Khr659jii6mgAV3uQiR8UOJJoLgoYA6xw42da87G34DtKI9D0PgV8i8DoOp8icUbqmUjcnJr34L",
+        "status": null
+      },
+      {
+        "id": "rs_0e798c37f1fed57f006a8d090c1cd087d0a0d4e04bea59ed8e",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjQk3Ys_Wplndx5UaH9Q4Xj_hgKENWxH_s2_Ni8XIUZav6zJ2JC-orQQh0qYOlU2c6dqmEJAdUeke9mBCfq3y7b9mX-rNYeRKkX6UCeYfTJvE_1zoEIcRk0sIt4a-0DnkUsHf-vXXu1Dagh38EHBAxspN3CN0txS-bedUQqzNIeHGrPyWIUw1BdTXlf_FEFvhMr7LRdpUA3HuuvVeEPANozYQ4q6BeIYWIz5wFu4-PBMJ1kZzOfWQHEZNWYjF-gIgyOgRazWsSbmXVpNo5WmUj1iGPo_YDl-nKP2fseuQnJ8IHMspNNwAej4dDYNsbY2Am8SNV7D4FaEe_0I4z6JBPXwT8trXBHqJq_Bf3_1Po5KmHmsq3fAkaocU5FunHwj1zEWyneZlHnKNZrv8bC06bysDO5uSelHLlwkQadDHAK8VlrQo_mTFcxo4fDGrwRj1j62ffvCY7KcDxMb-XBb8zxAAIzskxxbY0_v_8bxj4hJB--GdRJANznQiYG33f8i7gUSie7Rt7kpg6aRz_V_G3PdUA5w1S2UfLr_bn2SeTtztpexO4HN0vkLpN9-WymyfDnz1nFgiRXqh4BtXWs7J7CKqTmSuJSsWKorNaU0shdjIpn_twcqUf0sOq0hs9mE3YuQpZEiXMXXDTEm3gupbWS18c0le9UXr9a8dXvA_PTJvyq47c1XmJDj7gEqesuXpmcSPpQTfbTUxibO-WL97OFdPaa_y5L_QnDdJybD-vi2T4jiLRwiEpeSmhqch7hvAVs0IsBr3lwezSlgH8lWiriHTbybFpJKaM8fRz5Bjy0SqtmbFOseanM7L7OF_-NbRYEOsnF9J_vKsNj0DRLDVEkV8RYxK49UsPRiU2bqg2YXybZBGGDhZv12TXIjYg_dsDlThrILNzL_IWSukuwBey_JQrp1BzmnoETSL4EspQP1qgFuNpKTnlbyjRtxq80gpSs4iyRkSf6xBnm-HjRpToKS4nqI4xiptyBdkmOtsJv5ZliPNXXkx7pXNkrLDkXhegTKozykud6rZ0uBuidMaYydTgJB4zOujexi3oviu_fe8c-Wg3ELXBCn-tGoTJiwMM7cJGSrXNHmJcspPEJTfFHw7D2N5SR9lDDJt-ou_VuthfcTprLKTJtYFlzXYi19N61IdM3LKEo_6lOSRV-KsCNXBRLKEI1AX3C_F-C4XAPBXlSMv5B-hoTIPnL5MKMfkahNzYcVsLHKovIKFT_IkbjVrXbTouIFmuBqVSs-F-2KVgyLziGehKAJOfIQ4yQvcZQwaZ0OKNbf-GbHisLT7GiIf3sK8qzJ8qc6Ay-FmUb9vt7vY5lgIcdGx96nKIE4JfEDkhAPeA-GTmPzZkyn6weMsg1-9VfgiZy9i8Y7RFr3vyZpRnwAgoMKHYw_XFgOfyhMhdBduhy5KIhwMM8wETW2iU4OnbYgToYaYm20jHOoHu-mN_zLxc0T9n4c7foXypJfai_Le16GXEyDCphk4yl_v84F86jC9EX25hAiyujC6VNcD8QLKFi2i_B1lawRqw-R0zIJvYLzjdN-jEDXUM12OhULBgyaqp9nZL21V_jjJTZveYGfbj22EHgZxo8klanhwAQTypW9_eGzH7q8Qx_C4TaORJJD5tJQrs1_2AEFUUb5xJNbDPXMyVSetZsUC1GCe2H0MAiVJ17FcS2pxfxYCZdmSXFFi6K2SYuA1pJsCbt4_b6tJyhg9DYKUDhyj1-x0c6D-EkTI6bOMP9eO5eqkvMQhsm1K_J5XZiyquoGt9lC2CV4ifo9uZ_1lSM10TyOuyauqNNDHAvue4EFwMfkCBuOajgVw5vOeIPWYyffXhdbFzvZComZx9hsQzddgp8YSYo_Cz5RFkP5GzLYRfkV8pdL8uh4Z0A6wUuhkxiVZmHE4WCsZO___puFIaLxpCg8mQjmmrDe8VqisX74GZh-kF9eGTvcoaQwHO80xYeMwf0YFddq_jeJZwszQHxxIuC9RlrdEQVdJtZh6jsgDUQGNGXgInqxunlthhGXFTI19j5Jw_2_-ii1ePzXDTYWyRqOSaK0zQ64xF4P_RLhaOr3yY366UzySq6OvxYhy13UcPPzO4BDu_C-pdPau4TGCCcukIWY9VnbngjkjXLHTZ1XkW42kL_IqPckpH7_oNALc7OK6mftVmkkskm4zjjHytn1XfhoiGZxnr848U6ocfWeAX6jjkRCEXBmXtdjCWrazWbdwlYhKPELMHvgP7xLhkSZq_TeyHBdvymiJDLwCESLzFaalLRO_ikDmNH4bGxDCp6SNWRvmebbmlWncIVaX5Ptv7MW1knVVEK7E-0ftPreUNV-eege7sXwA2pjOekhL4HSiXQ0OM2EXIx533LDEwSsx84os6IrGBG0AZuiba6uuE6a26EPI7o3Ae18gCV7AwE3VrvrD5Nv5OCU1BhuKm20WBOf4mi16YBGMHPOekzqPygrc0iHeq1WCd4loMGrpH65ZIbnPfru4LTF_gvAl44u-0YWrKFQnq4-BwForNFB9JN2ACLnqVE4UCUvx-cHjKRZnx8L2RbTBWpf1jZ27ud33Ygnz_qxzqI9NxCkQFLX9FpHATHcO6B9EY4QEif8SkJvuhSgItL0Dd8JkunXU46nq4iaEHQ8vYl8q_SdJmETkTbqcrGUt1xLCJ0WFHCz4Zpz-VWb990xAVkuoL3K69GQiemCdI4AnV5u4FYjHzS9VJiTT42ClJYuMpfrFa6CuZAlHuk_aTnOvBbKiwQWVq2dOnJy4qZESkFY55KLZk3358H6dBvk3XjFFAGt3nz-GfOuVXQylU6dospf4PPPGjYfZGwedR_V4T7CVnbjW5h2-_WY0jeXSVtY9F7G2XTJHh7nvCKZjV5jUv6btaO8wK2TIBWmLr2h7VcaXXGrnqu5ZwBiIcSu--i02fJa1NA-YyPYG1HP3BzCLTsPu6ixbelpc0O84Tw0x2b4VSrYP8J6IgUa2669Dy-Ve4GmWm1mzpYAjZJhMicbMIVAbhxX5a4gWZVFejofccJA3cYa4bWKmaxlqLxYezwL2NaytIrD_Lt9J87qo6O6WJqmT8tpl3oucEzQ5YUxNgG-DG5fdeThlhQHcGR120JCnZHSLJ6oialmfTp_zXj3YOSqh9W-B5GsgQBjjxz_hcBjwOqos-J-TSMqT1tABmDElLi37NoRB-06UCKH55ieZWM4siDOE8252N33lq4jK76TWLhc3dES569r8sSeXwWGjHid4w98TGD9sexOnuli5eKYavLx8KnVigAauyTaPKNYyno94xJGBL5UFNib6DIHnpVOgqV1rYXccSX_yDyEKJjobE01sF2j90w26JM4Z9QjLE4U_e6Vd9eRayzhLRovD7yQR1G9evR6OslwhrC4rXyR33XgKwZ1pSNdEV0ubwxf3IVFrQ2h9wzmEb25i0piE7EH6B6cbysTzViI__KVHWAFCp-uZKvSrMLIph8YUK2TRKcWLmaBcT0UXR0gGcbLT-tTOb3-TtZABiKVIgJBbZOMkY0oF0jIxohkOVmg3bVsvoQ1uKoAaYdjeXJVIooWZiT_S0_0j9Ycxn1fgw6vATQwTqxRRpXBsE2kRw23JVe7CG7i-7TlQyw6Q4G-vL7utR3Ybv-4nHg2PlE3hlP8v3S9lNjk8h7WRa56-26x9cHreyhdp0_6AQxVSxwWPGuKIys1VV8R71xRq-e2qdn8pvb7d-RVnCE83obfvCgGN3JX_2yhs1VWAi6Fvei4nsQcetb420IIc-dg=",
+        "status": null
+      },
+      {
+        "id": "rs_0e798c37f1fed57f006a8d09125fa087d0980a0f39d69900ce",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjQk31Rd1Gw11_YxSZ7DyKCKKL9OIb-cqYuTlw5pBcCckfI9YMUrgy2CwjpZl18w2Y_7OBF0HBDhrl6E7_ygWUBk8Jc4Lbj5gSgWFmtH_2HDKicHT5bIRByktuNk-GxBp_qm9uHxAUdEwO8gvHEf0aQ0oz_ogbebGOFvN5FR5KxjvMSkWy8Jk0XQrOZynbcK4GO-WFWDLfjoxNY8VfueFR7wR_4N2qLjqPlCXteXJq-2UfKqS3exlnqnQ-0rXIegPd8SS0yso32DLKYng9alBCouCsJ6OzGOlIuOoymBrKHzk7vLnhF--hoBAT5x1NDVKu3ZFfFjtGnqS9NNqJsP99kdi4VuEmNUexHWCSP1iu3ncXCxXQvJAHgQSsmYnFT2L2XnuVKawAli6KdOgu882-r_cf5B-lQLGevUM4qTs7vWipmtdAXqIgH_Vty88csN-klA7tW47FRaLexhHfv4Fnd-JCvHf6N-BJSd6AaykHB_xSyRhmy9itx2rZpXE427lu3kMNUnE_Px3Mr1CilqgPcX2Zm81JSedwNj91s9ARz04djK6U631CFdyDNQ2LLlPmaIsXF7lB9a96o1dZC6qcKchCUo13PS3boJmh1htRrWUOMeOwOnaReisCQ0xbf7gaCdWkg8LR6JQdQ3zpkReD6dq1I3BgbrtL2PBk6UXIQ8qBsDwJGlNQGvXMj0-E3KfXGDRZpiMjoDAJU79-CCv79vsVLkLyXPr_2YOqbkp53Ghl5Ulsc0NvIE9IY9aTBKlbczZxmYHtm3mVkO1URFGM7blbJzwX9cTjUWyAZDA33nkap1V1JZnxv2QGqiSVbaxVQ3iOoDNx-Vm-pFMNTt3s5DFFssws4uFvfgKUGeXc_L2CUskRtlLcYd2aTWLotBGrJiogcasBuL2kKzzzZMfJBsy7_3Qx63LBHF6PEzOwgmlYVwz-MXGmuCrIZYTLRkF8xwOLx0HiRbNu1u2QElXRGVle6qcDTQXiDpwgxMALIMdnt304X2mn1wVfnIweEhNuR81-_yV1gjXFdsRKWeORmVPn6WcJq8WxEunLBSoNpV6s6bINcGNAL4nVMmImYr65NnK72-uQ_NSukDp7mXk2faaaG6a26aionA5HQb1KHB2O1O3T6_Wr91_tn7h_vB-t7Yb5HyGADx2OZGo1O2VN2MrqS4KTEbrPos5ORWxR3Pas5fFCJroQVJ05piX6Qy2p0Y9jRXTIeffeGyF0JlgEdfPxkCXA-xMYZ__gS6Ioab8Yt8m7N35IQoUypxjkrFRyRTiGvHIpxwH2Jh0grWC6xCg4Zn7NDEXDYWpeF20t7fFCMDskal_mo9jQieZRN2SlswIDEVyhNviZK6dQ6ZS8-fseBxf_2arbKcQqBWX6-ZpDQ7r0P-hzOAWNQ-MBAM4PrKCd0WufSlfe-1CVx57oolAVuMFhT3LwdZFV-svVBolcJQyoYC8DDabKBR9ozQX86tUefS4av5HiC6l7p5iDu-FxNI6t2MR2XBvNWW8GY_co9k7gzIbfTw8js8zRzvoUIwqH7LKL19jLCyWcxL5H8zN0G4mBt-VcM_UOdJJpN56vmaNbXbrWuwgy7PGJeEmE3-pXWYDzFyTncKT8XPIE_Idjhl64OjMdivAEvaksSGrpEOQ5QzymQez-mgADh1DIOAnnNqTdTuU0LlyvEL-2mgrYKu-t1pUvNk9CuXtyjuS5_0PbcWRDGTXng1SVK-crRYfSlMAGop2sLBdwAi-jfhIrmbn8acLiIdcWqQO3IeW9Q2zWIeaiLVgJFVjM3p6UlAKidUo26pDRLGUYgAHTqGuebiqSUpPgFETP6mzVW7VTpTBaR5qmpi8lqWZAsnUvFZa-Q-AX7sOPbv2d0xVLrIvFJtMeKxjxPuMRfP6qNeAPc4wjiX01pAAtZdbMLrOONQeUaqUBHK0febQ3c-dS_YNi8eZbs-Ub3LvGiVDzYdhHE4zGWI8-iByN6VZckUuFY81x9Pir3CriWEKKBXpTXo-Jl9PRArbHgBXJrEaK2cFogtTIpA9larCUvB2YKDfrTSsh2Jbmh9ScJ5j5xnBkVsbwCT-ZkuWsKzSUOVgswjQOy2ggVL-TqO4M4ilBjkX-xRrsS6I6jsoZrTtfUXki9MbbdxrgWH18hl8RlkaieNAFQ7kMglKxFabMZwaaS9D3U1G7FlWpz68kjArADPtYJf2hE_RNGRrveCAe3em2A6KC3sR86hEAhN_b7XsKg3pUHdWXpDSk9efHmibUta7FUttrqhYsQo-pp6L_1VL-8uI3KXeQAUwRYZNFv1OEV7nywJS_ji_vGRRYvsHuo1hwvDjRU9ZbXxTvjS7mua1SfKD_g-KOBypwi2F6bn-TND4BMYulVolQoTKRZF2S6Ubgp9fJfpqSLnoVa6_mGOUj7NHxXx3qPNIBSZCJblMc5ROnifSUElTO4SQD0F6kDqW0yQ9JIcY_SsptSjthXQkjwG_o-mpxjR2UpgikiWJSzbCEk70EsXhlJy8zbUvdUZgntr49eGzwRq__7QUEc0kLVpk86LZ0n__251vzC95SGdIjnvNV9a1te4MUX00ZjTKKxjFJOFOxMlWih5pK6vUzarqhMZ58PjNYIGcnwj281oUOHcIDfRGP024MgQKDS66ssD_yxzKGyEZZcburdUu4H0iJPk6XEcHH-52sDN0EPedhQeFTyh4_N37ZW4HekqF8YFhR7BcFMSLhMZkJe62c5RwyPw=",
+        "status": null
+      },
+      {
+        "id": "msg_0e798c37f1fed57f006a8d0915852087d09bcd4d8c79577d03",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"revise_previous\",\"revision_reason\":\"The overlay missed one visible blue marker near x=13.2, y=11.3. A complete replacement proposal with 77 points is provided.\",\"proposal\":{\"points\":[{\"point_index\":1,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"0.8\",\"value_type\":\"number\",\"parsed_value\":0.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.2\",\"value_type\":\"number\",\"parsed_value\":10.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":2,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1.3\",\"value_type\":\"number\",\"parsed_value\":1.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"5.1\",\"value_type\":\"number\",\"parsed_value\":5.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":3,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1.7\",\"value_type\":\"number\",\"parsed_value\":1.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.3\",\"value_type\":\"number\",\"parsed_value\":7.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":4,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"2.1\",\"value_type\":\"number\",\"parsed_value\":2.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.0\",\"value_type\":\"number\",\"parsed_value\":8.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":5,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3.0\",\"value_type\":\"number\",\"parsed_value\":3.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.7\",\"value_type\":\"number\",\"parsed_value\":8.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":6,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3.4\",\"value_type\":\"number\",\"parsed_value\":3.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"6.4\",\"value_type\":\"number\",\"parsed_value\":6.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":7,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4.3\",\"value_type\":\"number\",\"parsed_value\":4.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.7\",\"value_type\":\"number\",\"parsed_value\":9.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":8,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5.1\",\"value_type\":\"number\",\"parsed_value\":5.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.5\",\"value_type\":\"number\",\"parsed_value\":8.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":9,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5.7\",\"value_type\":\"number\",\"parsed_value\":5.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.1\",\"value_type\":\"number\",\"parsed_value\":9.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":10,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"6.3\",\"value_type\":\"number\",\"parsed_value\":6.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.0\",\"value_type\":\"number\",\"parsed_value\":7.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":11,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"7.1\",\"value_type\":\"number\",\"parsed_value\":7.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.1\",\"value_type\":\"number\",\"parsed_value\":9.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":12,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"7.6\",\"value_type\":\"number\",\"parsed_value\":7.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.0\",\"value_type\":\"number\",\"parsed_value\":7.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":13,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"8.1\",\"value_type\":\"number\",\"parsed_value\":8.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.2\",\"value_type\":\"number\",\"parsed_value\":8.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":14,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"8.7\",\"value_type\":\"number\",\"parsed_value\":8.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.7\",\"value_type\":\"number\",\"parsed_value\":11.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":15,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"9.3\",\"value_type\":\"number\",\"parsed_value\":9.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.3\",\"value_type\":\"number\",\"parsed_value\":8.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":16,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"10.0\",\"value_type\":\"number\",\"parsed_value\":10.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.8\",\"value_type\":\"number\",\"parsed_value\":9.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":17,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"10.7\",\"value_type\":\"number\",\"parsed_value\":10.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.7\",\"value_type\":\"number\",\"parsed_value\":9.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":18,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"11.1\",\"value_type\":\"number\",\"parsed_value\":11.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.0\",\"value_type\":\"number\",\"parsed_value\":7.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":19,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"11.4\",\"value_type\":\"number\",\"parsed_value\":11.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"13.3\",\"value_type\":\"number\",\"parsed_value\":13.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":20,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"12.1\",\"value_type\":\"number\",\"parsed_value\":12.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.1\",\"value_type\":\"number\",\"parsed_value\":12.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":21,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"12.8\",\"value_type\":\"number\",\"parsed_value\":12.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.5\",\"value_type\":\"number\",\"parsed_value\":8.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":22,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"13.2\",\"value_type\":\"number\",\"parsed_value\":13.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.3\",\"value_type\":\"number\",\"parsed_value\":11.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":23,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"13.2\",\"value_type\":\"number\",\"parsed_value\":13.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.7\",\"value_type\":\"number\",\"parsed_value\":10.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":24,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"13.8\",\"value_type\":\"number\",\"parsed_value\":13.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.0\",\"value_type\":\"number\",\"parsed_value\":10.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":25,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"14.4\",\"value_type\":\"number\",\"parsed_value\":14.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.5\",\"value_type\":\"number\",\"parsed_value\":8.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":26,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"15.0\",\"value_type\":\"number\",\"parsed_value\":15.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.9\",\"value_type\":\"number\",\"parsed_value\":10.9,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":27,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"15.0\",\"value_type\":\"number\",\"parsed_value\":15.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.7\",\"value_type\":\"number\",\"parsed_value\":7.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":28,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"15.8\",\"value_type\":\"number\",\"parsed_value\":15.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.3\",\"value_type\":\"number\",\"parsed_value\":12.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":29,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"16.4\",\"value_type\":\"number\",\"parsed_value\":16.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.5\",\"value_type\":\"number\",\"parsed_value\":10.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":30,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"17.2\",\"value_type\":\"number\",\"parsed_value\":17.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.5\",\"value_type\":\"number\",\"parsed_value\":14.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":31,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"17.8\",\"value_type\":\"number\",\"parsed_value\":17.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.7\",\"value_type\":\"number\",\"parsed_value\":11.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":32,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"18.2\",\"value_type\":\"number\",\"parsed_value\":18.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.2\",\"value_type\":\"number\",\"parsed_value\":7.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":33,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"18.8\",\"value_type\":\"number\",\"parsed_value\":18.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.6\",\"value_type\":\"number\",\"parsed_value\":12.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":34,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"19.4\",\"value_type\":\"number\",\"parsed_value\":19.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.8\",\"value_type\":\"number\",\"parsed_value\":9.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":35,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"20.1\",\"value_type\":\"number\",\"parsed_value\":20.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.1\",\"value_type\":\"number\",\"parsed_value\":9.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":36,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"20.9\",\"value_type\":\"number\",\"parsed_value\":20.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.3\",\"value_type\":\"number\",\"parsed_value\":14.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":37,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"21.5\",\"value_type\":\"number\",\"parsed_value\":21.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.8\",\"value_type\":\"number\",\"parsed_value\":12.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":38,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"22.2\",\"value_type\":\"number\",\"parsed_value\":22.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.5\",\"value_type\":\"number\",\"parsed_value\":11.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":39,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"22.9\",\"value_type\":\"number\",\"parsed_value\":22.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.5\",\"value_type\":\"number\",\"parsed_value\":10.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":40,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"23.6\",\"value_type\":\"number\",\"parsed_value\":23.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.3\",\"value_type\":\"number\",\"parsed_value\":14.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":41,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"23.6\",\"value_type\":\"number\",\"parsed_value\":23.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.2\",\"value_type\":\"number\",\"parsed_value\":12.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":42,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"25.1\",\"value_type\":\"number\",\"parsed_value\":25.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.2\",\"value_type\":\"number\",\"parsed_value\":16.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":43,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"25.7\",\"value_type\":\"number\",\"parsed_value\":25.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.8\",\"value_type\":\"number\",\"parsed_value\":11.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":44,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"26.5\",\"value_type\":\"number\",\"parsed_value\":26.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.2\",\"value_type\":\"number\",\"parsed_value\":14.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":45,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"27.3\",\"value_type\":\"number\",\"parsed_value\":27.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.7\",\"value_type\":\"number\",\"parsed_value\":16.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":46,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"28.0\",\"value_type\":\"number\",\"parsed_value\":28.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"13.5\",\"value_type\":\"number\",\"parsed_value\":13.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":47,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"28.6\",\"value_type\":\"number\",\"parsed_value\":28.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.2\",\"value_type\":\"number\",\"parsed_value\":16.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":48,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"29.3\",\"value_type\":\"number\",\"parsed_value\":29.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"15.0\",\"value_type\":\"number\",\"parsed_value\":15.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":49,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"30.0\",\"value_type\":\"number\",\"parsed_value\":30.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.9\",\"value_type\":\"number\",\"parsed_value\":12.9,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":50,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"30.7\",\"value_type\":\"number\",\"parsed_value\":30.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.4\",\"value_type\":\"number\",\"parsed_value\":16.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":51,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"30.7\",\"value_type\":\"number\",\"parsed_value\":30.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"13.7\",\"value_type\":\"number\",\"parsed_value\":13.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":52,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"32.1\",\"value_type\":\"number\",\"parsed_value\":32.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.7\",\"value_type\":\"number\",\"parsed_value\":11.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":53,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"32.7\",\"value_type\":\"number\",\"parsed_value\":32.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.4\",\"value_type\":\"number\",\"parsed_value\":18.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":54,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"33.4\",\"value_type\":\"number\",\"parsed_value\":33.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.0\",\"value_type\":\"number\",\"parsed_value\":14.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":55,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"34.1\",\"value_type\":\"number\",\"parsed_value\":34.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.0\",\"value_type\":\"number\",\"parsed_value\":16.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":56,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"35.0\",\"value_type\":\"number\",\"parsed_value\":35.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.4\",\"value_type\":\"number\",\"parsed_value\":17.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":57,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"35.8\",\"value_type\":\"number\",\"parsed_value\":35.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.2\",\"value_type\":\"number\",\"parsed_value\":18.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":58,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"36.6\",\"value_type\":\"number\",\"parsed_value\":36.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"19.6\",\"value_type\":\"number\",\"parsed_value\":19.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":59,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"36.6\",\"value_type\":\"number\",\"parsed_value\":36.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.8\",\"value_type\":\"number\",\"parsed_value\":14.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":60,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"37.9\",\"value_type\":\"number\",\"parsed_value\":37.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.5\",\"value_type\":\"number\",\"parsed_value\":18.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":61,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"37.9\",\"value_type\":\"number\",\"parsed_value\":37.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.1\",\"value_type\":\"number\",\"parsed_value\":17.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":62,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"39.3\",\"value_type\":\"number\",\"parsed_value\":39.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"15.8\",\"value_type\":\"number\",\"parsed_value\":15.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":63,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"40.0\",\"value_type\":\"number\",\"parsed_value\":40.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.8\",\"value_type\":\"number\",\"parsed_value\":17.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":64,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"40.7\",\"value_type\":\"number\",\"parsed_value\":40.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"20.5\",\"value_type\":\"number\",\"parsed_value\":20.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":65,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"41.4\",\"value_type\":\"number\",\"parsed_value\":41.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.6\",\"value_type\":\"number\",\"parsed_value\":18.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":66,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"42.1\",\"value_type\":\"number\",\"parsed_value\":42.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.1\",\"value_type\":\"number\",\"parsed_value\":17.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":67,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"42.9\",\"value_type\":\"number\",\"parsed_value\":42.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"20.0\",\"value_type\":\"number\",\"parsed_value\":20.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":68,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"43.6\",\"value_type\":\"number\",\"parsed_value\":43.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"19.3\",\"value_type\":\"number\",\"parsed_value\":19.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":69,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"44.3\",\"value_type\":\"number\",\"parsed_value\":44.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.7\",\"value_type\":\"number\",\"parsed_value\":16.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":70,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"45.0\",\"value_type\":\"number\",\"parsed_value\":45.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.7\",\"value_type\":\"number\",\"parsed_value\":17.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":71,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"45.7\",\"value_type\":\"number\",\"parsed_value\":45.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.1\",\"value_type\":\"number\",\"parsed_value\":16.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":72,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"46.4\",\"value_type\":\"number\",\"parsed_value\":46.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.6\",\"value_type\":\"number\",\"parsed_value\":16.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":73,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"47.1\",\"value_type\":\"number\",\"parsed_value\":47.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.3\",\"value_type\":\"number\",\"parsed_value\":17.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":74,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"47.8\",\"value_type\":\"number\",\"parsed_value\":47.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.7\",\"value_type\":\"number\",\"parsed_value\":16.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":75,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"48.5\",\"value_type\":\"number\",\"parsed_value\":48.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.2\",\"value_type\":\"number\",\"parsed_value\":18.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":76,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"49.4\",\"value_type\":\"number\",\"parsed_value\":49.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"21.2\",\"value_type\":\"number\",\"parsed_value\":21.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":77,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"50.0\",\"value_type\":\"number\",\"parsed_value\":50.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"19.0\",\"value_type\":\"number\",\"parsed_value\":19.0,\"parsed_datetime\":null,\"unit\":null}}],\"series_truncated\":false,\"estimated_total_points\":77,\"confidence\":0.97,\"warnings\":[],\"unsupported_flags\":[]}}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787627830.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:16b233805b:series:5f4b19de",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "ScatterSeriesDigitizationDecision",
+        "schema_": {
+          "$defs": {
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "ScatterSeriesDigitizationOutput": {
+              "properties": {
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/SeriesPointProposal"
+                  },
+                  "title": "Points",
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 100
+                },
+                "series_truncated": {
+                  "title": "Series Truncated",
+                  "type": "boolean"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "title": "ScatterSeriesDigitizationOutput",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "points",
+                "series_truncated",
+                "estimated_total_points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ]
+            },
+            "SeriesPointProposal": {
+              "properties": {
+                "point_index": {
+                  "minimum": 0,
+                  "title": "Point Index",
+                  "type": "integer"
+                },
+                "segment_index": {
+                  "minimum": 0,
+                  "title": "Segment Index",
+                  "type": "integer"
+                },
+                "chart_x": {
+                  "$ref": "#/$defs/ChartValue"
+                },
+                "chart_y": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "point_index",
+                "segment_index",
+                "chart_x",
+                "chart_y"
+              ],
+              "title": "SeriesPointProposal",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ScatterSeriesDigitizationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "ScatterSeriesDigitizationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 14497,
+      "input_tokens_details": {
+        "cached_tokens": 2822,
+        "cache_write_tokens": 11672
+      },
+      "output_tokens": 6992,
+      "output_tokens_details": {
+        "reasoning_tokens": 1286
+      },
+      "total_tokens": 21489
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"revise_previous\",\"revision_reason\":\"The overlay missed one visible blue marker near x=13.2, y=11.3. A complete replacement proposal with 77 points is provided.\",\"proposal\":{\"points\":[{\"point_index\":1,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"0.8\",\"value_type\":\"number\",\"parsed_value\":0.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.2\",\"value_type\":\"number\",\"parsed_value\":10.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":2,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1.3\",\"value_type\":\"number\",\"parsed_value\":1.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"5.1\",\"value_type\":\"number\",\"parsed_value\":5.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":3,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"1.7\",\"value_type\":\"number\",\"parsed_value\":1.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.3\",\"value_type\":\"number\",\"parsed_value\":7.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":4,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"2.1\",\"value_type\":\"number\",\"parsed_value\":2.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.0\",\"value_type\":\"number\",\"parsed_value\":8.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":5,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3.0\",\"value_type\":\"number\",\"parsed_value\":3.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.7\",\"value_type\":\"number\",\"parsed_value\":8.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":6,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"3.4\",\"value_type\":\"number\",\"parsed_value\":3.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"6.4\",\"value_type\":\"number\",\"parsed_value\":6.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":7,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"4.3\",\"value_type\":\"number\",\"parsed_value\":4.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.7\",\"value_type\":\"number\",\"parsed_value\":9.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":8,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5.1\",\"value_type\":\"number\",\"parsed_value\":5.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.5\",\"value_type\":\"number\",\"parsed_value\":8.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":9,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"5.7\",\"value_type\":\"number\",\"parsed_value\":5.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.1\",\"value_type\":\"number\",\"parsed_value\":9.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":10,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"6.3\",\"value_type\":\"number\",\"parsed_value\":6.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.0\",\"value_type\":\"number\",\"parsed_value\":7.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":11,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"7.1\",\"value_type\":\"number\",\"parsed_value\":7.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.1\",\"value_type\":\"number\",\"parsed_value\":9.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":12,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"7.6\",\"value_type\":\"number\",\"parsed_value\":7.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.0\",\"value_type\":\"number\",\"parsed_value\":7.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":13,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"8.1\",\"value_type\":\"number\",\"parsed_value\":8.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.2\",\"value_type\":\"number\",\"parsed_value\":8.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":14,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"8.7\",\"value_type\":\"number\",\"parsed_value\":8.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.7\",\"value_type\":\"number\",\"parsed_value\":11.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":15,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"9.3\",\"value_type\":\"number\",\"parsed_value\":9.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.3\",\"value_type\":\"number\",\"parsed_value\":8.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":16,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"10.0\",\"value_type\":\"number\",\"parsed_value\":10.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.8\",\"value_type\":\"number\",\"parsed_value\":9.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":17,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"10.7\",\"value_type\":\"number\",\"parsed_value\":10.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.7\",\"value_type\":\"number\",\"parsed_value\":9.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":18,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"11.1\",\"value_type\":\"number\",\"parsed_value\":11.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.0\",\"value_type\":\"number\",\"parsed_value\":7.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":19,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"11.4\",\"value_type\":\"number\",\"parsed_value\":11.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"13.3\",\"value_type\":\"number\",\"parsed_value\":13.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":20,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"12.1\",\"value_type\":\"number\",\"parsed_value\":12.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.1\",\"value_type\":\"number\",\"parsed_value\":12.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":21,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"12.8\",\"value_type\":\"number\",\"parsed_value\":12.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.5\",\"value_type\":\"number\",\"parsed_value\":8.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":22,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"13.2\",\"value_type\":\"number\",\"parsed_value\":13.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.3\",\"value_type\":\"number\",\"parsed_value\":11.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":23,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"13.2\",\"value_type\":\"number\",\"parsed_value\":13.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.7\",\"value_type\":\"number\",\"parsed_value\":10.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":24,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"13.8\",\"value_type\":\"number\",\"parsed_value\":13.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.0\",\"value_type\":\"number\",\"parsed_value\":10.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":25,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"14.4\",\"value_type\":\"number\",\"parsed_value\":14.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"8.5\",\"value_type\":\"number\",\"parsed_value\":8.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":26,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"15.0\",\"value_type\":\"number\",\"parsed_value\":15.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.9\",\"value_type\":\"number\",\"parsed_value\":10.9,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":27,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"15.0\",\"value_type\":\"number\",\"parsed_value\":15.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.7\",\"value_type\":\"number\",\"parsed_value\":7.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":28,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"15.8\",\"value_type\":\"number\",\"parsed_value\":15.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.3\",\"value_type\":\"number\",\"parsed_value\":12.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":29,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"16.4\",\"value_type\":\"number\",\"parsed_value\":16.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.5\",\"value_type\":\"number\",\"parsed_value\":10.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":30,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"17.2\",\"value_type\":\"number\",\"parsed_value\":17.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.5\",\"value_type\":\"number\",\"parsed_value\":14.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":31,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"17.8\",\"value_type\":\"number\",\"parsed_value\":17.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.7\",\"value_type\":\"number\",\"parsed_value\":11.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":32,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"18.2\",\"value_type\":\"number\",\"parsed_value\":18.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"7.2\",\"value_type\":\"number\",\"parsed_value\":7.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":33,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"18.8\",\"value_type\":\"number\",\"parsed_value\":18.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.6\",\"value_type\":\"number\",\"parsed_value\":12.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":34,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"19.4\",\"value_type\":\"number\",\"parsed_value\":19.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.8\",\"value_type\":\"number\",\"parsed_value\":9.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":35,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"20.1\",\"value_type\":\"number\",\"parsed_value\":20.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"9.1\",\"value_type\":\"number\",\"parsed_value\":9.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":36,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"20.9\",\"value_type\":\"number\",\"parsed_value\":20.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.3\",\"value_type\":\"number\",\"parsed_value\":14.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":37,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"21.5\",\"value_type\":\"number\",\"parsed_value\":21.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.8\",\"value_type\":\"number\",\"parsed_value\":12.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":38,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"22.2\",\"value_type\":\"number\",\"parsed_value\":22.2,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.5\",\"value_type\":\"number\",\"parsed_value\":11.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":39,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"22.9\",\"value_type\":\"number\",\"parsed_value\":22.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"10.5\",\"value_type\":\"number\",\"parsed_value\":10.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":40,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"23.6\",\"value_type\":\"number\",\"parsed_value\":23.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.3\",\"value_type\":\"number\",\"parsed_value\":14.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":41,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"23.6\",\"value_type\":\"number\",\"parsed_value\":23.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.2\",\"value_type\":\"number\",\"parsed_value\":12.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":42,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"25.1\",\"value_type\":\"number\",\"parsed_value\":25.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.2\",\"value_type\":\"number\",\"parsed_value\":16.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":43,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"25.7\",\"value_type\":\"number\",\"parsed_value\":25.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.8\",\"value_type\":\"number\",\"parsed_value\":11.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":44,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"26.5\",\"value_type\":\"number\",\"parsed_value\":26.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.2\",\"value_type\":\"number\",\"parsed_value\":14.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":45,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"27.3\",\"value_type\":\"number\",\"parsed_value\":27.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.7\",\"value_type\":\"number\",\"parsed_value\":16.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":46,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"28.0\",\"value_type\":\"number\",\"parsed_value\":28.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"13.5\",\"value_type\":\"number\",\"parsed_value\":13.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":47,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"28.6\",\"value_type\":\"number\",\"parsed_value\":28.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.2\",\"value_type\":\"number\",\"parsed_value\":16.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":48,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"29.3\",\"value_type\":\"number\",\"parsed_value\":29.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"15.0\",\"value_type\":\"number\",\"parsed_value\":15.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":49,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"30.0\",\"value_type\":\"number\",\"parsed_value\":30.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"12.9\",\"value_type\":\"number\",\"parsed_value\":12.9,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":50,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"30.7\",\"value_type\":\"number\",\"parsed_value\":30.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.4\",\"value_type\":\"number\",\"parsed_value\":16.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":51,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"30.7\",\"value_type\":\"number\",\"parsed_value\":30.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"13.7\",\"value_type\":\"number\",\"parsed_value\":13.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":52,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"32.1\",\"value_type\":\"number\",\"parsed_value\":32.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"11.7\",\"value_type\":\"number\",\"parsed_value\":11.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":53,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"32.7\",\"value_type\":\"number\",\"parsed_value\":32.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.4\",\"value_type\":\"number\",\"parsed_value\":18.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":54,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"33.4\",\"value_type\":\"number\",\"parsed_value\":33.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.0\",\"value_type\":\"number\",\"parsed_value\":14.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":55,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"34.1\",\"value_type\":\"number\",\"parsed_value\":34.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.0\",\"value_type\":\"number\",\"parsed_value\":16.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":56,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"35.0\",\"value_type\":\"number\",\"parsed_value\":35.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.4\",\"value_type\":\"number\",\"parsed_value\":17.4,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":57,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"35.8\",\"value_type\":\"number\",\"parsed_value\":35.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.2\",\"value_type\":\"number\",\"parsed_value\":18.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":58,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"36.6\",\"value_type\":\"number\",\"parsed_value\":36.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"19.6\",\"value_type\":\"number\",\"parsed_value\":19.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":59,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"36.6\",\"value_type\":\"number\",\"parsed_value\":36.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"14.8\",\"value_type\":\"number\",\"parsed_value\":14.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":60,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"37.9\",\"value_type\":\"number\",\"parsed_value\":37.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.5\",\"value_type\":\"number\",\"parsed_value\":18.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":61,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"37.9\",\"value_type\":\"number\",\"parsed_value\":37.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.1\",\"value_type\":\"number\",\"parsed_value\":17.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":62,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"39.3\",\"value_type\":\"number\",\"parsed_value\":39.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"15.8\",\"value_type\":\"number\",\"parsed_value\":15.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":63,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"40.0\",\"value_type\":\"number\",\"parsed_value\":40.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.8\",\"value_type\":\"number\",\"parsed_value\":17.8,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":64,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"40.7\",\"value_type\":\"number\",\"parsed_value\":40.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"20.5\",\"value_type\":\"number\",\"parsed_value\":20.5,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":65,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"41.4\",\"value_type\":\"number\",\"parsed_value\":41.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.6\",\"value_type\":\"number\",\"parsed_value\":18.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":66,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"42.1\",\"value_type\":\"number\",\"parsed_value\":42.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.1\",\"value_type\":\"number\",\"parsed_value\":17.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":67,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"42.9\",\"value_type\":\"number\",\"parsed_value\":42.9,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"20.0\",\"value_type\":\"number\",\"parsed_value\":20.0,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":68,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"43.6\",\"value_type\":\"number\",\"parsed_value\":43.6,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"19.3\",\"value_type\":\"number\",\"parsed_value\":19.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":69,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"44.3\",\"value_type\":\"number\",\"parsed_value\":44.3,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.7\",\"value_type\":\"number\",\"parsed_value\":16.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":70,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"45.0\",\"value_type\":\"number\",\"parsed_value\":45.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.7\",\"value_type\":\"number\",\"parsed_value\":17.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":71,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"45.7\",\"value_type\":\"number\",\"parsed_value\":45.7,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.1\",\"value_type\":\"number\",\"parsed_value\":16.1,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":72,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"46.4\",\"value_type\":\"number\",\"parsed_value\":46.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.6\",\"value_type\":\"number\",\"parsed_value\":16.6,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":73,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"47.1\",\"value_type\":\"number\",\"parsed_value\":47.1,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"17.3\",\"value_type\":\"number\",\"parsed_value\":17.3,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":74,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"47.8\",\"value_type\":\"number\",\"parsed_value\":47.8,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"16.7\",\"value_type\":\"number\",\"parsed_value\":16.7,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":75,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"48.5\",\"value_type\":\"number\",\"parsed_value\":48.5,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"18.2\",\"value_type\":\"number\",\"parsed_value\":18.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":76,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"49.4\",\"value_type\":\"number\",\"parsed_value\":49.4,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"21.2\",\"value_type\":\"number\",\"parsed_value\":21.2,\"parsed_datetime\":null,\"unit\":null}},{\"point_index\":77,\"segment_index\":0,\"chart_x\":{\"value_raw\":\"50.0\",\"value_type\":\"number\",\"parsed_value\":50.0,\"parsed_datetime\":null,\"unit\":null},\"chart_y\":{\"value_raw\":\"19.0\",\"value_type\":\"number\",\"parsed_value\":19.0,\"parsed_datetime\":null,\"unit\":null}}],\"series_truncated\":false,\"estimated_total_points\":77,\"confidence\":0.97,\"warnings\":[],\"unsupported_flags\":[]}}",
+  "json": {
+    "response_kind": "revise_previous",
+    "revision_reason": "The overlay missed one visible blue marker near x=13.2, y=11.3. A complete replacement proposal with 77 points is provided.",
+    "proposal": {
+      "points": [
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "0.8",
+            "value_type": "number",
+            "parsed_value": 0.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.2",
+            "value_type": "number",
+            "parsed_value": 10.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "1.3",
+            "value_type": "number",
+            "parsed_value": 1.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "5.1",
+            "value_type": "number",
+            "parsed_value": 5.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "1.7",
+            "value_type": "number",
+            "parsed_value": 1.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.3",
+            "value_type": "number",
+            "parsed_value": 7.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "2.1",
+            "value_type": "number",
+            "parsed_value": 2.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.0",
+            "value_type": "number",
+            "parsed_value": 8.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "3.0",
+            "value_type": "number",
+            "parsed_value": 3.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.7",
+            "value_type": "number",
+            "parsed_value": 8.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "3.4",
+            "value_type": "number",
+            "parsed_value": 3.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "6.4",
+            "value_type": "number",
+            "parsed_value": 6.4,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "4.3",
+            "value_type": "number",
+            "parsed_value": 4.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.7",
+            "value_type": "number",
+            "parsed_value": 9.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "5.1",
+            "value_type": "number",
+            "parsed_value": 5.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.5",
+            "value_type": "number",
+            "parsed_value": 8.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "5.7",
+            "value_type": "number",
+            "parsed_value": 5.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.1",
+            "value_type": "number",
+            "parsed_value": 9.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "6.3",
+            "value_type": "number",
+            "parsed_value": 6.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.0",
+            "value_type": "number",
+            "parsed_value": 7.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "7.1",
+            "value_type": "number",
+            "parsed_value": 7.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.1",
+            "value_type": "number",
+            "parsed_value": 9.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "7.6",
+            "value_type": "number",
+            "parsed_value": 7.6,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.0",
+            "value_type": "number",
+            "parsed_value": 7.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 13,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "8.1",
+            "value_type": "number",
+            "parsed_value": 8.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.2",
+            "value_type": "number",
+            "parsed_value": 8.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 14,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "8.7",
+            "value_type": "number",
+            "parsed_value": 8.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.7",
+            "value_type": "number",
+            "parsed_value": 11.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 15,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "9.3",
+            "value_type": "number",
+            "parsed_value": 9.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.3",
+            "value_type": "number",
+            "parsed_value": 8.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 16,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "10.0",
+            "value_type": "number",
+            "parsed_value": 10.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.8",
+            "value_type": "number",
+            "parsed_value": 9.8,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 17,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "10.7",
+            "value_type": "number",
+            "parsed_value": 10.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.7",
+            "value_type": "number",
+            "parsed_value": 9.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 18,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "11.1",
+            "value_type": "number",
+            "parsed_value": 11.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.0",
+            "value_type": "number",
+            "parsed_value": 7.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 19,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "11.4",
+            "value_type": "number",
+            "parsed_value": 11.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.3",
+            "value_type": "number",
+            "parsed_value": 13.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 20,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "12.1",
+            "value_type": "number",
+            "parsed_value": 12.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.1",
+            "value_type": "number",
+            "parsed_value": 12.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 21,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "12.8",
+            "value_type": "number",
+            "parsed_value": 12.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.5",
+            "value_type": "number",
+            "parsed_value": 8.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 22,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "13.2",
+            "value_type": "number",
+            "parsed_value": 13.2,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.3",
+            "value_type": "number",
+            "parsed_value": 11.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 23,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "13.2",
+            "value_type": "number",
+            "parsed_value": 13.2,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.7",
+            "value_type": "number",
+            "parsed_value": 10.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 24,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "13.8",
+            "value_type": "number",
+            "parsed_value": 13.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.0",
+            "value_type": "number",
+            "parsed_value": 10.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 25,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "14.4",
+            "value_type": "number",
+            "parsed_value": 14.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.5",
+            "value_type": "number",
+            "parsed_value": 8.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 26,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "15.0",
+            "value_type": "number",
+            "parsed_value": 15.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.9",
+            "value_type": "number",
+            "parsed_value": 10.9,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 27,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "15.0",
+            "value_type": "number",
+            "parsed_value": 15.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.7",
+            "value_type": "number",
+            "parsed_value": 7.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 28,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "15.8",
+            "value_type": "number",
+            "parsed_value": 15.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.3",
+            "value_type": "number",
+            "parsed_value": 12.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 29,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "16.4",
+            "value_type": "number",
+            "parsed_value": 16.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.5",
+            "value_type": "number",
+            "parsed_value": 10.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 30,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "17.2",
+            "value_type": "number",
+            "parsed_value": 17.2,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.5",
+            "value_type": "number",
+            "parsed_value": 14.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 31,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "17.8",
+            "value_type": "number",
+            "parsed_value": 17.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.7",
+            "value_type": "number",
+            "parsed_value": 11.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 32,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "18.2",
+            "value_type": "number",
+            "parsed_value": 18.2,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.2",
+            "value_type": "number",
+            "parsed_value": 7.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 33,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "18.8",
+            "value_type": "number",
+            "parsed_value": 18.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.6",
+            "value_type": "number",
+            "parsed_value": 12.6,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 34,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "19.4",
+            "value_type": "number",
+            "parsed_value": 19.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.8",
+            "value_type": "number",
+            "parsed_value": 9.8,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 35,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "20.1",
+            "value_type": "number",
+            "parsed_value": 20.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.1",
+            "value_type": "number",
+            "parsed_value": 9.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 36,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "20.9",
+            "value_type": "number",
+            "parsed_value": 20.9,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.3",
+            "value_type": "number",
+            "parsed_value": 14.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 37,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "21.5",
+            "value_type": "number",
+            "parsed_value": 21.5,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.8",
+            "value_type": "number",
+            "parsed_value": 12.8,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 38,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "22.2",
+            "value_type": "number",
+            "parsed_value": 22.2,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.5",
+            "value_type": "number",
+            "parsed_value": 11.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 39,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "22.9",
+            "value_type": "number",
+            "parsed_value": 22.9,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.5",
+            "value_type": "number",
+            "parsed_value": 10.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 40,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "23.6",
+            "value_type": "number",
+            "parsed_value": 23.6,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.3",
+            "value_type": "number",
+            "parsed_value": 14.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 41,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "23.6",
+            "value_type": "number",
+            "parsed_value": 23.6,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.2",
+            "value_type": "number",
+            "parsed_value": 12.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 42,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "25.1",
+            "value_type": "number",
+            "parsed_value": 25.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.2",
+            "value_type": "number",
+            "parsed_value": 16.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 43,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "25.7",
+            "value_type": "number",
+            "parsed_value": 25.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.8",
+            "value_type": "number",
+            "parsed_value": 11.8,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 44,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "26.5",
+            "value_type": "number",
+            "parsed_value": 26.5,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.2",
+            "value_type": "number",
+            "parsed_value": 14.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 45,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "27.3",
+            "value_type": "number",
+            "parsed_value": 27.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.7",
+            "value_type": "number",
+            "parsed_value": 16.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 46,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "28.0",
+            "value_type": "number",
+            "parsed_value": 28.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.5",
+            "value_type": "number",
+            "parsed_value": 13.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 47,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "28.6",
+            "value_type": "number",
+            "parsed_value": 28.6,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.2",
+            "value_type": "number",
+            "parsed_value": 16.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 48,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "29.3",
+            "value_type": "number",
+            "parsed_value": 29.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "15.0",
+            "value_type": "number",
+            "parsed_value": 15.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 49,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "30.0",
+            "value_type": "number",
+            "parsed_value": 30.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.9",
+            "value_type": "number",
+            "parsed_value": 12.9,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 50,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "30.7",
+            "value_type": "number",
+            "parsed_value": 30.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.4",
+            "value_type": "number",
+            "parsed_value": 16.4,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 51,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "30.7",
+            "value_type": "number",
+            "parsed_value": 30.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.7",
+            "value_type": "number",
+            "parsed_value": 13.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 52,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "32.1",
+            "value_type": "number",
+            "parsed_value": 32.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.7",
+            "value_type": "number",
+            "parsed_value": 11.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 53,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "32.7",
+            "value_type": "number",
+            "parsed_value": 32.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.4",
+            "value_type": "number",
+            "parsed_value": 18.4,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 54,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "33.4",
+            "value_type": "number",
+            "parsed_value": 33.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.0",
+            "value_type": "number",
+            "parsed_value": 14.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 55,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "34.1",
+            "value_type": "number",
+            "parsed_value": 34.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.0",
+            "value_type": "number",
+            "parsed_value": 16.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 56,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "35.0",
+            "value_type": "number",
+            "parsed_value": 35.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.4",
+            "value_type": "number",
+            "parsed_value": 17.4,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 57,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "35.8",
+            "value_type": "number",
+            "parsed_value": 35.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.2",
+            "value_type": "number",
+            "parsed_value": 18.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 58,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "36.6",
+            "value_type": "number",
+            "parsed_value": 36.6,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "19.6",
+            "value_type": "number",
+            "parsed_value": 19.6,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 59,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "36.6",
+            "value_type": "number",
+            "parsed_value": 36.6,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.8",
+            "value_type": "number",
+            "parsed_value": 14.8,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 60,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "37.9",
+            "value_type": "number",
+            "parsed_value": 37.9,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.5",
+            "value_type": "number",
+            "parsed_value": 18.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 61,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "37.9",
+            "value_type": "number",
+            "parsed_value": 37.9,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.1",
+            "value_type": "number",
+            "parsed_value": 17.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 62,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "39.3",
+            "value_type": "number",
+            "parsed_value": 39.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "15.8",
+            "value_type": "number",
+            "parsed_value": 15.8,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 63,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "40.0",
+            "value_type": "number",
+            "parsed_value": 40.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.8",
+            "value_type": "number",
+            "parsed_value": 17.8,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 64,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "40.7",
+            "value_type": "number",
+            "parsed_value": 40.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "20.5",
+            "value_type": "number",
+            "parsed_value": 20.5,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 65,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "41.4",
+            "value_type": "number",
+            "parsed_value": 41.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.6",
+            "value_type": "number",
+            "parsed_value": 18.6,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 66,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "42.1",
+            "value_type": "number",
+            "parsed_value": 42.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.1",
+            "value_type": "number",
+            "parsed_value": 17.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 67,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "42.9",
+            "value_type": "number",
+            "parsed_value": 42.9,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "20.0",
+            "value_type": "number",
+            "parsed_value": 20.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 68,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "43.6",
+            "value_type": "number",
+            "parsed_value": 43.6,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "19.3",
+            "value_type": "number",
+            "parsed_value": 19.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 69,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "44.3",
+            "value_type": "number",
+            "parsed_value": 44.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.7",
+            "value_type": "number",
+            "parsed_value": 16.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 70,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "45.0",
+            "value_type": "number",
+            "parsed_value": 45.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.7",
+            "value_type": "number",
+            "parsed_value": 17.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 71,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "45.7",
+            "value_type": "number",
+            "parsed_value": 45.7,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.1",
+            "value_type": "number",
+            "parsed_value": 16.1,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 72,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "46.4",
+            "value_type": "number",
+            "parsed_value": 46.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.6",
+            "value_type": "number",
+            "parsed_value": 16.6,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 73,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "47.1",
+            "value_type": "number",
+            "parsed_value": 47.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.3",
+            "value_type": "number",
+            "parsed_value": 17.3,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 74,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "47.8",
+            "value_type": "number",
+            "parsed_value": 47.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.7",
+            "value_type": "number",
+            "parsed_value": 16.7,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 75,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "48.5",
+            "value_type": "number",
+            "parsed_value": 48.5,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.2",
+            "value_type": "number",
+            "parsed_value": 18.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 76,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "49.4",
+            "value_type": "number",
+            "parsed_value": 49.4,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "21.2",
+            "value_type": "number",
+            "parsed_value": 21.2,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 77,
+          "segment_index": 0,
+          "chart_x": {
+            "value_raw": "50.0",
+            "value_type": "number",
+            "parsed_value": 50.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "19.0",
+            "value_type": "number",
+            "parsed_value": 19.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        }
+      ],
+      "series_truncated": false,
+      "estimated_total_points": 77,
+      "confidence": 0.97,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  }
+}

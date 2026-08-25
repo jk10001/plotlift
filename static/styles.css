@@ -804,17 +804,18 @@ h2 {
 
 #overlaySvg .series-point {
   pointer-events: all;
-  fill: none;
   stroke-width: 2;
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
 }
 
-#overlaySvg .series-point[data-marker-kind="circle"],
-#overlaySvg .series-point[data-marker-kind="square"],
-#overlaySvg .series-point[data-marker-kind="diamond"],
-#overlaySvg .series-point[data-marker-kind="triangle"] {
-  fill: #fff;
+#overlaySvg .series-point-halo {
+  pointer-events: none;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
 }
 
 .point-tooltip {

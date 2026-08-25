@@ -1,0 +1,40 @@
+{
+  "run_id": "aee63b3180",
+  "stage": "series",
+  "series_id": "43f6fa80",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 2 of 4\nName: Series 1 moving average (5-point)\nSeries type: line\nColour: #1554D1\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: x_main\nY axis ID: y_main\nAxis selection reason: The blue moving-average line uses the single available X value and Y value axes.\nVisual description: Solid blue connected line running through the Series 1 points and trending upward across the panel.\nIdentification confidence: 0.99",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/43f6fa80/attempt_01/overlay.png",
+      "request_path": "series/43f6fa80/attempt_01/request.json",
+      "response_path": "series/43f6fa80/attempt_01/response.json",
+      "parsed_path": "series/43f6fa80/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "revise_previous",
+      "revision_reason": "The previous overlay was generally aligned but several longer interpolated segments cut across visible bends in the moving-average line. Added control points at the omitted integer x positions while retaining the prior coordinates where they were already aligned.",
+      "target_series": "Series 2 of 4\nName: Series 1 moving average (5-point)\nSeries type: line\nColour: #1554D1\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: x_main\nY axis ID: y_main\nAxis selection reason: The blue moving-average line uses the single available X value and Y value axes.\nVisual description: Solid blue connected line running through the Series 1 points and trending upward across the panel.\nIdentification confidence: 0.99",
+      "source_image_path": "series/43f6fa80/attempt_01/overlay.png",
+      "overlay_path": "series/43f6fa80/attempt_02/overlay.png",
+      "request_path": "series/43f6fa80/attempt_02/request.json",
+      "response_path": "series/43f6fa80/attempt_02/response.json",
+      "parsed_path": "series/43f6fa80/attempt_02/parsed.json"
+    },
+    {
+      "attempt": 3,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 2 of 4\nName: Series 1 moving average (5-point)\nSeries type: line\nColour: #1554D1\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: x_main\nY axis ID: y_main\nAxis selection reason: The blue moving-average line uses the single available X value and Y value axes.\nVisual description: Solid blue connected line running through the Series 1 points and trending upward across the panel.\nIdentification confidence: 0.99",
+      "source_image_path": "series/43f6fa80/attempt_02/overlay.png",
+      "overlay_path": "series/43f6fa80/attempt_03/overlay.png",
+      "request_path": "series/43f6fa80/attempt_03/request.json",
+      "response_path": "series/43f6fa80/attempt_03/response.json",
+      "parsed_path": "series/43f6fa80/attempt_03/parsed.json"
+    }
+  ]
+}

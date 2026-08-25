@@ -1,0 +1,28 @@
+{
+  "axes": [
+    {
+      "axis_id": "main_x",
+      "direction": "x",
+      "name": "X value",
+      "unit": null,
+      "quantity": "X value",
+      "location_description": "Bottom horizontal axis of the single chart panel, labeled “X value” with ticks approximately 0–50.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    },
+    {
+      "axis_id": "main_y",
+      "direction": "y",
+      "name": "Y value",
+      "unit": null,
+      "quantity": "Y value",
+      "location_description": "Left vertical axis of the single chart panel, labeled “Y value” with ticks approximately 4–22.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

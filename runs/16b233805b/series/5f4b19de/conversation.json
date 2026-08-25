@@ -1,0 +1,40 @@
+{
+  "run_id": "16b233805b",
+  "stage": "series",
+  "series_id": "5f4b19de",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 2\nName: Data points\nSeries type: scatter\nColour: blue\nLine style: unknown\nMarker style: filled circle\nEstimated total points: 77\nX axis ID: main_x\nY axis ID: main_y\nAxis selection reason: The markers are plotted against the chart’s sole bottom X value axis and left Y value axis.\nVisual description: Single-panel scatter series of unconnected blue filled circular markers distributed across X values roughly 1–50 and Y values roughly 5–21.5.\nIdentification confidence: 0.99",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/5f4b19de/attempt_01/overlay.png",
+      "request_path": "series/5f4b19de/attempt_01/request.json",
+      "response_path": "series/5f4b19de/attempt_01/response.json",
+      "parsed_path": "series/5f4b19de/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "revise_previous",
+      "revision_reason": "The overlay missed one visible blue marker near x=13.2, y=11.3. A complete replacement proposal with 77 points is provided.",
+      "target_series": "Series 1 of 2\nName: Data points\nSeries type: scatter\nColour: blue\nLine style: unknown\nMarker style: filled circle\nEstimated total points: 77\nX axis ID: main_x\nY axis ID: main_y\nAxis selection reason: The markers are plotted against the chart’s sole bottom X value axis and left Y value axis.\nVisual description: Single-panel scatter series of unconnected blue filled circular markers distributed across X values roughly 1–50 and Y values roughly 5–21.5.\nIdentification confidence: 0.99",
+      "source_image_path": "series/5f4b19de/attempt_01/overlay.png",
+      "overlay_path": "series/5f4b19de/attempt_02/overlay.png",
+      "request_path": "series/5f4b19de/attempt_02/request.json",
+      "response_path": "series/5f4b19de/attempt_02/response.json",
+      "parsed_path": "series/5f4b19de/attempt_02/parsed.json"
+    },
+    {
+      "attempt": 3,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 2\nName: Data points\nSeries type: scatter\nColour: blue\nLine style: unknown\nMarker style: filled circle\nEstimated total points: 77\nX axis ID: main_x\nY axis ID: main_y\nAxis selection reason: The markers are plotted against the chart’s sole bottom X value axis and left Y value axis.\nVisual description: Single-panel scatter series of unconnected blue filled circular markers distributed across X values roughly 1–50 and Y values roughly 5–21.5.\nIdentification confidence: 0.99",
+      "source_image_path": "series/5f4b19de/attempt_02/overlay.png",
+      "overlay_path": "series/5f4b19de/attempt_03/overlay.png",
+      "request_path": "series/5f4b19de/attempt_03/request.json",
+      "response_path": "series/5f4b19de/attempt_03/response.json",
+      "parsed_path": "series/5f4b19de/attempt_03/parsed.json"
+    }
+  ]
+}

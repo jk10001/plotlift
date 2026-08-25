@@ -915,7 +915,7 @@ function updateLiveSeriesOverlay() {
       setSvgAttrs(els.overlaySvg.querySelector(`[data-series-path="${cssAttr(`${item.id}:${segmentIndex}`)}"]`), { d });
       for (const point of points) {
         if (!point.crop_image_px) continue;
-        const selector = `[data-drag="series"][data-series-id="${cssAttr(item.id)}"][data-segment-index="${point.segment_index}"][data-point-index="${point.point_index}"]`;
+        const selector = `[data-series-marker="true"][data-series-id="${cssAttr(item.id)}"][data-segment-index="${point.segment_index}"][data-point-index="${point.point_index}"]`;
         for (const marker of els.overlaySvg.querySelectorAll(selector)) {
           updateSeriesPointMarkerElement(marker, point.crop_image_px);
         }
@@ -1088,6 +1088,21 @@ function seriesPointMarkerAttrs(point, arm) {
 }
 
 function renderSeriesPointMarker(point, kind, commonAttrs) {
+  const haloAttrs = {
+    ...commonAttrs,
+    class: "series-point-halo",
+    stroke: "#fff",
+    fill: "none",
+  };
+  delete haloAttrs["data-drag"];
+  delete haloAttrs["data-tooltip-series-point"];
+  delete haloAttrs["data-tooltip-x"];
+  delete haloAttrs["data-tooltip-y"];
+  renderSeriesPointMarkerShape(point, kind, haloAttrs);
+  renderSeriesPointMarkerShape(point, kind, commonAttrs);
+}
+
+function renderSeriesPointMarkerShape(point, kind, commonAttrs) {
   if (kind === "circle") {
     svgEl("circle", {
       ...commonAttrs,
@@ -1309,6 +1324,7 @@ function renderSeriesOverlay() {
           "data-segment-index": point.segment_index,
           "data-point-index": point.point_index,
           "data-marker-kind": markerKind,
+          "data-series-marker": "true",
           "data-tooltip-series-point": "true",
           "data-tooltip-x": formatTooltipChartValue(point.chart_x),
           "data-tooltip-y": formatTooltipChartValue(point.chart_y),
@@ -1528,7 +1544,6 @@ function renderSeriesEditor() {
             <option value="scatter" ${item.series_type === "scatter" ? "selected" : ""}>Scatter</option>
           </select>
         </label>
-        <label>Marker style <input data-series-marker-style="${item.id}" value="${escapeHtml(item.marker_style || "")}" placeholder="e.g. filled circle" ${locked ? "disabled" : ""}></label>
       </div>
       ${item.series_truncated ? `<div class="series-warning">Partial scatter series: first ${(item.points || []).length} of approximately ${escapeHtml(item.estimated_total_points ?? "more")} markers.</div>` : ""}
       <small>${escapeHtml(item.visual_description || "")}</small>
@@ -1594,16 +1609,6 @@ function wireSeriesEditor() {
         series.series_truncated = false;
         series.estimated_total_points = null;
       }
-      render({ forceEditors: true });
-      saveSeries("image", { forceEditors: true });
-    });
-  });
-  els.seriesEditor.querySelectorAll("[data-series-marker-style]").forEach((input) => {
-    input.addEventListener("change", () => {
-      if (llmJobActive()) return;
-      const series = findSeries(input.dataset.seriesMarkerStyle);
-      if (!series) return;
-      series.marker_style = input.value || null;
       render({ forceEditors: true });
       saveSeries("image", { forceEditors: true });
     });

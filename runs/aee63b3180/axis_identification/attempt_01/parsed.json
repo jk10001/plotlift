@@ -1,0 +1,28 @@
+{
+  "axes": [
+    {
+      "axis_id": "x_main",
+      "direction": "x",
+      "name": "X value",
+      "unit": null,
+      "quantity": "X value",
+      "location_description": "Horizontal axis along the bottom of the single chart panel, labeled 'X value' and spanning approximately 0 to 50.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    },
+    {
+      "axis_id": "y_main",
+      "direction": "y",
+      "name": "Y value",
+      "unit": null,
+      "quantity": "Y value",
+      "location_description": "Vertical axis along the left side of the single chart panel, labeled 'Y value' and spanning approximately 0 to 24.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

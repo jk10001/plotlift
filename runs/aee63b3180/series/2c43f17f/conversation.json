@@ -1,0 +1,29 @@
+{
+  "run_id": "aee63b3180",
+  "stage": "series",
+  "series_id": "2c43f17f",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 4 of 4\nName: Series 2 moving average (5-point)\nSeries type: line\nColour: #087B1B\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: x_main\nY axis ID: y_main\nAxis selection reason: The green moving-average line uses the single available X value and Y value axes.\nVisual description: Solid green connected line trending downward across the panel from approximately Y=17–18 at low X values to approximately Y=3 at high X values.\nIdentification confidence: 0.99",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/2c43f17f/attempt_01/overlay.png",
+      "request_path": "series/2c43f17f/attempt_01/request.json",
+      "response_path": "series/2c43f17f/attempt_01/response.json",
+      "parsed_path": "series/2c43f17f/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 4 of 4\nName: Series 2 moving average (5-point)\nSeries type: line\nColour: #087B1B\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: x_main\nY axis ID: y_main\nAxis selection reason: The green moving-average line uses the single available X value and Y value axes.\nVisual description: Solid green connected line trending downward across the panel from approximately Y=17–18 at low X values to approximately Y=3 at high X values.\nIdentification confidence: 0.99",
+      "source_image_path": "series/2c43f17f/attempt_01/overlay.png",
+      "overlay_path": "series/2c43f17f/attempt_02/overlay.png",
+      "request_path": "series/2c43f17f/attempt_02/request.json",
+      "response_path": "series/2c43f17f/attempt_02/response.json",
+      "parsed_path": "series/2c43f17f/attempt_02/parsed.json"
+    }
+  ]
+}

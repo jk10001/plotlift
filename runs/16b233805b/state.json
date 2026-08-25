@@ -1,0 +1,3678 @@
+{
+  "run_id": "16b233805b",
+  "created_at": "2026-08-25T03:13:00.176857+00:00",
+  "updated_at": "2026-08-25T03:18:47.778824+00:00",
+  "stage": "complete",
+  "active_job": null,
+  "settings": {
+    "model_id": "gpt-5.6-luna",
+    "image_detail": "high",
+    "reasoning_effort": "medium",
+    "mock_mode": false
+  },
+  "prompt_metadata": {
+    "prompt_pack": "prompts.yaml",
+    "prompt_version": "2026-08-24-mixed-series-v1",
+    "prompt_hash": "3203f9ebd70f0adb"
+  },
+  "upload_filename": "scatter_plot_3.png",
+  "original_path": "uploads/original.png",
+  "pages": [
+    {
+      "path": "pages/page_001.png",
+      "width": 1448,
+      "height": 1086,
+      "label": "Image"
+    }
+  ],
+  "selected_page_index": 0,
+  "canonical_image": {
+    "path": "pages/page_001.png",
+    "width": 1448,
+    "height": 1086,
+    "label": "Image"
+  },
+  "crop": {
+    "bbox_full_norm": {
+      "left": 0,
+      "top": 64,
+      "right": 999,
+      "bottom": 999
+    },
+    "bbox_full_px": {
+      "left": 0.0,
+      "top": 69.50950950950951,
+      "right": 1447.0,
+      "bottom": 1085.0
+    },
+    "image": {
+      "path": "crop/approved_crop.png",
+      "width": 1447,
+      "height": 1015,
+      "label": null
+    },
+    "approved": true,
+    "warnings": []
+  },
+  "calibration": {
+    "identified_axes": [
+      {
+        "axis_id": "main_x",
+        "direction": "x",
+        "name": "X value",
+        "unit": null,
+        "quantity": "X value",
+        "location_description": "Bottom horizontal axis of the single chart panel, labeled “X value” with ticks approximately 0–50.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "main_y",
+        "direction": "y",
+        "name": "Y value",
+        "unit": null,
+        "quantity": "Y value",
+        "location_description": "Left vertical axis of the single chart panel, labeled “Y value” with ticks approximately 4–22.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "calibrated_axes": [
+      {
+        "axis_id": "main_x",
+        "direction": "x",
+        "name": "X value",
+        "unit": null,
+        "quantity": "X value",
+        "location_description": "Bottom horizontal axis of the single chart panel, labeled “X value” with ticks approximately 0–50.",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 76,
+              "y": 905
+            },
+            "crop_image_px": {
+              "x": 110.00600600600602,
+              "y": 918.5885885885886
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 972,
+              "y": 905
+            },
+            "crop_image_px": {
+              "x": 1406.918918918919,
+              "y": 918.5885885885886
+            },
+            "chart_value": {
+              "value_raw": "50",
+              "value_type": "number",
+              "parsed_value": 50.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": []
+      },
+      {
+        "axis_id": "main_y",
+        "direction": "y",
+        "name": "Y value",
+        "unit": null,
+        "quantity": "Y value",
+        "location_description": "Left vertical axis of the single chart panel, labeled “Y value” with ticks approximately 4–22.",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 67,
+              "y": 107
+            },
+            "crop_image_px": {
+              "x": 96.97897897897899,
+              "y": 108.6066066066066
+            },
+            "chart_value": {
+              "value_raw": "20",
+              "value_type": "number",
+              "parsed_value": 20.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 67,
+              "y": 605
+            },
+            "crop_image_px": {
+              "x": 96.97897897897899,
+              "y": 614.0840840840841
+            },
+            "chart_value": {
+              "value_raw": "10",
+              "value_type": "number",
+              "parsed_value": 10.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": []
+      }
+    ],
+    "x_points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 76,
+          "y": 905
+        },
+        "crop_image_px": {
+          "x": 110.00600600600602,
+          "y": 918.5885885885886
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 972,
+          "y": 905
+        },
+        "crop_image_px": {
+          "x": 1406.918918918919,
+          "y": 918.5885885885886
+        },
+        "chart_value": {
+          "value_raw": "50",
+          "value_type": "number",
+          "parsed_value": 50.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      }
+    ],
+    "y_points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 67,
+          "y": 107
+        },
+        "crop_image_px": {
+          "x": 96.97897897897899,
+          "y": 108.6066066066066
+        },
+        "chart_value": {
+          "value_raw": "20",
+          "value_type": "number",
+          "parsed_value": 20.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 67,
+          "y": 605
+        },
+        "crop_image_px": {
+          "x": 96.97897897897899,
+          "y": 614.0840840840841
+        },
+        "chart_value": {
+          "value_raw": "10",
+          "value_type": "number",
+          "parsed_value": 10.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      }
+    ],
+    "approved_x": true,
+    "approved_y": true,
+    "warnings": []
+  },
+  "pending_series": [],
+  "series": [
+    {
+      "id": "5f4b19de",
+      "name": "Data points",
+      "series_type": "scatter",
+      "llm_series_name": "Data points",
+      "visual_description": "Single-panel scatter series of unconnected blue filled circular markers distributed across X values roughly 1–50 and Y values roughly 5–21.5.",
+      "line_color": "#2563eb",
+      "line_style": null,
+      "marker_style": "filled circle",
+      "series_truncated": false,
+      "estimated_total_points": 77,
+      "x_axis_id": "main_x",
+      "y_axis_id": "main_y",
+      "axis_selection_reason": "The markers are plotted against the chart’s sole bottom X value axis and left Y value axis.",
+      "confidence": 0.97,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 90,
+            "y": 595
+          },
+          "crop_image_px": {
+            "x": 130.27027027027026,
+            "y": 603.933933933934
+          },
+          "chart_x": {
+            "value_raw": "0.78125",
+            "value_type": "number",
+            "parsed_value": 0.781249999999999,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.2008",
+            "value_type": "number",
+            "parsed_value": 10.200803212851405,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 99,
+            "y": 849
+          },
+          "crop_image_px": {
+            "x": 143.2972972972973,
+            "y": 861.7477477477478
+          },
+          "chart_x": {
+            "value_raw": "1.28348",
+            "value_type": "number",
+            "parsed_value": 1.283482142857142,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "5.1004",
+            "value_type": "number",
+            "parsed_value": 5.100401606425704,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 106,
+            "y": 739
+          },
+          "crop_image_px": {
+            "x": 153.42942942942943,
+            "y": 750.0960960960961
+          },
+          "chart_x": {
+            "value_raw": "1.67411",
+            "value_type": "number",
+            "parsed_value": 1.6741071428571423,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.30924",
+            "value_type": "number",
+            "parsed_value": 7.309236947791167,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 114,
+            "y": 705
+          },
+          "crop_image_px": {
+            "x": 165.009009009009,
+            "y": 715.5855855855856
+          },
+          "chart_x": {
+            "value_raw": "2.12054",
+            "value_type": "number",
+            "parsed_value": 2.120535714285713,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.99197",
+            "value_type": "number",
+            "parsed_value": 7.9919678714859455,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 130,
+            "y": 670
+          },
+          "crop_image_px": {
+            "x": 188.1681681681682,
+            "y": 680.0600600600601
+          },
+          "chart_x": {
+            "value_raw": "3.01339",
+            "value_type": "number",
+            "parsed_value": 3.013392857142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.69478",
+            "value_type": "number",
+            "parsed_value": 8.694779116465865,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 137,
+            "y": 784
+          },
+          "crop_image_px": {
+            "x": 198.30030030030028,
+            "y": 795.7717717717717
+          },
+          "chart_x": {
+            "value_raw": "3.40402",
+            "value_type": "number",
+            "parsed_value": 3.4040178571428554,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "6.40562",
+            "value_type": "number",
+            "parsed_value": 6.405622489959843,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 153,
+            "y": 620
+          },
+          "crop_image_px": {
+            "x": 221.45945945945945,
+            "y": 629.3093093093094
+          },
+          "chart_x": {
+            "value_raw": "4.29687",
+            "value_type": "number",
+            "parsed_value": 4.296874999999998,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.6988",
+            "value_type": "number",
+            "parsed_value": 9.698795180722893,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 167,
+            "y": 680
+          },
+          "crop_image_px": {
+            "x": 241.72372372372374,
+            "y": 690.2102102102102
+          },
+          "chart_x": {
+            "value_raw": "5.07812",
+            "value_type": "number",
+            "parsed_value": 5.078125,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.49398",
+            "value_type": "number",
+            "parsed_value": 8.493975903614459,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 178,
+            "y": 650
+          },
+          "crop_image_px": {
+            "x": 257.6456456456457,
+            "y": 659.7597597597597
+          },
+          "chart_x": {
+            "value_raw": "5.69196",
+            "value_type": "number",
+            "parsed_value": 5.691964285714286,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.09639",
+            "value_type": "number",
+            "parsed_value": 9.096385542168676,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 189,
+            "y": 754
+          },
+          "crop_image_px": {
+            "x": 273.5675675675676,
+            "y": 765.3213213213213
+          },
+          "chart_x": {
+            "value_raw": "6.3058",
+            "value_type": "number",
+            "parsed_value": 6.305803571428571,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.00803",
+            "value_type": "number",
+            "parsed_value": 7.00803212851406,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 203,
+            "y": 650
+          },
+          "crop_image_px": {
+            "x": 293.83183183183183,
+            "y": 659.7597597597597
+          },
+          "chart_x": {
+            "value_raw": "7.08705",
+            "value_type": "number",
+            "parsed_value": 7.087053571428569,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.09639",
+            "value_type": "number",
+            "parsed_value": 9.096385542168676,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 212,
+            "y": 754
+          },
+          "crop_image_px": {
+            "x": 306.85885885885887,
+            "y": 765.3213213213213
+          },
+          "chart_x": {
+            "value_raw": "7.58929",
+            "value_type": "number",
+            "parsed_value": 7.589285714285713,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.00803",
+            "value_type": "number",
+            "parsed_value": 7.00803212851406,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 221,
+            "y": 695
+          },
+          "crop_image_px": {
+            "x": 319.8858858858859,
+            "y": 705.4354354354355
+          },
+          "chart_x": {
+            "value_raw": "8.09152",
+            "value_type": "number",
+            "parsed_value": 8.091517857142856,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.19277",
+            "value_type": "number",
+            "parsed_value": 8.192771084337352,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 13,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 232,
+            "y": 520
+          },
+          "crop_image_px": {
+            "x": 335.8078078078078,
+            "y": 527.8078078078079
+          },
+          "chart_x": {
+            "value_raw": "8.70536",
+            "value_type": "number",
+            "parsed_value": 8.70535714285714,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.7068",
+            "value_type": "number",
+            "parsed_value": 11.706827309236946,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 14,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 243,
+            "y": 690
+          },
+          "crop_image_px": {
+            "x": 351.72972972972974,
+            "y": 700.3603603603603
+          },
+          "chart_x": {
+            "value_raw": "9.3192",
+            "value_type": "number",
+            "parsed_value": 9.319196428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.29317",
+            "value_type": "number",
+            "parsed_value": 8.293172690763054,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 15,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 255,
+            "y": 615
+          },
+          "crop_image_px": {
+            "x": 369.09909909909913,
+            "y": 624.2342342342342
+          },
+          "chart_x": {
+            "value_raw": "9.98884",
+            "value_type": "number",
+            "parsed_value": 9.988839285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.7992",
+            "value_type": "number",
+            "parsed_value": 9.799196787148595,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 16,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 268,
+            "y": 620
+          },
+          "crop_image_px": {
+            "x": 387.91591591591595,
+            "y": 629.3093093093094
+          },
+          "chart_x": {
+            "value_raw": "10.7143",
+            "value_type": "number",
+            "parsed_value": 10.714285714285714,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.6988",
+            "value_type": "number",
+            "parsed_value": 9.698795180722893,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 17,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 275,
+            "y": 754
+          },
+          "crop_image_px": {
+            "x": 398.0480480480481,
+            "y": 765.3213213213213
+          },
+          "chart_x": {
+            "value_raw": "11.1049",
+            "value_type": "number",
+            "parsed_value": 11.104910714285714,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.00803",
+            "value_type": "number",
+            "parsed_value": 7.00803212851406,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 18,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 280,
+            "y": 441
+          },
+          "crop_image_px": {
+            "x": 405.2852852852853,
+            "y": 447.6216216216216
+          },
+          "chart_x": {
+            "value_raw": "11.3839",
+            "value_type": "number",
+            "parsed_value": 11.38392857142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.2932",
+            "value_type": "number",
+            "parsed_value": 13.293172690763052,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 19,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 293,
+            "y": 500
+          },
+          "crop_image_px": {
+            "x": 424.1021021021021,
+            "y": 507.50750750750757
+          },
+          "chart_x": {
+            "value_raw": "12.1094",
+            "value_type": "number",
+            "parsed_value": 12.109374999999996,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.1084",
+            "value_type": "number",
+            "parsed_value": 12.108433734939759,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 20,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 305,
+            "y": 680
+          },
+          "crop_image_px": {
+            "x": 441.4714714714715,
+            "y": 690.2102102102102
+          },
+          "chart_x": {
+            "value_raw": "12.779",
+            "value_type": "number",
+            "parsed_value": 12.779017857142854,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.49398",
+            "value_type": "number",
+            "parsed_value": 8.493975903614459,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 21,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 313,
+            "y": 540
+          },
+          "crop_image_px": {
+            "x": 453.05105105105105,
+            "y": 548.1081081081081
+          },
+          "chart_x": {
+            "value_raw": "13.2254",
+            "value_type": "number",
+            "parsed_value": 13.225446428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.3052",
+            "value_type": "number",
+            "parsed_value": 11.305220883534137,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 22,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 313,
+            "y": 570
+          },
+          "crop_image_px": {
+            "x": 453.05105105105105,
+            "y": 578.5585585585586
+          },
+          "chart_x": {
+            "value_raw": "13.2254",
+            "value_type": "number",
+            "parsed_value": 13.225446428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.7028",
+            "value_type": "number",
+            "parsed_value": 10.70281124497992,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 23,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 323,
+            "y": 605
+          },
+          "crop_image_px": {
+            "x": 467.5255255255255,
+            "y": 614.0840840840841
+          },
+          "chart_x": {
+            "value_raw": "13.7835",
+            "value_type": "number",
+            "parsed_value": 13.783482142857139,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10",
+            "value_type": "number",
+            "parsed_value": 10.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 24,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 334,
+            "y": 680
+          },
+          "crop_image_px": {
+            "x": 483.4474474474475,
+            "y": 690.2102102102102
+          },
+          "chart_x": {
+            "value_raw": "14.3973",
+            "value_type": "number",
+            "parsed_value": 14.397321428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.49398",
+            "value_type": "number",
+            "parsed_value": 8.493975903614459,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 25,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 345,
+            "y": 560
+          },
+          "crop_image_px": {
+            "x": 499.36936936936934,
+            "y": 568.4084084084084
+          },
+          "chart_x": {
+            "value_raw": "15.0112",
+            "value_type": "number",
+            "parsed_value": 15.01116071428571,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.9036",
+            "value_type": "number",
+            "parsed_value": 10.903614457831326,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 26,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 345,
+            "y": 720
+          },
+          "crop_image_px": {
+            "x": 499.36936936936934,
+            "y": 730.8108108108107
+          },
+          "chart_x": {
+            "value_raw": "15.0112",
+            "value_type": "number",
+            "parsed_value": 15.01116071428571,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.69076",
+            "value_type": "number",
+            "parsed_value": 7.69076305220884,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 27,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 359,
+            "y": 490
+          },
+          "crop_image_px": {
+            "x": 519.6336336336336,
+            "y": 497.35735735735733
+          },
+          "chart_x": {
+            "value_raw": "15.7924",
+            "value_type": "number",
+            "parsed_value": 15.792410714285712,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.3092",
+            "value_type": "number",
+            "parsed_value": 12.309236947791167,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 28,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 370,
+            "y": 580
+          },
+          "crop_image_px": {
+            "x": 535.5555555555555,
+            "y": 588.7087087087087
+          },
+          "chart_x": {
+            "value_raw": "16.4062",
+            "value_type": "number",
+            "parsed_value": 16.406249999999996,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.502",
+            "value_type": "number",
+            "parsed_value": 10.502008032128513,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 29,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 384,
+            "y": 381
+          },
+          "crop_image_px": {
+            "x": 555.8198198198198,
+            "y": 386.72072072072075
+          },
+          "chart_x": {
+            "value_raw": "17.1875",
+            "value_type": "number",
+            "parsed_value": 17.187499999999996,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.498",
+            "value_type": "number",
+            "parsed_value": 14.497991967871485,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 30,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 395,
+            "y": 520
+          },
+          "crop_image_px": {
+            "x": 571.7417417417417,
+            "y": 527.8078078078079
+          },
+          "chart_x": {
+            "value_raw": "17.8013",
+            "value_type": "number",
+            "parsed_value": 17.80133928571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.7068",
+            "value_type": "number",
+            "parsed_value": 11.706827309236946,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 31,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 402,
+            "y": 744
+          },
+          "crop_image_px": {
+            "x": 581.8738738738739,
+            "y": 755.1711711711712
+          },
+          "chart_x": {
+            "value_raw": "18.192",
+            "value_type": "number",
+            "parsed_value": 18.19196428571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.20884",
+            "value_type": "number",
+            "parsed_value": 7.208835341365463,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 32,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 413,
+            "y": 476
+          },
+          "crop_image_px": {
+            "x": 597.7957957957958,
+            "y": 483.1471471471471
+          },
+          "chart_x": {
+            "value_raw": "18.8058",
+            "value_type": "number",
+            "parsed_value": 18.80580357142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.5904",
+            "value_type": "number",
+            "parsed_value": 12.590361445783135,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 33,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 424,
+            "y": 615
+          },
+          "crop_image_px": {
+            "x": 613.7177177177177,
+            "y": 624.2342342342342
+          },
+          "chart_x": {
+            "value_raw": "19.4196",
+            "value_type": "number",
+            "parsed_value": 19.419642857142854,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.7992",
+            "value_type": "number",
+            "parsed_value": 9.799196787148595,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 34,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 436,
+            "y": 650
+          },
+          "crop_image_px": {
+            "x": 631.0870870870871,
+            "y": 659.7597597597597
+          },
+          "chart_x": {
+            "value_raw": "20.0893",
+            "value_type": "number",
+            "parsed_value": 20.089285714285708,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.09639",
+            "value_type": "number",
+            "parsed_value": 9.096385542168676,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 35,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 451,
+            "y": 391
+          },
+          "crop_image_px": {
+            "x": 652.7987987987988,
+            "y": 396.8708708708709
+          },
+          "chart_x": {
+            "value_raw": "20.9263",
+            "value_type": "number",
+            "parsed_value": 20.92633928571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.2972",
+            "value_type": "number",
+            "parsed_value": 14.29718875502008,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 36,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 461,
+            "y": 466
+          },
+          "crop_image_px": {
+            "x": 667.2732732732733,
+            "y": 472.996996996997
+          },
+          "chart_x": {
+            "value_raw": "21.4844",
+            "value_type": "number",
+            "parsed_value": 21.484374999999996,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.7912",
+            "value_type": "number",
+            "parsed_value": 12.791164658634539,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 37,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 474,
+            "y": 530
+          },
+          "crop_image_px": {
+            "x": 686.0900900900901,
+            "y": 537.957957957958
+          },
+          "chart_x": {
+            "value_raw": "22.2098",
+            "value_type": "number",
+            "parsed_value": 22.209821428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.506",
+            "value_type": "number",
+            "parsed_value": 11.506024096385541,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 38,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 486,
+            "y": 580
+          },
+          "crop_image_px": {
+            "x": 703.4594594594595,
+            "y": 588.7087087087087
+          },
+          "chart_x": {
+            "value_raw": "22.8795",
+            "value_type": "number",
+            "parsed_value": 22.87946428571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.502",
+            "value_type": "number",
+            "parsed_value": 10.502008032128513,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 39,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 499,
+            "y": 391
+          },
+          "crop_image_px": {
+            "x": 722.2762762762763,
+            "y": 396.8708708708709
+          },
+          "chart_x": {
+            "value_raw": "23.6049",
+            "value_type": "number",
+            "parsed_value": 23.60491071428571,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.2972",
+            "value_type": "number",
+            "parsed_value": 14.29718875502008,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 40,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 499,
+            "y": 495
+          },
+          "crop_image_px": {
+            "x": 722.2762762762763,
+            "y": 502.43243243243245
+          },
+          "chart_x": {
+            "value_raw": "23.6049",
+            "value_type": "number",
+            "parsed_value": 23.60491071428571,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.2088",
+            "value_type": "number",
+            "parsed_value": 12.208835341365461,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 41,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 526,
+            "y": 296
+          },
+          "crop_image_px": {
+            "x": 761.3573573573574,
+            "y": 300.4444444444444
+          },
+          "chart_x": {
+            "value_raw": "25.1116",
+            "value_type": "number",
+            "parsed_value": 25.11160714285714,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.2048",
+            "value_type": "number",
+            "parsed_value": 16.204819277108435,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 42,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 537,
+            "y": 515
+          },
+          "crop_image_px": {
+            "x": 777.2792792792793,
+            "y": 522.7327327327328
+          },
+          "chart_x": {
+            "value_raw": "25.7254",
+            "value_type": "number",
+            "parsed_value": 25.725446428571423,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.8072",
+            "value_type": "number",
+            "parsed_value": 11.807228915662652,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 43,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 551,
+            "y": 396
+          },
+          "crop_image_px": {
+            "x": 797.5435435435436,
+            "y": 401.94594594594594
+          },
+          "chart_x": {
+            "value_raw": "26.5067",
+            "value_type": "number",
+            "parsed_value": 26.506696428571423,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.1968",
+            "value_type": "number",
+            "parsed_value": 14.196787148594378,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 44,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 565,
+            "y": 271
+          },
+          "crop_image_px": {
+            "x": 817.8078078078079,
+            "y": 275.0690690690691
+          },
+          "chart_x": {
+            "value_raw": "27.2879",
+            "value_type": "number",
+            "parsed_value": 27.28794642857143,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.7068",
+            "value_type": "number",
+            "parsed_value": 16.706827309236946,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 45,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 578,
+            "y": 431
+          },
+          "crop_image_px": {
+            "x": 836.6246246246245,
+            "y": 437.4714714714715
+          },
+          "chart_x": {
+            "value_raw": "28.0134",
+            "value_type": "number",
+            "parsed_value": 28.01339285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.494",
+            "value_type": "number",
+            "parsed_value": 13.493975903614459,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 46,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 589,
+            "y": 296
+          },
+          "crop_image_px": {
+            "x": 852.5465465465466,
+            "y": 300.4444444444444
+          },
+          "chart_x": {
+            "value_raw": "28.6272",
+            "value_type": "number",
+            "parsed_value": 28.62723214285714,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.2048",
+            "value_type": "number",
+            "parsed_value": 16.204819277108435,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 47,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 601,
+            "y": 356
+          },
+          "crop_image_px": {
+            "x": 869.9159159159159,
+            "y": 361.3453453453454
+          },
+          "chart_x": {
+            "value_raw": "29.2969",
+            "value_type": "number",
+            "parsed_value": 29.296874999999993,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "15",
+            "value_type": "number",
+            "parsed_value": 15.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 48,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 614,
+            "y": 461
+          },
+          "crop_image_px": {
+            "x": 888.7327327327328,
+            "y": 467.9219219219219
+          },
+          "chart_x": {
+            "value_raw": "30.0223",
+            "value_type": "number",
+            "parsed_value": 30.022321428571423,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.8916",
+            "value_type": "number",
+            "parsed_value": 12.891566265060241,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 49,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 626,
+            "y": 286
+          },
+          "crop_image_px": {
+            "x": 906.1021021021021,
+            "y": 290.2942942942943
+          },
+          "chart_x": {
+            "value_raw": "30.692",
+            "value_type": "number",
+            "parsed_value": 30.691964285714278,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.4056",
+            "value_type": "number",
+            "parsed_value": 16.40562248995984,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 50,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 626,
+            "y": 421
+          },
+          "crop_image_px": {
+            "x": 906.1021021021021,
+            "y": 427.3213213213213
+          },
+          "chart_x": {
+            "value_raw": "30.692",
+            "value_type": "number",
+            "parsed_value": 30.691964285714278,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.6948",
+            "value_type": "number",
+            "parsed_value": 13.694779116465863,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 51,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 651,
+            "y": 520
+          },
+          "crop_image_px": {
+            "x": 942.2882882882882,
+            "y": 527.8078078078079
+          },
+          "chart_x": {
+            "value_raw": "32.0871",
+            "value_type": "number",
+            "parsed_value": 32.08705357142856,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.7068",
+            "value_type": "number",
+            "parsed_value": 11.706827309236946,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 52,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 662,
+            "y": 187
+          },
+          "crop_image_px": {
+            "x": 958.2102102102103,
+            "y": 189.80780780780782
+          },
+          "chart_x": {
+            "value_raw": "32.7009",
+            "value_type": "number",
+            "parsed_value": 32.70089285714286,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.3936",
+            "value_type": "number",
+            "parsed_value": 18.393574297188756,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 53,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 675,
+            "y": 406
+          },
+          "crop_image_px": {
+            "x": 977.027027027027,
+            "y": 412.0960960960961
+          },
+          "chart_x": {
+            "value_raw": "33.4263",
+            "value_type": "number",
+            "parsed_value": 33.42633928571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.996",
+            "value_type": "number",
+            "parsed_value": 13.995983935742972,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 54,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 687,
+            "y": 306
+          },
+          "crop_image_px": {
+            "x": 994.3963963963964,
+            "y": 310.5945945945946
+          },
+          "chart_x": {
+            "value_raw": "34.096",
+            "value_type": "number",
+            "parsed_value": 34.09598214285714,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.004",
+            "value_type": "number",
+            "parsed_value": 16.00401606425703,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 55,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 703,
+            "y": 236
+          },
+          "crop_image_px": {
+            "x": 1017.5555555555555,
+            "y": 239.54354354354354
+          },
+          "chart_x": {
+            "value_raw": "34.9888",
+            "value_type": "number",
+            "parsed_value": 34.98883928571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.4096",
+            "value_type": "number",
+            "parsed_value": 17.40963855421687,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 56,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 718,
+            "y": 197
+          },
+          "crop_image_px": {
+            "x": 1039.2672672672672,
+            "y": 199.95795795795794
+          },
+          "chart_x": {
+            "value_raw": "35.8259",
+            "value_type": "number",
+            "parsed_value": 35.82589285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.1928",
+            "value_type": "number",
+            "parsed_value": 18.19277108433735,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 57,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 732,
+            "y": 127
+          },
+          "crop_image_px": {
+            "x": 1059.5315315315315,
+            "y": 128.9069069069069
+          },
+          "chart_x": {
+            "value_raw": "36.6071",
+            "value_type": "number",
+            "parsed_value": 36.607142857142854,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "19.5984",
+            "value_type": "number",
+            "parsed_value": 19.598393574297187,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 58,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 732,
+            "y": 366
+          },
+          "crop_image_px": {
+            "x": 1059.5315315315315,
+            "y": 371.4954954954955
+          },
+          "chart_x": {
+            "value_raw": "36.6071",
+            "value_type": "number",
+            "parsed_value": 36.607142857142854,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.7992",
+            "value_type": "number",
+            "parsed_value": 14.799196787148594,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 59,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 755,
+            "y": 182
+          },
+          "crop_image_px": {
+            "x": 1092.8228228228227,
+            "y": 184.73273273273273
+          },
+          "chart_x": {
+            "value_raw": "37.8906",
+            "value_type": "number",
+            "parsed_value": 37.890624999999986,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.494",
+            "value_type": "number",
+            "parsed_value": 18.49397590361446,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 60,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 755,
+            "y": 251
+          },
+          "crop_image_px": {
+            "x": 1092.8228228228227,
+            "y": 254.76876876876878
+          },
+          "chart_x": {
+            "value_raw": "37.8906",
+            "value_type": "number",
+            "parsed_value": 37.890624999999986,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.1084",
+            "value_type": "number",
+            "parsed_value": 17.10843373493976,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 61,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 780,
+            "y": 316
+          },
+          "crop_image_px": {
+            "x": 1129.0090090090089,
+            "y": 320.7447447447447
+          },
+          "chart_x": {
+            "value_raw": "39.2857",
+            "value_type": "number",
+            "parsed_value": 39.28571428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "15.8032",
+            "value_type": "number",
+            "parsed_value": 15.803212851405622,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 62,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 793,
+            "y": 217
+          },
+          "crop_image_px": {
+            "x": 1147.8258258258259,
+            "y": 220.25825825825825
+          },
+          "chart_x": {
+            "value_raw": "40.0112",
+            "value_type": "number",
+            "parsed_value": 40.011160714285715,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.7912",
+            "value_type": "number",
+            "parsed_value": 17.79116465863454,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 63,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 805,
+            "y": 82
+          },
+          "crop_image_px": {
+            "x": 1165.1951951951953,
+            "y": 83.23123123123122
+          },
+          "chart_x": {
+            "value_raw": "40.6808",
+            "value_type": "number",
+            "parsed_value": 40.68080357142858,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "20.502",
+            "value_type": "number",
+            "parsed_value": 20.502008032128515,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 64,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 818,
+            "y": 177
+          },
+          "crop_image_px": {
+            "x": 1184.012012012012,
+            "y": 179.65765765765767
+          },
+          "chart_x": {
+            "value_raw": "41.4062",
+            "value_type": "number",
+            "parsed_value": 41.40625,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.5944",
+            "value_type": "number",
+            "parsed_value": 18.59437751004016,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 65,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 830,
+            "y": 251
+          },
+          "crop_image_px": {
+            "x": 1201.3813813813815,
+            "y": 254.76876876876878
+          },
+          "chart_x": {
+            "value_raw": "42.0759",
+            "value_type": "number",
+            "parsed_value": 42.07589285714286,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.1084",
+            "value_type": "number",
+            "parsed_value": 17.10843373493976,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 66,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 845,
+            "y": 107
+          },
+          "crop_image_px": {
+            "x": 1223.093093093093,
+            "y": 108.6066066066066
+          },
+          "chart_x": {
+            "value_raw": "42.9129",
+            "value_type": "number",
+            "parsed_value": 42.91294642857143,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "20",
+            "value_type": "number",
+            "parsed_value": 20.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 67,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 857,
+            "y": 142
+          },
+          "crop_image_px": {
+            "x": 1240.4624624624623,
+            "y": 144.1321321321321
+          },
+          "chart_x": {
+            "value_raw": "43.5826",
+            "value_type": "number",
+            "parsed_value": 43.58258928571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "19.2972",
+            "value_type": "number",
+            "parsed_value": 19.29718875502008,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 68,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 870,
+            "y": 271
+          },
+          "crop_image_px": {
+            "x": 1259.2792792792793,
+            "y": 275.0690690690691
+          },
+          "chart_x": {
+            "value_raw": "44.308",
+            "value_type": "number",
+            "parsed_value": 44.308035714285715,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.7068",
+            "value_type": "number",
+            "parsed_value": 16.706827309236946,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 69,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 882,
+            "y": 222
+          },
+          "crop_image_px": {
+            "x": 1276.6486486486485,
+            "y": 225.33333333333331
+          },
+          "chart_x": {
+            "value_raw": "44.9777",
+            "value_type": "number",
+            "parsed_value": 44.97767857142856,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.6908",
+            "value_type": "number",
+            "parsed_value": 17.690763052208837,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 70,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 895,
+            "y": 301
+          },
+          "crop_image_px": {
+            "x": 1295.4654654654655,
+            "y": 305.5195195195195
+          },
+          "chart_x": {
+            "value_raw": "45.7031",
+            "value_type": "number",
+            "parsed_value": 45.703125,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.1044",
+            "value_type": "number",
+            "parsed_value": 16.104417670682732,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 71,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 907,
+            "y": 276
+          },
+          "crop_image_px": {
+            "x": 1312.8348348348347,
+            "y": 280.14414414414415
+          },
+          "chart_x": {
+            "value_raw": "46.3728",
+            "value_type": "number",
+            "parsed_value": 46.372767857142854,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.6064",
+            "value_type": "number",
+            "parsed_value": 16.606425702811244,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 72,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 920,
+            "y": 241
+          },
+          "crop_image_px": {
+            "x": 1331.6516516516517,
+            "y": 244.61861861861863
+          },
+          "chart_x": {
+            "value_raw": "47.0982",
+            "value_type": "number",
+            "parsed_value": 47.098214285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.3092",
+            "value_type": "number",
+            "parsed_value": 17.309236947791163,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 73,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 933,
+            "y": 271
+          },
+          "crop_image_px": {
+            "x": 1350.4684684684685,
+            "y": 275.0690690690691
+          },
+          "chart_x": {
+            "value_raw": "47.8237",
+            "value_type": "number",
+            "parsed_value": 47.823660714285715,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.7068",
+            "value_type": "number",
+            "parsed_value": 16.706827309236946,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 74,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 945,
+            "y": 197
+          },
+          "crop_image_px": {
+            "x": 1367.837837837838,
+            "y": 199.95795795795794
+          },
+          "chart_x": {
+            "value_raw": "48.4933",
+            "value_type": "number",
+            "parsed_value": 48.49330357142858,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.1928",
+            "value_type": "number",
+            "parsed_value": 18.19277108433735,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 75,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 961,
+            "y": 47
+          },
+          "crop_image_px": {
+            "x": 1390.996996996997,
+            "y": 47.705705705705704
+          },
+          "chart_x": {
+            "value_raw": "49.3862",
+            "value_type": "number",
+            "parsed_value": 49.386160714285715,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "21.2048",
+            "value_type": "number",
+            "parsed_value": 21.204819277108435,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 76,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 972,
+            "y": 157
+          },
+          "crop_image_px": {
+            "x": 1406.918918918919,
+            "y": 159.35735735735736
+          },
+          "chart_x": {
+            "value_raw": "50",
+            "value_type": "number",
+            "parsed_value": 50.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.996",
+            "value_type": "number",
+            "parsed_value": 18.99598393574297,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "789e4372",
+      "name": "5-point moving average",
+      "series_type": "line",
+      "llm_series_name": "5-point moving average",
+      "visual_description": "Single-panel solid orange connected line representing a 5-point moving average, generally increasing from about Y=7.5 near X=3 to Y=18.3 near X=50, with local fluctuations.",
+      "line_color": "#ea580c",
+      "line_style": "solid",
+      "marker_style": null,
+      "series_truncated": false,
+      "estimated_total_points": null,
+      "x_axis_id": "main_x",
+      "y_axis_id": "main_y",
+      "axis_selection_reason": "The line occupies the sole chart panel and uses the bottom X value axis and left Y value axis.",
+      "confidence": 0.93,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 130,
+            "y": 730
+          },
+          "crop_image_px": {
+            "x": 188.1681681681682,
+            "y": 740.960960960961
+          },
+          "chart_x": {
+            "value_raw": "3.01339",
+            "value_type": "number",
+            "parsed_value": 3.013392857142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7.48996",
+            "value_type": "number",
+            "parsed_value": 7.489959839357432,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 148,
+            "y": 685
+          },
+          "crop_image_px": {
+            "x": 214.2222222222222,
+            "y": 695.2852852852852
+          },
+          "chart_x": {
+            "value_raw": "4.01786",
+            "value_type": "number",
+            "parsed_value": 4.0178571428571415,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.39357",
+            "value_type": "number",
+            "parsed_value": 8.393574297188756,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 166,
+            "y": 670
+          },
+          "crop_image_px": {
+            "x": 240.2762762762763,
+            "y": 680.0600600600601
+          },
+          "chart_x": {
+            "value_raw": "5.02232",
+            "value_type": "number",
+            "parsed_value": 5.022321428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.69478",
+            "value_type": "number",
+            "parsed_value": 8.694779116465865,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 189,
+            "y": 675
+          },
+          "crop_image_px": {
+            "x": 273.5675675675676,
+            "y": 685.1351351351351
+          },
+          "chart_x": {
+            "value_raw": "6.3058",
+            "value_type": "number",
+            "parsed_value": 6.305803571428571,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.59438",
+            "value_type": "number",
+            "parsed_value": 8.594377510040163,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 201,
+            "y": 682
+          },
+          "crop_image_px": {
+            "x": 290.93693693693695,
+            "y": 692.2402402402403
+          },
+          "chart_x": {
+            "value_raw": "6.97545",
+            "value_type": "number",
+            "parsed_value": 6.975446428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.45382",
+            "value_type": "number",
+            "parsed_value": 8.453815261044177,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 219,
+            "y": 670
+          },
+          "crop_image_px": {
+            "x": 316.990990990991,
+            "y": 680.0600600600601
+          },
+          "chart_x": {
+            "value_raw": "7.97991",
+            "value_type": "number",
+            "parsed_value": 7.9799107142857135,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.69478",
+            "value_type": "number",
+            "parsed_value": 8.694779116465865,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 237,
+            "y": 672
+          },
+          "crop_image_px": {
+            "x": 343.0450450450451,
+            "y": 682.0900900900901
+          },
+          "chart_x": {
+            "value_raw": "8.98437",
+            "value_type": "number",
+            "parsed_value": 8.984374999999998,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8.65462",
+            "value_type": "number",
+            "parsed_value": 8.654618473895583,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 255,
+            "y": 645
+          },
+          "crop_image_px": {
+            "x": 369.09909909909913,
+            "y": 654.6846846846847
+          },
+          "chart_x": {
+            "value_raw": "9.98884",
+            "value_type": "number",
+            "parsed_value": 9.988839285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.19679",
+            "value_type": "number",
+            "parsed_value": 9.196787148594378,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 273,
+            "y": 647
+          },
+          "crop_image_px": {
+            "x": 395.15315315315314,
+            "y": 656.7147147147147
+          },
+          "chart_x": {
+            "value_raw": "10.9933",
+            "value_type": "number",
+            "parsed_value": 10.993303571428568,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "9.15663",
+            "value_type": "number",
+            "parsed_value": 9.1566265060241,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 286,
+            "y": 583
+          },
+          "crop_image_px": {
+            "x": 413.96996996996995,
+            "y": 591.7537537537537
+          },
+          "chart_x": {
+            "value_raw": "11.7187",
+            "value_type": "number",
+            "parsed_value": 11.718749999999996,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.4418",
+            "value_type": "number",
+            "parsed_value": 10.441767068273094,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 305,
+            "y": 570
+          },
+          "crop_image_px": {
+            "x": 441.4714714714715,
+            "y": 578.5585585585586
+          },
+          "chart_x": {
+            "value_raw": "12.779",
+            "value_type": "number",
+            "parsed_value": 12.779017857142854,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.7028",
+            "value_type": "number",
+            "parsed_value": 10.70281124497992,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 320,
+            "y": 578
+          },
+          "crop_image_px": {
+            "x": 463.1831831831832,
+            "y": 586.6786786786786
+          },
+          "chart_x": {
+            "value_raw": "13.6161",
+            "value_type": "number",
+            "parsed_value": 13.616071428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.5422",
+            "value_type": "number",
+            "parsed_value": 10.542168674698797,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 345,
+            "y": 588
+          },
+          "crop_image_px": {
+            "x": 499.36936936936934,
+            "y": 596.8288288288288
+          },
+          "chart_x": {
+            "value_raw": "15.0112",
+            "value_type": "number",
+            "parsed_value": 15.01116071428571,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.3414",
+            "value_type": "number",
+            "parsed_value": 10.34136546184739,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 13,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 366,
+            "y": 578
+          },
+          "crop_image_px": {
+            "x": 529.7657657657658,
+            "y": 586.6786786786786
+          },
+          "chart_x": {
+            "value_raw": "16.183",
+            "value_type": "number",
+            "parsed_value": 16.18303571428571,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.5422",
+            "value_type": "number",
+            "parsed_value": 10.542168674698797,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 14,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 381,
+            "y": 575
+          },
+          "crop_image_px": {
+            "x": 551.4774774774775,
+            "y": 583.6336336336336
+          },
+          "chart_x": {
+            "value_raw": "17.0201",
+            "value_type": "number",
+            "parsed_value": 17.02008928571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "10.6024",
+            "value_type": "number",
+            "parsed_value": 10.602409638554217,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 15,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 399,
+            "y": 538
+          },
+          "crop_image_px": {
+            "x": 577.5315315315315,
+            "y": 546.0780780780781
+          },
+          "chart_x": {
+            "value_raw": "18.0246",
+            "value_type": "number",
+            "parsed_value": 18.024553571428566,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.3454",
+            "value_type": "number",
+            "parsed_value": 11.345381526104418,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 16,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 416,
+            "y": 528
+          },
+          "crop_image_px": {
+            "x": 602.1381381381382,
+            "y": 535.9279279279278
+          },
+          "chart_x": {
+            "value_raw": "18.9732",
+            "value_type": "number",
+            "parsed_value": 18.973214285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.5462",
+            "value_type": "number",
+            "parsed_value": 11.546184738955827,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 17,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 434,
+            "y": 533
+          },
+          "crop_image_px": {
+            "x": 628.1921921921921,
+            "y": 541.003003003003
+          },
+          "chart_x": {
+            "value_raw": "19.9777",
+            "value_type": "number",
+            "parsed_value": 19.977678571428566,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.4458",
+            "value_type": "number",
+            "parsed_value": 11.445783132530122,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 18,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 456,
+            "y": 500
+          },
+          "crop_image_px": {
+            "x": 660.036036036036,
+            "y": 507.50750750750757
+          },
+          "chart_x": {
+            "value_raw": "21.2054",
+            "value_type": "number",
+            "parsed_value": 21.205357142857135,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.1084",
+            "value_type": "number",
+            "parsed_value": 12.108433734939759,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 19,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 470,
+            "y": 510
+          },
+          "crop_image_px": {
+            "x": 680.3003003003003,
+            "y": 517.6576576576578
+          },
+          "chart_x": {
+            "value_raw": "21.9866",
+            "value_type": "number",
+            "parsed_value": 21.986607142857135,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "11.9076",
+            "value_type": "number",
+            "parsed_value": 11.907630522088352,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 20,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 497,
+            "y": 495
+          },
+          "crop_image_px": {
+            "x": 719.3813813813814,
+            "y": 502.43243243243245
+          },
+          "chart_x": {
+            "value_raw": "23.4933",
+            "value_type": "number",
+            "parsed_value": 23.49330357142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.2088",
+            "value_type": "number",
+            "parsed_value": 12.208835341365461,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 21,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 524,
+            "y": 463
+          },
+          "crop_image_px": {
+            "x": 758.4624624624624,
+            "y": 469.95195195195197
+          },
+          "chart_x": {
+            "value_raw": "25",
+            "value_type": "number",
+            "parsed_value": 24.999999999999993,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.8514",
+            "value_type": "number",
+            "parsed_value": 12.85140562248996,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 22,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 538,
+            "y": 468
+          },
+          "crop_image_px": {
+            "x": 778.7267267267267,
+            "y": 475.02702702702703
+          },
+          "chart_x": {
+            "value_raw": "25.7812",
+            "value_type": "number",
+            "parsed_value": 25.781249999999993,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12.751",
+            "value_type": "number",
+            "parsed_value": 12.751004016064257,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 23,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 560,
+            "y": 426
+          },
+          "crop_image_px": {
+            "x": 810.5705705705706,
+            "y": 432.39639639639637
+          },
+          "chart_x": {
+            "value_raw": "27.0089",
+            "value_type": "number",
+            "parsed_value": 27.00892857142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.5944",
+            "value_type": "number",
+            "parsed_value": 13.594377510040161,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 24,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 578,
+            "y": 406
+          },
+          "crop_image_px": {
+            "x": 836.6246246246245,
+            "y": 412.0960960960961
+          },
+          "chart_x": {
+            "value_raw": "28.0134",
+            "value_type": "number",
+            "parsed_value": 28.01339285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "13.996",
+            "value_type": "number",
+            "parsed_value": 13.995983935742972,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 25,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 596,
+            "y": 373
+          },
+          "crop_image_px": {
+            "x": 862.6786786786787,
+            "y": 378.6006006006006
+          },
+          "chart_x": {
+            "value_raw": "29.0179",
+            "value_type": "number",
+            "parsed_value": 29.01785714285714,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.6586",
+            "value_type": "number",
+            "parsed_value": 14.658634538152612,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 26,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 614,
+            "y": 363
+          },
+          "crop_image_px": {
+            "x": 888.7327327327328,
+            "y": 368.4504504504505
+          },
+          "chart_x": {
+            "value_raw": "30.0223",
+            "value_type": "number",
+            "parsed_value": 30.022321428571423,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.8594",
+            "value_type": "number",
+            "parsed_value": 14.859437751004016,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 27,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 626,
+            "y": 383
+          },
+          "crop_image_px": {
+            "x": 906.1021021021021,
+            "y": 388.7507507507508
+          },
+          "chart_x": {
+            "value_raw": "30.692",
+            "value_type": "number",
+            "parsed_value": 30.691964285714278,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.4578",
+            "value_type": "number",
+            "parsed_value": 14.457831325301203,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 28,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 646,
+            "y": 354
+          },
+          "crop_image_px": {
+            "x": 935.051051051051,
+            "y": 359.31531531531533
+          },
+          "chart_x": {
+            "value_raw": "31.808",
+            "value_type": "number",
+            "parsed_value": 31.808035714285708,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "15.0402",
+            "value_type": "number",
+            "parsed_value": 15.040160642570282,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 29,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 658,
+            "y": 351
+          },
+          "crop_image_px": {
+            "x": 952.4204204204204,
+            "y": 356.2702702702703
+          },
+          "chart_x": {
+            "value_raw": "32.4777",
+            "value_type": "number",
+            "parsed_value": 32.47767857142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "15.1004",
+            "value_type": "number",
+            "parsed_value": 15.100401606425702,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 30,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 676,
+            "y": 381
+          },
+          "crop_image_px": {
+            "x": 978.4744744744744,
+            "y": 386.72072072072075
+          },
+          "chart_x": {
+            "value_raw": "33.4821",
+            "value_type": "number",
+            "parsed_value": 33.48214285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "14.498",
+            "value_type": "number",
+            "parsed_value": 14.497991967871485,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 31,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 698,
+            "y": 324
+          },
+          "crop_image_px": {
+            "x": 1010.3183183183183,
+            "y": 328.8648648648649
+          },
+          "chart_x": {
+            "value_raw": "34.7098",
+            "value_type": "number",
+            "parsed_value": 34.70982142857142,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "15.6426",
+            "value_type": "number",
+            "parsed_value": 15.642570281124497,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 32,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 709,
+            "y": 321
+          },
+          "crop_image_px": {
+            "x": 1026.2402402402402,
+            "y": 325.81981981981977
+          },
+          "chart_x": {
+            "value_raw": "35.3237",
+            "value_type": "number",
+            "parsed_value": 35.3236607142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "15.7028",
+            "value_type": "number",
+            "parsed_value": 15.70281124497992,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 33,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 726,
+            "y": 286
+          },
+          "crop_image_px": {
+            "x": 1050.846846846847,
+            "y": 290.2942942942943
+          },
+          "chart_x": {
+            "value_raw": "36.2723",
+            "value_type": "number",
+            "parsed_value": 36.27232142857143,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.4056",
+            "value_type": "number",
+            "parsed_value": 16.40562248995984,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 34,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 743,
+            "y": 239
+          },
+          "crop_image_px": {
+            "x": 1075.4534534534534,
+            "y": 242.58858858858858
+          },
+          "chart_x": {
+            "value_raw": "37.221",
+            "value_type": "number",
+            "parsed_value": 37.22098214285714,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.3494",
+            "value_type": "number",
+            "parsed_value": 17.34939759036145,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 35,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 761,
+            "y": 219
+          },
+          "crop_image_px": {
+            "x": 1101.5075075075076,
+            "y": 222.2882882882883
+          },
+          "chart_x": {
+            "value_raw": "38.2254",
+            "value_type": "number",
+            "parsed_value": 38.22544642857143,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.751",
+            "value_type": "number",
+            "parsed_value": 17.751004016064257,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 36,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 780,
+            "y": 227
+          },
+          "crop_image_px": {
+            "x": 1129.0090090090089,
+            "y": 230.40840840840843
+          },
+          "chart_x": {
+            "value_raw": "39.2857",
+            "value_type": "number",
+            "parsed_value": 39.28571428571427,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.5904",
+            "value_type": "number",
+            "parsed_value": 17.59036144578313,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 37,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 793,
+            "y": 199
+          },
+          "crop_image_px": {
+            "x": 1147.8258258258259,
+            "y": 201.987987987988
+          },
+          "chart_x": {
+            "value_raw": "40.0112",
+            "value_type": "number",
+            "parsed_value": 40.011160714285715,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.1526",
+            "value_type": "number",
+            "parsed_value": 18.152610441767067,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 38,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 807,
+            "y": 214
+          },
+          "crop_image_px": {
+            "x": 1168.0900900900901,
+            "y": 217.2132132132132
+          },
+          "chart_x": {
+            "value_raw": "40.7924",
+            "value_type": "number",
+            "parsed_value": 40.792410714285715,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.8514",
+            "value_type": "number",
+            "parsed_value": 17.85140562248996,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 39,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 829,
+            "y": 179
+          },
+          "crop_image_px": {
+            "x": 1199.9339339339338,
+            "y": 181.68768768768768
+          },
+          "chart_x": {
+            "value_raw": "42.0201",
+            "value_type": "number",
+            "parsed_value": 42.02008928571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.5542",
+            "value_type": "number",
+            "parsed_value": 18.55421686746988,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 40,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 847,
+            "y": 184
+          },
+          "crop_image_px": {
+            "x": 1225.987987987988,
+            "y": 186.76276276276278
+          },
+          "chart_x": {
+            "value_raw": "43.0246",
+            "value_type": "number",
+            "parsed_value": 43.02455357142857,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.4538",
+            "value_type": "number",
+            "parsed_value": 18.453815261044177,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 41,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 857,
+            "y": 164
+          },
+          "crop_image_px": {
+            "x": 1240.4624624624623,
+            "y": 166.46246246246244
+          },
+          "chart_x": {
+            "value_raw": "43.5826",
+            "value_type": "number",
+            "parsed_value": 43.58258928571428,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.8554",
+            "value_type": "number",
+            "parsed_value": 18.85542168674699,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 42,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 882,
+            "y": 192
+          },
+          "crop_image_px": {
+            "x": 1276.6486486486485,
+            "y": 194.88288288288288
+          },
+          "chart_x": {
+            "value_raw": "44.9777",
+            "value_type": "number",
+            "parsed_value": 44.97767857142856,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.2932",
+            "value_type": "number",
+            "parsed_value": 18.29317269076305,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 43,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 900,
+            "y": 219
+          },
+          "crop_image_px": {
+            "x": 1302.7027027027027,
+            "y": 222.2882882882883
+          },
+          "chart_x": {
+            "value_raw": "45.9821",
+            "value_type": "number",
+            "parsed_value": 45.982142857142854,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.751",
+            "value_type": "number",
+            "parsed_value": 17.751004016064257,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 44,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 927,
+            "y": 261
+          },
+          "crop_image_px": {
+            "x": 1341.7837837837837,
+            "y": 264.9189189189189
+          },
+          "chart_x": {
+            "value_raw": "47.4888",
+            "value_type": "number",
+            "parsed_value": 47.488839285714285,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "16.9076",
+            "value_type": "number",
+            "parsed_value": 16.907630522088354,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 45,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 945,
+            "y": 244
+          },
+          "crop_image_px": {
+            "x": 1367.837837837838,
+            "y": 247.66366366366364
+          },
+          "chart_x": {
+            "value_raw": "48.4933",
+            "value_type": "number",
+            "parsed_value": 48.49330357142858,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "17.249",
+            "value_type": "number",
+            "parsed_value": 17.248995983935743,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 46,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 972,
+            "y": 192
+          },
+          "crop_image_px": {
+            "x": 1406.918918918919,
+            "y": 194.88288288288288
+          },
+          "chart_x": {
+            "value_raw": "50",
+            "value_type": "number",
+            "parsed_value": 50.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18.2932",
+            "value_type": "number",
+            "parsed_value": 18.29317269076305,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "attempts": [
+    {
+      "id": "axis-identification-01",
+      "stage": "axis_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "axis_identification/attempt_01/request.json",
+      "response_path": "axis_identification/attempt_01/response.json",
+      "parsed_path": "axis_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_x-01",
+      "stage": "axis_main_x",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_main_x/attempt_01/request.json",
+      "response_path": "axis_main_x/attempt_01/response.json",
+      "parsed_path": "axis_main_x/attempt_01/parsed.json",
+      "overlay_path": "axis_main_x/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_x-02",
+      "stage": "axis_main_x",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_main_x/attempt_02/request.json",
+      "response_path": "axis_main_x/attempt_02/response.json",
+      "parsed_path": "axis_main_x/attempt_02/parsed.json",
+      "overlay_path": "axis_main_x/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_y-01",
+      "stage": "axis_main_y",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_main_y/attempt_01/request.json",
+      "response_path": "axis_main_y/attempt_01/response.json",
+      "parsed_path": "axis_main_y/attempt_01/parsed.json",
+      "overlay_path": "axis_main_y/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_y-02",
+      "stage": "axis_main_y",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_main_y/attempt_02/request.json",
+      "response_path": "axis_main_y/attempt_02/response.json",
+      "parsed_path": "axis_main_y/attempt_02/parsed.json",
+      "overlay_path": "axis_main_y/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-identification-01",
+      "stage": "series_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "series_identification/attempt_01/request.json",
+      "response_path": "series_identification/attempt_01/response.json",
+      "parsed_path": "series_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-5f4b19de-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/5f4b19de/attempt_01/request.json",
+      "response_path": "series/5f4b19de/attempt_01/response.json",
+      "parsed_path": "series/5f4b19de/attempt_01/parsed.json",
+      "overlay_path": "series/5f4b19de/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.94,
+      "warnings": []
+    },
+    {
+      "id": "series-5f4b19de-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "needs_review",
+      "request_path": "series/5f4b19de/attempt_02/request.json",
+      "response_path": "series/5f4b19de/attempt_02/response.json",
+      "parsed_path": "series/5f4b19de/attempt_02/parsed.json",
+      "overlay_path": "series/5f4b19de/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.97,
+      "warnings": [
+        "The overlay missed one visible blue marker near x=13.2, y=11.3. A complete replacement proposal with 77 points is provided."
+      ]
+    },
+    {
+      "id": "series-5f4b19de-03",
+      "stage": "series",
+      "attempt_number": 3,
+      "status": "accepted",
+      "request_path": "series/5f4b19de/attempt_03/request.json",
+      "response_path": "series/5f4b19de/attempt_03/response.json",
+      "parsed_path": "series/5f4b19de/attempt_03/parsed.json",
+      "overlay_path": "series/5f4b19de/attempt_03/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.97,
+      "warnings": []
+    },
+    {
+      "id": "series-789e4372-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/789e4372/attempt_01/request.json",
+      "response_path": "series/789e4372/attempt_01/response.json",
+      "parsed_path": "series/789e4372/attempt_01/parsed.json",
+      "overlay_path": "series/789e4372/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.93,
+      "warnings": []
+    },
+    {
+      "id": "series-789e4372-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/789e4372/attempt_02/request.json",
+      "response_path": "series/789e4372/attempt_02/response.json",
+      "parsed_path": "series/789e4372/attempt_02/parsed.json",
+      "overlay_path": "series/789e4372/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.93,
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "active_step_status": null
+}

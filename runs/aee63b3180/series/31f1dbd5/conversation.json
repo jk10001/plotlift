@@ -1,0 +1,40 @@
+{
+  "run_id": "aee63b3180",
+  "stage": "series",
+  "series_id": "31f1dbd5",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 3 of 4\nName: Series 2 data points\nSeries type: scatter\nColour: #087B1B\nLine style: unknown\nMarker style: filled square\nEstimated total points: 50\nX axis ID: x_main\nY axis ID: y_main\nAxis selection reason: The green markers are plotted against the chart's sole horizontal X value axis and vertical Y value axis.\nVisual description: Green filled square markers distributed across the single chart panel, generally decreasing from upper-left to lower-right; several are close to or overlap the green moving-average line.\nIdentification confidence: 0.99",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/31f1dbd5/attempt_01/overlay.png",
+      "request_path": "series/31f1dbd5/attempt_01/request.json",
+      "response_path": "series/31f1dbd5/attempt_01/response.json",
+      "parsed_path": "series/31f1dbd5/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "revise_previous",
+      "revision_reason": "The previous proposal missed several visible green markers, included inaccurate placements, and did not maintain complete visual left-to-right coverage through the configured 50-point limit.",
+      "target_series": "Series 3 of 4\nName: Series 2 data points\nSeries type: scatter\nColour: #087B1B\nLine style: unknown\nMarker style: filled square\nEstimated total points: 50\nX axis ID: x_main\nY axis ID: y_main\nAxis selection reason: The green markers are plotted against the chart's sole horizontal X value axis and vertical Y value axis.\nVisual description: Green filled square markers distributed across the single chart panel, generally decreasing from upper-left to lower-right; several are close to or overlap the green moving-average line.\nIdentification confidence: 0.99",
+      "source_image_path": "series/31f1dbd5/attempt_01/overlay.png",
+      "overlay_path": "series/31f1dbd5/attempt_02/overlay.png",
+      "request_path": "series/31f1dbd5/attempt_02/request.json",
+      "response_path": "series/31f1dbd5/attempt_02/response.json",
+      "parsed_path": "series/31f1dbd5/attempt_02/parsed.json"
+    },
+    {
+      "attempt": 3,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 3 of 4\nName: Series 2 data points\nSeries type: scatter\nColour: #087B1B\nLine style: unknown\nMarker style: filled square\nEstimated total points: 50\nX axis ID: x_main\nY axis ID: y_main\nAxis selection reason: The green markers are plotted against the chart's sole horizontal X value axis and vertical Y value axis.\nVisual description: Green filled square markers distributed across the single chart panel, generally decreasing from upper-left to lower-right; several are close to or overlap the green moving-average line.\nIdentification confidence: 0.99",
+      "source_image_path": "series/31f1dbd5/attempt_02/overlay.png",
+      "overlay_path": "series/31f1dbd5/attempt_03/overlay.png",
+      "request_path": "series/31f1dbd5/attempt_03/request.json",
+      "response_path": "series/31f1dbd5/attempt_03/response.json",
+      "parsed_path": "series/31f1dbd5/attempt_03/parsed.json"
+    }
+  ]
+}
