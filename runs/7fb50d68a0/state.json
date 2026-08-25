@@ -1,0 +1,809 @@
+{
+  "run_id": "7fb50d68a0",
+  "created_at": "2026-08-24T10:29:20.505024+00:00",
+  "updated_at": "2026-08-24T10:32:29.855245+00:00",
+  "stage": "series_review",
+  "active_job": null,
+  "settings": {
+    "model_id": "gpt-5.6-luna",
+    "image_detail": "high",
+    "reasoning_effort": "medium",
+    "mock_mode": false
+  },
+  "prompt_metadata": {
+    "prompt_pack": "prompts.yaml",
+    "prompt_version": "2026-08-24-mixed-series-v1",
+    "prompt_hash": "ff0e586614bc8c89"
+  },
+  "upload_filename": "scater_plot_1.png",
+  "original_path": "uploads/original.png",
+  "pages": [
+    {
+      "path": "pages/page_001.png",
+      "width": 1448,
+      "height": 1086,
+      "label": "Image"
+    }
+  ],
+  "selected_page_index": 0,
+  "canonical_image": {
+    "path": "pages/page_001.png",
+    "width": 1448,
+    "height": 1086,
+    "label": "Image"
+  },
+  "crop": {
+    "bbox_full_norm": {
+      "left": 0,
+      "top": 0,
+      "right": 999,
+      "bottom": 999
+    },
+    "bbox_full_px": {
+      "left": 0.0,
+      "top": 0.0,
+      "right": 1448.0,
+      "bottom": 1086.0
+    },
+    "image": {
+      "path": "crop/approved_crop.png",
+      "width": 1448,
+      "height": 1086,
+      "label": null
+    },
+    "approved": true,
+    "warnings": []
+  },
+  "calibration": {
+    "identified_axes": [
+      {
+        "axis_id": "main_x_axis",
+        "direction": "x",
+        "name": "X value",
+        "unit": null,
+        "quantity": "X value",
+        "location_description": "Bottom horizontal axis of the single scatter-plot panel",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "main_y_axis",
+        "direction": "y",
+        "name": "Y value",
+        "unit": null,
+        "quantity": "Y value",
+        "location_description": "Left vertical axis of the single scatter-plot panel",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "calibrated_axes": [
+      {
+        "axis_id": "main_x_axis",
+        "direction": "x",
+        "name": "X value",
+        "unit": null,
+        "quantity": "X value",
+        "location_description": "Bottom horizontal axis of the single scatter-plot panel",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 244,
+              "y": 876
+            },
+            "crop_image_px": {
+              "x": 353.4214214214214,
+              "y": 951.4114114114114
+            },
+            "chart_value": {
+              "value_raw": "5",
+              "value_type": "number",
+              "parsed_value": 5.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 917,
+              "y": 876
+            },
+            "crop_image_px": {
+              "x": 1328.227227227227,
+              "y": 951.4114114114114
+            },
+            "chart_value": {
+              "value_raw": "25",
+              "value_type": "number",
+              "parsed_value": 25.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": []
+      },
+      {
+        "axis_id": "main_y_axis",
+        "direction": "y",
+        "name": "Y value",
+        "unit": null,
+        "quantity": "Y value",
+        "location_description": "Left vertical axis of the single scatter-plot panel",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 116,
+              "y": 110
+            },
+            "crop_image_px": {
+              "x": 168.02002002002004,
+              "y": 119.46946946946947
+            },
+            "chart_value": {
+              "value_raw": "25.0",
+              "value_type": "number",
+              "parsed_value": 25.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 116,
+              "y": 877
+            },
+            "crop_image_px": {
+              "x": 168.02002002002004,
+              "y": 952.4974974974974
+            },
+            "chart_value": {
+              "value_raw": "5.0",
+              "value_type": "number",
+              "parsed_value": 5.0,
+              "parsed_datetime": null,
+              "unit": null
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": []
+      }
+    ],
+    "x_points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 244,
+          "y": 876
+        },
+        "crop_image_px": {
+          "x": 353.4214214214214,
+          "y": 951.4114114114114
+        },
+        "chart_value": {
+          "value_raw": "5",
+          "value_type": "number",
+          "parsed_value": 5.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 917,
+          "y": 876
+        },
+        "crop_image_px": {
+          "x": 1328.227227227227,
+          "y": 951.4114114114114
+        },
+        "chart_value": {
+          "value_raw": "25",
+          "value_type": "number",
+          "parsed_value": 25.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      }
+    ],
+    "y_points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 116,
+          "y": 110
+        },
+        "crop_image_px": {
+          "x": 168.02002002002004,
+          "y": 119.46946946946947
+        },
+        "chart_value": {
+          "value_raw": "25.0",
+          "value_type": "number",
+          "parsed_value": 25.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 116,
+          "y": 877
+        },
+        "crop_image_px": {
+          "x": 168.02002002002004,
+          "y": 952.4974974974974
+        },
+        "chart_value": {
+          "value_raw": "5.0",
+          "value_type": "number",
+          "parsed_value": 5.0,
+          "parsed_datetime": null,
+          "unit": null
+        }
+      }
+    ],
+    "approved_x": true,
+    "approved_y": true,
+    "warnings": []
+  },
+  "pending_series": [],
+  "series": [
+    {
+      "id": "e761478b",
+      "name": "Blue scatter points",
+      "series_type": "scatter",
+      "llm_series_name": "Blue scatter points",
+      "visual_description": "Single scatter series in the chart panel, shown as discrete filled blue circular markers with no connecting line.",
+      "line_color": "#1769aa",
+      "line_style": null,
+      "marker_style": "circle",
+      "series_truncated": false,
+      "estimated_total_points": 15,
+      "x_axis_id": "main_x_axis",
+      "y_axis_id": "main_y_axis",
+      "axis_selection_reason": "The markers occupy the single scatter-plot panel and align with the bottom X value axis and left Y value axis.",
+      "confidence": 0.99,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 153,
+            "y": 378
+          },
+          "crop_image_px": {
+            "x": 221.82263763763765,
+            "y": 411.02927927927925
+          },
+          "chart_x": {
+            "value_raw": "2.3",
+            "value_type": "number",
+            "parsed_value": 2.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18",
+            "value_type": "number",
+            "parsed_value": 18.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 187,
+            "y": 378
+          },
+          "crop_image_px": {
+            "x": 270.56292792792794,
+            "y": 411.02927927927925
+          },
+          "chart_x": {
+            "value_raw": "3.3",
+            "value_type": "number",
+            "parsed_value": 3.3,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18",
+            "value_type": "number",
+            "parsed_value": 18.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 214,
+            "y": 800
+          },
+          "crop_image_px": {
+            "x": 309.55516016016014,
+            "y": 869.1946946946946
+          },
+          "chart_x": {
+            "value_raw": "4.1",
+            "value_type": "number",
+            "parsed_value": 4.1,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7",
+            "value_type": "number",
+            "parsed_value": 7.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 244,
+            "y": 609
+          },
+          "crop_image_px": {
+            "x": 353.4214214214214,
+            "y": 660.9376876876877
+          },
+          "chart_x": {
+            "value_raw": "5",
+            "value_type": "number",
+            "parsed_value": 5.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12",
+            "value_type": "number",
+            "parsed_value": 12.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 311,
+            "y": 800
+          },
+          "crop_image_px": {
+            "x": 450.902002002002,
+            "y": 869.1946946946946
+          },
+          "chart_x": {
+            "value_raw": "7",
+            "value_type": "number",
+            "parsed_value": 7.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "7",
+            "value_type": "number",
+            "parsed_value": 7.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 446,
+            "y": 225
+          },
+          "crop_image_px": {
+            "x": 645.8631631631631,
+            "y": 244.42367367367365
+          },
+          "chart_x": {
+            "value_raw": "11",
+            "value_type": "number",
+            "parsed_value": 11.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "22",
+            "value_type": "number",
+            "parsed_value": 22.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 480,
+            "y": 378
+          },
+          "crop_image_px": {
+            "x": 694.6034534534533,
+            "y": 411.02927927927925
+          },
+          "chart_x": {
+            "value_raw": "12",
+            "value_type": "number",
+            "parsed_value": 12.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "18",
+            "value_type": "number",
+            "parsed_value": 18.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 513,
+            "y": 839
+          },
+          "crop_image_px": {
+            "x": 743.3437437437437,
+            "y": 910.846096096096
+          },
+          "chart_x": {
+            "value_raw": "13",
+            "value_type": "number",
+            "parsed_value": 13.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "6",
+            "value_type": "number",
+            "parsed_value": 6.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 648,
+            "y": 187
+          },
+          "crop_image_px": {
+            "x": 938.3049049049048,
+            "y": 202.7722722722723
+          },
+          "chart_x": {
+            "value_raw": "17",
+            "value_type": "number",
+            "parsed_value": 17.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "23",
+            "value_type": "number",
+            "parsed_value": 23.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 681,
+            "y": 762
+          },
+          "crop_image_px": {
+            "x": 987.0451951951951,
+            "y": 827.5432932932932
+          },
+          "chart_x": {
+            "value_raw": "18",
+            "value_type": "number",
+            "parsed_value": 18.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "8",
+            "value_type": "number",
+            "parsed_value": 8.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 715,
+            "y": 609
+          },
+          "crop_image_px": {
+            "x": 1035.7854854854854,
+            "y": 660.9376876876877
+          },
+          "chart_x": {
+            "value_raw": "19",
+            "value_type": "number",
+            "parsed_value": 19.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "12",
+            "value_type": "number",
+            "parsed_value": 12.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 749,
+            "y": 110
+          },
+          "crop_image_px": {
+            "x": 1084.5257757757756,
+            "y": 119.46946946946947
+          },
+          "chart_x": {
+            "value_raw": "20",
+            "value_type": "number",
+            "parsed_value": 20.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "25",
+            "value_type": "number",
+            "parsed_value": 25.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 782,
+            "y": 110
+          },
+          "crop_image_px": {
+            "x": 1133.266066066066,
+            "y": 119.46946946946947
+          },
+          "chart_x": {
+            "value_raw": "21",
+            "value_type": "number",
+            "parsed_value": 21.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "25",
+            "value_type": "number",
+            "parsed_value": 25.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 13,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 917,
+            "y": 187
+          },
+          "crop_image_px": {
+            "x": 1328.227227227227,
+            "y": 202.7722722722723
+          },
+          "chart_x": {
+            "value_raw": "25",
+            "value_type": "number",
+            "parsed_value": 25.0,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "23",
+            "value_type": "number",
+            "parsed_value": 23.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "point_index": 14,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 944,
+            "y": 839
+          },
+          "crop_image_px": {
+            "x": 1367.2194594594594,
+            "y": 910.846096096096
+          },
+          "chart_x": {
+            "value_raw": "25.8",
+            "value_type": "number",
+            "parsed_value": 25.8,
+            "parsed_datetime": null,
+            "unit": null
+          },
+          "chart_y": {
+            "value_raw": "6",
+            "value_type": "number",
+            "parsed_value": 6.0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "attempts": [
+    {
+      "id": "axis-identification-01",
+      "stage": "axis_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "axis_identification/attempt_01/request.json",
+      "response_path": "axis_identification/attempt_01/response.json",
+      "parsed_path": "axis_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_x_axis-01",
+      "stage": "axis_main_x_axis",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_main_x_axis/attempt_01/request.json",
+      "response_path": "axis_main_x_axis/attempt_01/response.json",
+      "parsed_path": "axis_main_x_axis/attempt_01/parsed.json",
+      "overlay_path": "axis_main_x_axis/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_x_axis-02",
+      "stage": "axis_main_x_axis",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_main_x_axis/attempt_02/request.json",
+      "response_path": "axis_main_x_axis/attempt_02/response.json",
+      "parsed_path": "axis_main_x_axis/attempt_02/parsed.json",
+      "overlay_path": "axis_main_x_axis/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_y_axis-01",
+      "stage": "axis_main_y_axis",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_main_y_axis/attempt_01/request.json",
+      "response_path": "axis_main_y_axis/attempt_01/response.json",
+      "parsed_path": "axis_main_y_axis/attempt_01/parsed.json",
+      "overlay_path": "axis_main_y_axis/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_y_axis-02",
+      "stage": "axis_main_y_axis",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_main_y_axis/attempt_02/request.json",
+      "response_path": "axis_main_y_axis/attempt_02/response.json",
+      "parsed_path": "axis_main_y_axis/attempt_02/parsed.json",
+      "overlay_path": "axis_main_y_axis/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-identification-01",
+      "stage": "series_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "series_identification/attempt_01/request.json",
+      "response_path": "series_identification/attempt_01/response.json",
+      "parsed_path": "series_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-e761478b-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/e761478b/attempt_01/request.json",
+      "response_path": "series/e761478b/attempt_01/response.json",
+      "parsed_path": "series/e761478b/attempt_01/parsed.json",
+      "overlay_path": "series/e761478b/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-e761478b-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/e761478b/attempt_02/request.json",
+      "response_path": "series/e761478b/attempt_02/response.json",
+      "parsed_path": "series/e761478b/attempt_02/parsed.json",
+      "overlay_path": "series/e761478b/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-e761478b-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/e761478b/attempt_01/request.json",
+      "response_path": "series/e761478b/attempt_01/response.json",
+      "parsed_path": "series/e761478b/attempt_01/parsed.json",
+      "overlay_path": "series/e761478b/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "series-e761478b-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/e761478b/attempt_02/request.json",
+      "response_path": "series/e761478b/attempt_02/response.json",
+      "parsed_path": "series/e761478b/attempt_02/parsed.json",
+      "overlay_path": "series/e761478b/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "active_step_status": null
+}

@@ -1137,6 +1137,17 @@ h2 {
   align-items: center;
 }
 
+.series-warning {
+  margin: 0 12px;
+  padding: 8px 10px;
+  border: 1px solid #f0c36d;
+  border-radius: 6px;
+  background: #fff7df;
+  color: var(--warn);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 .series-title {
   display: grid;
   grid-template-columns: auto minmax(120px, 1fr);

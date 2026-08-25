@@ -1,0 +1,19 @@
+{
+  "series": [
+    {
+      "series_name": "Blue scatter points",
+      "series_type": "scatter",
+      "visual_description": "Single scatter series in the chart panel, shown as discrete filled blue circular markers with no connecting line.",
+      "line_color": "#1769aa",
+      "line_style": null,
+      "marker_style": "filled circle",
+      "estimated_total_points": 15,
+      "x_axis_id": "main_x_axis",
+      "y_axis_id": "main_y_axis",
+      "axis_selection_reason": "The markers occupy the single scatter-plot panel and align with the bottom X value axis and left Y value axis.",
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

@@ -693,7 +693,11 @@ function renderSeriesChoiceModal() {
       <input type="checkbox" data-series-choice-index="${index}" ${stateRef.seriesChoiceSelected[index] ? "checked" : ""}>
       <span class="series-choice-main">
         <strong>${escapeHtml(series.series_name || `Series ${index + 1}`)}</strong>
-        <span>${escapeHtml([series.line_color, series.line_style].filter(Boolean).join(" · ") || "Visual style unknown")}</span>
+        <span>${escapeHtml([
+          series.series_type || "line",
+          series.line_color,
+          series.series_type === "scatter" ? series.marker_style : series.line_style,
+        ].filter(Boolean).join(" · ") || "Visual style unknown")}</span>
         <small>${escapeHtml(series.visual_description || "No visual description provided.")}</small>
       </span>
     `;
@@ -724,6 +728,9 @@ function seriesChoiceKey(series) {
     item.visual_description || "",
     item.line_color || "",
     item.line_style || "",
+    item.series_type || "line",
+    item.marker_style || "",
+    item.estimated_total_points ?? "",
     item.x_axis_id || "",
     item.y_axis_id || "",
   ].join("~")).join("|")}`;
@@ -1111,6 +1118,26 @@ function renderSeriesPointMarker(point, kind, commonAttrs) {
     });
     return;
   }
+  if (kind === "plus") {
+    const halfSize = cssPxToSvgUnits(5);
+    svgEl("line", {
+      ...commonAttrs,
+      x1: point.x - halfSize,
+      y1: point.y,
+      x2: point.x + halfSize,
+      y2: point.y,
+      "data-marker-arm": "horizontal",
+    });
+    svgEl("line", {
+      ...commonAttrs,
+      x1: point.x,
+      y1: point.y - halfSize,
+      x2: point.x,
+      y2: point.y + halfSize,
+      "data-marker-arm": "vertical",
+    });
+    return;
+  }
   svgEl("line", {
     ...commonAttrs,
     ...seriesPointMarkerAttrs(point, "a"),
@@ -1139,6 +1166,15 @@ function updateSeriesPointMarkerElement(marker, point) {
   }
   if (kind === "triangle") {
     setSvgAttrs(marker, { d: trianglePath(point, cssPxToSvgUnits(5)) });
+    return;
+  }
+  if (kind === "plus") {
+    const halfSize = cssPxToSvgUnits(5);
+    if (marker.dataset.markerArm === "horizontal") {
+      setSvgAttrs(marker, { x1: point.x - halfSize, y1: point.y, x2: point.x + halfSize, y2: point.y });
+    } else {
+      setSvgAttrs(marker, { x1: point.x, y1: point.y - halfSize, x2: point.x, y2: point.y + halfSize });
+    }
     return;
   }
   setSvgAttrs(marker, seriesPointMarkerAttrs(point, marker.dataset.markerArm));
@@ -1251,7 +1287,7 @@ function renderSeriesOverlay() {
         .filter((point) => point.crop_image_px)
         .map((point, index) => `${index === 0 ? "M" : "L"} ${point.crop_image_px.x} ${point.crop_image_px.y}`)
         .join(" ");
-      if (d) {
+      if (d && item.series_type !== "scatter") {
         svgEl("path", {
           class: `series-line ${locked ? "locked-overlay" : ""}`,
           d,
@@ -1265,7 +1301,9 @@ function renderSeriesOverlay() {
         const commonAttrs = {
           class: `series-point ${locked ? "locked-overlay" : "interactive"}`,
           stroke: color,
-          fill: markerKind === "x" ? "none" : "#fff",
+          fill: ["x", "plus"].includes(markerKind)
+            ? "none"
+            : (item.series_type === "scatter" && String(item.marker_style || "").toLowerCase().includes("filled") ? color : "#fff"),
           ...(locked ? {} : { "data-drag": "series" }),
           "data-series-id": item.id,
           "data-segment-index": point.segment_index,
@@ -1472,7 +1510,7 @@ function renderSeriesEditor() {
       <summary>
         <label class="series-title">Series ${seriesIndex + 1}: <input value="${escapeHtml(item.name)}" data-series-name="${item.id}" aria-label="Series ${seriesIndex + 1} name" ${locked ? "disabled" : ""}></label>
         ${seriesLegendPreviewMarkup(item, seriesIndex)}
-        <span class="mini-status">${(item.points || []).length} pts</span>
+        <span class="mini-status">${escapeHtml(item.series_type || "line")} · ${(item.points || []).length} pts</span>
       </summary>
       <div class="series-header">
         <button type="button" data-retry-series="${item.id}" ${locked ? "disabled" : ""}>Retry Auto Digitise</button>
@@ -1483,6 +1521,16 @@ function renderSeriesEditor() {
         <label>X axis <select data-series-x-axis="${item.id}" ${locked ? "disabled" : ""}>${axisOptionsMarkup("x", item.x_axis_id)}</select></label>
         <label>Y axis <select data-series-y-axis="${item.id}" ${locked ? "disabled" : ""}>${axisOptionsMarkup("y", item.y_axis_id)}</select></label>
       </div>
+      <div class="axis-picker-row">
+        <label>Series type
+          <select data-series-type="${item.id}" ${locked ? "disabled" : ""}>
+            <option value="line" ${(item.series_type || "line") === "line" ? "selected" : ""}>Line</option>
+            <option value="scatter" ${item.series_type === "scatter" ? "selected" : ""}>Scatter</option>
+          </select>
+        </label>
+        <label>Marker style <input data-series-marker-style="${item.id}" value="${escapeHtml(item.marker_style || "")}" placeholder="e.g. filled circle" ${locked ? "disabled" : ""}></label>
+      </div>
+      ${item.series_truncated ? `<div class="series-warning">Partial scatter series: first ${(item.points || []).length} of approximately ${escapeHtml(item.estimated_total_points ?? "more")} markers.</div>` : ""}
       <small>${escapeHtml(item.visual_description || "")}</small>
       <div class="point-list"></div>
     `;
@@ -1533,6 +1581,30 @@ function wireSeriesEditor() {
       if (!series) return;
       if (select.dataset.seriesXAxis) series.x_axis_id = select.value;
       if (select.dataset.seriesYAxis) series.y_axis_id = select.value;
+      saveSeries("image", { forceEditors: true });
+    });
+  });
+  els.seriesEditor.querySelectorAll("[data-series-type]").forEach((select) => {
+    select.addEventListener("change", () => {
+      if (llmJobActive()) return;
+      const series = findSeries(select.dataset.seriesType);
+      if (!series) return;
+      series.series_type = select.value;
+      if (select.value === "line") {
+        series.series_truncated = false;
+        series.estimated_total_points = null;
+      }
+      render({ forceEditors: true });
+      saveSeries("image", { forceEditors: true });
+    });
+  });
+  els.seriesEditor.querySelectorAll("[data-series-marker-style]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (llmJobActive()) return;
+      const series = findSeries(input.dataset.seriesMarkerStyle);
+      if (!series) return;
+      series.marker_style = input.value || null;
+      render({ forceEditors: true });
       saveSeries("image", { forceEditors: true });
     });
   });
@@ -1801,7 +1873,11 @@ function addManualSeries() {
     id,
     name: "Manual series",
     source: "manual",
+    series_type: "line",
     line_color: "#7c3aed",
+    marker_style: null,
+    series_truncated: false,
+    estimated_total_points: null,
     x_axis_id: defaultAxisId("x"),
     y_axis_id: defaultAxisId("y"),
     points: [],
@@ -1941,6 +2017,15 @@ function seriesDashArray(style) {
 }
 
 function seriesMarkerKind(item, seriesIndex) {
+  if (item.series_type === "scatter") {
+    const style = String(item.marker_style || "").toLowerCase();
+    if (style.includes("circle")) return "circle";
+    if (style.includes("square")) return "square";
+    if (style.includes("diamond")) return "diamond";
+    if (style.includes("triangle")) return "triangle";
+    if (style.includes("plus")) return "plus";
+    return "x";
+  }
   const series = stateRef.state?.series || [];
   const colorKey = String(seriesColor(item, seriesIndex)).trim().toLowerCase();
   const sameColor = series
@@ -1956,9 +2041,12 @@ function seriesLegendPreviewMarkup(item, seriesIndex) {
   const dashArray = seriesDashArray(item.line_style);
   const dashAttr = dashArray ? ` stroke-dasharray="${dashArray}"` : "";
   const marker = seriesLegendMarkerMarkup(seriesMarkerKind(item, seriesIndex), color);
+  const line = item.series_type === "scatter"
+    ? ""
+    : `<line x1="4" y1="10" x2="44" y2="10" stroke="${color}" stroke-width="4" stroke-linecap="round"${dashAttr}></line>`;
   return `
     <svg class="series-legend-sample" viewBox="0 0 48 20" aria-hidden="true" focusable="false">
-      <line x1="4" y1="10" x2="44" y2="10" stroke="${color}" stroke-width="4" stroke-linecap="round"${dashAttr}></line>
+      ${line}
       ${marker}
     </svg>
   `;
@@ -1969,6 +2057,7 @@ function seriesLegendMarkerMarkup(kind, color) {
   if (kind === "square") return `<rect x="20" y="6" width="8" height="8" fill="#fff" stroke="${color}" stroke-width="2"></rect>`;
   if (kind === "diamond") return `<path d="M 24 5 L 29 10 L 24 15 L 19 10 Z" fill="#fff" stroke="${color}" stroke-width="2"></path>`;
   if (kind === "triangle") return `<path d="M 24 5 L 29 15 L 19 15 Z" fill="#fff" stroke="${color}" stroke-width="2"></path>`;
+  if (kind === "plus") return `<path d="M 18 10 L 30 10 M 24 4 L 24 16" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round"></path>`;
   return `
     <line x1="20" y1="6" x2="28" y2="14" stroke="${color}" stroke-width="2" stroke-linecap="round"></line>
     <line x1="20" y1="14" x2="28" y2="6" stroke="${color}" stroke-width="2" stroke-linecap="round"></line>

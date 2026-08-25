@@ -68,8 +68,12 @@ def api_config() -> dict:
         "default_model_id": default.id,
         "mock_mode": cfg.openai_mock_mode,
         "pdf_dpi": cfg.pdf_dpi,
+        "line_series_min_data_points": cfg.line_series_min_data_points,
+        "line_series_max_data_points": cfg.line_series_max_data_points,
+        "scatter_series_max_data_points": cfg.scatter_series_max_data_points,
         "series_min_data_points": cfg.series_min_data_points,
         "series_max_data_points": cfg.series_max_data_points,
+        "configuration_warnings": cfg.configuration_warnings,
         "show_debug_info": cfg.show_debug_info,
     }
 

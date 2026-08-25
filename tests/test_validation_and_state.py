@@ -23,6 +23,8 @@ from app.models import (
     PromptMetadata,
     RunSettings,
     RunState,
+    ScatterSeriesDigitizationConversationResponse,
+    ScatterSeriesDigitizationOutput,
     SeriesDigitizationConversationResponse,
     SeriesDigitizationOutput,
     SeriesIdentificationOutput,
@@ -40,8 +42,8 @@ def test_norm_point_rejects_out_of_range() -> None:
 
 
 def test_series_uses_configured_point_limits(monkeypatch) -> None:
-    monkeypatch.setenv("SERIES_MIN_DATA_POINTS", "3")
-    monkeypatch.setenv("SERIES_MAX_DATA_POINTS", "4")
+    monkeypatch.setenv("LINE_SERIES_MIN_DATA_POINTS", "3")
+    monkeypatch.setenv("LINE_SERIES_MAX_DATA_POINTS", "4")
 
     points = [_series_point_proposal(index) for index in range(2)]
     with pytest.raises(ValueError):
@@ -56,13 +58,25 @@ def test_series_uses_configured_point_limits(monkeypatch) -> None:
 
 
 def test_series_schema_uses_configured_point_limits(monkeypatch) -> None:
-    monkeypatch.setenv("SERIES_MIN_DATA_POINTS", "3")
-    monkeypatch.setenv("SERIES_MAX_DATA_POINTS", "4")
+    monkeypatch.setenv("LINE_SERIES_MIN_DATA_POINTS", "3")
+    monkeypatch.setenv("LINE_SERIES_MAX_DATA_POINTS", "4")
 
     schema = strict_json_schema(SeriesDigitizationConversationResponse)
     points_schema = schema["$defs"]["SeriesDigitizationOutput"]["properties"]["points"]
     assert points_schema["minItems"] == 3
     assert points_schema["maxItems"] == 4
+
+
+def test_scatter_schema_uses_independent_configured_maximum(monkeypatch) -> None:
+    monkeypatch.setenv("LINE_SERIES_MIN_DATA_POINTS", "3")
+    monkeypatch.setenv("LINE_SERIES_MAX_DATA_POINTS", "4")
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "7")
+
+    schema = strict_json_schema(ScatterSeriesDigitizationConversationResponse)
+    points_schema = schema["$defs"]["ScatterSeriesDigitizationOutput"]["properties"]["points"]
+    assert points_schema["minItems"] == 1
+    assert points_schema["maxItems"] == 7
+    assert len(ScatterSeriesDigitizationOutput(points=[_series_point_proposal(0)]).points) == 1
 
 
 def test_axis_and_series_identification_schemas_include_axis_metadata() -> None:
@@ -71,8 +85,15 @@ def test_axis_and_series_identification_schemas_include_axis_metadata() -> None:
 
     for field in ["axis_id", "direction", "quantity", "location_description", "is_primary_for_digitization"]:
         assert field in axis_schema_text
-    for field in ["x_axis_id", "y_axis_id", "axis_selection_reason"]:
+    for field in ["series_type", "marker_style", "estimated_total_points", "x_axis_id", "y_axis_id", "axis_selection_reason"]:
         assert field in series_schema_text
+
+
+def test_legacy_series_state_defaults_to_line() -> None:
+    series = SeriesState.model_validate({"id": "legacy", "name": "Legacy", "points": []})
+    assert series.series_type == "line"
+    assert series.series_truncated is False
+    assert series.marker_style is None
 
 
 def test_calibration_state_tracks_usable_axes_and_ignored_duplicates() -> None:
@@ -127,11 +148,24 @@ def test_calibration_state_tracks_usable_axes_and_ignored_duplicates() -> None:
 
 
 def test_series_prompt_uses_configured_point_limits(monkeypatch) -> None:
-    monkeypatch.setenv("SERIES_MIN_DATA_POINTS", "3")
-    monkeypatch.setenv("SERIES_MAX_DATA_POINTS", "4")
+    monkeypatch.setenv("LINE_SERIES_MIN_DATA_POINTS", "3")
+    monkeypatch.setenv("LINE_SERIES_MAX_DATA_POINTS", "4")
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "7")
 
-    prompt = load_prompt_pack().render("series.digitization_system")
-    assert "Use 3 to 4 representative polyline control points" in prompt
+    prompt_pack = load_prompt_pack()
+    line_prompt = prompt_pack.render("series.line_digitization_system")
+    scatter_prompt = prompt_pack.render("series.scatter_digitization_system")
+    assert "Use 3 to 4 representative polyline control points" in line_prompt
+    assert "Return at most 7 points" in scatter_prompt
+    assert "representative polyline" not in scatter_prompt
+
+
+def test_prompt_hash_changes_with_scatter_limit(monkeypatch) -> None:
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "7")
+    first = load_prompt_pack().hash
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "8")
+    second = load_prompt_pack().hash
+    assert first != second
 
 
 def test_series_identification_prompt_requires_pillow_or_hex_color() -> None:

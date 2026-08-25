@@ -1,0 +1,318 @@
+{
+  "raw": {
+    "created_at": 1787567723.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying every visible line and scatter series in a cropped chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line and scatter series in every visible panel. Do not stop after five or any other arbitrary count.\nClassify a series as line when its data is visibly connected, including lines that also have markers. Classify unconnected data markers as scatter. A fitted or reference line over scatter data is a separate line series.\nFor each series, provide its name, series_type, colour, line style, marker style, estimated point count, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nUse marker_style to describe scatter marker shape and fill, such as filled circle, hollow square, diamond, triangle, plus, or x. It may be null for a line without relevant markers.\nSet estimated_total_points to the number of individually visible scatter markers. It may be null for line series.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0e46b1a5aa9cfe31006a8c1e6c0c2487d0a1c2c3b4c6c95ae2",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjB5ukKCSryAah1qVAW6UBkn_BXkXRNGHHozgkzC60x9cdD3VP9lCWf9KWssTnGmLYjIogyd0oqizI_2JNXzxGqdsVGdFVIMfc8v4szDidKc6_lGfRGqhG2oCl67SGC9XPWaQWmt7ws7rBf9dWL0CzzQTaFLsEChhUJOiJ2U1FHfPDa_U8Bqfv5j2qPlByfooJ2A8n_iBU3j4y-y_UWWyyk45hLAbRW3NY0X1qu_K77GT-xxczs0xBELn3jUFNbCGPkQeFAN8i5HGAR8R27ZFMGxyjykB50wKDWwIJCAFsCIof_IEEvjiIrz0416TlHdNFGc4Mih0OEIyyXzCqvcuAhjNYu4x6Ohr3_3cSyZev9_sBgtXFUCZ4-0M11gM9HSnJJLQaTZXjbbux4e6ayE1YAqavMA-1iwt6IGCHOqkpgsse6l3le74VdtfLdvLQ5kGHlhj-1FbH-O87s39h9hdaB2HSYaZzGf9eMElToWutClT2gNttPIx6ituiDwCTP7Ore4SmUpqYTd7FweIaUpbAML4-f9yOoq01vTc-NJYKEeFz1W9FF61rMqSI6onCg8Rbm8L6YifKqSz4btmFnsIMytCZCCzuujP6tsdLZrJuj39nD5SixJ10NBzK73zSRtI86UCcdSxG8Q6ZvjQIPZijwRDAOdcgGVWm_ozxzapIWNUmHa4CSiBUOdFpdAhCiI-L0uMNRK6dK-j_soksQkfD95LLviBUiIyaoBbsL_414mM9rlGBdGJ_vM8nBabXQF3tvSkSp3ePWxZ-SfVtw3Mn6EUdtwondNNGgKAIYfpH1w7ryudWIbrvgyhbO9WA--oa8oSGKrY3sU0wmR0bgQHBnoXVXzBYt3kJzMCrMer1I7WYu8uDXC8X3VvtcFgZvbruJL38lJaCY2L7brt3gp6o4r33SywBQ2gjKlkOxYZz13llDhMCVRdbHHlOzCBv7-jmRjZKAP12eqn2E2Qh1CnzOGWBhht41xZ-7OUEYg92qYidxN8t8zIk1zrvzuf4MPgXlJjsx2L2Uu3riou09kNhhyciXfV0YKZENAwVZLIfv__1MU2i4ug-QTeKuU2_47IKPNftE4bhlgwQVkbREafbxywLKGiT_rq1bILqkfCKHGUjF4I80R_CJxLarQlfJTc2urEaPbHNcRttf6e4Afj08RWZexKSrYMizF1_DZPPIt8uJWKkLa2QqapYtDxhFnFAysybMXhzZrmOqJUjC2wwAukkATz2d48ndvPSNk_2BluxhebpSGdXrwkazt8gZkchCZjTj1KnIgPJA__ay4jcq4Ui8zl2nzRgaPfPSih3r-bXiAz83Kpnxe0pmnC40q3IUw1w2cWUkL30c7McLO8rvOZHSLFZRPJheoGagOAQ1ADR-8lv7GUT5f-YlAv_oqwZmJyIpZb3sp0t7TMR4AMuT9aGQLy98mksRqMgToCuFL-rrVj_RxTi2EhMWMJNQA5t6q5VlUZn46Kzdf93SDHe9_nvxCc6MO6oEK6bhxz7D41DLvI_-E4Y8jTvn_vc4JovY4R7wbZYqbprypHWstjrvz2FnlSfOwbyrnGOCtVord6jI-JcdBQrVXiqJSPTcSYVnNGorVK0614Qlbgicb3k33e9Go8nNLoE3lUY8QVwsvmml75h5eXfU7PQiPXZ01w4k3D",
+        "status": null
+      },
+      {
+        "id": "msg_0e46b1a5aa9cfe31006a8c1e6d0f7487d0ae82f2b986920cb4",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"series\":[{\"series_name\":\"Data points\",\"series_type\":\"scatter\",\"visual_description\":\"Blue filled circular markers distributed across the single main scatter-plot panel; approximately one point at each integer X value from 1 through 25.\",\"line_color\":\"#1764C0\",\"line_style\":null,\"marker_style\":\"filled circle\",\"estimated_total_points\":25,\"x_axis_id\":\"main_panel_x\",\"y_axis_id\":\"main_panel_y\",\"axis_selection_reason\":\"Uses the bottom horizontal X value axis and left vertical Y value axis of the single main panel.\",\"confidence\":0.99},{\"series_name\":\"5-point moving average\",\"series_type\":\"line\",\"visual_description\":\"Orange solid connected moving-average line running across the main panel, beginning near X=2 and ending near X=25.\",\"line_color\":\"#F26B16\",\"line_style\":\"solid\",\"marker_style\":null,\"estimated_total_points\":null,\"x_axis_id\":\"main_panel_x\",\"y_axis_id\":\"main_panel_y\",\"axis_selection_reason\":\"Uses the bottom horizontal X value axis and left vertical Y value axis of the single main panel.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787567726.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:f32e1744d9:series_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesIdentification",
+        "schema_": {
+          "$defs": {
+            "SeriesIdentification": {
+              "properties": {
+                "series_name": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Series Name"
+                },
+                "series_type": {
+                  "enum": [
+                    "line",
+                    "scatter"
+                  ],
+                  "title": "Series Type",
+                  "type": "string"
+                },
+                "visual_description": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Visual Description"
+                },
+                "line_color": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Series colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+                  "title": "Line Color"
+                },
+                "line_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Line Style"
+                },
+                "marker_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Marker Style"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "x_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "X Axis Id"
+                },
+                "y_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Y Axis Id"
+                },
+                "axis_selection_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Axis Selection Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "title": "SeriesIdentification",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "series_name",
+                "series_type",
+                "visual_description",
+                "line_color",
+                "line_style",
+                "marker_style",
+                "estimated_total_points",
+                "x_axis_id",
+                "y_axis_id",
+                "axis_selection_reason",
+                "confidence"
+              ]
+            }
+          },
+          "properties": {
+            "series": {
+              "items": {
+                "$ref": "#/$defs/SeriesIdentification"
+              },
+              "title": "Series",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "series",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 2794,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2791
+      },
+      "output_tokens": 331,
+      "output_tokens_details": {
+        "reasoning_tokens": 85
+      },
+      "total_tokens": 3125
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"series\":[{\"series_name\":\"Data points\",\"series_type\":\"scatter\",\"visual_description\":\"Blue filled circular markers distributed across the single main scatter-plot panel; approximately one point at each integer X value from 1 through 25.\",\"line_color\":\"#1764C0\",\"line_style\":null,\"marker_style\":\"filled circle\",\"estimated_total_points\":25,\"x_axis_id\":\"main_panel_x\",\"y_axis_id\":\"main_panel_y\",\"axis_selection_reason\":\"Uses the bottom horizontal X value axis and left vertical Y value axis of the single main panel.\",\"confidence\":0.99},{\"series_name\":\"5-point moving average\",\"series_type\":\"line\",\"visual_description\":\"Orange solid connected moving-average line running across the main panel, beginning near X=2 and ending near X=25.\",\"line_color\":\"#F26B16\",\"line_style\":\"solid\",\"marker_style\":null,\"estimated_total_points\":null,\"x_axis_id\":\"main_panel_x\",\"y_axis_id\":\"main_panel_y\",\"axis_selection_reason\":\"Uses the bottom horizontal X value axis and left vertical Y value axis of the single main panel.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "series": [
+      {
+        "series_name": "Data points",
+        "series_type": "scatter",
+        "visual_description": "Blue filled circular markers distributed across the single main scatter-plot panel; approximately one point at each integer X value from 1 through 25.",
+        "line_color": "#1764C0",
+        "line_style": null,
+        "marker_style": "filled circle",
+        "estimated_total_points": 25,
+        "x_axis_id": "main_panel_x",
+        "y_axis_id": "main_panel_y",
+        "axis_selection_reason": "Uses the bottom horizontal X value axis and left vertical Y value axis of the single main panel.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "5-point moving average",
+        "series_type": "line",
+        "visual_description": "Orange solid connected moving-average line running across the main panel, beginning near X=2 and ending near X=25.",
+        "line_color": "#F26B16",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "main_panel_x",
+        "y_axis_id": "main_panel_y",
+        "axis_selection_reason": "Uses the bottom horizontal X value axis and left vertical Y value axis of the single main panel.",
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

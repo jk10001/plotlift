@@ -68,6 +68,39 @@ def _draw_x_marker(
         draw.line((x - half, y + half, x + half, y - half), fill=color, width=width)
 
 
+def _draw_series_marker(
+    draw: ImageDraw.ImageDraw,
+    xy: tuple[float, float],
+    fill: str,
+    marker_style: str | None,
+) -> None:
+    style = (marker_style or "x").lower()
+    x, y = xy
+    radius = 5
+    if "circle" in style:
+        bbox = (x - radius, y - radius, x + radius, y + radius)
+        draw.ellipse(bbox, outline=COLORS["white"], width=5)
+        draw.ellipse(bbox, outline=fill, width=2)
+    elif "square" in style:
+        bbox = (x - radius, y - radius, x + radius, y + radius)
+        draw.rectangle(bbox, outline=COLORS["white"], width=5)
+        draw.rectangle(bbox, outline=fill, width=2)
+    elif "diamond" in style:
+        polygon = [(x, y - 7), (x + 7, y), (x, y + 7), (x - 7, y)]
+        draw.line([*polygon, polygon[0]], fill=COLORS["white"], width=5, joint="curve")
+        draw.line([*polygon, polygon[0]], fill=fill, width=2, joint="curve")
+    elif "triangle" in style:
+        polygon = [(x, y - 7), (x + 7, y + 6), (x - 7, y + 6)]
+        draw.line([*polygon, polygon[0]], fill=COLORS["white"], width=5, joint="curve")
+        draw.line([*polygon, polygon[0]], fill=fill, width=2, joint="curve")
+    elif "plus" in style:
+        for width, color in [(5, COLORS["white"]), (2, fill)]:
+            draw.line((x - 6, y, x + 6, y), fill=color, width=width)
+            draw.line((x, y - 6, x, y + 6), fill=color, width=width)
+    else:
+        _draw_x_marker(draw, xy, fill)
+
+
 def _draw_calibration_marker(
     draw: ImageDraw.ImageDraw,
     xy: tuple[float, float],
@@ -137,9 +170,9 @@ def render_series_overlay(
             for points in by_segment.values():
                 points.sort(key=lambda pair: pair[2])
                 xy = [(x, y) for x, y, _ in points]
-                if len(xy) >= 2:
+                if item.series_type == "line" and len(xy) >= 2:
                     draw.line(xy, fill=color, width=4)
                 for x, y, idx in points:
-                    _draw_x_marker(draw, (x, y), color)
+                    _draw_series_marker(draw, (x, y), color, item.marker_style if item.series_type == "scatter" else "x")
                     _draw_small_text(draw, (x, y), str(idx), color)
         img.convert("RGB").save(target_path)

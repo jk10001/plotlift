@@ -1,0 +1,29 @@
+{
+  "run_id": "7fb50d68a0",
+  "stage": "series",
+  "series_id": "e761478b",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 1\nName: Blue scatter points\nSeries type: scatter\nColour: #1769aa\nLine style: unknown\nMarker style: circle\nEstimated total points: 15\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The markers occupy the single scatter-plot panel and align with the bottom X value axis and left Y value axis.\nVisual description: Single scatter series in the chart panel, shown as discrete filled blue circular markers with no connecting line.\nIdentification confidence: 0.99",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/e761478b/attempt_01/overlay.png",
+      "request_path": "series/e761478b/attempt_01/request.json",
+      "response_path": "series/e761478b/attempt_01/response.json",
+      "parsed_path": "series/e761478b/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 1\nName: Blue scatter points\nSeries type: scatter\nColour: #1769aa\nLine style: unknown\nMarker style: circle\nEstimated total points: 15\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The markers occupy the single scatter-plot panel and align with the bottom X value axis and left Y value axis.\nVisual description: Single scatter series in the chart panel, shown as discrete filled blue circular markers with no connecting line.\nIdentification confidence: 0.99",
+      "source_image_path": "series/e761478b/attempt_01/overlay.png",
+      "overlay_path": "series/e761478b/attempt_02/overlay.png",
+      "request_path": "series/e761478b/attempt_02/request.json",
+      "response_path": "series/e761478b/attempt_02/response.json",
+      "parsed_path": "series/e761478b/attempt_02/parsed.json"
+    }
+  ]
+}

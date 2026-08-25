@@ -1,0 +1,260 @@
+{
+  "raw": {
+    "created_at": 1787567682.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying axes in a cropped line or scatter chart before calibration.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify every visible x-axis and y-axis in every panel, including secondary axes on the top, bottom, left, or right.\nFor each axis, provide a stable axis_id, direction, name, unit, quantity being measured, and a brief location description.\nIn multi-panel charts include panel location or panel title in location_description.\nIf multiple axes measure the same quantity in different units, mark exactly one metric axis closest to the chart body as is_primary_for_digitization=true.\nMark other duplicate axes as is_primary_for_digitization=false and explain the ignore_reason.\nIf multiple axes measure different quantities, mark all of them as is_primary_for_digitization=true because different curves may use them.\nPrefer metric units over imperial or US customary units. If more than one metric axis measures the same quantity, choose the one closest to the chart body.\nDo not return calibration points in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_00473a5fcae12f22006a8c1e43515c87d09e7ccc86afc42b49",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqjB5FH3r64WI53Y2f2pv2IcTsj04vSY8O-3Q6KQl4dHp1VTyqRsMDSSuAOWUtcjHW0Wol40eclL5tt1sqCvAn0zk3vYqgVZFvJIDRmnwRK550k1G1_l8q2Z9ZTMJJDLt7v8IWim1UqEIJMmJFlpfssSDdYmtSoOLN3SgUdW27779CjfghqBE_nID2vG8yUmW0afTH7wPk88wPTckDHK3KTGhCtjSuPRYwq-6r4g8LORKuL2wBGQCkDJ2z5Zj6T1corTT1fWJbDO3aoPyVJV5EOkwAy6idS9wWKt1LRaDePQInCzkld3GYPlr3Pmc26MsxeBnZWZk-w16DyVLAA44--NZZ27XVkcPAsoKT4-_-KKDbA3qk5Ubad3rVt-_32SNEOdNHg1sELNVi8x92bubMBCrHM0yxS9CeGFMGhQCXnpGQCSc3AXCd6V8rXtWPb6Qq9ysQvMbzHwHr_lSQ_Rg5Pnz5gCXZdgbzImpbqFuQ6XMu9gf26lxA4tFQGDNYfZnMlM39oDKjqUromsTm-4aNNW0vMO_wC3qOiBzHmAQ1-ZR0vEDehmIWMS1UHqTgXLRIK545HMn6jyiLlg7tV0Z8AonPM3Xm6OLStuvz2LX-7LiutFBN47R9zKfwi9ZRaNTHJZy77obiMEN6hrxuv0tmD6vLs1TKRTB5abQNxfVXxGbW6CjyFZOYdKQ1kWv1YEWckBIUcR_v8sv9fmgZkc7xrA09trYMjXbJG1cjwYnD4LaHtMAqtz9hxzyzydgTHqcnvQ7Se8uE-DG7Uacd2Yl-Gl5JKtxMmzFO-Txd8hmOdRVnE2gfIroXShd4tRKudu53FxSsNLKItsh-KoyPQNxbsONQADV92DwTbOs0eSW_DYYSpdmQvhO_PYK7wR1JnTJSSsGx4MfPn0VJjT-majlMmKyF3cww5QPIIMF9YIxeaFMDR_FN45X2F_asUy5GA4rbzl7hTR5udcLf6RvycDadnzKSd5CcBL7NorI9oQAkRec4jClltXpXnyMtyrRiCwsWPcBOapQGcyUBCDqrDC_NDfQGrvMmEXKACHejSFZ0kLvr9GYzXXWdSsBXGJTsH5spg5YJ3ifbMU4ZHmzT7lCwu-26sj0ybRLOteo0Fyu1A4DtYdWxmFYVRoxYNcj9zeL6KhGlHXbJyBRr8scSF5TKAghpIJf7zKIpV5a0wSuoXkWcJZbOqjf326XMIYvx9HB_ChoNb-eY6DUfWlgamq1NP-nMK5KSWRFdoLDWMP28cLgIJkO0LiVxT7MImbcgFnNpY_WmU4nFxdk6LCbJEDpo959q2AeAf7qY9TK39ObC1XU5mRZU9u2xPGAWzPmfajualvMLmA06XcLBN6e0iG0rQvxbtDQ13OEnKQNJzBmYI-TUBr0S8suXgoMc4SZU_slUf3WULfSlwaxmY0G5ipCd1mO6Wmy01iXK38iqjrq7Pd_1LknBDke33KfKClHo0pHFHB9Y",
+        "status": null
+      },
+      {
+        "id": "msg_00473a5fcae12f22006a8c1e43eb7887d097cf9319e30c17b5",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"axes\":[{\"axis_id\":\"main-panel-x\",\"direction\":\"x\",\"name\":\"X value\",\"unit\":null,\"quantity\":\"X value\",\"location_description\":\"Bottom horizontal axis of the single main scatter-plot panel\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"main-panel-y\",\"direction\":\"y\",\"name\":\"Y value\",\"unit\":null,\"quantity\":\"Y value\",\"location_description\":\"Left vertical axis of the single main scatter-plot panel\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787567685.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:f32e1744d9:axis_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "AxisIdentification",
+        "schema_": {
+          "$defs": {
+            "IdentifiedAxis": {
+              "properties": {
+                "axis_id": {
+                  "title": "Axis Id",
+                  "type": "string"
+                },
+                "direction": {
+                  "enum": [
+                    "x",
+                    "y"
+                  ],
+                  "title": "Direction",
+                  "type": "string"
+                },
+                "name": {
+                  "title": "Name",
+                  "type": "string"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                },
+                "quantity": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Quantity"
+                },
+                "location_description": {
+                  "title": "Location Description",
+                  "type": "string"
+                },
+                "is_primary_for_digitization": {
+                  "title": "Is Primary For Digitization",
+                  "type": "boolean"
+                },
+                "ignore_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Ignore Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "required": [
+                "axis_id",
+                "direction",
+                "name",
+                "unit",
+                "quantity",
+                "location_description",
+                "is_primary_for_digitization",
+                "ignore_reason",
+                "confidence"
+              ],
+              "title": "IdentifiedAxis",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "axes": {
+              "items": {
+                "$ref": "#/$defs/IdentifiedAxis"
+              },
+              "title": "Axes",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "AxisIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "axes",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 2518,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2515
+      },
+      "output_tokens": 194,
+      "output_tokens_details": {
+        "reasoning_tokens": 54
+      },
+      "total_tokens": 2712
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"axes\":[{\"axis_id\":\"main-panel-x\",\"direction\":\"x\",\"name\":\"X value\",\"unit\":null,\"quantity\":\"X value\",\"location_description\":\"Bottom horizontal axis of the single main scatter-plot panel\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99},{\"axis_id\":\"main-panel-y\",\"direction\":\"y\",\"name\":\"Y value\",\"unit\":null,\"quantity\":\"Y value\",\"location_description\":\"Left vertical axis of the single main scatter-plot panel\",\"is_primary_for_digitization\":true,\"ignore_reason\":null,\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "axes": [
+      {
+        "axis_id": "main-panel-x",
+        "direction": "x",
+        "name": "X value",
+        "unit": null,
+        "quantity": "X value",
+        "location_description": "Bottom horizontal axis of the single main scatter-plot panel",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "main-panel-y",
+        "direction": "y",
+        "name": "Y value",
+        "unit": null,
+        "quantity": "Y value",
+        "location_description": "Left vertical axis of the single main scatter-plot panel",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

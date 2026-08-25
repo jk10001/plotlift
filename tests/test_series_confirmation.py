@@ -17,8 +17,10 @@ from app.models import (
     PromptMetadata,
     RunSettings,
     RunState,
+    ScatterSeriesDigitizationOutput,
     SeriesIdentification,
     SeriesIdentificationOutput,
+    SeriesPointProposal,
     SeriesState,
 )
 from app.openai_client import OpenAIChartClient
@@ -90,6 +92,28 @@ def test_series_stage_sends_overlay_back_for_confirmation(tmp_path: Path, monkey
     assert [item["response_kind"] for item in conversation["attempts"][:2]] == ["proposal", "accept_previous"]
     assert "response_id" not in conversation["attempts"][0]
     assert "previous_response_id" not in conversation["attempts"][1]
+
+
+def test_mock_series_stage_digitizes_line_and_scatter_together(tmp_path: Path, monkeypatch) -> None:
+    cfg = DummyConfig(tmp_path)
+    monkeypatch.setattr(artifacts, "get_config", lambda: cfg)
+    monkeypatch.setattr(series_stage, "get_config", lambda: cfg)
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "30")
+    run_id = "mixedmock"
+    root = tmp_path / run_id
+    crop_path = root / "crop" / "approved_crop.png"
+    crop_path.parent.mkdir(parents=True)
+    Image.new("RGB", (100, 100), "white").save(crop_path)
+    state = _ready_state(run_id)
+    client = OpenAIChartClient(api_key=None, mock_mode=True, run_dir=root, run_id=run_id)
+
+    identified = series_stage.run_series_stage(state, load_prompt_pack(), client)
+    result = series_stage.run_selected_series_stage(identified, load_prompt_pack(), client, [0, 1])
+
+    assert [series.series_type for series in result.series] == ["line", "scatter"]
+    assert result.series[1].marker_style == "filled circle"
+    assert result.series[1].series_truncated is False
+    assert len(result.series[1].points) == 4
 
 
 def test_series_stage_digitizes_every_identified_series_even_past_old_cap(tmp_path: Path, monkeypatch) -> None:
@@ -196,7 +220,7 @@ def test_series_selection_cancel_digitizes_none(tmp_path: Path, monkeypatch) -> 
 
     client = OpenAIChartClient(api_key=None, mock_mode=True, run_dir=root, run_id=run_id)
     identified = series_stage.run_series_stage(state, load_prompt_pack(), client)
-    assert len(identified.pending_series) == 1
+    assert len(identified.pending_series) == 2
 
     result = series_stage.cancel_series_selection(identified)
 
@@ -239,6 +263,43 @@ def test_retry_series_digitization_replaces_only_target_series(tmp_path: Path, m
     assert captured["series_description"].series_name == "Retry auto"
 
 
+def test_scatter_output_is_sorted_capped_and_marked_truncated(monkeypatch) -> None:
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "3")
+    state = _ready_state("scattercap")
+    description = SeriesIdentification(
+        series_name="Observations",
+        series_type="scatter",
+        marker_style="filled circle",
+        estimated_total_points=6,
+    )
+    output = ScatterSeriesDigitizationOutput(
+        points=[
+            _proposal(0, 50, 50),
+            _proposal(1, 10, 20),
+            _proposal(2, 10, 80),
+            _proposal(3, 90, 40),
+            _proposal(4, 30, 60),
+        ],
+        series_truncated=False,
+        estimated_total_points=6,
+    )
+
+    result = series_stage._series_output_to_state(output, description, "scatter-1", state)
+
+    assert result.series_type == "scatter"
+    assert result.marker_style == "filled circle"
+    assert result.series_truncated is True
+    assert result.estimated_total_points == 6
+    assert [(point.chart_x.parsed_value, point.chart_y.parsed_value) for point in result.points] == [
+        (10, 80),
+        (10, 20),
+        (30, 60),
+    ]
+    assert [point.point_index for point in result.points] == [0, 1, 2]
+    assert all(point.segment_index == 0 for point in result.points)
+    assert any("truncated to the first 3" in warning for warning in result.warnings)
+
+
 def _ready_state(run_id: str) -> RunState:
     state = RunState(
         run_id=run_id,
@@ -272,4 +333,12 @@ def _calibration_point(label: str, x: float, y: float, value: float) -> Calibrat
         crop_image_norm=NormPoint(x=round(x / 99 * 999), y=round(y / 99 * 999)),
         crop_image_px=PixelPoint(x=x, y=y),
         chart_value=ChartValue(value_raw=str(value), value_type="number", parsed_value=value),
+    )
+
+
+def _proposal(index: int, x: float, y: float) -> SeriesPointProposal:
+    return SeriesPointProposal(
+        point_index=index,
+        chart_x=ChartValue(value_raw=str(x), value_type="number", parsed_value=x),
+        chart_y=ChartValue(value_raw=str(y), value_type="number", parsed_value=y),
     )

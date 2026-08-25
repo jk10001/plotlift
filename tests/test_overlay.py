@@ -4,8 +4,8 @@ from pathlib import Path
 
 from PIL import Image
 
-from app.models import CalibrationPoint, ChartValue, NormPoint, PixelPoint
-from app.overlay import COLORS, render_calibration_overlay
+from app.models import CalibrationPoint, ChartValue, NormPoint, PixelPoint, SeriesPoint, SeriesState
+from app.overlay import COLORS, render_calibration_overlay, render_series_overlay
 
 
 def test_calibration_overlay_uses_hollow_circle_with_centered_cross(tmp_path: Path) -> None:
@@ -29,3 +29,25 @@ def test_calibration_overlay_uses_hollow_circle_with_centered_cross(tmp_path: Pa
         assert overlay.getpixel((20, 32)) == marker_color
         for window_pixel in [(17, 17), (23, 17), (17, 23), (23, 23)]:
             assert overlay.getpixel(window_pixel) == (0, 0, 0)
+
+
+def test_scatter_overlay_does_not_connect_markers(tmp_path: Path) -> None:
+    image_path = tmp_path / "crop.png"
+    line_path = tmp_path / "line.png"
+    scatter_path = tmp_path / "scatter.png"
+    Image.new("RGB", (100, 100), "black").save(image_path)
+    points = [
+        SeriesPoint(point_index=0, crop_image_norm=NormPoint(x=200, y=200), crop_image_px=PixelPoint(x=20, y=20)),
+        SeriesPoint(point_index=1, crop_image_norm=NormPoint(x=800, y=800), crop_image_px=PixelPoint(x=80, y=80)),
+    ]
+
+    render_series_overlay(image_path, [SeriesState(id="line", name="Line", line_color="red", points=points)], line_path)
+    render_series_overlay(
+        image_path,
+        [SeriesState(id="scatter", name="Scatter", series_type="scatter", marker_style="circle", line_color="red", points=points)],
+        scatter_path,
+    )
+
+    with Image.open(line_path).convert("RGB") as line_overlay, Image.open(scatter_path).convert("RGB") as scatter_overlay:
+        assert line_overlay.getpixel((50, 50)) != (0, 0, 0)
+        assert scatter_overlay.getpixel((50, 50)) == (0, 0, 0)

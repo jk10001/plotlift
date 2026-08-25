@@ -14,6 +14,8 @@ from .models import ChartValue, RunState, SeriesPoint
 
 BASE_EXPORT_COLUMNS = [
     "series_name",
+    "series_type",
+    "series_truncated",
     "x",
     "y",
     "x_value_type",
@@ -60,6 +62,8 @@ def export_rows(state: RunState, include_debug: bool = False) -> list[dict[str, 
         for point in series.points:
             row: dict[str, Any] = {
                 "series_name": series.name,
+                "series_type": series.series_type,
+                "series_truncated": series.series_truncated,
                 "x": chart_value_export(point.chart_x),
                 "y": chart_value_export(point.chart_y),
                 "x_value_type": point.chart_x.value_type if point.chart_x else None,
@@ -135,9 +139,37 @@ def xlsx_bytes(state: RunState, include_debug: bool = False) -> bytes:
         meta.append([key, value])
 
     summary = wb.create_sheet("series_summary")
-    summary.append(["series_name", "llm_series_name", "x_axis_id", "y_axis_id", "points", "confidence", "visual_description"])
+    summary.append(
+        [
+            "series_name",
+            "series_type",
+            "marker_style",
+            "series_truncated",
+            "estimated_total_points",
+            "llm_series_name",
+            "x_axis_id",
+            "y_axis_id",
+            "points",
+            "confidence",
+            "visual_description",
+        ]
+    )
     for series in state.series:
-        summary.append([series.name, series.llm_series_name, series.x_axis_id, series.y_axis_id, len(series.points), series.confidence, series.visual_description])
+        summary.append(
+            [
+                series.name,
+                series.series_type,
+                series.marker_style,
+                series.series_truncated,
+                series.estimated_total_points,
+                series.llm_series_name,
+                series.x_axis_id,
+                series.y_axis_id,
+                len(series.points),
+                series.confidence,
+                series.visual_description,
+            ]
+        )
 
     axes = wb.create_sheet("axes")
     axes.append(["axis_id", "direction", "name", "unit", "quantity", "location_description", "approved"])

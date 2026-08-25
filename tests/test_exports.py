@@ -30,6 +30,8 @@ def test_base_export_omits_debug_columns() -> None:
     assert rows
     assert list(rows[0].keys()) == export_fieldnames(include_debug=False)
     assert "series_name" in rows[0]
+    assert rows[0]["series_type"] == "scatter"
+    assert rows[0]["series_truncated"] is True
     for field in _debug_only_fields():
         assert field not in rows[0]
 
@@ -67,6 +69,10 @@ def test_xlsx_data_sheet_uses_matching_export_columns() -> None:
     assert "axes" in debug_workbook.sheetnames
     assert next(base_workbook["data"].iter_rows(values_only=True)) == tuple(export_fieldnames(include_debug=False))
     assert next(debug_workbook["data"].iter_rows(values_only=True)) == tuple(export_fieldnames(include_debug=True))
+    summary_rows = list(debug_workbook["series_summary"].iter_rows(values_only=True))
+    assert "marker_style" in summary_rows[0]
+    assert summary_rows[1][summary_rows[0].index("marker_style")] == "filled circle"
+    assert summary_rows[1][summary_rows[0].index("estimated_total_points")] == 42
 
 
 def _debug_only_fields() -> list[str]:
@@ -135,6 +141,10 @@ def _export_state() -> RunState:
             SeriesState(
                 id="series-1",
                 name="Series A",
+                series_type="scatter",
+                marker_style="filled circle",
+                series_truncated=True,
+                estimated_total_points=42,
                 llm_series_name="LLM Name",
                 x_axis_id="x_flow",
                 y_axis_id="y_head",

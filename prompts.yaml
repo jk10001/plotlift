@@ -1,4 +1,4 @@
-version: "2026-06-04-v1"
+version: "2026-08-24-mixed-series-v1"
 
 shared:
   coordinate_contract: |
@@ -12,7 +12,7 @@ shared:
     On review attempts, use response_kind "revise_previous" with a complete replacement proposal object if the previous overlay needs improvement.
     Never provide a partial patch: every proposal or revision must be complete and internally consistent.
   unsupported_checks: |
-    Identify unsupported conditions: non-line chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the line data cannot be visually traced.
+    Identify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.
     If such a condition is present, return warnings and set unsupported flags where the schema allows it.
   multipanel_contract: |
     Multiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.
@@ -29,7 +29,7 @@ crop:
     Return crop coordinates relative to the full uploaded image in full_image_norm.
   initial: |
     This is the first crop attempt. Use the propose_crop tool with response_kind "proposal".
-    The proposal object must contain the full crop around the complete line chart, including every relevant plot panel and shared legend or title.
+    The proposal object must contain the full crop around the complete chart, including every relevant plot panel and shared legend or title.
     {{ unsupported_checks }}
   confirm: |
     This is a review attempt. The image shows the previous crop overlay relative to the original image.
@@ -38,7 +38,7 @@ crop:
 
 axis_identification:
   system: |
-    You are identifying axes in a cropped line chart before calibration.
+    You are identifying axes in a cropped line or scatter chart before calibration.
     {{ multipanel_contract }}
     Identify every visible x-axis and y-axis in every panel, including secondary axes on the top, bottom, left, or right.
     For each axis, provide a stable axis_id, direction, name, unit, quantity being measured, and a brief location description.
@@ -56,7 +56,7 @@ axis_identification:
 
 axis:
   system: |
-    You are calibrating a line chart axis from a cropped chart image.
+    You are calibrating an axis from a cropped line or scatter chart image.
     {{ coordinate_contract }}
     {{ conversation_decision_contract }}
     {{ multipanel_contract }}
@@ -100,40 +100,43 @@ axis:
 
 series:
   identification_system: |
-    You are identifying every visible line series in a cropped line chart.
+    You are identifying every visible line and scatter series in a cropped chart.
     {{ multipanel_contract }}
-    Identify all line series in every visible panel. Do not stop after five or any other arbitrary count.
-    For each series, provide its name, colour, line style, and visual description.
+    Identify all line and scatter series in every visible panel. Do not stop after five or any other arbitrary count.
+    Classify a series as line when its data is visibly connected, including lines that also have markers. Classify unconnected data markers as scatter. A fitted or reference line over scatter data is a separate line series.
+    For each series, provide its name, series_type, colour, line style, marker style, estimated point count, and visual description.
     The line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.
+    Use marker_style to describe scatter marker shape and fill, such as filled circle, hollow square, diamond, triangle, plus, or x. It may be null for a line without relevant markers.
+    Set estimated_total_points to the number of individually visible scatter markers. It may be null for line series.
     Also identify which available x-axis and y-axis applies to each series using the provided axis_id values.
     Use the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.
     Do not return point coordinates in this step.
     {{ unsupported_checks }}
   identification_initial: |
-    Inspect the cropped chart image and list every visible line series in every panel.
+    Inspect the cropped chart image and list every visible line and scatter series in every panel.
     Available calibrated axes:
     {{ available_axes }}
 
     Include series that are partially overlapping, faint, or visually similar if they can be distinguished.
     If a legend label is ambiguous or absent, choose a concise descriptive name based on appearance or position.
-  digitization_system: |
+  line_digitization_system: |
     You are an expert in digitising line charts and are digitising one specified visible line series from a cropped line chart. Your goal is to trace the line as accurately as possible, including any bends, inflections, and discontinuities, while using as few points as necessary to capture the shape.
     {{ coordinate_contract }}
     {{ conversation_decision_contract }}
     {{ multipanel_contract }}
     Return points in chart-space values as chart_x and chart_y using the selected axis units/types.
     Points must be ordered visually from left to right along the line, even if chart-space x is reversed.
-    Use {{ series_min_data_points }} to {{ series_max_data_points }} representative polyline control points: include start/end, extrema, bends, inflections, and visible discontinuity-adjacent points.
+    Use {{ line_series_min_data_points }} to {{ line_series_max_data_points }} representative polyline control points: include start/end, extrema, bends, inflections, and visible discontinuity-adjacent points.
     Points do not need to be equally spaced. Straight or gently curved segments can be represented with fewer points, while sharply curved segments may require more points to capture the shape accurately.
     Do not return every marker unless the line only has a few markers.
     {{ unsupported_checks }}
-  digitization_initial: |
+  line_digitization_initial: |
     This is the first attempt for a new series. Use response_kind "proposal".
     Digitise only the series described below.
     {{ target_series }}
 
-    The proposal object must return confidence and {{ series_min_data_points }} to {{ series_max_data_points }} points. Do not return descriptive series metadata in the proposal.
-  digitization_confirm: |
+    The proposal object must return confidence and {{ line_series_min_data_points }} to {{ line_series_max_data_points }} points. Do not return descriptive series metadata in the proposal.
+  line_digitization_confirm: |
     This is a review attempt for the same series. Review the overlay image of your proposed points and connecting line and compare to the target series line.
     The overlay shows only the series currently being digitised. Proposed points are marked with X symbols, and each X has its point_index displayed beside it in small text starting at 0.
     The overlay is rendered by projecting your chart_x/chart_y values through the calibrated axes into image space.
@@ -144,3 +147,28 @@ series:
     Otherwise use response_kind "revise_previous" and provide a complete replacement proposal for the same series.
 
     Attempt to get the points as close as possible to the target series, so that the overlay line is directly on top of the series line. Do not adjust points that are on top of the target series line, keep the same point coordinates. Only adjust points that are off the target series line.
+  scatter_digitization_system: |
+    You are an expert in digitising scatter charts and are digitising one specified visible scatter series from a cropped chart.
+    {{ coordinate_contract }}
+    {{ conversation_decision_contract }}
+    {{ multipanel_contract }}
+    Return one point for every individually visible marker in the target scatter series as chart_x and chart_y using the selected axis units/types.
+    Never connect or interpolate between scatter markers. Do not include markers belonging to other series, legend samples, line control points, grid intersections, or error-bar endpoints.
+    Order markers visually from left to right. For markers with the same visual x position, order them from top to bottom.
+    Return at most {{ scatter_series_max_data_points }} points. If more markers are visible, return the first {{ scatter_series_max_data_points }} in that visual order, set series_truncated to true, and estimate the complete marker count in estimated_total_points.
+    If all visible markers are returned, set series_truncated to false and set estimated_total_points to the returned point count.
+    {{ unsupported_checks }}
+  scatter_digitization_initial: |
+    This is the first attempt for a new scatter series. Use response_kind "proposal".
+    Digitise only the scatter series described below.
+    {{ target_series }}
+
+    The proposal must contain at least one point and no more than {{ scatter_series_max_data_points }} points. Do not return descriptive series metadata in the proposal.
+  scatter_digitization_confirm: |
+    This is a review attempt for the same scatter series. Review the overlay image and compare every numbered overlay marker with the target scatter markers.
+    The overlay contains no connecting line. Check marker membership, completeness up to the configured limit, order, and coordinate placement.
+    Continue digitising only the scatter series described below.
+    {{ target_series }}
+
+    If the proposed points accurately capture the target markers, use response_kind "accept_previous" with proposal null.
+    Otherwise use response_kind "revise_previous" and provide a complete replacement proposal for the same scatter series, respecting the {{ scatter_series_max_data_points }} point cap and truncation fields.

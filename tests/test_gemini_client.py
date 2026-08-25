@@ -4,7 +4,12 @@ import pytest
 
 from app.config import load_models, validate_run_settings
 from app.gemini_client import GeminiChartClient, _gemini_coordinate_prompt, _thinking_config, gemini_schema, gemini_to_internal_coordinates
-from app.models import CropConversationResponse, RunSettings, SeriesDigitizationConversationResponse
+from app.models import (
+    CropConversationResponse,
+    RunSettings,
+    ScatterSeriesDigitizationConversationResponse,
+    SeriesDigitizationConversationResponse,
+)
 from app.openai_schema import strict_json_schema
 
 
@@ -30,10 +35,10 @@ def test_gemini_schema_uses_provider_coordinate_scale() -> None:
 
 
 def test_gemini_schema_relaxes_series_point_array_bounds_at_complexity_limit(monkeypatch) -> None:
-    monkeypatch.setenv("SERIES_MIN_DATA_POINTS", "5")
+    monkeypatch.setenv("LINE_SERIES_MIN_DATA_POINTS", "5")
 
     for max_points, should_relax in ((19, False), (20, True), (30, True)):
-        monkeypatch.setenv("SERIES_MAX_DATA_POINTS", str(max_points))
+        monkeypatch.setenv("LINE_SERIES_MAX_DATA_POINTS", str(max_points))
         openai_schema = strict_json_schema(SeriesDigitizationConversationResponse)
         gemini_adapted = gemini_schema(openai_schema)
         openai_points = openai_schema["$defs"]["SeriesDigitizationOutput"]["properties"]["points"]
@@ -42,6 +47,18 @@ def test_gemini_schema_relaxes_series_point_array_bounds_at_complexity_limit(mon
         assert openai_points["maxItems"] == max_points
         assert gemini_points["minItems"] == 5
         assert ("maxItems" not in gemini_points) is should_relax
+
+
+def test_gemini_schema_relaxes_scatter_max_but_keeps_minimum(monkeypatch) -> None:
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "30")
+    openai_schema = strict_json_schema(ScatterSeriesDigitizationConversationResponse)
+    gemini_adapted = gemini_schema(openai_schema)
+    openai_points = openai_schema["$defs"]["ScatterSeriesDigitizationOutput"]["properties"]["points"]
+    gemini_points = gemini_adapted["$defs"]["ScatterSeriesDigitizationOutput"]["properties"]["points"]
+
+    assert openai_points["maxItems"] == 30
+    assert gemini_points["minItems"] == 1
+    assert "maxItems" not in gemini_points
 
 
 def test_gemini_prompt_coordinate_contract_uses_provider_scale() -> None:
