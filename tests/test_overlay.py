@@ -8,7 +8,7 @@ from app.models import CalibrationPoint, ChartValue, NormPoint, PixelPoint, Seri
 from app.overlay import COLORS, render_calibration_overlay, render_series_overlay
 
 
-def test_calibration_overlay_uses_hollow_circle_with_centered_cross(tmp_path: Path) -> None:
+def test_calibration_review_overlay_uses_red_x_marker(tmp_path: Path) -> None:
     image_path = tmp_path / "crop.png"
     target_path = tmp_path / "overlay.png"
     Image.new("RGB", (80, 80), "black").save(image_path)
@@ -22,13 +22,12 @@ def test_calibration_overlay_uses_hollow_circle_with_centered_cross(tmp_path: Pa
     render_calibration_overlay(image_path, [point], target_path)
 
     with Image.open(target_path).convert("RGB") as overlay:
-        marker_color = Image.new("RGB", (1, 1), COLORS["x"]).getpixel((0, 0))
+        marker_color = Image.new("RGB", (1, 1), COLORS["calibration_review"]).getpixel((0, 0))
         assert overlay.getpixel((20, 20)) == marker_color
-        assert overlay.getpixel((29, 20)) == marker_color
-        assert overlay.getpixel((32, 20)) == marker_color
-        assert overlay.getpixel((20, 32)) == marker_color
-        for window_pixel in [(17, 17), (23, 17), (17, 23), (23, 23)]:
-            assert overlay.getpixel(window_pixel) == (0, 0, 0)
+        assert any(overlay.getpixel((20 - offset, 20 - offset)) == marker_color for offset in range(2, 7))
+        assert any(overlay.getpixel((20 + offset, 20 - offset)) == marker_color for offset in range(2, 7))
+        for cardinal_pixel in [(20, 13), (13, 20), (27, 20), (20, 27)]:
+            assert overlay.getpixel(cardinal_pixel) == (0, 0, 0)
 
 
 def test_series_review_overlay_uses_fixed_red_x_markers_and_only_connects_lines(tmp_path: Path) -> None:

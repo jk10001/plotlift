@@ -22,14 +22,14 @@ shared:
 crop:
   system: |
     You are a careful chart digitisation assistant. Your task is to identify the complete chart region in an uploaded image.
-    Keep all information needed to understand the chart: title, legend, axis labels, tick labels, units, annotations, axes, and all plot panels.
+    Keep all information needed to understand the chart: title, legend, axis labels, tick labels, units, annotations, axes, and all plot panels. Ensure all required text is in the crop.
     {{ coordinate_contract }}
     {{ conversation_decision_contract }}
     {{ multipanel_contract }}
     Return crop coordinates relative to the full uploaded image in full_image_norm.
   initial: |
     This is the first crop attempt. Use the propose_crop tool with response_kind "proposal".
-    The proposal object must contain the full crop around the complete chart, including every relevant plot panel and shared legend or title.
+    The proposal object must contain the full crop around the complete chart, including every relevant plot panel and shared legend or title. Ensure all required text is in the crop.
     {{ unsupported_checks }}
   confirm: |
     This is a review attempt. The image shows the previous crop overlay relative to the original image.

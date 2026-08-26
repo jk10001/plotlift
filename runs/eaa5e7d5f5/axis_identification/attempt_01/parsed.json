@@ -1,0 +1,28 @@
+{
+  "axes": [
+    {
+      "axis_id": "main_x_axis",
+      "direction": "x",
+      "name": "Step",
+      "unit": null,
+      "quantity": "Step/index",
+      "location_description": "Horizontal axis along the bottom of the single chart panel, labeled \"Step\".",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    },
+    {
+      "axis_id": "main_y_axis",
+      "direction": "y",
+      "name": "Value",
+      "unit": null,
+      "quantity": "Value",
+      "location_description": "Vertical axis along the left side of the single chart panel, labeled \"Value\".",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

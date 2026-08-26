@@ -1316,9 +1316,7 @@ function renderSeriesOverlay() {
         const commonAttrs = {
           class: `series-point ${locked ? "locked-overlay" : "interactive"}`,
           stroke: color,
-          fill: ["x", "plus"].includes(markerKind)
-            ? "none"
-            : (item.series_type === "scatter" && String(item.marker_style || "").toLowerCase().includes("filled") ? color : "#fff"),
+          fill: seriesMarkerFill(item, markerKind, color),
           ...(locked ? {} : { "data-drag": "series" }),
           "data-series-id": item.id,
           "data-segment-index": point.segment_index,
@@ -2041,11 +2039,18 @@ function seriesMarkerKind(item, seriesIndex) {
   return SERIES_MARKER_KINDS[Math.max(0, rank) % SERIES_MARKER_KINDS.length];
 }
 
+function seriesMarkerFill(item, markerKind, color) {
+  if (["x", "plus"].includes(markerKind)) return "none";
+  if (item.series_type === "scatter" && String(item.marker_style || "").toLowerCase().includes("filled")) return color;
+  return "#fff";
+}
+
 function seriesLegendPreviewMarkup(item, seriesIndex) {
   const color = escapeHtml(seriesColor(item, seriesIndex));
   const dashArray = seriesDashArray(item.line_style);
   const dashAttr = dashArray ? ` stroke-dasharray="${dashArray}"` : "";
-  const marker = seriesLegendMarkerMarkup(seriesMarkerKind(item, seriesIndex), color);
+  const markerKind = seriesMarkerKind(item, seriesIndex);
+  const marker = seriesLegendMarkerMarkup(markerKind, color, seriesMarkerFill(item, markerKind, color));
   const line = item.series_type === "scatter"
     ? ""
     : `<line x1="4" y1="10" x2="44" y2="10" stroke="${color}" stroke-width="4" stroke-linecap="round"${dashAttr}></line>`;
@@ -2057,11 +2062,11 @@ function seriesLegendPreviewMarkup(item, seriesIndex) {
   `;
 }
 
-function seriesLegendMarkerMarkup(kind, color) {
-  if (kind === "circle") return `<circle cx="24" cy="10" r="4" fill="#fff" stroke="${color}" stroke-width="2"></circle>`;
-  if (kind === "square") return `<rect x="20" y="6" width="8" height="8" fill="#fff" stroke="${color}" stroke-width="2"></rect>`;
-  if (kind === "diamond") return `<path d="M 24 5 L 29 10 L 24 15 L 19 10 Z" fill="#fff" stroke="${color}" stroke-width="2"></path>`;
-  if (kind === "triangle") return `<path d="M 24 5 L 29 15 L 19 15 Z" fill="#fff" stroke="${color}" stroke-width="2"></path>`;
+function seriesLegendMarkerMarkup(kind, color, fill) {
+  if (kind === "circle") return `<circle cx="24" cy="10" r="4" fill="${fill}" stroke="${color}" stroke-width="2"></circle>`;
+  if (kind === "square") return `<rect x="20" y="6" width="8" height="8" fill="${fill}" stroke="${color}" stroke-width="2"></rect>`;
+  if (kind === "diamond") return `<path d="M 24 5 L 29 10 L 24 15 L 19 10 Z" fill="${fill}" stroke="${color}" stroke-width="2"></path>`;
+  if (kind === "triangle") return `<path d="M 24 5 L 29 15 L 19 15 Z" fill="${fill}" stroke="${color}" stroke-width="2"></path>`;
   if (kind === "plus") return `<path d="M 18 10 L 30 10 M 24 4 L 24 16" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round"></path>`;
   return `
     <line x1="20" y1="6" x2="28" y2="14" stroke="${color}" stroke-width="2" stroke-linecap="round"></line>

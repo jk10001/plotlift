@@ -1,23 +1,23 @@
 {
   "axes": [
     {
-      "axis_id": "x_main",
+      "axis_id": "main_x_bottom",
       "direction": "x",
       "name": "X value",
       "unit": null,
       "quantity": "X value",
-      "location_description": "Single chart panel; horizontal bottom axis",
+      "location_description": "Bottom horizontal axis of the single plot panel",
       "is_primary_for_digitization": true,
       "ignore_reason": null,
       "confidence": 0.99
     },
     {
-      "axis_id": "y_main",
+      "axis_id": "main_y_left",
       "direction": "y",
       "name": "Y value",
       "unit": null,
       "quantity": "Y value",
-      "location_description": "Single chart panel; vertical left axis",
+      "location_description": "Left vertical axis of the single plot panel",
       "is_primary_for_digitization": true,
       "ignore_reason": null,
       "confidence": 0.99

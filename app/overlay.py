@@ -11,6 +11,7 @@ COLORS = {
     "crop": "#f59e0b",
     "x": "#2563eb",
     "y": "#dc2626",
+    "calibration_review": "#dc2626",
     "series_review": "#dc2626",
     "series": ["#0891b2", "#7c3aed", "#16a34a", "#ea580c", "#db2777"],
     "text": "#111827",
@@ -68,22 +69,6 @@ def _draw_x_marker(
         draw.line((x - half, y + half, x + half, y - half), fill=color, width=width)
 
 
-def _draw_calibration_marker(
-    draw: ImageDraw.ImageDraw,
-    xy: tuple[float, float],
-    fill: str,
-    *,
-    radius: int = 9,
-    cross_half_size: int = 12,
-    line_width: int = 2,
-) -> None:
-    x, y = xy
-    circle = (x - radius, y - radius, x + radius, y + radius)
-    draw.ellipse(circle, outline=fill, width=line_width)
-    draw.line((x - cross_half_size, y, x + cross_half_size, y), fill=fill, width=line_width)
-    draw.line((x, y - cross_half_size, x, y + cross_half_size), fill=fill, width=line_width)
-
-
 def render_crop_overlay(image_path: Path, bbox: PixelBBox, target_path: Path) -> None:
     target_path.parent.mkdir(parents=True, exist_ok=True)
     with Image.open(image_path).convert("RGBA") as img:
@@ -105,16 +90,15 @@ def render_calibration_overlay(
     target_path.parent.mkdir(parents=True, exist_ok=True)
     with Image.open(crop_image_path).convert("RGBA") as img:
         draw = ImageDraw.Draw(img)
+        color = COLORS["calibration_review"]
         for point in points:
             if not point.crop_image_px:
                 continue
-            color = COLORS["x"] if point.label.startswith("x") else COLORS["y"]
             x, y = point.crop_image_px.x, point.crop_image_px.y
-            _draw_calibration_marker(draw, (x, y), color)
+            _draw_x_marker(draw, (x, y), color, size=14, halo_width=4, line_width=2)
             _draw_label(draw, (x, y), point.label, color, offset=(14, -30))
         if len(points) == 2 and all(point.crop_image_px for point in points):
             p1, p2 = points[0].crop_image_px, points[1].crop_image_px
-            color = COLORS["x"] if points[0].label.startswith("x") else COLORS["y"]
             draw.line((p1.x, p1.y, p2.x, p2.y), fill=color, width=3)
         img.convert("RGB").save(target_path)
 
