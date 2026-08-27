@@ -20,6 +20,7 @@ const stateRef = {
   },
   seriesChoiceKey: null,
   seriesChoiceSelected: [],
+  hiddenSeriesIds: new Set(),
 };
 
 const DEFAULT_SERIES_COLORS = ["#0891b2", "#7c3aed", "#16a34a", "#ea580c", "#db2777"];
@@ -213,6 +214,7 @@ async function onUpload(event) {
   const result = await api("/api/runs", { method: "POST", body: form });
   stateRef.runId = result.run_id;
   stateRef.state = result.state;
+  stateRef.hiddenSeriesIds.clear();
   resetChartViewport();
   stateRef.sidebarOpen = { calibration: null, series: null };
   stateRef.newRunOpen = false;
@@ -230,6 +232,7 @@ async function loadRun(runId, options = {}) {
   if (stateRef.runId !== runId) {
     stateRef.sidebarOpen = { calibration: null, series: null };
     stateRef.foregroundCalibrationAxisId = null;
+    stateRef.hiddenSeriesIds.clear();
     resetChartViewport();
   }
   stateRef.runId = runId;
@@ -279,6 +282,7 @@ function resetRunView() {
   stateRef.runId = null;
   stateRef.state = null;
   stateRef.foregroundCalibrationAxisId = null;
+  stateRef.hiddenSeriesIds.clear();
   resetChartViewport();
   stateRef.sidebarOpen = { calibration: null, series: null };
   els.fileInput.value = "";
@@ -1292,6 +1296,7 @@ function renderSeriesOverlay() {
   const series = stateRef.state?.series || [];
   const locked = llmJobActive() || seriesConfirmed();
   series.forEach((item, seriesIndex) => {
+    if (stateRef.hiddenSeriesIds.has(item.id)) return;
     const color = seriesColor(item, seriesIndex);
     const dashArray = seriesDashArray(item.line_style);
     const markerKind = seriesMarkerKind(item, seriesIndex);
@@ -1517,6 +1522,15 @@ function renderSeriesEditor() {
     return;
   }
   series.forEach((item, seriesIndex) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "series-block-wrap";
+    const visibilityCheckbox = document.createElement("input");
+    visibilityCheckbox.className = "series-visibility-toggle";
+    visibilityCheckbox.type = "checkbox";
+    visibilityCheckbox.dataset.seriesVisible = item.id;
+    visibilityCheckbox.setAttribute("aria-label", `Show Series ${seriesIndex + 1} on chart overlay`);
+    visibilityCheckbox.title = `Show or hide Series ${seriesIndex + 1} on the chart overlay`;
+    visibilityCheckbox.checked = !stateRef.hiddenSeriesIds.has(item.id);
     const block = document.createElement("details");
     block.className = "series-block";
     block.open = !seriesConfirmed();
@@ -1559,12 +1573,21 @@ function renderSeriesEditor() {
       `;
       list.append(row);
     }
-    els.seriesEditor.append(block);
+    wrapper.append(visibilityCheckbox, block);
+    els.seriesEditor.append(wrapper);
   });
   wireSeriesEditor();
 }
 
 function wireSeriesEditor() {
+  els.seriesEditor.querySelectorAll("[data-series-visible]").forEach((checkbox) => {
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) stateRef.hiddenSeriesIds.delete(checkbox.dataset.seriesVisible);
+      else stateRef.hiddenSeriesIds.add(checkbox.dataset.seriesVisible);
+      hidePointTooltip();
+      scheduleOverlayRender();
+    });
+  });
   els.seriesEditor.querySelectorAll("[data-series-name]").forEach((input) => {
     input.addEventListener("click", (event) => event.stopPropagation());
     input.addEventListener("pointerdown", (event) => event.stopPropagation());
@@ -1578,6 +1601,7 @@ function wireSeriesEditor() {
   els.seriesEditor.querySelectorAll("[data-delete-series]").forEach((button) => {
     button.addEventListener("click", () => {
       if (llmJobActive()) return;
+      stateRef.hiddenSeriesIds.delete(button.dataset.deleteSeries);
       stateRef.state.series = stateRef.state.series.filter((series) => series.id !== button.dataset.deleteSeries);
       render({ forceEditors: true });
       saveSeries("image", { forceEditors: true });

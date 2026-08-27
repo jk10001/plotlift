@@ -1095,6 +1095,10 @@ h2 {
   padding: 0;
 }
 
+.series-block-wrap {
+  position: relative;
+}
+
 .series-block summary {
   display: flex;
   align-items: center;
@@ -1102,6 +1106,22 @@ h2 {
   padding: 7px 8px;
   cursor: pointer;
   font-weight: 800;
+}
+
+.series-visibility-toggle {
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  left: 28px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.series-block-wrap > .series-block > summary::before {
+  margin-right: 24px;
 }
 
 .series-legend-sample {
