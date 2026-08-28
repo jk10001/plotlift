@@ -1,0 +1,339 @@
+{
+  "raw": {
+    "created_at": 1787828388.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying every visible line and scatter series in a cropped chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line and scatter series in every visible panel. Do not stop after five or any other arbitrary count.\nClassify a series as line when its data is visibly connected, including lines that also have markers. Classify unconnected data markers as scatter. A fitted or reference line over scatter data is a separate line series.\nFor each series, provide its name, series_type, colour, line style, marker style, estimated point count, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nUse marker_style to describe scatter marker shape and fill, such as filled circle, hollow square, diamond, triangle, plus, or x. It may be null for a line without relevant markers.\nSet estimated_total_points to the number of individually visible scatter markers. It may be null for line series.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0514f53005cc4201006a9018a52e2087d0b068bd333068b297",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqkBi2ogXAefUjhExj0RurpBxVOXDUv9Se1h-E-VEgeMty-5Z6Zcddvpnx7sbSxhfLpaA3QdeuP12Fg-42zM78W-yfG46Z3D2JvJyTqKBze_GemZhsgD6fkIsbBIyetHnk2uj4yxlFzsQLY8iJ8qLaTR85tjAqln81E_0VV1yCGczG_l8ncTJk8N0dOruB9r8hdNDLkph_y8BtiMdVqbn4wRqd-pNUORKCZe21NpxlshFdiNT_L6C87H0zVm1quriof_mdG-6h763415P-H2CSypDwk9do3h5qbvZVCKdL6eJU9tZgVVPLwQ3jgV8rNkfQGk4Q7Sgoqzxsd1g1v1J5X655rm-E9wB9awo6Ae02LcWML_kUwSfYBHLAElTPsd9AK-PzHujqI-02NdquMKa5SYJrB14aECD_1RboRU_rjka-NzLGEd5pvSGddcNeuDklMN0_1eLwoz_NbUAb1KALFfg7smQSNPMwDYDSvt78jnXdRGBcwN7QHf75E9okKkKwBBT3jWwiaaGhbyOSX9uDbzfOu8wDqNZNwsnL8o3-z_X0XCprAismBcYN8PpvgnUic2U5fK5wOBkuaGIU5Pc6-49FT7moE5aSIaMo7A36RujvO25F7NvZmemOEqA9JjAPmmeqdA8T4r40v-Vxqm8ZyTvbZhJqjcsWfCKkzkK0sNeFn1R4U8koDdUvwAl5bHcSrzVfRkvwDloko0DfVokUYnugoK1ynjkcQPAPCbBl9-czCMNujkl8seSDAbax29LmDgebOW26xdQleTG9DDWi_YNZusCR52ub2btrZzGE5-fyK8my_eaeQ1Za_WpQlWaIRPgoNOpAYmjYFVVJcjuH7m1qRzskSqWLc8DXtURqm6whyzByJytz5DoRxh39p4jyL7gZLR7ATU1WrViTirMAvGnZTSybm2Orf2Br3JEZJDn7ZWyalVfzWqEhwgAM87BsGd0eS2dxoY1xk4xySUb81LDsTU96BqPLQt19wsr2jOYg2QSI8TYptJgrmjGS6htLboaxHn33Bw8yogqm2Zwzf_r4R6Falz6pTk-CRjO_fDGZbqLVnR_w_hCOj3JdCb_SLiOQtebXVwrzIxyr9ONqiLnWmnuyW3bQq7dIfn5KznVOsC3tnPbfUtSTCLPUe1PBz6Nd5zdCPV0_V2HIN0EqOqG2NPgQ9hO-XcKnjOVRw9AIBJaWgB7enSxCmYcB3IOV4oZwUWtzCvu-JHvILprHTn3gZq4ZUxbC3_TOHs1xrPSX99fquAcNY2AUtCP70jWjZiueub3uYHOGOlvXrCfBp2Gzl9xTvsyHZP2Z-CaY5HQrSBjE68-We9B0kz5uOTmPTlbvf14I2SNqgtx7wJdCwHukSY5-vUFBq13V-R9z3lSRAGuvSUnhNsGpL5Z_VtCHkvmrgLoUipAsMirNBYW6pCSesb23F3PYb7w4KPdWZQ4R6bjS8uUOzwfUn9G_bHK2-42AxGWzsQ7ufhCHNN4--5T7gx_JcUY5HOnBl0WHo8qox17JwuwWDuxXOuwNCOT_3IGjZwWZsw_bVEoQS01GDH586H3Kw1KlLOq7jYxuC6M5UfxQ9ttQ757FKKb-U8gQCpfIYa_Hn5dk3YKzWEnTCz0v7PqiQ_ULbQykfbYv6ncrIBkwY1c2byrdW5d9Hb4i-P9saQB3HFkc0K6qQqWjdbaTyppQwaat2kJwsSF_64sSLj1TDZQA_HW0ajdICNGTxqxh-dwdQV2qB_DerK20p6gziByM2NcYqXsHfKMmxStVQdZrHh2Gmw2O_6QYGdUQ8RYoNIP8N75y5-Q8Kj7LjNHCGBuoE4H73ccW-4D7flHwK08yX8UEmb06Ln3LMTkP2rl1cwsi_urR9AAkxLdwjifnQPImfAgerpShgVn0thbExvaSidOpuUIxPaqva-AzY2CqDW7UXpme7V2oHsfF0lGBVEb5r9yAi0zHBS_yy4ytFgwvLtglYVmTiSAe_NeKoww7y7Qu9OHJBHzVntltF6w5u-REwJ41djvPeCGvAiGq6PBIYg9kHQin8Sj7ZY1b3LUQLEVjao455qAMdbQQsKL7qUMW9NDtgEiCss5nYsjd4A7Ha6W2b1QDFPGZWRp9Z1daM5mCAul0MBOMfetQurHlrqxQGs7HVbbQ2u0N-EpUT5Iv3zvnyqXmMUHtbr99XYY-zYd7D25musN1hlomQEHqU1J3aeiWY4Yg4mV9X4Vf8xt10sQIYRcb3kPt81b0aglAlZl0fb9Qpodi9pECl51OITiORIp-VJ_lLIOrhi9hia7jDIj3idQKN-zUmDJE0Lfz3F6yXKYZpjsqw5Lwe9381VhKDJSGGG7F4D-T4gCAybUFITvP7zQbcS8U-3lq0CMaAW3ypY8gw4tKbK-pT_4B4eW9ulS81GOARg4gHIs8XA6Hv-Uvh_F0DYAK4UKDGuLjRcAsTM_P6I1TKgp28HOix5QHMX1lgeBPrMVUaPnQnbUZCX1Hr9YW84Jptk3l_no129b1RUb3YnBzi-uVUaStY1L-qmL_DQM-U4aQbg4H0MqyMcOsGPZux74R7Dohp3-ZrRNJ7_O3vo4FCzMCxqTyYCdX8HFEYpKvMZGflwPR1XNFiG0ttc25G3BuBZ0bJGHyyxyOWZqC3lzfu7IYLFhZrTRlYPWXKr50bqigBXxINQTZgGlLOZpKIkGpZm8KrM4Zden1HLcYnEdCEiMkmbgE7yL2IsCTpetY-Nl8vyQiVpGQuoqFhRtTNVoW65ab6fGoAUTFOf_YqaWIGXtfIaFT0h9M7UHva6PTZyuqgUEgrQEslFhsi-9sGCjs1semzKAVHWjQk7m0bT445skSrhjACB-S8J8JLArLa1hoU7p0Dwn_ncxej8Y5xKOGZBlUZDCUllgqx9XL7b4hj-I1gOMECoNPgz3wvmFmHnRtLu4BCHG0-xbFTS8RjG5d2KBEzcscNyM1oig7rBcNfujHK7OlB0-LwYAlAcfobX0guUGaYVo=",
+        "status": null
+      },
+      {
+        "id": "rs_0514f53005cc4201006a9018abdc9887d0b064ed20e6b4d231",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqkBi2hZrheL5s80ldS7ww7Fl-RDRUYmzFElQ5Qv9r5BwdikTSXpCIEChwYwhWD38pT-lrvmdYVoEmgvXNWuo6A4PjU_D6QMttd_0-auC9R8ij9VudZayPw2M96L3bKyE9b0Lgi_I5DGX4rrj1CQ_4kMmj9_zFGR5Pw9-Yuy02AD-s5ZMLToXKfzbMdJ9oSeIEHP6uoyNCU1J4GjLqQ_elwo6CgZZQnYgG7Z9sHIl8M84GUzmMBz18zP-dszXkM-0DlErBaXE2ruYDOtnuFoMyfnOOCyooDCxxmt2W-8iLCYegIZClOPaIlfElrl1LcfCirsF1om58iZnbjLDphptUipovxOz0zWnhDVQ01TH3SHWhreINaCWYpl4c2-DIIbZpY0iwqAbN4QCmpoLgOda83nmNWlZBV8FcdUbNDvREARZIsYCEFTBUft-opjZr0OzKsbY9GOmADOz7l7zlnW32tRLARIv1qFfB146Gd4f9g4aVDeDK4x0_NViY9oZkhm9WLeSyUk2YHOCPPCP5ZxGFIRu7NQcyPqDUlTprS2UuxxEYfK_Z7dfPTe6wq5V0T6t74S4XFIfcoLdVKeK1-ITarXR4dFluZkol7VVQL1pd2KWpbOWt_fdiHBqxSgDVTBNPLIPZRaGPStHsBH8nt2h2zGzAQLeTSupyYYFBLeeUnC9ANjp0bAkslzXNHsxwlMaCLP0-jGnr3jBO5TkM0dfvXGdJol_6riSBkrDLWubmwOqzuXWiF6s9-O7GY8h0eTVtPAInrivZBXzEhTb3GfeWpVuDCqPcm90M-Aq0Dzk3DZQsT2uwW7O_N2sIq7CET2jdqPQ_yeGsmzhWM4V4-aljaiUjc_feWvF4sskDoakORx34nCX6qrMqHWTd4YK0Xyhw6eriOTA-Z176uOHijFXNKgmH-lSCa7pSOa5fCfmW0iU9c8fawyNR4-T3fuY3H99iIQIzh374eV9A70jz1r-zaC4jKIPDfLx97K7dtLrWXf8sv5COhR8Vew3MMLlTOsEuLK6z6F_wpV-h70Z4vKr7e8Fy51MzNfhK0tGWqQEW3Kn8m_VoTQlvUvkuyp8MTzmoz38jwBMtJhjZImQrPZ8AwpWOY6PdZ-J2kAIRELeL9f_pr9MDs0Rks3KVNUAr94Xf9_5toZqklnStmllS3T0M6WwwWECvg8ymh8OxQEBeMFT1BjgUKNKc9biJhSypRQyHwzNMwiZpwcLoc947w-U0_VcXSmYOQh2vbQ67OwrvdcqXcqaiRCUfkLRGoq5O-FvBI_XoBYb9EGjYum6CEQU9xGjtNfEzJbEIWTtQ3CjwuxpgOvIbEIdSr8qeMCf5CCp6rcUlLcfXGK4Z4aeDf3LX_mRTDGyRMpB9Rb3SVnF_Z5Wts7T2KM_DL-xlj9GAv6P6s8vo3ZIKNmo_8aJwS5GrwPOInWQVjsoys9HGPZIx_4mQ1y0MHGoe8pbXEzbOldZBwJCG5-U4pPB0l8DWVcr7fioz2jLgw7IhUzE3Io7vUFP_SfL2fMne6ok7pkdg_KQ1Uoha239CIB4bB3Uz-5oiTfFZCHoTCXi9Sdw9djdkU3apJ0QRFctQYXm0yWYtdfbiqqiJU8FqxeB0ew-c0SuHe_xtohbJ1LcwJ5_E1KpqEFJDw8nYg7ASVfqQFxXGVyNljNJrHViPa5j3hJ4jM4QvnLEkmNoKHve9cumhxV8OOtBkUwgH_RFczWjfUmwRr8rFh1cf-kydMNHmA1j5t23fL_n_aW-TwXsLR8AcDhbuBRXmfcCam3-vD1tZj8TtoCB9qD9Ehg-0BGaZQ-9cKDXJ1gxLdLJfHww6XQLk4VOZLjOdVnyCjqI_llq2_t4EJ_pwSdfG_N3R8l6HvHBajjrzlNpfGEHGLBtv9UC-BLjS5vQIOgOJWM3zNbxxbVZ9N79LXg06nHBBFXFqeoQ_uxhb3GO65-CnksMZA6DqMDo8uEkPc5E3nHFjJ5fWOw-LVrKZYp5cl2cXo4HsMAq6ezGlvTpTpNiLiGMFZpuRjZetRLA2IZctkqR6zC7C5MPxAYcVfswBtB7Zby-cPmkOPW7VcTikvzRhKCiWIaN9iBgIlEru7-TGITZ8xP1_-qUNeDXQMstdeX8l-b_xM9w0Q_YbE3tjbcXvBSqNG95ZbNwTbb4-SPM01zFFi_D7G05pnI3m95cXDqASOGpXBXnqGraJLltNE0CIz-gZVBwf7JrYXBguEBUqiKAiMCI-0fOzZR5N4pzAxhFO1k5tju2cHF4nt8RAso5hwVuwSkXU8EpyS1SqsMorSN9pHZqic3KGermcT5RM4IjvLje-5dLR7X9Fh1dTNmsqYzwiwUIq_nU2Crtco_Cb4SwhAaJXkJOCF1m-tO8PrZM6ky8LcVHQ8GkeOE-GW1ReY2vYmgC2xzYW26vL8CN0NLO2SHzA9pBbVm43w155tR25xmKTelfYjy_bL6gqG4WPP0Ex5Dw_YdI2fbGDMlqZ2G19_7iZ5y-IdCUcTaeif9fu_DFKRxaClbljr-WDgLFwMZfgLCxRPObb5dnJjPZW3y0hghg2XO8ZHBDbZQ3NWASxgQ2Xj8gUYPf00lisEAbLvNtQeHViW0GXyE3GvGmFe1RRRRE37oUyWAPyOR14pTWt69xvUInUqLwrVPBQKR4sjMZsy69tN7NbNNhAWcaAGDCgUNfk7w_xCOEmGDQm",
+        "status": null
+      },
+      {
+        "id": "msg_0514f53005cc4201006a9018b21bf487d0b1ce116c0a95018c",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"series\":[{\"series_name\":\"Series 1\",\"series_type\":\"scatter\",\"visual_description\":\"Blue filled circular markers distributed from the lower-left toward the middle of the single scatter-plot panel; several markers are closely overlapping around X values 12–18 and 34–43.\",\"line_color\":\"#1f77b4\",\"line_style\":null,\"marker_style\":\"filled circle\",\"estimated_total_points\":40,\"x_axis_id\":\"main_x_axis\",\"y_axis_id\":\"main_y_axis\",\"axis_selection_reason\":\"The markers are plotted against the panel's bottom X value axis and left Y value axis.\",\"confidence\":0.98},{\"series_name\":\"Series 2\",\"series_type\":\"scatter\",\"visual_description\":\"Orange filled square markers forming a broad descending pattern from approximately (26,76) through the central and right-middle portions of the panel, with some overlapping squares near X values 31–40.\",\"line_color\":\"#ff7f0e\",\"line_style\":null,\"marker_style\":\"filled square\",\"estimated_total_points\":38,\"x_axis_id\":\"main_x_axis\",\"y_axis_id\":\"main_y_axis\",\"axis_selection_reason\":\"The markers use the single panel's bottom X value axis and left Y value axis.\",\"confidence\":0.98},{\"series_name\":\"Series 3\",\"series_type\":\"scatter\",\"visual_description\":\"Green filled triangular markers concentrated in the upper-middle and right side of the panel, with a dense cluster around X values 56–74 and a lower, more dispersed group around X values 82–95.\",\"line_color\":\"#2ca02c\",\"line_style\":null,\"marker_style\":\"filled triangle\",\"estimated_total_points\":40,\"x_axis_id\":\"main_x_axis\",\"y_axis_id\":\"main_y_axis\",\"axis_selection_reason\":\"The markers are plotted using the single scatter panel's bottom X value axis and left Y value axis.\",\"confidence\":0.98}],\"warnings\":[],\"unsupported_flags\":[]}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787828405.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:4c631538bc:series_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesIdentification",
+        "schema_": {
+          "$defs": {
+            "SeriesIdentification": {
+              "properties": {
+                "series_name": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Series Name"
+                },
+                "series_type": {
+                  "enum": [
+                    "line",
+                    "scatter"
+                  ],
+                  "title": "Series Type",
+                  "type": "string"
+                },
+                "visual_description": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Visual Description"
+                },
+                "line_color": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Series colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+                  "title": "Line Color"
+                },
+                "line_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Line Style"
+                },
+                "marker_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Marker Style"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "x_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "X Axis Id"
+                },
+                "y_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Y Axis Id"
+                },
+                "axis_selection_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Axis Selection Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "title": "SeriesIdentification",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "series_name",
+                "series_type",
+                "visual_description",
+                "line_color",
+                "line_style",
+                "marker_style",
+                "estimated_total_points",
+                "x_axis_id",
+                "y_axis_id",
+                "axis_selection_reason",
+                "confidence"
+              ]
+            }
+          },
+          "properties": {
+            "series": {
+              "items": {
+                "$ref": "#/$defs/SeriesIdentification"
+              },
+              "title": "Series",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "series",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 3860,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 3857
+      },
+      "output_tokens": 1433,
+      "output_tokens_details": {
+        "reasoning_tokens": 1034
+      },
+      "total_tokens": 5293
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"series\":[{\"series_name\":\"Series 1\",\"series_type\":\"scatter\",\"visual_description\":\"Blue filled circular markers distributed from the lower-left toward the middle of the single scatter-plot panel; several markers are closely overlapping around X values 12–18 and 34–43.\",\"line_color\":\"#1f77b4\",\"line_style\":null,\"marker_style\":\"filled circle\",\"estimated_total_points\":40,\"x_axis_id\":\"main_x_axis\",\"y_axis_id\":\"main_y_axis\",\"axis_selection_reason\":\"The markers are plotted against the panel's bottom X value axis and left Y value axis.\",\"confidence\":0.98},{\"series_name\":\"Series 2\",\"series_type\":\"scatter\",\"visual_description\":\"Orange filled square markers forming a broad descending pattern from approximately (26,76) through the central and right-middle portions of the panel, with some overlapping squares near X values 31–40.\",\"line_color\":\"#ff7f0e\",\"line_style\":null,\"marker_style\":\"filled square\",\"estimated_total_points\":38,\"x_axis_id\":\"main_x_axis\",\"y_axis_id\":\"main_y_axis\",\"axis_selection_reason\":\"The markers use the single panel's bottom X value axis and left Y value axis.\",\"confidence\":0.98},{\"series_name\":\"Series 3\",\"series_type\":\"scatter\",\"visual_description\":\"Green filled triangular markers concentrated in the upper-middle and right side of the panel, with a dense cluster around X values 56–74 and a lower, more dispersed group around X values 82–95.\",\"line_color\":\"#2ca02c\",\"line_style\":null,\"marker_style\":\"filled triangle\",\"estimated_total_points\":40,\"x_axis_id\":\"main_x_axis\",\"y_axis_id\":\"main_y_axis\",\"axis_selection_reason\":\"The markers are plotted using the single scatter panel's bottom X value axis and left Y value axis.\",\"confidence\":0.98}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "series": [
+      {
+        "series_name": "Series 1",
+        "series_type": "scatter",
+        "visual_description": "Blue filled circular markers distributed from the lower-left toward the middle of the single scatter-plot panel; several markers are closely overlapping around X values 12–18 and 34–43.",
+        "line_color": "#1f77b4",
+        "line_style": null,
+        "marker_style": "filled circle",
+        "estimated_total_points": 40,
+        "x_axis_id": "main_x_axis",
+        "y_axis_id": "main_y_axis",
+        "axis_selection_reason": "The markers are plotted against the panel's bottom X value axis and left Y value axis.",
+        "confidence": 0.98
+      },
+      {
+        "series_name": "Series 2",
+        "series_type": "scatter",
+        "visual_description": "Orange filled square markers forming a broad descending pattern from approximately (26,76) through the central and right-middle portions of the panel, with some overlapping squares near X values 31–40.",
+        "line_color": "#ff7f0e",
+        "line_style": null,
+        "marker_style": "filled square",
+        "estimated_total_points": 38,
+        "x_axis_id": "main_x_axis",
+        "y_axis_id": "main_y_axis",
+        "axis_selection_reason": "The markers use the single panel's bottom X value axis and left Y value axis.",
+        "confidence": 0.98
+      },
+      {
+        "series_name": "Series 3",
+        "series_type": "scatter",
+        "visual_description": "Green filled triangular markers concentrated in the upper-middle and right side of the panel, with a dense cluster around X values 56–74 and a lower, more dispersed group around X values 82–95.",
+        "line_color": "#2ca02c",
+        "line_style": null,
+        "marker_style": "filled triangle",
+        "estimated_total_points": 40,
+        "x_axis_id": "main_x_axis",
+        "y_axis_id": "main_y_axis",
+        "axis_selection_reason": "The markers are plotted using the single scatter panel's bottom X value axis and left Y value axis.",
+        "confidence": 0.98
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

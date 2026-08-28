@@ -1,0 +1,400 @@
+{
+  "raw": {
+    "created_at": 1787828354.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are calibrating an axis from a cropped line or scatter chart image.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 999 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn coordinates relative to the cropped image in crop_image_norm.\nValues on the axis must be represented separately from units or labels.\nOnly linear numeric and date/time axes are supported.\nIf possible, identify the line or tick mark associated with an axis label and provide coordinates exactly on that line or tick mark. Do not confuse series lines with gridlines or tickmarks associated with axis labels.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0669b81d8a0d1a6c006a901883603c87d097cfe085f69e627b",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqkBiGKfYlOPzL6CWIGyTYXAzS5zisP4fNS2O-9A_W66swUr9rY3hwhSpUhHKKClSIVVvczpjfb9aHsGwGvZ6LxKFedqWw0qBAfsY69dr4CE2c3E7AFa34HNc1HeHDMqz9pIxsifH9t5WrnUPLJE5DVXLgRFNSkHkZRof5FlLCvjacwifIkFTtD3oLW8jnnAmOPbNWHj4LEp49ldHTj95bNSN-rVy35k3BU_XM6_e0V5-EWborBHNzsDX-ozlQByOpqB3kfODCGiO7jvAFfP6BJ3i3BIHhJOhJnYLCWibLCWoLQxSFm-uq25fAZWOj_WyWgROPbXXZrXtoi4AXpdhPaEyrPNVZXt4F95Inky_hpkyYnV4vZ_Z4OE3tAfMkXHZf-2qBl6RnykQFK0TmigMKGi29kQ0SPTR7e8RkW8I6jAmSFRUn6HDdYqj1fsoItEeUM1dorIskJ-Yj3cyEgNKMre1s1Sbqluou-b4z56mniBEkE3K1pJH0mkshRnKs4P4ayH6SAtF_fOrp22mn1mKD5PVfEo580OevxgpMZvlLERNDahL_q_vk4xzrEEs0aN3bWm9EPIX0PD8DRNt9tG4vq3wwICxUh7cPeRwxvldM9t_LuGJ9_eX124H1XQreOVabZ4X757gwjWTVxRRv8WOerQDY3Wuqt8qYyH3Kzi3_WVc1SVcTbwxJDkiQS63iqZzinKiRgkDlOxFx3eu75IggqKy9bcyKVxdQ2CJOq-1KK_idQcgOFoqhyRKk01e7z68xAUf9U2tKC_4rOUJ7rJsjRG5_AYbMn9_QCPD23PiZ5F1NVWtNc1c_obVC4mA5ANpLJsx7qfZTdVBuvDeQVQIuhEPiXF4iUfEZRla_2pS12cnhylyaAQHvR7z-negUtoEX_ENgn0-kiyjuF5weRTTpQRO_tkQNf0t6qs_N1gKfcO-pKg5hns_t6OBwZknnbgGRU6wDs9mr0uUqTozASMhttETzDHdj_iV8sxHF9otePyB94scfwnkxcfnOe6hcXkpYNlmGZ0NpKQ68YRQ2dsJZJ1qsQ7kn_KPAK4tq73I0Isz8OdsduqFF8G1G0esUNKK_wIoA1FuCfbpJYsQgTZ--jRf0qsTy8w10dg9ri2hYTmNI6_vanqra5wkhVBCUfxtD7GW5hbvcqg1bHZ450_idD6x1IdpppAAPLxFiFmBtc7499OZrha8Ea1-kV8IzQVe9C8pNRLA97GGmGmDh7WanVTeubvRhrlG1GZAVyAieHjsklfPRcj3yyY0Glmfnwyi7UftN1Vu6uhK46wAGaeeWozBqPlwDfQi1c2Hj5T5aiQryxD65rIs76Cx9iO7Q6o5YCYYIFfystatMexAekumtzME6BAqKc8IVoax18-Uquwrpdbi3sx3tUK9IUwzL-W4uw1CLpFNxkzY8ejaZjmmqwxx8GsXUIICybZwtFl9DMTis50vRuEiN6jwYN4xllV7PTDBAduWdiYwIcPcRnKPCAgu0jh_5FPiHm3d1jsyRmxf6Kf8le-PK1aBwPVdal8XJmVOEt7c7MIlPzDv-9KWdSF1GQXNOPD85VTf4P6gVd3qozHyxnExi4Rtj4CWFfV6xNVfglXTZpufvZRaMszdyfbjid4F_QTIfHynDvYZRPns6eOIymw-OdCiA7n9HE4-kMBTIp4MxJCdljsLYTcYZWhlq1A==",
+        "status": null
+      },
+      {
+        "id": "msg_0669b81d8a0d1a6c006a901884ffcc87d0a1614c78f564be56",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"proposal\",\"revision_reason\":null,\"proposal\":{\"axis\":\"x\",\"points\":[{\"label\":\"x1\",\"crop_image_norm\":{\"x\":74,\"y\":909},\"crop_image_px\":{\"x\":142,\"y\":1164},\"chart_value\":{\"value_raw\":\"0\",\"value_type\":\"number\",\"parsed_value\":0,\"parsed_datetime\":null,\"unit\":null}},{\"label\":\"x2\",\"crop_image_norm\":{\"x\":854,\"y\":909},\"crop_image_px\":{\"x\":1646,\"y\":1164},\"chart_value\":{\"value_raw\":\"100\",\"value_type\":\"number\",\"parsed_value\":100,\"parsed_datetime\":null,\"unit\":null}}],\"confidence\":0.99,\"warnings\":[],\"unsupported_flags\":[]}}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787828358.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:4c631538bc:axis_main_x_axis",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "XAxisCalibrationDecision",
+        "schema_": {
+          "$defs": {
+            "AxisCalibrationOutput": {
+              "properties": {
+                "axis": {
+                  "enum": [
+                    "x",
+                    "y"
+                  ],
+                  "title": "Axis",
+                  "type": "string"
+                },
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/CalibrationPoint"
+                  },
+                  "maxItems": 2,
+                  "minItems": 2,
+                  "title": "Points",
+                  "type": "array"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "axis",
+                "points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ],
+              "title": "AxisCalibrationOutput",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "CalibrationPoint": {
+              "properties": {
+                "label": {
+                  "enum": [
+                    "x1",
+                    "x2",
+                    "y1",
+                    "y2"
+                  ],
+                  "title": "Label",
+                  "type": "string"
+                },
+                "crop_image_norm": {
+                  "$ref": "#/$defs/NormPoint"
+                },
+                "crop_image_px": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/PixelPoint"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "chart_value": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "label",
+                "crop_image_norm",
+                "crop_image_px",
+                "chart_value"
+              ],
+              "title": "CalibrationPoint",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "NormPoint": {
+              "properties": {
+                "x": {
+                  "maximum": 999,
+                  "minimum": 0,
+                  "title": "X",
+                  "type": "integer"
+                },
+                "y": {
+                  "maximum": 999,
+                  "minimum": 0,
+                  "title": "Y",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ],
+              "title": "NormPoint",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "PixelPoint": {
+              "properties": {
+                "x": {
+                  "title": "X",
+                  "type": "number"
+                },
+                "y": {
+                  "title": "Y",
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ],
+              "title": "PixelPoint",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/AxisCalibrationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "AxisCalibrationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 3923,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 3920
+      },
+      "output_tokens": 292,
+      "output_tokens_details": {
+        "reasoning_tokens": 131
+      },
+      "total_tokens": 4215
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"proposal\",\"revision_reason\":null,\"proposal\":{\"axis\":\"x\",\"points\":[{\"label\":\"x1\",\"crop_image_norm\":{\"x\":74,\"y\":909},\"crop_image_px\":{\"x\":142,\"y\":1164},\"chart_value\":{\"value_raw\":\"0\",\"value_type\":\"number\",\"parsed_value\":0,\"parsed_datetime\":null,\"unit\":null}},{\"label\":\"x2\",\"crop_image_norm\":{\"x\":854,\"y\":909},\"crop_image_px\":{\"x\":1646,\"y\":1164},\"chart_value\":{\"value_raw\":\"100\",\"value_type\":\"number\",\"parsed_value\":100,\"parsed_datetime\":null,\"unit\":null}}],\"confidence\":0.99,\"warnings\":[],\"unsupported_flags\":[]}}",
+  "json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "x",
+      "points": [
+        {
+          "label": "x1",
+          "crop_image_norm": {
+            "x": 74,
+            "y": 909
+          },
+          "crop_image_px": {
+            "x": 142,
+            "y": 1164
+          },
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        },
+        {
+          "label": "x2",
+          "crop_image_norm": {
+            "x": 854,
+            "y": 909
+          },
+          "crop_image_px": {
+            "x": 1646,
+            "y": 1164
+          },
+          "chart_value": {
+            "value_raw": "100",
+            "value_type": "number",
+            "parsed_value": 100,
+            "parsed_datetime": null,
+            "unit": null
+          }
+        }
+      ],
+      "confidence": 0.99,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "run_id": "4c631538bc",
+  "stage": "series",
+  "series_id": "8047eea4",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 3 of 3\nName: Series 3\nSeries type: scatter\nColour: #2ca02c\nLine style: unknown\nMarker style: filled triangle\nEstimated total points: 40\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The markers are plotted using the single scatter panel's bottom X value axis and left Y value axis.\nVisual description: Green filled triangular markers concentrated in the upper-middle and right side of the panel, with a dense cluster around X values 56–74 and a lower, more dispersed group around X values 82–95.\nIdentification confidence: 0.98",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/8047eea4/attempt_01/overlay.png",
+      "request_path": "series/8047eea4/attempt_01/request.json",
+      "response_path": "series/8047eea4/attempt_01/response.json",
+      "parsed_path": "series/8047eea4/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "revise_previous",
+      "revision_reason": "The review overlay showed several proposed red X markers offset from the centers of the green triangular markers, especially in the dense central cluster and around the lower-right group. The complete point list has been replaced with adjusted marker-center coordinates.",
+      "target_series": "Series 3 of 3\nName: Series 3\nSeries type: scatter\nColour: #2ca02c\nLine style: unknown\nMarker style: filled triangle\nEstimated total points: 40\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The markers are plotted using the single scatter panel's bottom X value axis and left Y value axis.\nVisual description: Green filled triangular markers concentrated in the upper-middle and right side of the panel, with a dense cluster around X values 56–74 and a lower, more dispersed group around X values 82–95.\nIdentification confidence: 0.98",
+      "source_image_path": "series/8047eea4/attempt_01/overlay.png",
+      "overlay_path": "series/8047eea4/attempt_02/overlay.png",
+      "request_path": "series/8047eea4/attempt_02/request.json",
+      "response_path": "series/8047eea4/attempt_02/response.json",
+      "parsed_path": "series/8047eea4/attempt_02/parsed.json"
+    },
+    {
+      "attempt": 3,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 3 of 3\nName: Series 3\nSeries type: scatter\nColour: #2ca02c\nLine style: unknown\nMarker style: filled triangle\nEstimated total points: 40\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The markers are plotted using the single scatter panel's bottom X value axis and left Y value axis.\nVisual description: Green filled triangular markers concentrated in the upper-middle and right side of the panel, with a dense cluster around X values 56–74 and a lower, more dispersed group around X values 82–95.\nIdentification confidence: 0.98",
+      "source_image_path": "series/8047eea4/attempt_02/overlay.png",
+      "overlay_path": "series/8047eea4/attempt_03/overlay.png",
+      "request_path": "series/8047eea4/attempt_03/request.json",
+      "response_path": "series/8047eea4/attempt_03/response.json",
+      "parsed_path": "series/8047eea4/attempt_03/parsed.json"
+    }
+  ]
+}

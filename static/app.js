@@ -691,17 +691,21 @@ function renderSeriesChoiceModal() {
 
   els.seriesChoiceList.innerHTML = "";
   pending.forEach((series, index) => {
+    const originalColour = String(series.line_color || "").trim();
+    const colourDescription = describeColour(originalColour);
+    const visualStyle = [
+      series.series_type || "line",
+      colourDescription,
+      series.series_type === "scatter" ? series.marker_style : series.line_style,
+    ].filter(Boolean).join(" · ") || "Visual style unknown";
+    const colourTitle = originalColour ? ` title="Original colour value: ${escapeHtml(originalColour)}"` : "";
     const item = document.createElement("label");
     item.className = "series-choice-item";
     item.innerHTML = `
       <input type="checkbox" data-series-choice-index="${index}" ${stateRef.seriesChoiceSelected[index] ? "checked" : ""}>
       <span class="series-choice-main">
         <strong>${escapeHtml(series.series_name || `Series ${index + 1}`)}</strong>
-        <span>${escapeHtml([
-          series.series_type || "line",
-          series.line_color,
-          series.series_type === "scatter" ? series.marker_style : series.line_style,
-        ].filter(Boolean).join(" · ") || "Visual style unknown")}</span>
+        <span${colourTitle}>${escapeHtml(visualStyle)}</span>
         <small>${escapeHtml(series.visual_description || "No visual description provided.")}</small>
       </span>
     `;
@@ -2369,6 +2373,74 @@ function groupBy(items, keyFn) {
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function describeColour(value) {
+  const rgb = parseColour(value);
+  if (!rgb) return null;
+  const [red, green, blue] = rgb.map((channel) => channel / 255);
+  const max = Math.max(red, green, blue);
+  const min = Math.min(red, green, blue);
+  const delta = max - min;
+  const saturation = max === 0 ? 0 : delta / max;
+  let hue = 0;
+  if (delta !== 0) {
+    if (max === red) hue = 60 * (((green - blue) / delta) % 6);
+    else if (max === green) hue = 60 * (((blue - red) / delta) + 2);
+    else hue = 60 * (((red - green) / delta) + 4);
+  }
+  if (hue < 0) hue += 360;
+
+  if (saturation < 0.12) {
+    if (max < 0.15) return "black";
+    if (max < 0.35) return "dark grey";
+    if (max < 0.65) return "grey";
+    if (max < 0.85) return "light grey";
+    return "white";
+  }
+
+  const earthyBrown = saturation >= 0.35 && max < 0.72
+    && ((hue >= 10 && hue < 45) || ((hue < 10 || hue >= 350) && saturation < 0.9));
+  const earthyOlive = saturation >= 0.25 && max < 0.68 && hue >= 45 && hue < 85;
+
+  let colour;
+  if (earthyBrown) colour = "brown";
+  else if (earthyOlive) colour = "olive";
+  else if (hue < 15 || hue >= 345) colour = "red";
+  else if (hue < 40) colour = "orange";
+  else if (hue < 65) colour = "yellow";
+  else if (hue < 90) colour = "yellow-green";
+  else if (hue < 150) colour = "green";
+  else if (hue < 180) colour = "blue-green";
+  else if (hue < 210) colour = "cyan";
+  else if (hue < 255) colour = "blue";
+  else if (hue < 285) colour = "purple";
+  else if (hue < 330) colour = "magenta";
+  else colour = "pink-red";
+
+  const brightness = max < 0.35 ? "dark " : max > 0.85 && saturation < 0.55 ? "light " : "";
+  const earthyColour = colour === "brown" || colour === "olive";
+  const intensity = earthyColour ? "" : saturation < 0.35 ? "muted " : saturation > 0.8 && max > 0.4 && max < 0.9 ? "vivid " : "";
+  return `${brightness}${intensity}${colour}`.trim();
+}
+
+function parseColour(value) {
+  let candidate = String(value || "").trim();
+  if (!candidate) return null;
+  if (!CSS.supports?.("color", candidate)) {
+    candidate = candidate.replace(/[\s-]+/g, "");
+    if (!CSS.supports?.("color", candidate)) return null;
+  }
+  const context = document.createElement("canvas").getContext("2d");
+  if (!context) return null;
+  context.fillStyle = candidate;
+  const normalized = context.fillStyle;
+  const hexMatch = normalized.match(/^#([0-9a-f]{6})$/i);
+  if (hexMatch) return [0, 2, 4].map((offset) => Number.parseInt(hexMatch[1].slice(offset, offset + 2), 16));
+  const shortHexMatch = normalized.match(/^#([0-9a-f]{3})$/i);
+  if (shortHexMatch) return [...shortHexMatch[1]].map((digit) => Number.parseInt(`${digit}${digit}`, 16));
+  const rgbMatch = normalized.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+  return rgbMatch ? rgbMatch.slice(1, 4).map(Number) : null;
 }
 
 function escapeHtml(value) {

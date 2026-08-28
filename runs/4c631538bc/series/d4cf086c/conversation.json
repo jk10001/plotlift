@@ -1,0 +1,29 @@
+{
+  "run_id": "4c631538bc",
+  "stage": "series",
+  "series_id": "d4cf086c",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 3\nName: Series 1\nSeries type: scatter\nColour: #1f77b4\nLine style: unknown\nMarker style: filled circle\nEstimated total points: 40\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The markers are plotted against the panel's bottom X value axis and left Y value axis.\nVisual description: Blue filled circular markers distributed from the lower-left toward the middle of the single scatter-plot panel; several markers are closely overlapping around X values 12–18 and 34–43.\nIdentification confidence: 0.98",
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "series/d4cf086c/attempt_01/overlay.png",
+      "request_path": "series/d4cf086c/attempt_01/request.json",
+      "response_path": "series/d4cf086c/attempt_01/response.json",
+      "parsed_path": "series/d4cf086c/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 3\nName: Series 1\nSeries type: scatter\nColour: #1f77b4\nLine style: unknown\nMarker style: filled circle\nEstimated total points: 40\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The markers are plotted against the panel's bottom X value axis and left Y value axis.\nVisual description: Blue filled circular markers distributed from the lower-left toward the middle of the single scatter-plot panel; several markers are closely overlapping around X values 12–18 and 34–43.\nIdentification confidence: 0.98",
+      "source_image_path": "series/d4cf086c/attempt_01/overlay.png",
+      "overlay_path": "series/d4cf086c/attempt_02/overlay.png",
+      "request_path": "series/d4cf086c/attempt_02/request.json",
+      "response_path": "series/d4cf086c/attempt_02/response.json",
+      "parsed_path": "series/d4cf086c/attempt_02/parsed.json"
+    }
+  ]
+}
