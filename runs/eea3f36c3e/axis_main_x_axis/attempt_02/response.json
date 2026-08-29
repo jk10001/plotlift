@@ -1,0 +1,357 @@
+{
+  "raw": {
+    "created_at": 1787914545.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are calibrating an axis from a cropped line or scatter chart image.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 999 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn coordinates relative to the cropped image in crop_image_norm.\nValues on the axis must be represented separately from units or labels.\nOnly linear numeric and date/time axes are supported.\nIf possible, identify the line or tick mark associated with an axis label and provide coordinates exactly on that line or tick mark. Do not confuse series lines with gridlines or tickmarks associated with axis labels.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_08a589b2b96065c2006a916931b2fc87d085a297a01076ed66",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqkWkyWVV9wvz1HzUh0HYtHTkrSriA0t_iW3AYV0SCBIvrMtfADp6sT5i2vyCIZB08SvfgDT0Uwq84aVa3bkAeKqu-zQWLhJTL5I52XxvgTrr4xiByugrpTGafXXvL_wCSoLin1OmEfqklSsWDpwwTsSNd3VUvD5mYH66JBKi5IZO7-zQFnbFOtw7s1VJwu_i5bTKbldg2ueQTDuuPSX4DLQWISn627_jWsMKvv4c88doI0_SjyN4R2t25luY5QIJYDUzzZQgctQ_2SQb0t7uEASuCQXbbJasGOEhdZ7bPBso8Z5Mxkj02FAnOeuZR0x7xnq1thkuOSZ7elYUvOhxbmIWinBLII6CeiLYYB5YAFgYT1JV58SHl1AisyT65LyeUL31BaBrPDxrIqMch9z7QUg_sZOYbKnhHPUxxu_fhc6H6GaNREYxOQaW_kE0Axf7_35jtXbhcsmK1ntWz97rUO4hzCgf4HFLk4_dm40MsgZUJDMD11XFRU7X4kL443UBhrfM3H4DEnx6KkvWEFUfB_lSXrKgFMuIO05ThUOlSh338ci26DtK334uidhzJIZNrawWIbPrMvAOak6HvPxtjaUOtVnipSss-UpQBlxNikxlA0C3NLrcHOA0VaZeJmTVwB38AzGWbfJZF5OwHb7_HaEShHy7MlqYwPPk-A41MK9QhNG6N-vVeBv0VUTcyDH_PTT67O2zMXwPz-Pvmj8ulk1Qq517sK7dC8O4w6usUk3eyzNmwmJkdAxY9lhRD5XAMXwaEMfByy4nVgEAgV9LSqma6Z9jIWe31AjWXcYn0evtA4WEirfCvjfy-cz7EE2wzjFfnQsXefyov5fo6sZFA7Funw7bffJbpdS51_Actk3ZsK4Y0SYn4nT5k5b824r3pj6vMz_pb8bm6fcpnEpFEyR5zOlvGNocX4mYq-A_fe4NwwTilvPY64PIxgxbbyClAQn8_HprvJbxxTrvCBSuFg9GK3CfJPSuk4GJv2cz5TMMUQMGQRsINwSmCbxLHBJLnx-T6KaD9Up7u6pgsj0JsY_Kxn7kLiweeHzgmgGMPWzi9P_12Ys5Y4KxI1Vf1di5JDwNgGvyg4axHQclGmQl-hkp25HmrXUUNJ5Ws2_2QxNILuyFT7fG5LpBu93kfFR_6GfhaGmNUeSYeMe4lc-es6GU5uxYX8itvpwhDJwzffL3G48Uwd1T3fjLo5fqkEjya2JkjEPeJKiY6tVEgBoVUgPCUs0ulBosDynT5ShL338vrrikFPQeynS-A-FXaOVFeotJ9b3fVpV4wIv55IR7jR0nm0UIuDVPQq9SDqZpcOOhqnXh4zACKLM9l6kfct9XY4CWHybektPc5xOSifUq-0nqgjefu9xVIHQR8ovyZdQ72NGw=",
+        "status": null
+      },
+      {
+        "id": "msg_08a589b2b96065c2006a9169323f4c87d0b1941b501305265e",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787914546.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:eea3f36c3e:axis_main_x_axis",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "XAxisCalibrationDecision",
+        "schema_": {
+          "$defs": {
+            "AxisCalibrationOutput": {
+              "properties": {
+                "axis": {
+                  "enum": [
+                    "x",
+                    "y"
+                  ],
+                  "title": "Axis",
+                  "type": "string"
+                },
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/CalibrationPoint"
+                  },
+                  "maxItems": 2,
+                  "minItems": 2,
+                  "title": "Points",
+                  "type": "array"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "axis",
+                "points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ],
+              "title": "AxisCalibrationOutput",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "CalibrationPoint": {
+              "properties": {
+                "label": {
+                  "enum": [
+                    "x1",
+                    "x2",
+                    "y1",
+                    "y2"
+                  ],
+                  "title": "Label",
+                  "type": "string"
+                },
+                "crop_image_norm": {
+                  "$ref": "#/$defs/NormPoint"
+                },
+                "crop_image_px": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/$defs/PixelPoint"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "chart_value": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "label",
+                "crop_image_norm",
+                "crop_image_px",
+                "chart_value"
+              ],
+              "title": "CalibrationPoint",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "NormPoint": {
+              "properties": {
+                "x": {
+                  "maximum": 999,
+                  "minimum": 0,
+                  "title": "X",
+                  "type": "integer"
+                },
+                "y": {
+                  "maximum": 999,
+                  "minimum": 0,
+                  "title": "Y",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ],
+              "title": "NormPoint",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "PixelPoint": {
+              "properties": {
+                "x": {
+                  "title": "X",
+                  "type": "number"
+                },
+                "y": {
+                  "title": "Y",
+                  "type": "number"
+                }
+              },
+              "required": [
+                "x",
+                "y"
+              ],
+              "title": "PixelPoint",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/AxisCalibrationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "AxisCalibrationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 7338,
+      "input_tokens_details": {
+        "cached_tokens": 3920,
+        "cache_write_tokens": 3415
+      },
+      "output_tokens": 68,
+      "output_tokens_details": {
+        "reasoning_tokens": 41
+      },
+      "total_tokens": 7406
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+  "json": {
+    "response_kind": "accept_previous",
+    "revision_reason": null,
+    "proposal": null
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "run_id": "159b87cc58",
+  "created_at": "2026-08-28T11:10:26.144824+00:00",
+  "updated_at": "2026-08-28T11:11:30.619368+00:00",
+  "stage": "calibration_ready",
+  "active_job": null,
+  "settings": {
+    "model_id": "gpt-5.6-luna",
+    "image_detail": "high",
+    "reasoning_effort": "medium",
+    "mock_mode": false
+  },
+  "prompt_metadata": {
+    "prompt_pack": "prompts.yaml",
+    "prompt_version": "2026-08-25-chart-space-digitization-v3",
+    "prompt_hash": "6ecacfb7e42c0b3c"
+  },
+  "upload_filename": "pump_curve_05.png",
+  "original_path": "uploads/original.png",
+  "pages": [
+    {
+      "path": "pages/page_001.png",
+      "width": 1050,
+      "height": 570,
+      "label": "Image"
+    }
+  ],
+  "selected_page_index": 0,
+  "canonical_image": {
+    "path": "pages/page_001.png",
+    "width": 1050,
+    "height": 570,
+    "label": "Image"
+  },
+  "crop": {
+    "bbox_full_norm": {
+      "left": 0,
+      "top": 0,
+      "right": 999,
+      "bottom": 999
+    },
+    "bbox_full_px": {
+      "left": 0.0,
+      "top": 0.0,
+      "right": 1050.0,
+      "bottom": 570.0
+    },
+    "image": {
+      "path": "crop/approved_crop.png",
+      "width": 1050,
+      "height": 570,
+      "label": null
+    },
+    "approved": true,
+    "warnings": []
+  },
+  "calibration": {
+    "identified_axes": [
+      {
+        "axis_id": "main_panel_x_flow_rate",
+        "direction": "x",
+        "name": "Flow rate",
+        "unit": "gallon/h",
+        "quantity": "Flow rate",
+        "location_description": "Horizontal axis along the bottom of the main chart panel",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "main_panel_y_pressure",
+        "direction": "y",
+        "name": "Pressure",
+        "unit": "psi",
+        "quantity": "Pressure",
+        "location_description": "Vertical axis along the left side of the main chart panel",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "calibrated_axes": [
+      {
+        "axis_id": "main_panel_x_flow_rate",
+        "direction": "x",
+        "name": "Flow rate",
+        "unit": "gallon/h",
+        "quantity": "Flow rate",
+        "location_description": "Horizontal axis along the bottom of the main chart panel",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 130,
+              "y": 854
+            },
+            "crop_image_px": {
+              "x": 136.50650650650653,
+              "y": 486.41241241241244
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "gallon/h"
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 870,
+              "y": 854
+            },
+            "crop_image_px": {
+              "x": 913.5435435435436,
+              "y": 486.41241241241244
+            },
+            "chart_value": {
+              "value_raw": "6750",
+              "value_type": "number",
+              "parsed_value": 6750.0,
+              "parsed_datetime": null,
+              "unit": "gallon/h"
+            }
+          }
+        ],
+        "approved": false,
+        "confidence": 0.99,
+        "warnings": []
+      },
+      {
+        "axis_id": "main_panel_y_pressure",
+        "direction": "y",
+        "name": "Pressure",
+        "unit": "psi",
+        "quantity": "Pressure",
+        "location_description": "Vertical axis along the left side of the main chart panel",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 130,
+              "y": 853
+            },
+            "crop_image_px": {
+              "x": 136.50650650650653,
+              "y": 485.8428428428428
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "psi"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 130,
+              "y": 130
+            },
+            "crop_image_px": {
+              "x": 136.50650650650653,
+              "y": 74.04404404404404
+            },
+            "chart_value": {
+              "value_raw": "90",
+              "value_type": "number",
+              "parsed_value": 90.0,
+              "parsed_datetime": null,
+              "unit": "psi"
+            }
+          }
+        ],
+        "approved": false,
+        "confidence": 0.99,
+        "warnings": []
+      }
+    ],
+    "x_points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 130,
+          "y": 854
+        },
+        "crop_image_px": {
+          "x": 136.50650650650653,
+          "y": 486.41241241241244
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 870,
+          "y": 854
+        },
+        "crop_image_px": {
+          "x": 913.5435435435436,
+          "y": 486.41241241241244
+        },
+        "chart_value": {
+          "value_raw": "6750",
+          "value_type": "number",
+          "parsed_value": 6750.0,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        }
+      }
+    ],
+    "y_points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 130,
+          "y": 853
+        },
+        "crop_image_px": {
+          "x": 136.50650650650653,
+          "y": 485.8428428428428
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 130,
+          "y": 130
+        },
+        "crop_image_px": {
+          "x": 136.50650650650653,
+          "y": 74.04404404404404
+        },
+        "chart_value": {
+          "value_raw": "90",
+          "value_type": "number",
+          "parsed_value": 90.0,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      }
+    ],
+    "approved_x": false,
+    "approved_y": false,
+    "warnings": []
+  },
+  "pending_series": [],
+  "series": [],
+  "attempts": [
+    {
+      "id": "axis-identification-01",
+      "stage": "axis_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "axis_identification/attempt_01/request.json",
+      "response_path": "axis_identification/attempt_01/response.json",
+      "parsed_path": "axis_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_panel_x_flow_rate-01",
+      "stage": "axis_main_panel_x_flow_rate",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_main_panel_x_flow_rate/attempt_01/request.json",
+      "response_path": "axis_main_panel_x_flow_rate/attempt_01/response.json",
+      "parsed_path": "axis_main_panel_x_flow_rate/attempt_01/parsed.json",
+      "overlay_path": "axis_main_panel_x_flow_rate/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_panel_x_flow_rate-02",
+      "stage": "axis_main_panel_x_flow_rate",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_main_panel_x_flow_rate/attempt_02/request.json",
+      "response_path": "axis_main_panel_x_flow_rate/attempt_02/response.json",
+      "parsed_path": "axis_main_panel_x_flow_rate/attempt_02/parsed.json",
+      "overlay_path": "axis_main_panel_x_flow_rate/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_panel_y_pressure-01",
+      "stage": "axis_main_panel_y_pressure",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_main_panel_y_pressure/attempt_01/request.json",
+      "response_path": "axis_main_panel_y_pressure/attempt_01/response.json",
+      "parsed_path": "axis_main_panel_y_pressure/attempt_01/parsed.json",
+      "overlay_path": "axis_main_panel_y_pressure/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    },
+    {
+      "id": "axis_main_panel_y_pressure-02",
+      "stage": "axis_main_panel_y_pressure",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_main_panel_y_pressure/attempt_02/request.json",
+      "response_path": "axis_main_panel_y_pressure/attempt_02/response.json",
+      "parsed_path": "axis_main_panel_y_pressure/attempt_02/parsed.json",
+      "overlay_path": "axis_main_panel_y_pressure/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": []
+    }
+  ],
+  "warnings": [],
+  "active_step_status": null
+}

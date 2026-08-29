@@ -5,7 +5,14 @@ from pathlib import Path
 from PIL import Image
 
 from app.models import CalibrationPoint, ChartValue, NormPoint, PixelPoint, SeriesPoint, SeriesState
-from app.overlay import COLORS, render_calibration_overlay, render_series_overlay
+from app.overlay import COLORS, _overlay_scale, render_calibration_overlay, render_series_overlay
+
+
+def test_llm_overlay_scale_tracks_image_resolution_with_bounds() -> None:
+    assert _overlay_scale((80, 80)) == 1.0
+    assert _overlay_scale((1050, 570)) == 1.0
+    assert _overlay_scale((2671, 1774)) == 1774 / 600
+    assert _overlay_scale((12000, 9000)) == 6.0
 
 
 def test_calibration_review_overlay_uses_red_x_marker(tmp_path: Path) -> None:
@@ -30,7 +37,32 @@ def test_calibration_review_overlay_uses_red_x_marker(tmp_path: Path) -> None:
             assert overlay.getpixel(cardinal_pixel) == (0, 0, 0)
 
 
-def test_series_review_overlay_uses_fixed_red_x_markers_and_only_connects_lines(tmp_path: Path) -> None:
+def test_calibration_review_x_marker_grows_with_high_resolution_image(tmp_path: Path) -> None:
+    low_image_path = tmp_path / "low.png"
+    high_image_path = tmp_path / "high.png"
+    low_overlay_path = tmp_path / "low_overlay.png"
+    high_overlay_path = tmp_path / "high_overlay.png"
+    Image.new("RGB", (600, 600), "black").save(low_image_path)
+    Image.new("RGB", (1800, 1800), "black").save(high_image_path)
+
+    def point_at(pixel: int) -> CalibrationPoint:
+        return CalibrationPoint(
+            label="x1",
+            crop_image_norm=NormPoint(x=500, y=500),
+            crop_image_px=PixelPoint(x=pixel, y=pixel),
+            chart_value=ChartValue(value_raw="0", value_type="number", parsed_value=0),
+        )
+
+    render_calibration_overlay(low_image_path, [point_at(300)], low_overlay_path)
+    render_calibration_overlay(high_image_path, [point_at(900)], high_overlay_path)
+
+    with Image.open(low_overlay_path).convert("RGB") as low_overlay, Image.open(high_overlay_path).convert("RGB") as high_overlay:
+        marker_color = Image.new("RGB", (1, 1), COLORS["calibration_review"]).getpixel((0, 0))
+        assert low_overlay.getpixel((315, 315)) == (0, 0, 0)
+        assert high_overlay.getpixel((915, 915)) == marker_color
+
+
+def test_series_review_overlay_uses_red_x_markers_and_only_connects_lines(tmp_path: Path) -> None:
     image_path = tmp_path / "crop.png"
     line_path = tmp_path / "line.png"
     scatter_path = tmp_path / "scatter.png"
@@ -54,6 +86,11 @@ def test_series_review_overlay_uses_fixed_red_x_markers_and_only_connects_lines(
         assert scatter_overlay.getpixel((20, 20)) == review_red
         assert any(
             scatter_overlay.getpixel((x, y)) == review_red
+            for x in range(27, 40)
+            for y in range(25, 40)
+        )
+        assert all(
+            scatter_overlay.getpixel((x, y)) != (255, 255, 255)
             for x in range(27, 40)
             for y in range(25, 40)
         )

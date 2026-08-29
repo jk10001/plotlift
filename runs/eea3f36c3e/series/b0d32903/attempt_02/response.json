@@ -1,0 +1,314 @@
+{
+  "raw": {
+    "created_at": 1787915310.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are an expert in digitising scatter charts and are digitising one specified visible scatter series from a cropped chart.\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn the first attempt, use response_kind \"proposal\" and provide a complete proposal object.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn one point for every individually visible marker in the target scatter series as chart_x and chart_y using the selected axis units/types.\nNever connect or interpolate between scatter markers. Do not include markers belonging to other series, legend samples, line control points, grid intersections, or error-bar endpoints.\nOrder markers visually from left to right. For markers with the same visual x position, order them from top to bottom.\nReturn at most 100 points. If more markers are visible, return the first 100 in that visual order, set series_truncated to true, and estimate the complete marker count in estimated_total_points.\nIf all visible markers are returned, set series_truncated to false and set estimated_total_points to the returned point count.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0e2aba64cfb7e07c006a916c2f159087d08bbb5512a5322e67",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqkWww3XkSxg6yCg5llu5st3stPvvffiW2KZtYYyivN5CVnsxF7SVp2bUxfqbLWG5jnlfbIVdsz9TpN2aweqdvx0uFo-Cmp8apB9BoGmt9VOVusSq6RvpKN4Kp4_-dYefvhdwAh6juGqXwtSS0wbr4IPpawiJv3nCYDRp6r3Fv1pjH9Cz1YFYVrcd8vAJd41L-zMEul0C0X2pgMRQMLtWqKBz1oPUdN1yFkt4RFGqJygjMKBUJi4SexPTv0uTXWQhiLDaC9cEpEhN4p599b92FbqifPSVyVfPM3J5dFdVGWViXeKziPxiaKM5jr8LViWhQ1tkjSbnKWomXiZWgiTw-3dzYsxSaSy3XHDO_3FnK297gkHsglP7QCQze1vaFSu0qLO0NBKNl2HIVWGvIp-URTCBPJnCRh8tJ_XJsLMWly27aeAkLW1X2FCtsDvrsZ6SE7oQLem1D-0lEtMEXU0RL2cPKDx8wqSR-pZkeL-6c_Bgg_S0m1MOIDkNcCIAvqZlwf3N5iaXmhe5NogyUaA6KjKpS8GKtWeknrEdA-LiPTJDT_BtpwpENHzrOVHNG9T1md99EDv_LTubbj3kuJOXsW6qa2lQWkB5Et-uUR62rIO7CeeNLLBtl9cH3mXGnn0gOCS_7ApKzfLyFfTfdmX0EDbmkyMyAwpGCFiyg7jmcvWX8EaVGbHL1DvH2qkKHhtP74TKpXTGeAgzl5u5sdJVO87b6FljoIayTj06s1KJEPIdvLJOssu1HHRgo0W7-vlD25g9hoAX1z9Bm6i7zjWLxNv1jkNhyGVgWqWu8js6rL_G2e_nwomgylGuTeLHLfrjZLV1a854eQBufJXK8gSbGw2-9PLt_LQnK_ygH_HTTN1DzzSPvyFI127nYMDVVCQqfha0qhJsDkfjKEOjunZP68J7VHb1RxwXfc-aj5lo2S6YKKUNMfxSxWs5uB4QtYRRENmpUfhlISvXyMpIzv1Kxr67GaS9iPad1p7uNbNH0bjEHhe0HQ63yA9vI3ymyDWmJayji1Cok1mUDm3MuKfxQKmscPclMF8u-MmP35RG1iaYKwwiCpjTW7Kq_VHbgDfllvGnlG3eKGJTvN776SAhrIkUatT1Ucdwuq3zixfGyIeOXVhW5qLicGHEnA_N28kEJBHpf51hIaARXnZwm768NhKVfVpJaBEVuScfR3L30rfnQqlYM23UX9yPzizQIxlBBlSM0XTJqVwhlkgqsRZ3E65j4DEcML4B0VcLXhD6K_-TNfySzvTgH0jVWV4V_I6kmfcP1pC8ZPtHWjlEvxE9AcbmBYCadaf4WajBg4r_T8Gq1TIUX-LMns5dHuQSBt1TO0h9yLfU4BIP3yVVj6oRBhdMFeKOaFn5mejyd1w4EnFSzolMPun8sPdprWZwhiszDgwJnILGPeZF5XZ7yndNAnma5P-5oIxwLk6xCzqf9R3kiypHXb1knHMXZAlw-C8E0rLXocCImviUXOwnSMq8C95it0vcMU_O9p0QcMMIMHJsIWALE7QIyyfKMBofS1yEwcQuU",
+        "status": null
+      },
+      {
+        "id": "msg_0e2aba64cfb7e07c006a916c3019c487d0b1d76b3997a324cf",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787915312.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:eea3f36c3e:series:b0d32903",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "ScatterSeriesDigitizationDecision",
+        "schema_": {
+          "$defs": {
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "ScatterSeriesDigitizationOutput": {
+              "properties": {
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/SeriesPointProposal"
+                  },
+                  "title": "Points",
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 100
+                },
+                "series_truncated": {
+                  "title": "Series Truncated",
+                  "type": "boolean"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "title": "ScatterSeriesDigitizationOutput",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "points",
+                "series_truncated",
+                "estimated_total_points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ]
+            },
+            "SeriesPointProposal": {
+              "properties": {
+                "point_index": {
+                  "minimum": 0,
+                  "title": "Point Index",
+                  "type": "integer"
+                },
+                "segment_index": {
+                  "minimum": 0,
+                  "title": "Segment Index",
+                  "type": "integer"
+                },
+                "chart_x": {
+                  "$ref": "#/$defs/ChartValue"
+                },
+                "chart_y": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "point_index",
+                "segment_index",
+                "chart_x",
+                "chart_y"
+              ],
+              "title": "SeriesPointProposal",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/ScatterSeriesDigitizationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "ScatterSeriesDigitizationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 12798,
+      "input_tokens_details": {
+        "cached_tokens": 3934,
+        "cache_write_tokens": 8861
+      },
+      "output_tokens": 99,
+      "output_tokens_details": {
+        "reasoning_tokens": 70
+      },
+      "total_tokens": 12897
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+  "json": {
+    "response_kind": "accept_previous",
+    "revision_reason": null,
+    "proposal": null
+  }
+}
