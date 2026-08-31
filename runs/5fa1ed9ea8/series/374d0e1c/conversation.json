@@ -1,0 +1,33 @@
+{
+  "run_id": "5fa1ed9ea8",
+  "stage": "series",
+  "series_id": "374d0e1c",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 4 of 4\nName: Series 2 — 5-step MA\nSeries type: line\nColour: black\nLine style: dashed\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_x_step\nY axis ID: main_y_value\nAxis selection reason: The dashed moving-average line uses the same single main-panel Step and Value axes as Series 2.\nVisual description: Main panel: black dashed moving-average line, declining overall from the high 80s at early steps to the high 30s near step 50; no distinct markers.\nIdentification confidence: 0.99",
+      "source_image_paths": [
+        "crop/approved_crop.png"
+      ],
+      "overlay_path": "series/374d0e1c/attempt_01/overlay.png",
+      "request_path": "series/374d0e1c/attempt_01/request.json",
+      "response_path": "series/374d0e1c/attempt_01/response.json",
+      "parsed_path": "series/374d0e1c/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 4 of 4\nName: Series 2 — 5-step MA\nSeries type: line\nColour: black\nLine style: dashed\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_x_step\nY axis ID: main_y_value\nAxis selection reason: The dashed moving-average line uses the same single main-panel Step and Value axes as Series 2.\nVisual description: Main panel: black dashed moving-average line, declining overall from the high 80s at early steps to the high 30s near step 50; no distinct markers.\nIdentification confidence: 0.99",
+      "source_image_paths": [
+        "series/374d0e1c/attempt_01/overlay.png"
+      ],
+      "overlay_path": "series/374d0e1c/attempt_02/overlay.png",
+      "request_path": "series/374d0e1c/attempt_02/request.json",
+      "response_path": "series/374d0e1c/attempt_02/response.json",
+      "parsed_path": "series/374d0e1c/attempt_02/parsed.json"
+    }
+  ]
+}

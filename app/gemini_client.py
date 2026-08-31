@@ -78,7 +78,8 @@ class GeminiChartClient:
         settings: RunSettings,
         system_prompt: str,
         user_prompt: str,
-        image_path: Path,
+        image_path: Path | None = None,
+        image_paths: list[Path] | None = None,
         schema_name: str,
         schema: dict[str, Any],
         previous_response_id: str | None = None,
@@ -86,7 +87,8 @@ class GeminiChartClient:
         conversation_history: list[dict[str, Any]] | None = None,
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         emit_event(self.run_dir, "API", f"Calling {settings.model_id} for {schema_name}", run_id=self.run_id)
-        contents, request_contents = self._contents(user_prompt, image_path, settings.image_detail, history=conversation_history)
+        paths = _ordered_image_paths(image_path, image_paths)
+        contents, request_contents = self._contents(user_prompt, paths, settings.image_detail, history=conversation_history)
         config = self._config(system_prompt, schema, settings)
         request: dict[str, Any] = {
             "provider": "gemini",
@@ -130,7 +132,7 @@ class GeminiChartClient:
     def _contents(
         self,
         user_prompt: str,
-        image_path: Path,
+        image_paths: list[Path],
         detail: str,
         *,
         history: list[dict[str, Any]] | None = None,
@@ -140,32 +142,40 @@ class GeminiChartClient:
         contents: list[Any] = []
         request_contents: list[dict[str, Any]] = []
         for turn in history or []:
-            user_content, request_user_content = self._user_content(types, turn["user_prompt"], Path(turn["image_path"]), detail)
+            turn_paths = turn.get("image_paths") or [turn["image_path"]]
+            user_content, request_user_content = self._user_content(
+                types, turn["user_prompt"], [Path(path) for path in turn_paths], detail
+            )
             contents.append(user_content)
             request_contents.append(request_user_content)
             contents.append(types.Content(role="model", parts=[types.Part(text=turn["model_text"])]))
             request_contents.append({"role": "model", "parts": [{"text": turn["model_text"]}]})
-        user_content, request_user_content = self._user_content(types, user_prompt, image_path, detail)
+        user_content, request_user_content = self._user_content(types, user_prompt, image_paths, detail)
         contents.append(user_content)
         request_contents.append(request_user_content)
         return contents, request_contents
 
-    def _user_content(self, types: Any, user_prompt: str, image_path: Path, detail: str) -> tuple[Any, dict[str, Any]]:
-        mime_type = _mime_type(image_path)
-        image_part = types.Part(
-            inline_data=types.Blob(mime_type=mime_type, data=image_path.read_bytes()),
-            **_media_resolution_kwargs(detail),
-        )
-        content = types.Content(role="user", parts=[image_part, types.Part(text=user_prompt)])
-        request_content = {
-            "role": "user",
-            "parts": [
+    def _user_content(self, types: Any, user_prompt: str, image_paths: list[Path], detail: str) -> tuple[Any, dict[str, Any]]:
+        image_parts = []
+        request_image_parts = []
+        for image_path in image_paths:
+            mime_type = _mime_type(image_path)
+            image_parts.append(
+                types.Part(
+                    inline_data=types.Blob(mime_type=mime_type, data=image_path.read_bytes()),
+                    **_media_resolution_kwargs(detail),
+                )
+            )
+            request_image_parts.append(
                 {
                     "inline_data": {"mime_type": mime_type, "data": "<bytes omitted; see attempt image artifacts>"},
                     **_media_resolution_kwargs(detail),
-                },
-                {"text": user_prompt},
-            ],
+                }
+            )
+        content = types.Content(role="user", parts=[*image_parts, types.Part(text=user_prompt)])
+        request_content = {
+            "role": "user",
+            "parts": [*request_image_parts, {"text": user_prompt}],
         }
         return content, request_content
 
@@ -296,3 +306,13 @@ def _mime_type(path: Path) -> str:
         ".jpeg": "image/jpeg",
         ".webp": "image/webp",
     }.get(path.suffix.lower(), "image/png")
+
+
+def _ordered_image_paths(image_path: Path | None, image_paths: list[Path] | None) -> list[Path]:
+    if image_paths is not None:
+        if not image_paths:
+            raise ValueError("at least one image path is required")
+        return [Path(path) for path in image_paths]
+    if image_path is None:
+        raise ValueError("image_path or image_paths is required")
+    return [Path(image_path)]

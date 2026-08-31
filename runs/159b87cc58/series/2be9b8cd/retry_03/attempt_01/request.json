@@ -1,0 +1,219 @@
+{
+  "model": "gpt-5.6-luna",
+  "instructions": "You are an expert in digitising line charts and are digitising one specified visible line series from a cropped line chart. Your goal is to trace the line as accurately as possible, including any bends, inflections, and discontinuities, while using as few points as necessary to capture the shape.\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn an ordinary first attempt, use response_kind \"proposal\" and provide a complete proposal object. A refinement prompt may instead explicitly allow \"accept_previous\" or \"revise_previous\" on its first attempt.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn points in chart-space values as chart_x and chart_y using the selected axis units/types.\nPoints must be ordered visually from left to right along the line, even if chart-space x is reversed.\nUse 2 to 100 representative polyline control points: include start/end, extrema, bends, inflections, and visible discontinuity-adjacent points.\nPoints do not need to be equally spaced. Straight or gently curved segments can be represented with fewer points, while sharply curved segments may require more points to capture the shape accurately.\nDo not return every marker unless the line only has a few markers.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+  "input": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "input_text",
+          "text": "This is the first attempt for a new series. Use response_kind \"proposal\".\nDigitise only the series described below.\nSeries 1 of 2\nName: 60 Hz\nSeries type: line\nColour: #111827\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_panel_x_flow_rate\nY axis ID: main_panel_y_pressure\nAxis selection reason: The curve is plotted in the main chart panel against the Flow rate horizontal axis and Pressure vertical axis.\nVisual description: Solid black pump curve in the main panel, starting near 78 psi at low flow and declining to near 6 psi at high flow.\nIdentification confidence: 0.99\n\nThe proposal object must return confidence and 2 to 100 points. Do not return descriptive series metadata in the proposal.\n"
+        },
+        {
+          "type": "input_image",
+          "image_url": "<data-url omitted; see attempt image artifacts>",
+          "detail": "high"
+        }
+      ]
+    }
+  ],
+  "store": true,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "name": "SeriesDigitizationDecision",
+      "schema": {
+        "$defs": {
+          "ChartValue": {
+            "properties": {
+              "value_raw": {
+                "title": "Value Raw",
+                "type": "string"
+              },
+              "value_type": {
+                "enum": [
+                  "number",
+                  "datetime",
+                  "unknown"
+                ],
+                "title": "Value Type",
+                "type": "string"
+              },
+              "parsed_value": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Parsed Value"
+              },
+              "parsed_datetime": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Parsed Datetime"
+              },
+              "unit": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Unit"
+              }
+            },
+            "required": [
+              "value_raw",
+              "value_type",
+              "parsed_value",
+              "parsed_datetime",
+              "unit"
+            ],
+            "title": "ChartValue",
+            "type": "object",
+            "additionalProperties": false
+          },
+          "SeriesDigitizationOutput": {
+            "properties": {
+              "points": {
+                "items": {
+                  "$ref": "#/$defs/SeriesPointProposal"
+                },
+                "title": "Points",
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 100
+              },
+              "confidence": {
+                "anyOf": [
+                  {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Confidence"
+              },
+              "warnings": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Warnings",
+                "type": "array"
+              },
+              "unsupported_flags": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Unsupported Flags",
+                "type": "array"
+              }
+            },
+            "title": "SeriesDigitizationOutput",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "points",
+              "confidence",
+              "warnings",
+              "unsupported_flags"
+            ]
+          },
+          "SeriesPointProposal": {
+            "properties": {
+              "point_index": {
+                "minimum": 0,
+                "title": "Point Index",
+                "type": "integer"
+              },
+              "segment_index": {
+                "minimum": 0,
+                "title": "Segment Index",
+                "type": "integer"
+              },
+              "chart_x": {
+                "$ref": "#/$defs/ChartValue"
+              },
+              "chart_y": {
+                "$ref": "#/$defs/ChartValue"
+              }
+            },
+            "required": [
+              "point_index",
+              "segment_index",
+              "chart_x",
+              "chart_y"
+            ],
+            "title": "SeriesPointProposal",
+            "type": "object",
+            "additionalProperties": false
+          }
+        },
+        "properties": {
+          "response_kind": {
+            "enum": [
+              "proposal",
+              "accept_previous",
+              "revise_previous"
+            ],
+            "title": "Response Kind",
+            "type": "string"
+          },
+          "revision_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision Reason"
+          },
+          "proposal": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/SeriesDigitizationOutput"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "response_kind",
+          "revision_reason",
+          "proposal"
+        ],
+        "title": "SeriesDigitizationConversationResponse",
+        "type": "object",
+        "additionalProperties": false
+      },
+      "strict": true
+    }
+  },
+  "prompt_cache_key": "plotlift:159b87cc58:series:2be9b8cd",
+  "reasoning": {
+    "effort": "medium"
+  },
+  "source_image_paths": [
+    "crop/approved_crop.png"
+  ],
+  "source_image_path": "crop/approved_crop.png",
+  "target_series": "Series 1 of 2\nName: 60 Hz\nSeries type: line\nColour: #111827\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_panel_x_flow_rate\nY axis ID: main_panel_y_pressure\nAxis selection reason: The curve is plotted in the main chart panel against the Flow rate horizontal axis and Pressure vertical axis.\nVisual description: Solid black pump curve in the main panel, starting near 78 psi at low flow and declining to near 6 psi at high flow.\nIdentification confidence: 0.99"
+}

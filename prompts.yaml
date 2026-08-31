@@ -1,4 +1,4 @@
-version: "2026-08-25-chart-space-digitization-v3"
+version: "2026-08-29-series-retry-refinement-v1"
 
 shared:
   coordinate_contract: |
@@ -7,7 +7,7 @@ shared:
     Do not confuse image y direction with chart-space y direction.
   conversation_decision_contract: |
     Use the response_kind field to describe what you are doing in this stage conversation.
-    On the first attempt, use response_kind "proposal" and provide a complete proposal object.
+    On an ordinary first attempt, use response_kind "proposal" and provide a complete proposal object. A refinement prompt may instead explicitly allow "accept_previous" or "revise_previous" on its first attempt.
     On review attempts, use response_kind "accept_previous" with proposal null if the previous overlay is accurate.
     On review attempts, use response_kind "revise_previous" with a complete replacement proposal object if the previous overlay needs improvement.
     Never provide a partial patch: every proposal or revision must be complete and internally consistent.
@@ -137,7 +137,7 @@ series:
     The proposal object must return confidence and {{ line_series_min_data_points }} to {{ line_series_max_data_points }} points. Do not return descriptive series metadata in the proposal.
   line_digitization_confirm: |
     This is a review attempt for the same series. Review the overlay image of your proposed points and connecting line and compare to the target series line.
-    Every red X, red point_index label, and red connecting line is a PlotLift-generated diagnostic annotation, not part of the original chart. The diagnostic style deliberately does not match the target series colour or marker style.
+    Every red X, red point_index label, and red connecting line is an application-generated diagnostic annotation, not part of the original chart. The diagnostic style deliberately does not match the target series colour or marker style.
     The overlay shows only the series currently being digitised. Proposed points are marked with red X symbols, and each X has its point_index displayed beside it in small red text starting at 0.
     The overlay is rendered by projecting your chart_x/chart_y values through the calibrated axes into image space.
     Continue digitising only the series described below.
@@ -147,6 +147,22 @@ series:
     Otherwise use response_kind "revise_previous" and provide a complete replacement proposal for the same series.
 
     Attempt to get the points as close as possible to the target series, so that the overlay line is directly on top of the series line. Do not adjust points that are on top of the target series line, keep the same point coordinates. Only adjust points that are off the target series line.
+  line_digitization_refine_initial: |
+    The human user has requested a refinement of the current digitisation for this series, which may include adding, removing, or adjusting points to better trace the target series line. This is the first attempt at refinement.
+    Do not respond on the first attempt with response_kind "accept_previous" as the user has requested a refinement.
+    Image 1 is the original unannotated cropped chart. Image 2 is the same chart with the current digitisation drawn as application-generated diagnostic annotations.
+    Every red X, red point_index label, and red connecting line in Image 2 is a diagnostic annotation, not part of the original chart. The diagnostic style deliberately does not match the target series colour or marker style.
+    The complete current digitisation is supplied below as baseline JSON.
+
+    Continue digitising only the series described below.
+    {{ target_series }}
+
+    Carefully compare both images and the baseline JSON. Preserve every correctly positioned point. Correct only misplaced points, remove only extra points, and add only genuinely missing points needed to trace the target line accurately.
+    If the current digitisation is already accurate, use response_kind "accept_previous" with proposal null.
+    Otherwise use response_kind "revise_previous" and provide a complete replacement proposal, never a partial patch. The replacement must contain {{ line_series_min_data_points }} to {{ line_series_max_data_points }} points and obey the line ordering and control-point rules in the system prompt.
+
+    Baseline JSON:
+    {{ baseline_json }}
   scatter_digitization_system: |
     You are an expert in digitising scatter charts and are digitising one specified visible scatter series from a cropped chart.
     {{ conversation_decision_contract }}
@@ -165,10 +181,25 @@ series:
     The proposal must contain at least one point and no more than {{ scatter_series_max_data_points }} points. Do not return descriptive series metadata in the proposal.
   scatter_digitization_confirm: |
     This is a review attempt for the same scatter series. Review the overlay image and compare every numbered overlay marker with the target scatter markers.
-    Every red X and red point_index label is a PlotLift-generated diagnostic annotation, not part of the original chart. The diagnostic X style deliberately does not match the target series colour or marker style.
+    Every red X and red point_index label is an application-generated diagnostic annotation, not part of the original chart. The diagnostic X style deliberately does not match the target series colour or marker style.
     The overlay contains red X markers with small red point_index labels and no connecting line. Check marker membership, completeness up to the configured limit, order, and coordinate placement. Ensure the diagnostic overlay markers are centred on top of the target scatter markers. If a proposed point is off the target marker, adjust its chart_x/chart_y coordinates to match the target marker.
     Continue digitizing only the scatter series described below.
     {{ target_series }}
 
     If the proposed points accurately capture the target markers, use response_kind "accept_previous" with proposal null.
     Otherwise use response_kind "revise_previous" and provide a complete replacement proposal for the same scatter series, respecting the {{ scatter_series_max_data_points }} point cap and truncation fields.
+  scatter_digitization_refine_initial: |
+    The human user has requested a refinement of the current digitisation for this series, which may include adding, removing, or adjusting points to better trace the target series line. This is the first attempt at refinement.
+    Do not respond on the first attempt with response_kind "accept_previous" as the user has requested a refinement.
+    Image 1 is the original unannotated cropped chart. Image 2 is the same chart with the current digitisation drawn as application-generated diagnostic annotations.
+    Every red X and red point_index label in Image 2 is a diagnostic annotation, not part of the original chart. Image 2 has no diagnostic connecting line. The diagnostic style deliberately does not match the target series colour or marker style.
+    The complete current digitisation is supplied below as baseline JSON. 
+
+    Continue digitising only the scatter series described below.
+    {{ target_series }}
+
+    Carefully compare both images and the baseline JSON. Preserve every correctly positioned marker. Correct only misplaced points, remove only extra points, and add only genuinely missing target markers.
+    Otherwise use response_kind "revise_previous" and provide a complete replacement proposal, never a partial patch. Respect visual left-to-right then top-to-bottom ordering, the {{ scatter_series_max_data_points }} point cap, and the truncation and estimated-total rules in the system prompt.
+
+    Baseline JSON:
+    {{ baseline_json }}

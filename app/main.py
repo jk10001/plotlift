@@ -291,8 +291,26 @@ async def start_selected_series_job(run_id: str, request: Request) -> dict:
 
 
 @app.post("/api/runs/{run_id}/jobs/series/{series_id}")
-def retry_series_job(run_id: str, series_id: str) -> dict:
-    _start_job(run_id, "series", lambda state, prompts, client: retry_series_digitization(state, prompts, client, series_id), initial_status="Digitising series 1 of 1...")
+async def retry_series_job(run_id: str, series_id: str, request: Request) -> dict:
+    body = await request.body()
+    if body:
+        try:
+            data = await request.json()
+        except Exception as exc:  # noqa: BLE001
+            raise HTTPException(status_code=400, detail="Request body must be valid JSON") from exc
+    else:
+        data = {}
+    if not isinstance(data, dict):
+        raise HTTPException(status_code=422, detail="Request body must be a JSON object")
+    mode = data.get("mode", "restart")
+    if mode not in {"restart", "refine"}:
+        raise HTTPException(status_code=422, detail="mode must be 'restart' or 'refine'")
+    _start_job(
+        run_id,
+        "series",
+        lambda state, prompts, client: retry_series_digitization(state, prompts, client, series_id, mode=mode),
+        initial_status="Digitising series 1 of 1...",
+    )
     return {"ok": True}
 
 

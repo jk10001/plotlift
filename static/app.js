@@ -21,6 +21,8 @@ const stateRef = {
   seriesChoiceKey: null,
   seriesChoiceSelected: [],
   hiddenSeriesIds: new Set(),
+  retryChoiceSeriesId: null,
+  retryChoicePreviousFocus: null,
 };
 
 const DEFAULT_SERIES_COLORS = ["#0891b2", "#7c3aed", "#16a34a", "#ea580c", "#db2777"];
@@ -95,6 +97,10 @@ const els = {
   seriesChoiceList: document.querySelector("#seriesChoiceList"),
   seriesChoiceCancelBtn: document.querySelector("#seriesChoiceCancelBtn"),
   seriesChoiceConfirmBtn: document.querySelector("#seriesChoiceConfirmBtn"),
+  retryChoiceModal: document.querySelector("#retryChoiceModal"),
+  retryChoiceCancelBtn: document.querySelector("#retryChoiceCancelBtn"),
+  retryChoiceRestartBtn: document.querySelector("#retryChoiceRestartBtn"),
+  retryChoiceRefineBtn: document.querySelector("#retryChoiceRefineBtn"),
 };
 
 init();
@@ -177,6 +183,9 @@ function wireEvents() {
   els.addSeriesBtn.addEventListener("click", addManualSeries);
   els.seriesChoiceCancelBtn.addEventListener("click", cancelSeriesChoice);
   els.seriesChoiceConfirmBtn.addEventListener("click", confirmSeriesChoice);
+  els.retryChoiceCancelBtn.addEventListener("click", closeRetryChoice);
+  els.retryChoiceRestartBtn.addEventListener("click", () => submitSeriesRetry("restart"));
+  els.retryChoiceRefineBtn.addEventListener("click", () => submitSeriesRetry("refine"));
   els.debugExport.addEventListener("change", renderExports);
   els.zoomOutBtn.addEventListener("click", () => adjustChartZoom(-1));
   els.zoomInBtn.addEventListener("click", () => adjustChartZoom(1));
@@ -191,6 +200,12 @@ function wireEvents() {
   window.addEventListener("pointercancel", onPointerUp);
   window.addEventListener("resize", scheduleOverlayRender);
   window.addEventListener("scroll", renderImageBusyState, { passive: true });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && stateRef.retryChoiceSeriesId) {
+      event.preventDefault();
+      closeRetryChoice();
+    }
+  });
 }
 
 function setNewRunOpen(open) {
@@ -515,6 +530,8 @@ function render(options = {}) {
   renderDebugInfo();
   renderExports();
   renderSeriesChoiceModal();
+  renderRetryChoiceModal();
+  updateModalPageState();
   if (!state) renderEvents([]);
 }
 
@@ -669,12 +686,8 @@ function renderSidebarStatus() {
 
 function renderSeriesChoiceModal() {
   const pending = pendingSeries();
-  const open = Boolean(stateRef.runId && pending.length && !llmJobActive() && !seriesConfirmed());
+  const open = Boolean(stateRef.runId && pending.length && !llmJobActive() && !seriesConfirmed() && !stateRef.retryChoiceSeriesId);
   els.seriesChoiceModal.hidden = !open;
-  document.body.classList.toggle("modal-open", open);
-  for (const section of [document.querySelector("header"), document.querySelector("main")]) {
-    if (section) section.inert = open;
-  }
   if (!open) {
     if (!pending.length) {
       stateRef.seriesChoiceKey = null;
@@ -1108,6 +1121,25 @@ function renderSeriesPointMarker(point, kind, commonAttrs) {
   delete haloAttrs["data-tooltip-y"];
   renderSeriesPointMarkerShape(point, kind, haloAttrs);
   renderSeriesPointMarkerShape(point, kind, commonAttrs);
+}
+
+function renderRetryChoiceModal() {
+  const series = findSeries(stateRef.retryChoiceSeriesId);
+  const open = Boolean(stateRef.runId && stateRef.retryChoiceSeriesId && series);
+  els.retryChoiceModal.hidden = !open;
+  const locked = llmJobActive();
+  els.retryChoiceCancelBtn.disabled = locked;
+  els.retryChoiceRestartBtn.disabled = locked;
+  els.retryChoiceRefineBtn.disabled = locked;
+  if (!open && stateRef.retryChoiceSeriesId && !series) stateRef.retryChoiceSeriesId = null;
+}
+
+function updateModalPageState() {
+  const open = !els.seriesChoiceModal.hidden || !els.retryChoiceModal.hidden;
+  document.body.classList.toggle("modal-open", open);
+  for (const section of [document.querySelector("header"), document.querySelector("main")]) {
+    if (section) section.inert = open;
+  }
 }
 
 function renderSeriesPointMarkerShape(point, kind, commonAttrs) {
@@ -1640,7 +1672,7 @@ function wireSeriesEditor() {
     });
   });
   els.seriesEditor.querySelectorAll("[data-retry-series]").forEach((button) => {
-    button.addEventListener("click", () => retrySeriesDigitization(button.dataset.retrySeries));
+    button.addEventListener("click", () => openRetryChoice(button.dataset.retrySeries, button));
   });
   els.seriesEditor.querySelectorAll("[data-delete-point]").forEach((button) => {
     button.addEventListener("click", () => deletePoint(button.dataset.deletePoint));
@@ -1661,9 +1693,39 @@ function wireSeriesEditor() {
   });
 }
 
-async function retrySeriesDigitization(seriesId) {
-  if (llmJobActive() || !stateRef.runId || !seriesId) return;
-  await api(`/api/runs/${stateRef.runId}/jobs/series/${encodeURIComponent(seriesId)}`, { method: "POST" });
+function openRetryChoice(seriesId, trigger) {
+  if (llmJobActive() || !stateRef.runId || !findSeries(seriesId)) return;
+  stateRef.retryChoiceSeriesId = seriesId;
+  stateRef.retryChoicePreviousFocus = trigger || document.activeElement;
+  renderRetryChoiceModal();
+  renderSeriesChoiceModal();
+  updateModalPageState();
+  els.retryChoiceRefineBtn.focus();
+}
+
+function closeRetryChoice() {
+  if (llmJobActive()) return;
+  const previousFocus = stateRef.retryChoicePreviousFocus;
+  stateRef.retryChoiceSeriesId = null;
+  stateRef.retryChoicePreviousFocus = null;
+  renderRetryChoiceModal();
+  renderSeriesChoiceModal();
+  updateModalPageState();
+  if (previousFocus?.isConnected) previousFocus.focus();
+}
+
+async function submitSeriesRetry(mode) {
+  const seriesId = stateRef.retryChoiceSeriesId;
+  if (llmJobActive() || !stateRef.runId || !seriesId || !["restart", "refine"].includes(mode)) return;
+  stateRef.retryChoiceSeriesId = null;
+  stateRef.retryChoicePreviousFocus = null;
+  renderRetryChoiceModal();
+  updateModalPageState();
+  await api(`/api/runs/${stateRef.runId}/jobs/series/${encodeURIComponent(seriesId)}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ mode }),
+  });
   await loadRun(stateRef.runId, { force: true });
 }
 

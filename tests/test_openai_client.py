@@ -39,6 +39,21 @@ def test_crop_tool_continuation_includes_function_output_and_omits_cache_retenti
     assert request["input"][1]["role"] == "user"
 
 
+def test_structured_input_keeps_multiple_images_in_supplied_order(tmp_path: Path) -> None:
+    first = tmp_path / "first.png"
+    second = tmp_path / "second.png"
+    Image.new("RGB", (2, 2), "red").save(first)
+    Image.new("RGB", (2, 2), "blue").save(second)
+    client = OpenAIChartClient(api_key=None, mock_mode=True)
+
+    request_input = client._input("compare", None, "high", image_paths=[first, second])
+    content = request_input[0]["content"]
+
+    assert [item["type"] for item in content] == ["input_text", "input_image", "input_image"]
+    assert content[1]["image_url"] != content[2]["image_url"]
+    assert content[1]["detail"] == content[2]["detail"] == "high"
+
+
 class FakeClient:
     def __init__(self) -> None:
         self.responses = FakeResponses()

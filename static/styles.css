@@ -809,6 +809,40 @@ h2 {
   vector-effect: non-scaling-stroke;
 }
 
+.retry-choice-content {
+  padding: 16px 18px;
+  overflow: auto;
+}
+
+.retry-choice-content > p:first-child {
+  margin-top: 0;
+}
+
+.retry-choice-options {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.retry-choice-options > div {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #f9fbfa;
+}
+
+.retry-choice-options dt {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.retry-choice-options dd {
+  margin: 4px 0 0;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+
 #overlaySvg .series-point-halo {
   pointer-events: none;
   fill: none;

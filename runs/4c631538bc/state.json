@@ -1,7 +1,7 @@
 {
   "run_id": "4c631538bc",
   "created_at": "2026-08-27T10:58:56.739026+00:00",
-  "updated_at": "2026-08-27T11:03:55.835373+00:00",
+  "updated_at": "2026-08-30T08:11:46.438992+00:00",
   "stage": "series_review",
   "active_job": null,
   "settings": {
@@ -2347,7 +2347,7 @@
       "x_axis_id": "main_x_axis",
       "y_axis_id": "main_y_axis",
       "axis_selection_reason": "The markers are plotted using the single scatter panel's bottom X value axis and left Y value axis.",
-      "confidence": 0.9,
+      "confidence": 0.92,
       "source": "llm",
       "points": [
         {
@@ -3406,7 +3406,9 @@
       "overlay_path": null,
       "validation_status": "valid",
       "confidence": 0.99,
-      "warnings": []
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "axis_main_x_axis-01",
@@ -3419,7 +3421,9 @@
       "overlay_path": "axis_main_x_axis/attempt_01/overlay.png",
       "validation_status": "valid",
       "confidence": 0.99,
-      "warnings": []
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "axis_main_x_axis-02",
@@ -3432,7 +3436,9 @@
       "overlay_path": "axis_main_x_axis/attempt_02/overlay.png",
       "validation_status": "valid",
       "confidence": 0.99,
-      "warnings": []
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "axis_main_y_axis-01",
@@ -3445,7 +3451,9 @@
       "overlay_path": "axis_main_y_axis/attempt_01/overlay.png",
       "validation_status": "valid",
       "confidence": 0.99,
-      "warnings": []
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "axis_main_y_axis-02",
@@ -3458,7 +3466,9 @@
       "overlay_path": "axis_main_y_axis/attempt_02/overlay.png",
       "validation_status": "valid",
       "confidence": 0.99,
-      "warnings": []
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "series-identification-01",
@@ -3471,7 +3481,9 @@
       "overlay_path": null,
       "validation_status": "valid",
       "confidence": 0.98,
-      "warnings": []
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "series-d4cf086c-01",
@@ -3486,7 +3498,9 @@
       "confidence": 0.82,
       "warnings": [
         "Several blue markers are closely overlapping in the lower-left cluster and around x values 34–43; values for these markers are approximate."
-      ]
+      ],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "series-d4cf086c-02",
@@ -3501,7 +3515,9 @@
       "confidence": 0.82,
       "warnings": [
         "Several blue markers are closely overlapping in the lower-left cluster and around x values 34–43; values for these markers are approximate."
-      ]
+      ],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "series-b47e5d39-01",
@@ -3516,7 +3532,9 @@
       "confidence": 0.86,
       "warnings": [
         "Several orange square markers overlap in the dense cluster around x=32–40, so individual centers are approximate."
-      ]
+      ],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "series-b47e5d39-02",
@@ -3531,7 +3549,9 @@
       "confidence": 0.86,
       "warnings": [
         "Several orange square markers overlap in the dense cluster around x=32–40, so individual centers are approximate."
-      ]
+      ],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "series-8047eea4-01",
@@ -3544,7 +3564,9 @@
       "overlay_path": "series/8047eea4/attempt_01/overlay.png",
       "validation_status": "valid",
       "confidence": 0.93,
-      "warnings": []
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "series-8047eea4-02",
@@ -3559,7 +3581,9 @@
       "confidence": 0.9,
       "warnings": [
         "The review overlay showed several proposed red X markers offset from the centers of the green triangular markers, especially in the dense central cluster and around the lower-right group. The complete point list has been replaced with adjusted marker-center coordinates."
-      ]
+      ],
+      "retry_round": null,
+      "retry_mode": null
     },
     {
       "id": "series-8047eea4-03",
@@ -3572,7 +3596,41 @@
       "overlay_path": "series/8047eea4/attempt_03/overlay.png",
       "validation_status": "valid",
       "confidence": 0.9,
-      "warnings": []
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "series-8047eea4-retry-01-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/8047eea4/retry_01/attempt_01/request.json",
+      "response_path": "series/8047eea4/retry_01/attempt_01/response.json",
+      "parsed_path": "series/8047eea4/retry_01/attempt_01/parsed.json",
+      "overlay_path": "series/8047eea4/retry_01/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.92,
+      "warnings": [
+        "Revised the complete proposal to preserve the traced markers while correcting the visual ordering of the two markers sharing x=74.0; the higher marker is listed first."
+      ],
+      "retry_round": 1,
+      "retry_mode": "refine"
+    },
+    {
+      "id": "series-8047eea4-retry-01-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "series/8047eea4/retry_01/attempt_02/request.json",
+      "response_path": "series/8047eea4/retry_01/attempt_02/response.json",
+      "parsed_path": "series/8047eea4/retry_01/attempt_02/parsed.json",
+      "overlay_path": "series/8047eea4/retry_01/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.92,
+      "warnings": [],
+      "retry_round": 1,
+      "retry_mode": "refine"
     }
   ],
   "warnings": [],

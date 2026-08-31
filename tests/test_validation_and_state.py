@@ -175,6 +175,54 @@ def test_series_identification_prompt_requires_pillow_or_hex_color() -> None:
     assert "Do not use informal colour descriptions" in prompt
 
 
+def test_digitisation_prompts_are_provider_neutral_and_refinement_explains_baseline() -> None:
+    prompt_pack = load_prompt_pack()
+    keys = [
+        "series.line_digitization_system",
+        "series.line_digitization_initial",
+        "series.line_digitization_confirm",
+        "series.line_digitization_refine_initial",
+        "series.scatter_digitization_system",
+        "series.scatter_digitization_initial",
+        "series.scatter_digitization_confirm",
+        "series.scatter_digitization_refine_initial",
+    ]
+    rendered = {
+        key: prompt_pack.render(key, target_series="target", baseline_json='{"points": []}')
+        for key in keys
+    }
+
+    assert all("PlotLift" not in prompt for prompt in rendered.values())
+    for key in ("series.line_digitization_refine_initial", "series.scatter_digitization_refine_initial"):
+        assert "Image 1" in rendered[key]
+        assert "Image 2" in rendered[key]
+        assert "application-generated diagnostic annotations" in rendered[key]
+        assert '{"points": []}' in rendered[key]
+
+
+def test_retry_endpoint_defaults_to_restart_accepts_refine_and_rejects_invalid_mode(monkeypatch) -> None:
+    modes: list[str] = []
+
+    def fake_retry(state, prompts, client, series_id, mode="restart"):
+        modes.append(mode)
+        return state
+
+    def run_inline(run_id, name, fn, *, initial_status=None) -> None:
+        fn(object(), object(), object())
+
+    monkeypatch.setattr(main_module, "retry_series_digitization", fake_retry)
+    monkeypatch.setattr(main_module, "_start_job", run_inline)
+    client = TestClient(main_module.app)
+
+    assert client.post("/api/runs/run/jobs/series/series-id").status_code == 200
+    assert client.post("/api/runs/run/jobs/series/series-id", json={"mode": "refine"}).status_code == 200
+    invalid = client.post("/api/runs/run/jobs/series/series-id", json={"mode": "unexpected"})
+
+    assert modes == ["restart", "refine"]
+    assert invalid.status_code == 422
+    assert "restart" in invalid.json()["detail"]
+
+
 def test_state_save_load_roundtrip(tmp_path, monkeypatch) -> None:
     class DummyConfig:
         runs_dir = tmp_path

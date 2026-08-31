@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+from types import ModuleType, SimpleNamespace
+
 import pytest
 
 from app.config import load_models, validate_run_settings
@@ -112,3 +116,47 @@ def test_gemini_generate_content_config_uses_sdk_schema_fields() -> None:
     assert config["response_mime_type"] == "application/json"
     assert "response_json_schema" in config
     assert "response_format" not in config
+
+
+def test_gemini_history_reconstruction_retains_all_images(tmp_path: Path, monkeypatch) -> None:
+    first = tmp_path / "first.png"
+    second = tmp_path / "second.png"
+    current = tmp_path / "current.png"
+    first.write_bytes(b"first")
+    second.write_bytes(b"second")
+    current.write_bytes(b"current")
+
+    class FakeBlob:
+        def __init__(self, **kwargs) -> None:
+            self.kwargs = kwargs
+
+    class FakePart:
+        def __init__(self, **kwargs) -> None:
+            self.kwargs = kwargs
+
+    class FakeContent:
+        def __init__(self, **kwargs) -> None:
+            self.role = kwargs["role"]
+            self.parts = kwargs["parts"]
+
+    fake_types = SimpleNamespace(Blob=FakeBlob, Part=FakePart, Content=FakeContent)
+    fake_google = ModuleType("google")
+    fake_genai = ModuleType("google.genai")
+    fake_genai.types = fake_types
+    fake_google.genai = fake_genai
+    monkeypatch.setitem(sys.modules, "google", fake_google)
+    monkeypatch.setitem(sys.modules, "google.genai", fake_genai)
+
+    client = GeminiChartClient(api_key=None, mock_mode=True)
+    _, request_contents = client._contents(
+        "confirm",
+        [current],
+        "high",
+        history=[{"user_prompt": "refine", "image_paths": [str(first), str(second)], "model_text": "{}"}],
+    )
+
+    assert [part.get("inline_data", {}).get("data") for part in request_contents[0]["parts"][:-1]] == [
+        "<bytes omitted; see attempt image artifacts>",
+        "<bytes omitted; see attempt image artifacts>",
+    ]
+    assert len(request_contents[2]["parts"]) == 2

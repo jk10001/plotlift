@@ -1,0 +1,281 @@
+{
+  "response_kind": "revise_previous",
+  "revision_reason": "The baseline contains one misplaced point from the solid 60 Hz curve at approximately (1386, 70 psi), and another point near (1788, 40 psi) that falls below the dashed 50 Hz curve. The replacement traces the dashed curve in left-to-right order and removes the misplaced solid-curve point.",
+  "proposal": {
+    "points": [
+      {
+        "point_index": 0,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "57.2614",
+          "value_type": "number",
+          "parsed_value": 57.26141078838174,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 1,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "903.041",
+          "value_type": "number",
+          "parsed_value": 903.0405405405403,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "55.5187",
+          "value_type": "number",
+          "parsed_value": 55.51867219917012,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 2,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1350",
+          "value_type": "number",
+          "parsed_value": 1350.0,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "53.7759",
+          "value_type": "number",
+          "parsed_value": 53.77593360995849,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 3,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "1787.84",
+          "value_type": "number",
+          "parsed_value": 1787.8378378378372,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "51.25",
+          "value_type": "number",
+          "parsed_value": 51.25,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 4,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "2253.04",
+          "value_type": "number",
+          "parsed_value": 2253.04054054054,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "49.5436",
+          "value_type": "number",
+          "parsed_value": 49.54356846473027,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 5,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "2700",
+          "value_type": "number",
+          "parsed_value": 2700.0,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "47.5519",
+          "value_type": "number",
+          "parsed_value": 47.551867219917014,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 6,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "3146.96",
+          "value_type": "number",
+          "parsed_value": 3146.959459459459,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "44.5643",
+          "value_type": "number",
+          "parsed_value": 44.564315352697086,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 7,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "3603.04",
+          "value_type": "number",
+          "parsed_value": 3603.0405405405413,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "41.5768",
+          "value_type": "number",
+          "parsed_value": 41.57676348547717,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 8,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "4050",
+          "value_type": "number",
+          "parsed_value": 4050.0000000000005,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "38.0913",
+          "value_type": "number",
+          "parsed_value": 38.091286307053934,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 9,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "4496.96",
+          "value_type": "number",
+          "parsed_value": 4496.95945945946,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "33.2365",
+          "value_type": "number",
+          "parsed_value": 33.23651452282158,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 10,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "4797.97",
+          "value_type": "number",
+          "parsed_value": 4797.972972972972,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "29.2531",
+          "value_type": "number",
+          "parsed_value": 29.253112033195006,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 11,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "5098.99",
+          "value_type": "number",
+          "parsed_value": 5098.986486486486,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "24.6473",
+          "value_type": "number",
+          "parsed_value": 24.647302904564313,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 12,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "5400",
+          "value_type": "number",
+          "parsed_value": 5400.0,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "18.7967",
+          "value_type": "number",
+          "parsed_value": 18.796680497925298,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 13,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "5701.01",
+          "value_type": "number",
+          "parsed_value": 5701.013513513512,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "12.4481",
+          "value_type": "number",
+          "parsed_value": 12.448132780082975,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "point_index": 14,
+        "segment_index": 0,
+        "chart_x": {
+          "value_raw": "5846.96",
+          "value_type": "number",
+          "parsed_value": 5846.95945945946,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        },
+        "chart_y": {
+          "value_raw": "7.84232",
+          "value_type": "number",
+          "parsed_value": 7.84232365145227,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      }
+    ],
+    "confidence": 0.98,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

@@ -182,6 +182,8 @@ class AttemptRecord(BaseModel):
     validation_status: Literal["valid", "invalid", "skipped"] = "skipped"
     confidence: float | None = None
     warnings: list[str] = Field(default_factory=list)
+    retry_round: int | None = Field(default=None, ge=1)
+    retry_mode: Literal["restart", "refine"] | None = None
 
 
 class CropProposal(BaseModel):

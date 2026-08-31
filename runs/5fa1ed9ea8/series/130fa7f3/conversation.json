@@ -1,0 +1,33 @@
+{
+  "run_id": "5fa1ed9ea8",
+  "stage": "series",
+  "series_id": "130fa7f3",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 3 of 4\nName: Series 1 — 5-step MA\nSeries type: line\nColour: black\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_x_step\nY axis ID: main_y_value\nAxis selection reason: The solid moving-average line uses the same single main-panel Step and Value axes as Series 1.\nVisual description: Main panel: black solid moving-average line, rising overall from approximately 20 at the early steps to approximately 81 at step 50; no distinct markers.\nIdentification confidence: 0.99",
+      "source_image_paths": [
+        "crop/approved_crop.png"
+      ],
+      "overlay_path": "series/130fa7f3/attempt_01/overlay.png",
+      "request_path": "series/130fa7f3/attempt_01/request.json",
+      "response_path": "series/130fa7f3/attempt_01/response.json",
+      "parsed_path": "series/130fa7f3/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 3 of 4\nName: Series 1 — 5-step MA\nSeries type: line\nColour: black\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_x_step\nY axis ID: main_y_value\nAxis selection reason: The solid moving-average line uses the same single main-panel Step and Value axes as Series 1.\nVisual description: Main panel: black solid moving-average line, rising overall from approximately 20 at the early steps to approximately 81 at step 50; no distinct markers.\nIdentification confidence: 0.99",
+      "source_image_paths": [
+        "series/130fa7f3/attempt_01/overlay.png"
+      ],
+      "overlay_path": "series/130fa7f3/attempt_02/overlay.png",
+      "request_path": "series/130fa7f3/attempt_02/request.json",
+      "response_path": "series/130fa7f3/attempt_02/response.json",
+      "parsed_path": "series/130fa7f3/attempt_02/parsed.json"
+    }
+  ]
+}

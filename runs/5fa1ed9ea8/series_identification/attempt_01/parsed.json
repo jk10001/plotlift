@@ -1,0 +1,58 @@
+{
+  "series": [
+    {
+      "series_name": "Series 1",
+      "series_type": "scatter",
+      "visual_description": "Main panel: black filled circular markers, generally rising from low values at early steps to high values near steps 45–50.",
+      "line_color": "black",
+      "line_style": null,
+      "marker_style": "filled circle",
+      "estimated_total_points": 50,
+      "x_axis_id": "main_x_step",
+      "y_axis_id": "main_y_value",
+      "axis_selection_reason": "The circular markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Series 2",
+      "series_type": "scatter",
+      "visual_description": "Main panel: black filled square markers, generally declining from high values at early steps to lower values near the final steps.",
+      "line_color": "black",
+      "line_style": null,
+      "marker_style": "filled square",
+      "estimated_total_points": 50,
+      "x_axis_id": "main_x_step",
+      "y_axis_id": "main_y_value",
+      "axis_selection_reason": "The square markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Series 1 — 5-step MA",
+      "series_type": "line",
+      "visual_description": "Main panel: black solid moving-average line, rising overall from approximately 20 at the early steps to approximately 81 at step 50; no distinct markers.",
+      "line_color": "black",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "main_x_step",
+      "y_axis_id": "main_y_value",
+      "axis_selection_reason": "The solid moving-average line uses the same single main-panel Step and Value axes as Series 1.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Series 2 — 5-step MA",
+      "series_type": "line",
+      "visual_description": "Main panel: black dashed moving-average line, declining overall from the high 80s at early steps to the high 30s near step 50; no distinct markers.",
+      "line_color": "black",
+      "line_style": "dashed",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "main_x_step",
+      "y_axis_id": "main_y_value",
+      "axis_selection_reason": "The dashed moving-average line uses the same single main-panel Step and Value axes as Series 2.",
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

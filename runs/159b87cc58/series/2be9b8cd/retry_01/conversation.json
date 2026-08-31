@@ -1,0 +1,21 @@
+{
+  "run_id": "159b87cc58",
+  "stage": "series",
+  "series_id": "2be9b8cd",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 2\nName: 60 Hz\nSeries type: line\nColour: #111827\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_panel_x_flow_rate\nY axis ID: main_panel_y_pressure\nAxis selection reason: The curve is plotted in the main chart panel against the Flow rate horizontal axis and Pressure vertical axis.\nVisual description: Solid black pump curve in the main panel, starting near 78 psi at low flow and declining to near 6 psi at high flow.\nIdentification confidence: 0.98",
+      "source_image_paths": [
+        "crop/approved_crop.png",
+        "series/2be9b8cd/retry_01/baseline_overlay.png"
+      ],
+      "overlay_path": "series/2be9b8cd/retry_01/attempt_01/overlay.png",
+      "request_path": "series/2be9b8cd/retry_01/attempt_01/request.json",
+      "response_path": "series/2be9b8cd/retry_01/attempt_01/response.json",
+      "parsed_path": "series/2be9b8cd/retry_01/attempt_01/parsed.json"
+    }
+  ]
+}

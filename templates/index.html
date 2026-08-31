@@ -213,9 +213,29 @@
       </section>
     </div>
 
+    <div id="retryChoiceModal" class="modal-backdrop" hidden>
+      <section class="modal-panel retry-choice-panel" role="dialog" aria-modal="true" aria-labelledby="retryChoiceTitle" aria-describedby="retryChoicePrompt">
+        <header class="modal-header">
+          <h2 id="retryChoiceTitle">Retry auto digitisation</h2>
+        </header>
+        <div class="retry-choice-content">
+          <p id="retryChoicePrompt">How should this series be retried?</p>
+          <dl class="retry-choice-options">
+            <div><dt>Improve current</dt><dd>Use the current points as a starting point, then refine them.</dd></div>
+            <div><dt>Start over</dt><dd>Ignore the current points and digitise this series again from the original chart.</dd></div>
+          </dl>
+        </div>
+        <footer class="modal-actions">
+          <button id="retryChoiceCancelBtn" class="secondary-button" type="button">Cancel</button>
+          <button id="retryChoiceRestartBtn" class="secondary-button" type="button">Start over</button>
+          <button id="retryChoiceRefineBtn" type="button">Improve current</button>
+        </footer>
+      </section>
+    </div>
+
     <script>
       window.INITIAL_RUN_ID = {{ initial_run_id | tojson }};
     </script>
-    <script src="/static/app.js?v=20260827-series-colour-names-v2"></script>
+    <script src="/static/app.js?v=20260829-series-retry-v1"></script>
   </body>
 </html>

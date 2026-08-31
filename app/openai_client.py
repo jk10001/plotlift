@@ -44,17 +44,22 @@ class OpenAIChartClient:
     def _input(
         self,
         user_prompt: str,
-        image_path: Path,
+        image_path: Path | None,
         detail: str,
         prefix_items: list[dict[str, Any]] | None = None,
+        image_paths: list[Path] | None = None,
     ) -> list[dict[str, Any]]:
         items = list(prefix_items or [])
+        paths = _ordered_image_paths(image_path, image_paths)
         items.append(
             {
                 "role": "user",
                 "content": [
                     {"type": "input_text", "text": user_prompt},
-                    {"type": "input_image", "image_url": image_to_data_url(image_path), "detail": detail},
+                    *[
+                        {"type": "input_image", "image_url": image_to_data_url(path), "detail": detail}
+                        for path in paths
+                    ],
                 ],
             }
         )
@@ -120,7 +125,8 @@ class OpenAIChartClient:
         settings: RunSettings,
         system_prompt: str,
         user_prompt: str,
-        image_path: Path,
+        image_path: Path | None = None,
+        image_paths: list[Path] | None = None,
         schema_name: str,
         schema: dict[str, Any],
         previous_response_id: str | None = None,
@@ -131,7 +137,7 @@ class OpenAIChartClient:
         request: dict[str, Any] = {
             "model": settings.model_id,
             "instructions": system_prompt,
-            "input": self._input(user_prompt, image_path, settings.image_detail),
+            "input": self._input(user_prompt, image_path, settings.image_detail, image_paths=image_paths),
             "store": True,
             "text": {
                 "format": {
@@ -186,3 +192,13 @@ class OpenAIChartClient:
         if not fragments:
             raise RuntimeError("OpenAI response did not contain text output")
         return "".join(fragments)
+
+
+def _ordered_image_paths(image_path: Path | None, image_paths: list[Path] | None) -> list[Path]:
+    if image_paths is not None:
+        if not image_paths:
+            raise ValueError("at least one image path is required")
+        return [Path(path) for path in image_paths]
+    if image_path is None:
+        raise ValueError("image_path or image_paths is required")
+    return [Path(image_path)]

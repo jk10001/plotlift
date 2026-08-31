@@ -1,0 +1,34 @@
+{
+  "run_id": "eaa5e7d5f5",
+  "stage": "series",
+  "series_id": "85d6ce2f",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "revise_previous",
+      "revision_reason": "Refined proposal preserves the visible solid moving-average trace and its local bends, dips, and inflections across steps 5–50.",
+      "target_series": "Series 3 of 4\nName: Series 1 — 5-step MA\nSeries type: line\nColour: #000000\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The line spans the chart panel using Step horizontally and Value vertically.\nVisual description: Single chart panel: black solid connected moving-average line rising overall from roughly the low 20s to the low 80s.\nIdentification confidence: 0.98",
+      "source_image_paths": [
+        "crop/approved_crop.png",
+        "series/85d6ce2f/retry_02/baseline_overlay.png"
+      ],
+      "overlay_path": "series/85d6ce2f/retry_02/attempt_01/overlay.png",
+      "request_path": "series/85d6ce2f/retry_02/attempt_01/request.json",
+      "response_path": "series/85d6ce2f/retry_02/attempt_01/response.json",
+      "parsed_path": "series/85d6ce2f/retry_02/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 3 of 4\nName: Series 1 — 5-step MA\nSeries type: line\nColour: #000000\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: main_x_axis\nY axis ID: main_y_axis\nAxis selection reason: The line spans the chart panel using Step horizontally and Value vertically.\nVisual description: Single chart panel: black solid connected moving-average line rising overall from roughly the low 20s to the low 80s.\nIdentification confidence: 0.98",
+      "source_image_paths": [
+        "series/85d6ce2f/retry_02/attempt_01/overlay.png"
+      ],
+      "overlay_path": "series/85d6ce2f/retry_02/attempt_02/overlay.png",
+      "request_path": "series/85d6ce2f/retry_02/attempt_02/request.json",
+      "response_path": "series/85d6ce2f/retry_02/attempt_02/response.json",
+      "parsed_path": "series/85d6ce2f/retry_02/attempt_02/parsed.json"
+    }
+  ]
+}

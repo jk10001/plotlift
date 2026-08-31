@@ -1,0 +1,32 @@
+{
+  "series": [
+    {
+      "series_name": "60 Hz",
+      "series_type": "line",
+      "visual_description": "Solid black pump curve in the main panel, starting near 78 psi at low flow and declining to near 6 psi at high flow.",
+      "line_color": "black",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "main_panel_x_flow_rate",
+      "y_axis_id": "main_panel_y_pressure",
+      "axis_selection_reason": "The curve is plotted in the main chart panel against the Flow rate horizontal axis and Pressure vertical axis.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "50 Hz",
+      "series_type": "line",
+      "visual_description": "Dashed black pump curve in the main panel, starting near 57 psi at low flow and declining to near 8 psi at high flow.",
+      "line_color": "black",
+      "line_style": "dashed",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "main_panel_x_flow_rate",
+      "y_axis_id": "main_panel_y_pressure",
+      "axis_selection_reason": "The curve is plotted in the main chart panel against the Flow rate horizontal axis and Pressure vertical axis.",
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

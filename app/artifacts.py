@@ -81,10 +81,34 @@ def copy_upload(run_id: str, source_path: Path, original_filename: str) -> str:
     return relative_path(target, root)
 
 
-def attempt_dir(run_id: str, stage: str, attempt_number: int, series_id: str | None = None) -> Path:
+def series_retry_dir(run_id: str, series_id: str, retry_round: int) -> Path:
+    path = ensure_run_dirs(run_id) / "series" / series_id / f"retry_{retry_round:02d}"
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def next_series_retry_round(run_id: str, series_id: str) -> int:
+    series_dir = ensure_run_dirs(run_id) / "series" / series_id
+    rounds: list[int] = []
+    for path in series_dir.glob("retry_*"):
+        try:
+            rounds.append(int(path.name.removeprefix("retry_")))
+        except ValueError:
+            continue
+    return max(rounds, default=0) + 1
+
+
+def attempt_dir(
+    run_id: str,
+    stage: str,
+    attempt_number: int,
+    series_id: str | None = None,
+    retry_round: int | None = None,
+) -> Path:
     root = ensure_run_dirs(run_id)
     if stage == "series" and series_id:
-        path = root / "series" / series_id / f"attempt_{attempt_number:02d}"
+        parent = series_retry_dir(run_id, series_id, retry_round) if retry_round is not None else root / "series" / series_id
+        path = parent / f"attempt_{attempt_number:02d}"
     else:
         stage_dir = {"x": "x_axis", "y": "y_axis"}.get(stage, stage)
         path = root / stage_dir / f"attempt_{attempt_number:02d}"
@@ -100,9 +124,10 @@ def save_attempt_json(
     data: Any,
     *,
     series_id: str | None = None,
+    retry_round: int | None = None,
 ) -> str:
     root = ensure_run_dirs(run_id)
-    path = attempt_dir(run_id, stage, attempt_number, series_id=series_id) / name
+    path = attempt_dir(run_id, stage, attempt_number, series_id=series_id, retry_round=retry_round) / name
     save_json(path, data)
     emit_event(root, "ARTIFACT", f"Saved {stage} attempt {attempt_number} {name}", run_id=run_id, stage=stage, attempt=attempt_number, artifact_path=relative_path(path, root))
     return relative_path(path, root)

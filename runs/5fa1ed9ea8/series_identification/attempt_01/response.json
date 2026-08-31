@@ -1,0 +1,344 @@
+{
+  "raw": {
+    "created_at": 1788163630.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying every visible line and scatter series in a cropped chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line and scatter series in every visible panel. Do not stop after five or any other arbitrary count.\nClassify a series as line when its data is visibly connected, including lines that also have markers. Classify unconnected data markers as scatter. A fitted or reference line over scatter data is a separate line series.\nFor each series, provide its name, series_type, colour, line style, marker style, estimated point count, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nUse marker_style to describe scatter marker shape and fill, such as filled circle, hollow square, diamond, triangle, plus, or x. It may be null for a line without relevant markers.\nSet estimated_total_points to the number of individually visible scatter markers. It may be null for line series.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-terra",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_09cc99e95e55813f006a95362f8ddc87d0b2be8471de7775fb",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqlTY0BHbPrhPonmCKhqHbwIhCbIVd6FpcZlqWLSykxzOygh1OhIuP_eYeW_0v4PKvX7Yd8zhBIPnUsm_fyF1P-w38QPMciWaq9YMsAx-XOwMLVpc2HbVjYena8oA-fxHpJY-Xy6y9DB7DRBi5cCsgvYEunJjqRntJiqrDSJKNf7GiMzPtTLx7hR79nCic5Sdpkemcjdt6LcLidy4SMotokxtUI9sjmZ4iUl_5uVPliDpNE7gXRNEY5EnIpiYiExXbF276Nl39_OFW6BwJ6nRi_mMyOGQx-OhzSFFaD1ynHJJwZ7pXW_LhNZXRYjhkcqEomYlROS1xz8NdExUF834ReIyfh-Ft_SYbizCcIBYalVGd9YGmw4TYGmVM5khof6moqQQS8uK7Q5HwNIplTlMLRLl_RmdQXLtt4EtZm9WmoCRJdFgeRWZPkUtpfm-Vl05YZl40O6lzO_aTv14RnbQ8VTg2NAh5Fpn2tftbR7-BKGn-5tGetmu0c8khvvNT2VrEtJsxAzYh7Axu-7kGowkljLfUi4EUTWohD6gm7d9YQF65Yie7u_fMnEkNlBNqSAFaZsQz72WcAXBdGMF6hMHT2DbIQUkR8jNTCz3g-m4tiwSqnAReguIMG5kMU8biabikCVSLD7HZERHs2627DaG2A7svrcc0HnKolQrC2NYb2CMVoAiLwKQwnn8KBC_-raCcdSdjHafawbtS6nBlh5JEi1j3FWBGW7S7nLjOeTnHfz9EtOSzG2aHtQdrJxrJxVGYnuJC7q0tEDF_IJ8lgB7ATTT1bMydukAqPqXN9EuTWevrSv0Gscix3f1OfhGYMtuXrEgX_mxgprZkKdsG4vrpS0iPuQ4uPCQbdXEX6spCxg9AEHWMv9cO9uDASK47FwTc5ShTOs1KyhqWtpZwP5YATgyVHp14smNCBsCSxKtYWjLwKZRiCgdWPe7qU7mDGaeI9Uc1eLsXaVdxRrOHLZT9fSLleLvPyAoM1ivECNCs0-GH_0cZeVfndhwuaytEfSlwXrQ67dGXf08_H2Z1Y4aEBPUKOd-UdylU1I-y-PbH_hBlN_-X1MPGb4sTUuqYvLD6kc7aOiNMciBqddARJRXdYESq3sq4ojrnVNF_rXE5Apwiqt2Q4Ll5B2C8d28w5E1dEnRsfrlBMGgYMRZIFA9IPHtSycfnOAsuaXyXU3BL2QI_qlsnXBjHEUW5vm7XUWV4ncgUcAsVdYVwndGqGXC65k5QguruZ8fAA6t-xCeMQ7QA5xdYzlRz3PfUYp1jVkHKKJbUfEhxsPaus8Q2NRv_8GJeTneQ5VZXAlYqFxarOdIa0Hl7seTGbdo2_AgdnsZfKoxO6ZC99JAHM0py3HgqJOdeN1VFB9RIbzRp3QezlK1_dIu47rIifctqKasMy0J3JG9NrEpUPP_jslzMbpLqQiSQhZlY14tNAahtoh3LjhMX1RdUR0O1ami-gOSPo9BH2UoXhtWAcDF0-rZYHihYt4IfKN_mhGeYaIR-SxkxU_E4XlN17tBQ7UdDf_RVy9PBXG9sJpEGRS731VfQ04ipilXJMQLnNttSssvcxfFJUzwpVLYEAvsvj7E_hJeWeGLRAwrM",
+        "status": null
+      },
+      {
+        "id": "msg_09cc99e95e55813f006a953630c58087d0939d538e48de23eb",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"series\":[{\"series_name\":\"Series 1\",\"series_type\":\"scatter\",\"visual_description\":\"Main panel: black filled circular markers, generally rising from low values at early steps to high values near steps 45–50.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled circle\",\"estimated_total_points\":50,\"x_axis_id\":\"main_x_step\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The circular markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.\",\"confidence\":0.99},{\"series_name\":\"Series 2\",\"series_type\":\"scatter\",\"visual_description\":\"Main panel: black filled square markers, generally declining from high values at early steps to lower values near the final steps.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled square\",\"estimated_total_points\":50,\"x_axis_id\":\"main_x_step\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The square markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.\",\"confidence\":0.99},{\"series_name\":\"Series 1 — 5-step MA\",\"series_type\":\"line\",\"visual_description\":\"Main panel: black solid moving-average line, rising overall from approximately 20 at the early steps to approximately 81 at step 50; no distinct markers.\",\"line_color\":\"black\",\"line_style\":\"solid\",\"marker_style\":null,\"estimated_total_points\":null,\"x_axis_id\":\"main_x_step\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The solid moving-average line uses the same single main-panel Step and Value axes as Series 1.\",\"confidence\":0.99},{\"series_name\":\"Series 2 — 5-step MA\",\"series_type\":\"line\",\"visual_description\":\"Main panel: black dashed moving-average line, declining overall from the high 80s at early steps to the high 30s near step 50; no distinct markers.\",\"line_color\":\"black\",\"line_style\":\"dashed\",\"marker_style\":null,\"estimated_total_points\":null,\"x_axis_id\":\"main_x_step\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The dashed moving-average line uses the same single main-panel Step and Value axes as Series 2.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1788163636.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:5fa1ed9ea8:series_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesIdentification",
+        "schema_": {
+          "$defs": {
+            "SeriesIdentification": {
+              "properties": {
+                "series_name": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Series Name"
+                },
+                "series_type": {
+                  "enum": [
+                    "line",
+                    "scatter"
+                  ],
+                  "title": "Series Type",
+                  "type": "string"
+                },
+                "visual_description": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Visual Description"
+                },
+                "line_color": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Series colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+                  "title": "Line Color"
+                },
+                "line_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Line Style"
+                },
+                "marker_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Marker Style"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "x_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "X Axis Id"
+                },
+                "y_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Y Axis Id"
+                },
+                "axis_selection_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Axis Selection Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "title": "SeriesIdentification",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "series_name",
+                "series_type",
+                "visual_description",
+                "line_color",
+                "line_style",
+                "marker_style",
+                "estimated_total_points",
+                "x_axis_id",
+                "y_axis_id",
+                "axis_selection_reason",
+                "confidence"
+              ]
+            }
+          },
+          "properties": {
+            "series": {
+              "items": {
+                "$ref": "#/$defs/SeriesIdentification"
+              },
+              "title": "Series",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "series",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 3884,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 3881
+      },
+      "output_tokens": 555,
+      "output_tokens_details": {
+        "reasoning_tokens": 77
+      },
+      "total_tokens": 4439
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"series\":[{\"series_name\":\"Series 1\",\"series_type\":\"scatter\",\"visual_description\":\"Main panel: black filled circular markers, generally rising from low values at early steps to high values near steps 45–50.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled circle\",\"estimated_total_points\":50,\"x_axis_id\":\"main_x_step\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The circular markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.\",\"confidence\":0.99},{\"series_name\":\"Series 2\",\"series_type\":\"scatter\",\"visual_description\":\"Main panel: black filled square markers, generally declining from high values at early steps to lower values near the final steps.\",\"line_color\":\"black\",\"line_style\":null,\"marker_style\":\"filled square\",\"estimated_total_points\":50,\"x_axis_id\":\"main_x_step\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The square markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.\",\"confidence\":0.99},{\"series_name\":\"Series 1 — 5-step MA\",\"series_type\":\"line\",\"visual_description\":\"Main panel: black solid moving-average line, rising overall from approximately 20 at the early steps to approximately 81 at step 50; no distinct markers.\",\"line_color\":\"black\",\"line_style\":\"solid\",\"marker_style\":null,\"estimated_total_points\":null,\"x_axis_id\":\"main_x_step\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The solid moving-average line uses the same single main-panel Step and Value axes as Series 1.\",\"confidence\":0.99},{\"series_name\":\"Series 2 — 5-step MA\",\"series_type\":\"line\",\"visual_description\":\"Main panel: black dashed moving-average line, declining overall from the high 80s at early steps to the high 30s near step 50; no distinct markers.\",\"line_color\":\"black\",\"line_style\":\"dashed\",\"marker_style\":null,\"estimated_total_points\":null,\"x_axis_id\":\"main_x_step\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The dashed moving-average line uses the same single main-panel Step and Value axes as Series 2.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "series": [
+      {
+        "series_name": "Series 1",
+        "series_type": "scatter",
+        "visual_description": "Main panel: black filled circular markers, generally rising from low values at early steps to high values near steps 45–50.",
+        "line_color": "black",
+        "line_style": null,
+        "marker_style": "filled circle",
+        "estimated_total_points": 50,
+        "x_axis_id": "main_x_step",
+        "y_axis_id": "main_y_value",
+        "axis_selection_reason": "The circular markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "Series 2",
+        "series_type": "scatter",
+        "visual_description": "Main panel: black filled square markers, generally declining from high values at early steps to lower values near the final steps.",
+        "line_color": "black",
+        "line_style": null,
+        "marker_style": "filled square",
+        "estimated_total_points": 50,
+        "x_axis_id": "main_x_step",
+        "y_axis_id": "main_y_value",
+        "axis_selection_reason": "The square markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "Series 1 — 5-step MA",
+        "series_type": "line",
+        "visual_description": "Main panel: black solid moving-average line, rising overall from approximately 20 at the early steps to approximately 81 at step 50; no distinct markers.",
+        "line_color": "black",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "main_x_step",
+        "y_axis_id": "main_y_value",
+        "axis_selection_reason": "The solid moving-average line uses the same single main-panel Step and Value axes as Series 1.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "Series 2 — 5-step MA",
+        "series_type": "line",
+        "visual_description": "Main panel: black dashed moving-average line, declining overall from the high 80s at early steps to the high 30s near step 50; no distinct markers.",
+        "line_color": "black",
+        "line_style": "dashed",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "main_x_step",
+        "y_axis_id": "main_y_value",
+        "axis_selection_reason": "The dashed moving-average line uses the same single main-panel Step and Value axes as Series 2.",
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

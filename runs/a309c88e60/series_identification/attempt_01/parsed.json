@@ -1,0 +1,19 @@
+{
+  "series": [
+    {
+      "series_name": "Unlabeled blue value trend",
+      "series_type": "line",
+      "visual_description": "Single connected medium-blue line with small filled circular markers, rising overall from roughly 21 at the first visible point to roughly 46 near the final points, with short local fluctuations.",
+      "line_color": "#1f77b4",
+      "line_style": "solid",
+      "marker_style": "filled circle",
+      "estimated_total_points": 51,
+      "x_axis_id": "main_x_point",
+      "y_axis_id": "main_y_value",
+      "axis_selection_reason": "The only visible series is drawn in the single main panel and aligns with the bottom Point axis and left Value axis.",
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

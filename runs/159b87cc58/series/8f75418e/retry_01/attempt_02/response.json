@@ -1,0 +1,296 @@
+{
+  "raw": {
+    "created_at": 1787983404.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are an expert in digitising line charts and are digitising one specified visible line series from a cropped line chart. Your goal is to trace the line as accurately as possible, including any bends, inflections, and discontinuities, while using as few points as necessary to capture the shape.\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn an ordinary first attempt, use response_kind \"proposal\" and provide a complete proposal object. A refinement prompt may instead explicitly allow \"accept_previous\" or \"revise_previous\" on its first attempt.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn points in chart-space values as chart_x and chart_y using the selected axis units/types.\nPoints must be ordered visually from left to right along the line, even if chart-space x is reversed.\nUse 2 to 100 representative polyline control points: include start/end, extrema, bends, inflections, and visible discontinuity-adjacent points.\nPoints do not need to be equally spaced. Straight or gently curved segments can be represented with fewer points, while sharply curved segments may require more points to capture the shape accurately.\nDo not return every marker unless the line only has a few markers.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_07d3ee794789fe6c006a92762cd58c87d0b1730fbe4e5e8134",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqknYurD1PLyGibTTG7voXl54HFTpVZXuESjwX6NPk08ssMZk1ZIf8nXiRzCzm73r7kaF8lnUIlNnIf-4GguZhns7teFiyhP511_z1ok9KQW4LE2g55R2eTBJdOvvNTRIFC0zQ_madvoQdJtfiv3U68JVedJVQHkMQYS0Bl3NorPBG9TNPFl4eNenB2TZFZQEIy4C5f0ZPRCR6MlArUUXAh6pNg1RW3rJW5EoHEGTkmOvHUV9an13VLWBTf1w8BhHQazZ7iUfwOSuc02_xLQiwHYLSCd3oqLMj6JNrpk7QOjL1xRKHLJwk1dLMUuo6lLE19xacvFwg2f3PMOF3DW-9GPMD76x4KzNPNuc3Neyz3kA2fujcl-9q9BuJWYxJVs1bUsUUt0jGCJ-fLLwlsRAzrXhqzymYaU0a60rQ4JiZ3VqysQ6OmzO1bzimq8Arf8hNFIX66oinC9oFTmiBJ5yIAqiy0c-fFL6SvKv7Q7IPB2FvDZtwqm4p8uq1exx-JrrJmTfKNJEBHkrsLfAdKDRLv7UpU6vnrtAT6LEv2cjQZMuCnSstV8fS5znuP-HhlMgDa8hVWOahnf3fMG-SAghF6D7Pckkg8GIwmYbYaaQm9GAHG3YzjGH_qHvJ74jQ4RR2nFBsTPNoMRnZr4_Cu87Hr4ssYyo6Q1Co6XdsZQLr5lkTXDqDbM7ypEtIQ-98PqzzLFsFfqNAXTCRYJ_zIQ48B2T015mKAvmIGwGGnye2GqbharrPVajx77ZJGpF7ASpqeb6sasFMT45SWQKKFShSKDdM_8zLiSQcdZcNkuQogh2GMq650D36CniAqiCT7BK8VxxeHL4ik7n8KbbxMwj8V_LBnAJBYAGxvEnZhyvdA9MOrGQtQKyrQdTqNKCghLmpAWwQMbgg1IP4Qw97BmqWGmRwcHgxqUGfNq4hsnDh1CQ6WjUXEsYfzhC7h0fxL_wYQX1enYqkBQDy-b3AvsknWJHD3f_AanrgbMjI8gGkjFCQTydHSlC42Jcdh60WU44Ao_RKwIFIg_9xfofcFj-OMNP72_av4Ttb5L8GTMiQsaxRerwpZ2g4hf8-v2ouhT0YMkeNOyXXUnvR-fksIL6s1qZvw_0orIXWha7RA70RMrXIeLE5EV0y_DNrFEpA-KBZxMfPvl0_5q72KoUNzgXVkchxhEz0FBcDElV82wT88cfip4kGN4suo5tu2NZXtRz3YY23fxBUNPKr0BZLxNTUuMv3Spb4ZeOTvD9ubudFCIp1R8CwGnjEJ23YeWef5woo3kJUJ_ozNUfBPtmjH-LL4bkySR4Y2wTT4ORcQfKxPuycP4YBKUAahZPgXKs3ExtpJijnokWaH_8JdJYH-F2jRMjCS67SIPKjwD7DE2bhb87y-i69tdYtVlCobYICBq1qdvWSglQU_RAvRX8UJKGRUzcZYSq0Sp8CY7dXK2Pz0pe6lWbc8LQQdaoH2oTugmjTVbpRfk-bGpdyfqihP7AQk_y8-zda2PC7Bzlp1hlqBeJKiWsJogEaAst4y-0modq4bEn6CdrztcmS10fcnSlmVAVrButEeN5_1epugG5RNhji8nVnLNsElqSJCvaRDEseYBurAFTHFm9ldADze4nYUKLzxrI4ZQdQRxKHkl8Goh7zMh2FRxJ6W4OFQmOzvNt7OYzxu15bAWOctEDePJOC7VvWixaqzg6thRgZg59us6O6KaTMrVrNDvu8PbjuG_dEX5cMzLM2YrcAvc0LyChp9uTMflHqyuQueFkQ3YbBONQjXQECd3yCoEwFssBA6OBmswgGB6Bt5FJs9kIS-vsjzSBSLO2ZlOFC7H3xyyZ3Gn_1nQ3YuryNZtwNYoGlfM0uN_oFos4ngg5S9EV-qlagk19AZVCDsNHviUZTyTU4ft-ZGkkyBlNZPTL8GfSHY-2RmNvAFroopZpA5qCvMvjjcjMVWcWXWMe4S78lTNMBEt5f0MYf_XJqF2ZOTumQlkuIKUNBs9pmJA60hqZNog26MOZmuefO_eU9JWiY6IXloMAlMpw=",
+        "status": null
+      },
+      {
+        "id": "msg_07d3ee794789fe6c006a92762e676c87d0ba2d64a93e2c3255",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1787983406.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:159b87cc58:series:8f75418e",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesDigitizationDecision",
+        "schema_": {
+          "$defs": {
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "SeriesDigitizationOutput": {
+              "properties": {
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/SeriesPointProposal"
+                  },
+                  "title": "Points",
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 100
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "title": "SeriesDigitizationOutput",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ]
+            },
+            "SeriesPointProposal": {
+              "properties": {
+                "point_index": {
+                  "minimum": 0,
+                  "title": "Point Index",
+                  "type": "integer"
+                },
+                "segment_index": {
+                  "minimum": 0,
+                  "title": "Segment Index",
+                  "type": "integer"
+                },
+                "chart_x": {
+                  "$ref": "#/$defs/ChartValue"
+                },
+                "chart_y": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "point_index",
+                "segment_index",
+                "chart_x",
+                "chart_y"
+              ],
+              "title": "SeriesPointProposal",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SeriesDigitizationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "SeriesDigitizationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 8015,
+      "input_tokens_details": {
+        "cached_tokens": 4727,
+        "cache_write_tokens": 3285
+      },
+      "output_tokens": 246,
+      "output_tokens_details": {
+        "reasoning_tokens": 218
+      },
+      "total_tokens": 8261
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+  "json": {
+    "response_kind": "accept_previous",
+    "revision_reason": null,
+    "proposal": null
+  }
+}
