@@ -1,0 +1,304 @@
+{
+  "raw": {
+    "created_at": 1788239645.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are an expert in digitising line charts and are digitising one specified visible line series from a cropped line chart. Your goal is to trace the line as accurately as possible, including any bends, inflections, and discontinuities, while using as few points as necessary to capture the shape.\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn an ordinary first attempt, use response_kind \"proposal\" and provide a complete proposal object. A refinement prompt may instead explicitly allow \"accept_previous\" or \"revise_previous\" on its first attempt.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn points in chart-space values as chart_x and chart_y using the selected axis units/types.\nPoints must be ordered visually from left to right along the line, even if chart-space x is reversed.\nUse 2 to 100 representative polyline control points: include start/end, extrema, bends, inflections, and visible discontinuity-adjacent points.\nPoints do not need to be equally spaced. Straight or gently curved segments can be represented with fewer points, while sharply curved segments may require more points to capture the shape accurately.\nDo not return every marker unless the line only has a few markers.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0feb71f1cc248fbd006a965f1e55b887d0adb7796bf01367ad",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqll8q6qFnSw-nhkcfuVwl8wlIsqhUsOrAtIk09mL6DG5SCso5mWipw-axMJ_AUUTuVXFEpn4BxfXo5lEcIXfgDVZ45r0PQ9lUV7SHlWJDe03ccNr-LJ4orZV9dGvAAUSOemnaYWrhZUNg0Log-uaNYfd0zNSoaQlf03mIar1qwe2438SC7Ie84-UVO30WsWuZ4VVD6IhKTw9TqQeIn9dC1-WJeyNMaCFKoTV5fYdk5rUGZBewLVda7r5j_29vQIkMkS9GdpLRUKuiPVwnag6jDF_FJPx0lFPU-nbInkY1ytC43qGadaJQguMcGr9tGHFntfBM1Gtvl4Mcvq76NLRf9TJ_w2sFYGwU0cYfZ4iIudj0pKq6ORm8rOYZx2USbGfbDLXif63Fm_bZ-plMaODmlbsbNTk4hofwpjI5sS0dbhCJtZZVjOX3r4EUUGIBlOsJV8P1RdOfACG0JK0_ukxzsSKyVnxEGG5rRebC74yUPgIl5vroorTk16h6JOPnTF7WPWSKdkO5o2zFhzZocketb_6nAk4Tzv6ULF-uCrJDtbR1XLPZSpc4n5mCDzWnI4adPugMfxZkLaOmpVWsu0SuNsoeYETETAezy-yp1UxGiu-LyrXVGn5d__bBMoEZvmbNdK8AQEUPWNrWjwbidZ8u0reCoDMpQR2Aop5DN9t45Iju58JJgkwWi1SkfXuUq-E2haDOeIECuoCIo7g9c-nORdpZo9tqGNhEcLazXbmUjAcIHnMDSkGPeRDFHnE0_C6-y8mH9Z2hYY9cKGV_wDdI6Yp78djbYnmykN7RVH-ZXxHZ6m61MElr3mgkSt3E-Pky3FdTpWOcpbX8Z6o0OsYveL73Gt5a8mC-CJauPLzf5IiAnG2gvkVAqtDvqVb5Y-rI6sjruMqetQsBrKoqO5BSgDK9Mjk43BSbgYm3S4AZ5F2heZWKp6P-USiu30d2NDWBHfks8SO1NAR8V-WhgNnJ7j2FwelqFtR2vjUpek8ppWCViSrBhZF3I7kMzYHtpv2kBdQAjkfk4UrngTw0CYZttxDqlvFX9Pk25KeoWjCQC3miI40CwPDNZ7aKdHXfSek_m1iqLdA1mvWir9wqcV2sCA-Ga27ClhA050bciZVp7RTxS6kJX3gG8GQfoPfTuWfbicIa1KegOFm_K9DftD_D_sCqQknRmSaeKB5M4S8U9CWskGpFzGhHWQKzWBDR4gYUrAmaRTmj6QO_vj1cdPi2DpK-8bLt16kY9xaQ_2Mv2S0XGw2DqWYjMcgb0LHFyYbc426gwoj-NG3y_UmHqt4z9ixuPg0EMehoJcEnYtpNGE8HqFbD9Lu27ZtQ5k0JZd8R_cpnpGzO1trJ1_4nKOzYKkulbnh7VePCDGcYW47JFDq7CZiBWxR20PRgmxd3SVzM1qDehuC_9UpML4kAS4zbKnvYeZ37Q9ZHfC7-nnfBi553aDqfLPbMFpr8yYx0pKmOn0AqnJOshQPMBdzBFE6xcMIinmSntGz_86iIho-4KxmNll4U71XI0j_CmwENgXqJNPiefOS_0f_Dy72My37j2S9g9pKBQ_BLtihMDARlvA7t2QI9KEYTHFfJPTTrIrb3ZbB41wgCOYRkc721et6-cRWL0lZZgXpH0acZ5sxrFJGtAMSpwub48qhz0Oxw2er7TU83y2c_-Cl8QGcihokHIUGItC5y5efFn_D-Idu9o-hA2xkqSSre2x1Z7MmjcUfhyJeHhvblXj_6TAJ-Ef3_37HeZZ_LdFu_gb1_K7trtXtos_lW_Rl2XDojMeVU4gIFGDXd9YkuHEiaFFislIJ16NNRmdZIID48TI99Mh7rTndwyTLbBx41HErWyOI6eWdYc-FMlzx26gsvcHyr6YyxG3dsa6If7SPkIO89whaaIR4cyDkir6-LcFfzVRQEtzVLrgRD2MCpTmNRQL3_bXEwadszxVKMkJ3lR6b7KmyxQ_-NWg4fsYQzgWYfC9CSbm1Q0Njy2Q1urhTb2I8E2mk7vDEuqmdpr9n9ctSm0nVhKxo3oDr0hQPAGiRTkDZubATagspICordTDtYMnMxipvvjj8xcES49gIqOAcop6DoW23Jj_EvxeabT0Vh_DVRwBpmjzi3W23v102zXa_jmMuj7NOstert-DlS_318ugW-60FxdsIDtmGL8MolDyI7Qkilkt-RHfFyFsUSGeWg4jCxasOByffyqwER6tQ0tSccAMc4H78PEqo6ljrYsFIwL9bclBblR5sVlWmd0Soh121H8D6CCjvWLhwIWcygf5wdHSsQ8ZyY8jJRWsuvaRebka3q3WgLvYQVmPmNg1MlFMwQipHcRC41jiRFvehgQVDLrsuhggeO_z6hC_ekWfYv9rNQ5Pw0bEfvOhrVCkc_BkjzeaKVrTAssY7-_8xQhr3QVZ0l0KTZGWu4R31c9-kur64fT3elo_zySZcVEyL3-iQDgyogytJRbjs-5uHdGsug5hONoW6oqpc4aSb2xUjitn9d1OzhkgyzxyVM6jLSxo0Zpe04sO9pCzlE2gG86tg5KQ3_enTM_H3EBGfG6NpSc88KKexgMjlAHLQ7O9vUNttkxl1kv-0Ld5iHRLUV_iHlQ3maC0KGybpLsHD1sUAhcg_eGS6eL3qNwfVC6I9_uN3OAPiV5_I8SOJpEn7s6OdU4uodUg-0uA-Da5ahkTWgUAt7qvihAo33SY3n8TvbiSpW2i1_SzMjYAJQb-csqDt41hatt7SizYeWvbOcoZP_EaHIZ1WKR2SBbuuyJ07rLN_zScTB3rDSQKnrt3FRkhwQwrL33LWRzAZfdQlOKgxevKLSarzHLJULcuJ2dYfYVkjoXnZi6u_NCuJtsZYFI4itThNBttnOQ6pQvHrfi_rYkN8WYhWmX3UurkEMSK2W_jGQ7ySqnYsNB3UcxL0UwW12_tBwp7Bag2t2BOma6pPAp1Qi1QeApZ4BuSO59YNlFOV8a5YdRJh5QlMe0FQ65YCVVKsfwKTUrzEsQ9m1QnzBw9McOhlxD_ap2IaKZPAeArHHZME6b_QonM0fNnaXaDNeubm6yMDx3jx2Ue4Vk84SfQZU_N4D2uT47oD50XN0AHO0k7l7vX4avC3SNcmVqcxGTifL2eQpyvIPrsh9YQwWaDYDa8KNS12ipPc0MYtUr_CgUOyIkgUZfearQzfU-qXxsDbdlqMHJOanph-eaWpqcjUW4DNEdmwdE2E4lOpRThSQbB6meGOykYrCEb0I_SWfTToO6gMrGtYFW83z5_N2OnSrAFdEWRpczdIbyztIUfmjNG1liEQSGYSU6RzWViMReBrR4PmjbZ9HQTGWv-mcy63kCv3TDapBi-9bpALI1_g3wSUkLNw_bEekVHgjTerRmytOu3rYPZfCO5Kqvt0cwqJahgl-q9gm8gzoFI9mBIHVLYD6RNEABwDUOs2qi4Ua7choyE_QgLIZ0_wPb8lEbFe-YacnjxwAdOam1imgakCRVkcgWACmI35Un54QokJ1dzabPJ3domJwfi_qqsrJLqaitb8a05jqyLfVtlHfN2kfM65jfmjd0BEG59XCkWmuw1D3RbqQhHpEA-AkNs3euv4nGugsj0J3vlsbOW-fuO1CdGW-wlUcHj3thB5BOG-y2SIRftswel0kVCj80vVsPmSNZRpQWgc3xTLW54RHzSeHf2ZdCTDOpIENz9tyrqtyeDVeo6GwF1dVm6symrwNdr6T9u1YJxArBSpAslx4iobovxswaoWICjVZqorxUoNsUThU9LBN6j8FYjR2bnn6JfRkg-UFJGK6fO7DpXWA75YhHBawyA6OcyJ0QJnRlCkljkfsXg-FrHRi659JiPeDwJ5adFIqv07EYY9PsP6jYlCNyvfetlUTRva1kOj0rdEM6YtYNguFCpadmo2IqwxSUYHWVu5ruH7YE_W9d7QauM1VdR8VgW6ZllgFPmhrLhRxiUzDpw7agUKD2BLqqNaJqrzg8WgNtj1sjg_Ol-0cTqcn2NYoYa7rEhtlR8vd0UKi4wPbCKJiaU-pecG1Gwq6cdVacbyOAW-uQ5LMygJMqkbWViq7QCccGoAXnSveXyg3OUw4ouaFBe_nCwx2meCa6vMeSF2qR-d1l-xIJQINYEXJpY8gKYfUi0Q66qTCGg46-PzZ5WzgaQRMfpdHwYkiNC8FM4gQvIs7J3FYsUJwqppbQYhqEkuGii-ZQZMgLPDi6djMnn3KvmvNceJMDiKumyRhE7qoABRtIMEu5yk0nQZi38wZWa0u-OSVDfmGhXarzHVUiWE=",
+        "status": null
+      },
+      {
+        "id": "rs_0feb71f1cc248fbd006a965f24c22887d08933792969073f54",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqll8q4dFgwnyLeYcEHkabYpqkUXRbi0BPao-EZZ-RE8tYuaQrT3P2ycYnRMzamnxuvAYCuaEdDifvRtHqyo1UvbZSI4WNPRhxFvyGvs9h5NO9z8Ag2bRLNG6WE34npLQRu4b66zq8R0U4PSd7ccbTKY6JHPH7kxOrf2c_V3TWA3gb2v38Pajqaf6gB0A5CaHH1WG6mr12tLfIGX08WCOYlongt14IyaToxn1ipk-qjcrNSLrk0wc507oTfw1DKPMffUlAd5CCwu5IgV0v1az2OiI8URmwtrwgTsHsxRK_Cc08kymWtoXYKJF5VrweKTwQYK3rSCLp04psFI9NrslZvZ1s_dOX6tbDOmPQK3_ZVWZ9lFuiLBOm_2AyPxY0V8h7W3taib9rGbmO_Ln2yn9lXqaTfH0NgSIpbuwZO_U66PQPkeDsxE8QtCw1U-bBbPKRENr8K9HQ3R6MxMuStfBuMno7eBVegdJAw9vanGV3xHBeNfyoxt1-9oX6huJC6WwByKWYC7AlrYiPYijURjuPS1aalECXXMpgNbL2TWD9_onL3DvZf5sQ3097gnoh-ZlsKslP6w4ODLlX5obptrzoBQLzIwHgSBpHnrSW6MDiLL9cbRi2g7YcAc0zhcgl0b5wMxLNi_4t3OaocdPWgMF7E4-OBPPoMHDbBpLFtmuUeQgScNVMDHLOss0PJQu4x9Y1iS5F4c4DlM7kBwgO2p-H8mGLedpYdkkGnNJ5HGTAkKPlJOciQyuknYQ8lNz-I8N8tzJwmZ5LauyPWyz2Bk42QRdrjqgawHGF7aR_PKx4W8BZOkjYMnL31IO9lnsQTmk0LXUjdsDRQL6GvI8-IbYuVEEgmfV8eRtKwMFF492fj-1WuZgYKgDcfpZSOtKFpWBLQva5PocFFpf_2tOR7bH04IGp1Z2JXjtOGqKLwqv0J1V2Ka5ZumPgUoO0RDge4r_d4r2c7Gtq_5tqSnDseikZVlD7tQG1RASgoyezUlbnX9M3Gmj5xLdIpw1gBlohCSwooThtCQBKrpFdc91t89CwnUuPThi4uxZVFXLXyd40k04nvGwxbcmjHrSWadCjxs8ZXw-ZxPlohx4104RxDIF4H99JEbiPwfXvffpHVv0h_yQhH4XGlY-b43cJ01vLdrMxVWBJBToLwTykSkb4kJziY4i6ufh2qxrRLRcqZOAeDXipHhozt_4UuIx9k7CTVSnO7KGxyKIiz9mOV-AqEcn-3wZqgAEqK3g1qiRAjRk0Exhu7lkcsQ9Rpz28UDSQqhlOjTBM6BJNCqwPTSdeoNHGIGDzj0inQ58n9jc6we2ku-EropKCl2ETm2Vy3C7asvYPMO2G09fZi0BO85JY-MQB-NnyEPEp3PjIQhXphgGH9lO4hCpBzWKFBxGXDZ4cG6F6ZAHv_Jj3dS7u_odQfIOPDo4xyYcnEwQWK8EnE6V7XlIJL81Ud0c5DW3CwXjYsmTQ1Y1soH6LjcsHaJz5wIy2tIwIsnuftDcxX9djtLIWrse5MGyIplFqaRajZiTxBwIcZZaRWzTswt7zBm_M_riNKxPAVpKMyRTVxePfmEihKaYmhyqvtdw9ftvN91YCHIBg9aL7Ch3J_fjA4cGrM5pKvTQpXuY5TOTkC8WrS2jAaNKRco-RvKjttxKKVdXp2GV38UFtpGipNxveBNWp0QAJ5xJbICEVDMjPF2UPgxLjjWOZ1NG7g-PfA6JmQQbHilx7T9uctQy4Qr7ZYN9KqmzOcMWy5k95dmajqvYev-1wO0ZzbMA41fbHem237q7OMPFscnqJR9sza6DndUZmoIFSQ7CIHEHHX_UqHKiVevVremAhZE_xH49qdQBg03EEQJstJaEhDG1wYw-QQdVWGtZYxiVDQqHzi63VTKLW9mZdKGEXHrMWzstMDIX4VMWWtZ0dwDkOAOIoIZbpwOW3Ic3cixlLAnlxhAA66zKGL0TAn9UvGS-3xR15ny4mQP8sFl2kH-hxx65PZKqom4-cyreCHgehmKCwG8hYLD6NbwcrRNKLNyLYF2Q8qBJCyPglWsnGjpCZcvo6g31Bn8NFI9r-w3exgWzBetX_brtfzjskhkETEPOy9W7MYXR0E8BwP3yTOV-pMMb0vieBRlgYSUGYIt7ITpjIKpKA_dUCYBlYtHt8M1h1qinJwfbeXMYEA0p_VDLP55kkhK0kEc4px8rVgQ5ijQtUmtsKE70hqXNsVmqDqxf73aPFzN6gOpC6yPvU18susd3Uo7N_RzOW474tuCP1mPxwywoK_f_8k1giR5oV2qOMqNllqx8JCKc_TiGks6KCSfn5vmWfSCDwJc_izdxOWTa_A0m5P2mhjqrRGSkIN9GZX7vjgcy2ge4cOONXru34fiZzTfgo3xsdnjPP9hu4cusuYKswTe2_oeZlddWFC1jisD2ro3MuMtSit0qKxA0X71s2uvO6AEWtwxpDHPdD3xR4f52UUES42Nfl5U8gKl9NNGpisnRq53QpERcGTrXKbtSYuk4SNRSoCKl2g3DstQthX9aifRaYShA-lOST_hUlgMfvQKaDhq8cr2ofzyM98YL52pjIDFFpOqq7uiCWfXO-WkEKMpfB_hydOXaCStZ2LaXO1WJskChx51so9Cc6MRXZgIX6pJNSO9qYU-ejpiMplCJCu-gbNSY36cj8frIOKLPyWZKTVoeLuoTCnIw8YFM7lGyhdVvMVwneCwfkYZve10-IS3xCl-kk2F8aECy0ruMNGiVkc1yDYdg8CWFp-21CPsI5xhxO4lQ14dxAkfLQY9gO8YkeNLGOIhuvlsK_zwYe5Qp0BODAl7UAn7hnzzuH_xwBiI0fFnSbKXoBMWXT_yKBXHAR_P1R7D_-IA22A7NNlcIXiBqD7KpiSsfRAeXYxXfVIzYo1F17dCpYVEisVbvCnL9dE_eTxqPRS33arZACEhHOfoV5V2u3viK4RVSgA4akY7d9dGfaIl6WoKIhKrb1zt-9k8jRgXUcoc6MU1bcbqeBJ95nxsF1AgSLLB34J0BRmpzTLZtp0wlvKUH8mdFd5M3kcLbAKBS74h3S4s5QQUXzRfb27eZ2scagxBFcBf4BGhD3fBjJoGixCTmJmuS5GMVthCAoQablRUvwyyw6jpcEmY5ccgpxQK7VAgxDFpdCFJxbVn5ue9B_ZXswjkt5aUeHKa5CTY91LaqL4VHFhmzNAZmAkgAx9uXudFGQlDmqUCWFj-CNE6XRXyLoDu-FRs8kFIiZhXYvRCPybzvkQj0bPXKlRsEWBzfDrfjnA8qw_kcWdz_D3ebJ9CXF8oLio8lUDElj1CMMbct8gpCJ82WzyxaMPFMux_amgnf0fHlH1t1TBLOpLu_7s9rQ91-zjxSmjwEhS-QDpW720PVn1DLkSfvp7omNLrpj7YmjF3k5SoWyazyKNmYEQFMLIGgdJ1jfdbYvyNOvvWgjJW8NMU-do-PAaf7kXG4T8bQG8LX8wEmdfSa21_3DLj9ZRHycEYQiTLrbkRBLVZA=",
+        "status": null
+      },
+      {
+        "id": "msg_0feb71f1cc248fbd006a965f2a017087d08be3bea6317f397f",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1788239658.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:2d4852bd1a:series:e717ea96",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesDigitizationDecision",
+        "schema_": {
+          "$defs": {
+            "ChartValue": {
+              "properties": {
+                "value_raw": {
+                  "title": "Value Raw",
+                  "type": "string"
+                },
+                "value_type": {
+                  "enum": [
+                    "number",
+                    "datetime",
+                    "unknown"
+                  ],
+                  "title": "Value Type",
+                  "type": "string"
+                },
+                "parsed_value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Value"
+                },
+                "parsed_datetime": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Parsed Datetime"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                }
+              },
+              "required": [
+                "value_raw",
+                "value_type",
+                "parsed_value",
+                "parsed_datetime",
+                "unit"
+              ],
+              "title": "ChartValue",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "SeriesDigitizationOutput": {
+              "properties": {
+                "points": {
+                  "items": {
+                    "$ref": "#/$defs/SeriesPointProposal"
+                  },
+                  "title": "Points",
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 100
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "title": "SeriesDigitizationOutput",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "points",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ]
+            },
+            "SeriesPointProposal": {
+              "properties": {
+                "point_index": {
+                  "minimum": 0,
+                  "title": "Point Index",
+                  "type": "integer"
+                },
+                "segment_index": {
+                  "minimum": 0,
+                  "title": "Segment Index",
+                  "type": "integer"
+                },
+                "chart_x": {
+                  "$ref": "#/$defs/ChartValue"
+                },
+                "chart_y": {
+                  "$ref": "#/$defs/ChartValue"
+                }
+              },
+              "required": [
+                "point_index",
+                "segment_index",
+                "chart_x",
+                "chart_y"
+              ],
+              "title": "SeriesPointProposal",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/SeriesDigitizationOutput"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "SeriesDigitizationConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 10956,
+      "input_tokens_details": {
+        "cached_tokens": 1533,
+        "cache_write_tokens": 9420
+      },
+      "output_tokens": 987,
+      "output_tokens_details": {
+        "reasoning_tokens": 959
+      },
+      "total_tokens": 11943
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"response_kind\":\"accept_previous\",\"revision_reason\":null,\"proposal\":null}",
+  "json": {
+    "response_kind": "accept_previous",
+    "revision_reason": null,
+    "proposal": null
+  }
+}

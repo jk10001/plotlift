@@ -21,6 +21,7 @@ const stateRef = {
   seriesChoiceKey: null,
   seriesChoiceSelected: [],
   hiddenSeriesIds: new Set(),
+  expandedSeriesIds: new Set(),
   retryChoiceSeriesId: null,
   retryChoicePreviousFocus: null,
 };
@@ -230,6 +231,7 @@ async function onUpload(event) {
   stateRef.runId = result.run_id;
   stateRef.state = result.state;
   stateRef.hiddenSeriesIds.clear();
+  stateRef.expandedSeriesIds.clear();
   resetChartViewport();
   stateRef.sidebarOpen = { calibration: null, series: null };
   stateRef.newRunOpen = false;
@@ -248,6 +250,7 @@ async function loadRun(runId, options = {}) {
     stateRef.sidebarOpen = { calibration: null, series: null };
     stateRef.foregroundCalibrationAxisId = null;
     stateRef.hiddenSeriesIds.clear();
+    stateRef.expandedSeriesIds.clear();
     resetChartViewport();
   }
   stateRef.runId = runId;
@@ -298,6 +301,7 @@ function resetRunView() {
   stateRef.state = null;
   stateRef.foregroundCalibrationAxisId = null;
   stateRef.hiddenSeriesIds.clear();
+  stateRef.expandedSeriesIds.clear();
   resetChartViewport();
   stateRef.sidebarOpen = { calibration: null, series: null };
   els.fileInput.value = "";
@@ -1552,6 +1556,10 @@ function renderCalibrationEditor() {
 function renderSeriesEditor() {
   const series = stateRef.state?.series || [];
   const locked = llmJobActive() || seriesConfirmed();
+  els.seriesEditor.querySelectorAll(".series-block[data-series-id]").forEach((block) => {
+    if (block.open) stateRef.expandedSeriesIds.add(block.dataset.seriesId);
+    else stateRef.expandedSeriesIds.delete(block.dataset.seriesId);
+  });
   els.seriesEditor.innerHTML = "";
   if (!series.length) {
     els.seriesEditor.innerHTML = `<div class="empty-state">No series</div>`;
@@ -1569,7 +1577,8 @@ function renderSeriesEditor() {
     visibilityCheckbox.checked = !stateRef.hiddenSeriesIds.has(item.id);
     const block = document.createElement("details");
     block.className = "series-block";
-    block.open = !seriesConfirmed();
+    block.dataset.seriesId = item.id;
+    block.open = stateRef.expandedSeriesIds.has(item.id);
     block.innerHTML = `
       <summary>
         <label class="series-title">Series ${seriesIndex + 1}: <input value="${escapeHtml(item.name)}" data-series-name="${item.id}" aria-label="Series ${seriesIndex + 1} name" ${locked ? "disabled" : ""}></label>
@@ -1616,6 +1625,12 @@ function renderSeriesEditor() {
 }
 
 function wireSeriesEditor() {
+  els.seriesEditor.querySelectorAll(".series-block[data-series-id]").forEach((block) => {
+    block.addEventListener("toggle", () => {
+      if (block.open) stateRef.expandedSeriesIds.add(block.dataset.seriesId);
+      else stateRef.expandedSeriesIds.delete(block.dataset.seriesId);
+    });
+  });
   els.seriesEditor.querySelectorAll("[data-series-visible]").forEach((checkbox) => {
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) stateRef.hiddenSeriesIds.delete(checkbox.dataset.seriesVisible);
@@ -1638,6 +1653,7 @@ function wireSeriesEditor() {
     button.addEventListener("click", () => {
       if (llmJobActive()) return;
       stateRef.hiddenSeriesIds.delete(button.dataset.deleteSeries);
+      stateRef.expandedSeriesIds.delete(button.dataset.deleteSeries);
       stateRef.state.series = stateRef.state.series.filter((series) => series.id !== button.dataset.deleteSeries);
       render({ forceEditors: true });
       saveSeries("image", { forceEditors: true });

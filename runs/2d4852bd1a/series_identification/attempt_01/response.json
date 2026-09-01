@@ -1,0 +1,305 @@
+{
+  "raw": {
+    "created_at": 1788239567.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying every visible line and scatter series in a cropped chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line and scatter series in every visible panel. Do not stop after five or any other arbitrary count.\nClassify a series as line when its data is visibly connected, including lines that also have markers. Classify unconnected data markers as scatter. A fitted or reference line over scatter data is a separate line series.\nFor each series, provide its name, series_type, colour, line style, marker style, estimated point count, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nUse marker_style to describe scatter marker shape and fill, such as filled circle, hollow square, diamond, triangle, plus, or x. It may be null for a line without relevant markers.\nSet estimated_total_points to the number of individually visible scatter markers. It may be null for line series.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-5.6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_078273ba7f63132d006a965ed004ac87d08ea22b613326cb7f",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqll7SWKOnrr65AxbaE6tjLkHtHIoVmXaa2BkVvfde4n1A3gkaMZdagSMgFSZzpdel1uErowCkSxzjmZ2wDKAKMkE3Dg_9I6g6URaDrVwQHL6RTG_OLW5Cqogzoe3_TwBy_UCC2KuJlmXrKqs2Rsj22QK8kh9rcg_s_BWg-yZgtgUEPUVgcLwPv22dOwYf_g7FLWYEGmt5Vv7IDy6LENybCEvbMamV_dqeEy9v-EMbE3Lv6ZmIWAsgfXknJ9YSA02hDSce54Av13asSnSvCwvEJYdNwwEulZDaUwcDBrs2h1tU2MZEFm18sLROKcPUA8BfTYPFyDBDqRXo0D_bIWmpLbwR0pB4FT3cuvS1ACVCxrX_oXcNiC1ktDsu_YqAH_2snrOQrn_KrVhtoqXP77zYPQIpxxZxzEU0VbL3fN-EjoJIWxzvVU5Xfe2qpHMudz4OcADLslfwsPFLDsuuyN-sp_swk7PMOq02fB7RVXgK0lRiq8rymbNBvFX7YA02tplQtAaJhfGypHlg1B7WWVVchloEZhNTc3v-NJnAPJV2yDWsbKHOIF_JC_tqYxKh7dyb-p-tTVMCQUaiNaoVaYEVTJ29M6TwS1l7a04PtsUGeLyEOCx8GInb2hUYJhkvjhfspj3hVd4MVsHfPpptqt8Zu2T1yeGTth5AM3Hpq8qUKv0SofC2TH33jiKU3CFwlXaCBWkXRGsFK5dg1ygljcxJEsnb7KPR9KjdNSjHfEf9QvOP-kDQHcwb54LhVHfys8kGJEE_oZWJFvAyQj8qGiMeDCtNPToWf80TLELuLxvVuvaKcf0iIXsKhv8No0G4h9i_AZFPJzFjaYaAnLs-AkDIpu4Xwpr0zGkhNFlqAMiQiro5xrmn94TIH6MwM_pR4oxqw5U-9mZfA7j9N4dgzXUNh08ZhhGIBQg431XuEzCrF1p1jdB6Z89yMcPb1Y-rjva5vkV2PeQS6mS86hv22h2SBbCNp9M5SW_zCbgLfQzEYVOguYcKoCChrNyfwqYzXMmIvn6q5_Ki11uLC_twfhcwhgeyUY3s8VP5H1MoQX5AetyK35ngt79rooSVQdmI-RgbLElt5iHFlLGPyh7svPlQD3ARaPoQUnVXa7fOf3-uF3TIHCXLoGgbh2tFHIQE3PHxPuGJZJhB6MpbMqdNOUXxbiJbFpBtg9OPornUU7kbOsaznnZzaBT7v3n1S0G60uNluXD7AQRuymKFntNJZjhuR__6UsxoeTVrJyzGLR22KdB66IqH9qQEfC5Z9Q9vneY3g1tUSsuSSCtUdTtTiTU4mFj7qNyAjmdf9B_szg8Qebd9f7HEaHUnEj2xD-sTufc7Dxhr5la4hr-35-mPDBnVPfCph0BMclIg9296QRaKUFhVwfvyhvdULpNCjF4Z5N33Wu_pie7xP9G9mRlDf57uKyHCmo-mJ1TmMV0QWX34sxyVxZZ547JCUGktq05xbGvXw1i7aUdu9xHzisSWfInpqRNSQ7WDkM9FAQuUprJVV596llMwRz6T9Bx-1_IO5C0pQaNkiJ3I3lDivKF4t4fKYXkA0zpHNMIAKFmrsbeVDdxY1zIjhKe0xhIE_NssyOLkDd0mzh3xBuRKFDC6V4Ib42PNbfa1-d-mE0scKIWUnQDCvpl-W0GGpFB80B3MU_kj1BYRRjCzJgGk7zqsIeN25qA5WtNBEvM0J993_z6FvAIhl456aaHfIWIQIelSIyHR8QAJZqIKMA4sNYOrx7PL8IA-FJL9_pX-YKt0jrDxTMHXlBRzBKqqe5Qcd0qse0qFCNpMzeVLiDrZFdXPVnhr1NnEfpv5WyGWMR1D7jvmJRLdWucTiN1tC4Yl0eAW83Q66F6FykFfryS3Fd0uhjE7s9xea3q__58YmbMb7Nrh_zJKACyGZF7Gmfg55Kw-RMV5_lsxPv2n-GWQjdTvH_wrnZYFm_hfWQ-A4K7gnW0GNxv2TYIAexbPTl4AQNqLhs5dB92rytv6R2vxbVEBzRTjZEwZaFuP3Xgonloi62UqF3oiZnB-T8B06_I_3BEB1H0QwmnA",
+        "status": null
+      },
+      {
+        "id": "msg_078273ba7f63132d006a965ed1897c87d08e2d0e150056bebc",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\"series\":[{\"series_name\":\"Blue value trend\",\"series_type\":\"line\",\"visual_description\":\"Single-panel blue line with filled circular markers, showing a generally increasing value trend with short-term fluctuations from approximately 21 to 50.\",\"line_color\":\"#1f77b4\",\"line_style\":\"solid\",\"marker_style\":\"filled circle\",\"estimated_total_points\":null,\"x_axis_id\":\"main_x_point\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The series spans the single chart panel and uses the bottom Point axis and left Value axis.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1788239570.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:2d4852bd1a:series_identification",
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "summary": null,
+      "mode": "standard"
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesIdentification",
+        "schema_": {
+          "$defs": {
+            "SeriesIdentification": {
+              "properties": {
+                "series_name": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Series Name"
+                },
+                "series_type": {
+                  "enum": [
+                    "line",
+                    "scatter"
+                  ],
+                  "title": "Series Type",
+                  "type": "string"
+                },
+                "visual_description": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Visual Description"
+                },
+                "line_color": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Series colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+                  "title": "Line Color"
+                },
+                "line_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Line Style"
+                },
+                "marker_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Marker Style"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "x_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "X Axis Id"
+                },
+                "y_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Y Axis Id"
+                },
+                "axis_selection_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Axis Selection Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "title": "SeriesIdentification",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "series_name",
+                "series_type",
+                "visual_description",
+                "line_color",
+                "line_style",
+                "marker_style",
+                "estimated_total_points",
+                "x_axis_id",
+                "y_axis_id",
+                "axis_selection_reason",
+                "confidence"
+              ]
+            }
+          },
+          "properties": {
+            "series": {
+              "items": {
+                "$ref": "#/$defs/SeriesIdentification"
+              },
+              "title": "Series",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "series",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 1456,
+      "input_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 1453
+      },
+      "output_tokens": 275,
+      "output_tokens_details": {
+        "reasoning_tokens": 140
+      },
+      "total_tokens": 1731
+    },
+    "user": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\"series\":[{\"series_name\":\"Blue value trend\",\"series_type\":\"line\",\"visual_description\":\"Single-panel blue line with filled circular markers, showing a generally increasing value trend with short-term fluctuations from approximately 21 to 50.\",\"line_color\":\"#1f77b4\",\"line_style\":\"solid\",\"marker_style\":\"filled circle\",\"estimated_total_points\":null,\"x_axis_id\":\"main_x_point\",\"y_axis_id\":\"main_y_value\",\"axis_selection_reason\":\"The series spans the single chart panel and uses the bottom Point axis and left Value axis.\",\"confidence\":0.99}],\"warnings\":[],\"unsupported_flags\":[]}",
+  "json": {
+    "series": [
+      {
+        "series_name": "Blue value trend",
+        "series_type": "line",
+        "visual_description": "Single-panel blue line with filled circular markers, showing a generally increasing value trend with short-term fluctuations from approximately 21 to 50.",
+        "line_color": "#1f77b4",
+        "line_style": "solid",
+        "marker_style": "filled circle",
+        "estimated_total_points": null,
+        "x_axis_id": "main_x_point",
+        "y_axis_id": "main_y_value",
+        "axis_selection_reason": "The series spans the single chart panel and uses the bottom Point axis and left Value axis.",
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}
