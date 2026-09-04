@@ -17,8 +17,10 @@ from app.models import (
     PromptMetadata,
     RunSettings,
     RunState,
+    ScatterSeriesDigitizationOutput,
     SeriesIdentification,
     SeriesIdentificationOutput,
+    SeriesPointProposal,
     SeriesState,
 )
 from app.openai_client import OpenAIChartClient
@@ -90,6 +92,28 @@ def test_series_stage_sends_overlay_back_for_confirmation(tmp_path: Path, monkey
     assert [item["response_kind"] for item in conversation["attempts"][:2]] == ["proposal", "accept_previous"]
     assert "response_id" not in conversation["attempts"][0]
     assert "previous_response_id" not in conversation["attempts"][1]
+
+
+def test_mock_series_stage_digitizes_line_and_scatter_together(tmp_path: Path, monkeypatch) -> None:
+    cfg = DummyConfig(tmp_path)
+    monkeypatch.setattr(artifacts, "get_config", lambda: cfg)
+    monkeypatch.setattr(series_stage, "get_config", lambda: cfg)
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "30")
+    run_id = "mixedmock"
+    root = tmp_path / run_id
+    crop_path = root / "crop" / "approved_crop.png"
+    crop_path.parent.mkdir(parents=True)
+    Image.new("RGB", (100, 100), "white").save(crop_path)
+    state = _ready_state(run_id)
+    client = OpenAIChartClient(api_key=None, mock_mode=True, run_dir=root, run_id=run_id)
+
+    identified = series_stage.run_series_stage(state, load_prompt_pack(), client)
+    result = series_stage.run_selected_series_stage(identified, load_prompt_pack(), client, [0, 1])
+
+    assert [series.series_type for series in result.series] == ["line", "scatter"]
+    assert result.series[1].marker_style == "filled circle"
+    assert result.series[1].series_truncated is False
+    assert len(result.series[1].points) == 4
 
 
 def test_series_stage_digitizes_every_identified_series_even_past_old_cap(tmp_path: Path, monkeypatch) -> None:
@@ -196,7 +220,7 @@ def test_series_selection_cancel_digitizes_none(tmp_path: Path, monkeypatch) -> 
 
     client = OpenAIChartClient(api_key=None, mock_mode=True, run_dir=root, run_id=run_id)
     identified = series_stage.run_series_stage(state, load_prompt_pack(), client)
-    assert len(identified.pending_series) == 1
+    assert len(identified.pending_series) == 2
 
     result = series_stage.cancel_series_selection(identified)
 
@@ -227,6 +251,8 @@ def test_retry_series_digitization_replaces_only_target_series(tmp_path: Path, m
     def fake_digitize_identified_series(**kwargs) -> SeriesState:
         captured["series_description"] = kwargs["series_description"]
         captured["append_to_state"] = kwargs["append_to_state"]
+        captured["retry_mode"] = kwargs["retry_mode"]
+        captured["retry_round"] = kwargs["retry_round"]
         return SeriesState(id="replacement", name="Retry auto", source="llm")
 
     monkeypatch.setattr(series_stage, "_digitize_identified_series", fake_digitize_identified_series)
@@ -234,9 +260,132 @@ def test_retry_series_digitization_replaces_only_target_series(tmp_path: Path, m
     client = OpenAIChartClient(api_key=None, mock_mode=True, run_dir=root, run_id=run_id)
     result = series_stage.retry_series_digitization(state, load_prompt_pack(), client, "retry-auto")
 
-    assert [series.id for series in result.series] == ["keep-auto", "replacement", "manual"]
+    assert [series.id for series in result.series] == ["keep-auto", "retry-auto", "manual"]
     assert captured["append_to_state"] is False
+    assert captured["retry_mode"] == "restart"
+    assert captured["retry_round"] == 1
     assert captured["series_description"].series_name == "Retry auto"
+    assert (root / "series" / "retry-auto" / "retry_01" / "retry.json").exists()
+
+    second_result = series_stage.retry_series_digitization(result, load_prompt_pack(), client, "retry-auto")
+    assert [series.id for series in second_result.series] == ["keep-auto", "retry-auto", "manual"]
+    assert captured["retry_round"] == 2
+    assert (root / "series" / "retry-auto" / "retry_02" / "retry.json").exists()
+
+
+def test_refine_retry_sends_original_overlay_and_current_manual_edits(tmp_path: Path, monkeypatch) -> None:
+    cfg = DummyConfig(tmp_path)
+    monkeypatch.setattr(artifacts, "get_config", lambda: cfg)
+    monkeypatch.setattr(series_stage, "get_config", lambda: cfg)
+
+    run_id = "seriesrefine"
+    root = tmp_path / run_id
+    crop_path = root / "crop" / "approved_crop.png"
+    crop_path.parent.mkdir(parents=True)
+    Image.new("RGB", (100, 100), "white").save(crop_path)
+    state = _ready_state(run_id)
+    state.settings.mock_mode = False
+    original = series_stage._series_output_to_state(
+        series_stage.SeriesDigitizationOutput(points=[_proposal(index, index * 20, 20 + index * 5) for index in range(5)]),
+        SeriesIdentification(series_name="Model name", series_type="line", line_color="#123456"),
+        "retry-line",
+        state,
+    )
+    original.name = "Manually renamed"
+    original.points[2].chart_y = ChartValue(value_raw="47", value_type="number", parsed_value=47)
+    original.marker_style = "filled diamond"
+    state.series = [original]
+
+    class AcceptBaselineClient:
+        def __init__(self) -> None:
+            self.calls: list[dict] = []
+
+        def call_structured(self, **kwargs):
+            self.calls.append(kwargs)
+            return {"provider": "test"}, {
+                "json": {"response_kind": "accept_previous", "revision_reason": None, "proposal": None},
+                "text": '{"response_kind":"accept_previous","revision_reason":null,"proposal":null}',
+                "response_id": "refine-1",
+            }
+
+    client = AcceptBaselineClient()
+    result = series_stage.retry_series_digitization(state, load_prompt_pack(), client, "retry-line", mode="refine")
+
+    assert len(client.calls) == 1
+    call = client.calls[0]
+    assert call["image_path"] is None
+    assert call["image_paths"][0] == crop_path
+    assert call["image_paths"][1] == root / "series" / "retry-line" / "retry_01" / "baseline_overlay.png"
+    assert '"value_raw": "47"' in call["user_prompt"]
+    assert "application-generated diagnostic annotations" in call["user_prompt"]
+    assert "PlotLift" not in call["user_prompt"]
+    assert result.series[0].name == "Manually renamed"
+    assert result.series[0].marker_style == "filled diamond"
+    assert result.series[0].points[2].chart_y.parsed_value == 47
+    attempt = result.attempts[-1]
+    assert attempt.retry_round == 1
+    assert attempt.retry_mode == "refine"
+    assert attempt.request_path.startswith("series/retry-line/retry_01/attempt_01/")
+    assert (root / "series" / "retry-line" / "retry_01" / "baseline.json").exists()
+    assert (root / "series" / "retry-line" / "retry_01" / "conversation.json").exists()
+
+
+def test_retry_failure_restores_current_series_and_warns(tmp_path: Path, monkeypatch) -> None:
+    cfg = DummyConfig(tmp_path)
+    monkeypatch.setattr(artifacts, "get_config", lambda: cfg)
+    monkeypatch.setattr(series_stage, "get_config", lambda: cfg)
+    run_id = "seriesretryfailure"
+    root = tmp_path / run_id
+    crop_path = root / "crop" / "approved_crop.png"
+    crop_path.parent.mkdir(parents=True)
+    Image.new("RGB", (100, 100), "white").save(crop_path)
+    state = _ready_state(run_id)
+    state.series = [SeriesState(id="keep", name="Keep manual name", source="llm")]
+
+    monkeypatch.setattr(series_stage, "_digitize_identified_series", lambda **kwargs: (_ for _ in ()).throw(RuntimeError("provider failed")))
+    result = series_stage.retry_series_digitization(state, load_prompt_pack(), object(), "keep")
+
+    assert result.stage == "series_review"
+    assert result.series[0].id == "keep"
+    assert result.series[0].name == "Keep manual name"
+    assert any("restored the previous series" in warning for warning in result.warnings)
+
+
+def test_scatter_output_is_sorted_capped_and_marked_truncated(monkeypatch) -> None:
+    monkeypatch.setenv("SCATTER_SERIES_MAX_DATA_POINTS", "3")
+    state = _ready_state("scattercap")
+    description = SeriesIdentification(
+        series_name="Observations",
+        series_type="scatter",
+        marker_style="filled circle",
+        estimated_total_points=6,
+    )
+    output = ScatterSeriesDigitizationOutput(
+        points=[
+            _proposal(0, 50, 50),
+            _proposal(1, 10, 20),
+            _proposal(2, 10, 80),
+            _proposal(3, 90, 40),
+            _proposal(4, 30, 60),
+        ],
+        series_truncated=False,
+        estimated_total_points=6,
+    )
+
+    result = series_stage._series_output_to_state(output, description, "scatter-1", state)
+
+    assert result.series_type == "scatter"
+    assert result.marker_style == "filled circle"
+    assert result.series_truncated is True
+    assert result.estimated_total_points == 6
+    assert [(point.chart_x.parsed_value, point.chart_y.parsed_value) for point in result.points] == [
+        (10, 80),
+        (10, 20),
+        (30, 60),
+    ]
+    assert [point.point_index for point in result.points] == [0, 1, 2]
+    assert all(point.segment_index == 0 for point in result.points)
+    assert any("truncated to the first 3" in warning for warning in result.warnings)
 
 
 def _ready_state(run_id: str) -> RunState:
@@ -272,4 +421,12 @@ def _calibration_point(label: str, x: float, y: float, value: float) -> Calibrat
         crop_image_norm=NormPoint(x=round(x / 99 * 999), y=round(y / 99 * 999)),
         crop_image_px=PixelPoint(x=x, y=y),
         chart_value=ChartValue(value_raw=str(value), value_type="number", parsed_value=value),
+    )
+
+
+def _proposal(index: int, x: float, y: float) -> SeriesPointProposal:
+    return SeriesPointProposal(
+        point_index=index,
+        chart_x=ChartValue(value_raw=str(x), value_type="number", parsed_value=x),
+        chart_y=ChartValue(value_raw=str(y), value_type="number", parsed_value=y),
     )

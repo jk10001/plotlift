@@ -1,0 +1,28 @@
+{
+  "axes": [
+    {
+      "axis_id": "main_x_point",
+      "direction": "x",
+      "name": "Point",
+      "unit": null,
+      "quantity": "point index / observation number",
+      "location_description": "Bottom horizontal axis of the single main chart panel.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    },
+    {
+      "axis_id": "main_y_value",
+      "direction": "y",
+      "name": "Value",
+      "unit": null,
+      "quantity": "value (unspecified measurement)",
+      "location_description": "Left vertical axis of the single main chart panel.",
+      "is_primary_for_digitization": true,
+      "ignore_reason": null,
+      "confidence": 0.99
+    }
+  ],
+  "warnings": [],
+  "unsupported_flags": []
+}

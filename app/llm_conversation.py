@@ -26,10 +26,16 @@ def save_conversation_entry(
     entry: dict[str, Any],
     entries: list[dict[str, Any]],
     series_id: str | None = None,
+    retry_round: int | None = None,
 ) -> str:
     entries.append(entry)
     if stage == "series" and series_id:
-        path = root / "series" / series_id / "conversation.json"
+        series_root = root / "series" / series_id
+        path = (
+            series_root / f"retry_{retry_round:02d}" / "conversation.json"
+            if retry_round is not None
+            else series_root / "conversation.json"
+        )
     else:
         path = root / stage / "conversation.json"
     save_json(path, {"run_id": run_id, "stage": stage, "series_id": series_id, "attempts": entries})

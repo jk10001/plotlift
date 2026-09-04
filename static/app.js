@@ -20,6 +20,10 @@ const stateRef = {
   },
   seriesChoiceKey: null,
   seriesChoiceSelected: [],
+  hiddenSeriesIds: new Set(),
+  expandedSeriesIds: new Set(),
+  retryChoiceSeriesId: null,
+  retryChoicePreviousFocus: null,
 };
 
 const DEFAULT_SERIES_COLORS = ["#0891b2", "#7c3aed", "#16a34a", "#ea580c", "#db2777"];
@@ -94,6 +98,10 @@ const els = {
   seriesChoiceList: document.querySelector("#seriesChoiceList"),
   seriesChoiceCancelBtn: document.querySelector("#seriesChoiceCancelBtn"),
   seriesChoiceConfirmBtn: document.querySelector("#seriesChoiceConfirmBtn"),
+  retryChoiceModal: document.querySelector("#retryChoiceModal"),
+  retryChoiceCancelBtn: document.querySelector("#retryChoiceCancelBtn"),
+  retryChoiceRestartBtn: document.querySelector("#retryChoiceRestartBtn"),
+  retryChoiceRefineBtn: document.querySelector("#retryChoiceRefineBtn"),
 };
 
 init();
@@ -176,6 +184,9 @@ function wireEvents() {
   els.addSeriesBtn.addEventListener("click", addManualSeries);
   els.seriesChoiceCancelBtn.addEventListener("click", cancelSeriesChoice);
   els.seriesChoiceConfirmBtn.addEventListener("click", confirmSeriesChoice);
+  els.retryChoiceCancelBtn.addEventListener("click", closeRetryChoice);
+  els.retryChoiceRestartBtn.addEventListener("click", () => submitSeriesRetry("restart"));
+  els.retryChoiceRefineBtn.addEventListener("click", () => submitSeriesRetry("refine"));
   els.debugExport.addEventListener("change", renderExports);
   els.zoomOutBtn.addEventListener("click", () => adjustChartZoom(-1));
   els.zoomInBtn.addEventListener("click", () => adjustChartZoom(1));
@@ -190,6 +201,12 @@ function wireEvents() {
   window.addEventListener("pointercancel", onPointerUp);
   window.addEventListener("resize", scheduleOverlayRender);
   window.addEventListener("scroll", renderImageBusyState, { passive: true });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && stateRef.retryChoiceSeriesId) {
+      event.preventDefault();
+      closeRetryChoice();
+    }
+  });
 }
 
 function setNewRunOpen(open) {
@@ -213,6 +230,8 @@ async function onUpload(event) {
   const result = await api("/api/runs", { method: "POST", body: form });
   stateRef.runId = result.run_id;
   stateRef.state = result.state;
+  stateRef.hiddenSeriesIds.clear();
+  stateRef.expandedSeriesIds.clear();
   resetChartViewport();
   stateRef.sidebarOpen = { calibration: null, series: null };
   stateRef.newRunOpen = false;
@@ -230,6 +249,8 @@ async function loadRun(runId, options = {}) {
   if (stateRef.runId !== runId) {
     stateRef.sidebarOpen = { calibration: null, series: null };
     stateRef.foregroundCalibrationAxisId = null;
+    stateRef.hiddenSeriesIds.clear();
+    stateRef.expandedSeriesIds.clear();
     resetChartViewport();
   }
   stateRef.runId = runId;
@@ -279,6 +300,8 @@ function resetRunView() {
   stateRef.runId = null;
   stateRef.state = null;
   stateRef.foregroundCalibrationAxisId = null;
+  stateRef.hiddenSeriesIds.clear();
+  stateRef.expandedSeriesIds.clear();
   resetChartViewport();
   stateRef.sidebarOpen = { calibration: null, series: null };
   els.fileInput.value = "";
@@ -511,6 +534,8 @@ function render(options = {}) {
   renderDebugInfo();
   renderExports();
   renderSeriesChoiceModal();
+  renderRetryChoiceModal();
+  updateModalPageState();
   if (!state) renderEvents([]);
 }
 
@@ -665,12 +690,8 @@ function renderSidebarStatus() {
 
 function renderSeriesChoiceModal() {
   const pending = pendingSeries();
-  const open = Boolean(stateRef.runId && pending.length && !llmJobActive() && !seriesConfirmed());
+  const open = Boolean(stateRef.runId && pending.length && !llmJobActive() && !seriesConfirmed() && !stateRef.retryChoiceSeriesId);
   els.seriesChoiceModal.hidden = !open;
-  document.body.classList.toggle("modal-open", open);
-  for (const section of [document.querySelector("header"), document.querySelector("main")]) {
-    if (section) section.inert = open;
-  }
   if (!open) {
     if (!pending.length) {
       stateRef.seriesChoiceKey = null;
@@ -687,13 +708,21 @@ function renderSeriesChoiceModal() {
 
   els.seriesChoiceList.innerHTML = "";
   pending.forEach((series, index) => {
+    const originalColour = String(series.line_color || "").trim();
+    const colourDescription = describeColour(originalColour);
+    const visualStyle = [
+      series.series_type || "line",
+      colourDescription,
+      series.series_type === "scatter" ? series.marker_style : series.line_style,
+    ].filter(Boolean).join(" · ") || "Visual style unknown";
+    const colourTitle = originalColour ? ` title="Original colour value: ${escapeHtml(originalColour)}"` : "";
     const item = document.createElement("label");
     item.className = "series-choice-item";
     item.innerHTML = `
       <input type="checkbox" data-series-choice-index="${index}" ${stateRef.seriesChoiceSelected[index] ? "checked" : ""}>
       <span class="series-choice-main">
         <strong>${escapeHtml(series.series_name || `Series ${index + 1}`)}</strong>
-        <span>${escapeHtml([series.line_color, series.line_style].filter(Boolean).join(" · ") || "Visual style unknown")}</span>
+        <span${colourTitle}>${escapeHtml(visualStyle)}</span>
         <small>${escapeHtml(series.visual_description || "No visual description provided.")}</small>
       </span>
     `;
@@ -724,6 +753,9 @@ function seriesChoiceKey(series) {
     item.visual_description || "",
     item.line_color || "",
     item.line_style || "",
+    item.series_type || "line",
+    item.marker_style || "",
+    item.estimated_total_points ?? "",
     item.x_axis_id || "",
     item.y_axis_id || "",
   ].join("~")).join("|")}`;
@@ -908,7 +940,7 @@ function updateLiveSeriesOverlay() {
       setSvgAttrs(els.overlaySvg.querySelector(`[data-series-path="${cssAttr(`${item.id}:${segmentIndex}`)}"]`), { d });
       for (const point of points) {
         if (!point.crop_image_px) continue;
-        const selector = `[data-drag="series"][data-series-id="${cssAttr(item.id)}"][data-segment-index="${point.segment_index}"][data-point-index="${point.point_index}"]`;
+        const selector = `[data-series-marker="true"][data-series-id="${cssAttr(item.id)}"][data-segment-index="${point.segment_index}"][data-point-index="${point.point_index}"]`;
         for (const marker of els.overlaySvg.querySelectorAll(selector)) {
           updateSeriesPointMarkerElement(marker, point.crop_image_px);
         }
@@ -1081,6 +1113,40 @@ function seriesPointMarkerAttrs(point, arm) {
 }
 
 function renderSeriesPointMarker(point, kind, commonAttrs) {
+  const haloAttrs = {
+    ...commonAttrs,
+    class: "series-point-halo",
+    stroke: "#fff",
+    fill: "none",
+  };
+  delete haloAttrs["data-drag"];
+  delete haloAttrs["data-tooltip-series-point"];
+  delete haloAttrs["data-tooltip-x"];
+  delete haloAttrs["data-tooltip-y"];
+  renderSeriesPointMarkerShape(point, kind, haloAttrs);
+  renderSeriesPointMarkerShape(point, kind, commonAttrs);
+}
+
+function renderRetryChoiceModal() {
+  const series = findSeries(stateRef.retryChoiceSeriesId);
+  const open = Boolean(stateRef.runId && stateRef.retryChoiceSeriesId && series);
+  els.retryChoiceModal.hidden = !open;
+  const locked = llmJobActive();
+  els.retryChoiceCancelBtn.disabled = locked;
+  els.retryChoiceRestartBtn.disabled = locked;
+  els.retryChoiceRefineBtn.disabled = locked;
+  if (!open && stateRef.retryChoiceSeriesId && !series) stateRef.retryChoiceSeriesId = null;
+}
+
+function updateModalPageState() {
+  const open = !els.seriesChoiceModal.hidden || !els.retryChoiceModal.hidden;
+  document.body.classList.toggle("modal-open", open);
+  for (const section of [document.querySelector("header"), document.querySelector("main")]) {
+    if (section) section.inert = open;
+  }
+}
+
+function renderSeriesPointMarkerShape(point, kind, commonAttrs) {
   if (kind === "circle") {
     svgEl("circle", {
       ...commonAttrs,
@@ -1108,6 +1174,26 @@ function renderSeriesPointMarker(point, kind, commonAttrs) {
     svgEl("path", {
       ...commonAttrs,
       d: trianglePath(point, cssPxToSvgUnits(5)),
+    });
+    return;
+  }
+  if (kind === "plus") {
+    const halfSize = cssPxToSvgUnits(5);
+    svgEl("line", {
+      ...commonAttrs,
+      x1: point.x - halfSize,
+      y1: point.y,
+      x2: point.x + halfSize,
+      y2: point.y,
+      "data-marker-arm": "horizontal",
+    });
+    svgEl("line", {
+      ...commonAttrs,
+      x1: point.x,
+      y1: point.y - halfSize,
+      x2: point.x,
+      y2: point.y + halfSize,
+      "data-marker-arm": "vertical",
     });
     return;
   }
@@ -1139,6 +1225,15 @@ function updateSeriesPointMarkerElement(marker, point) {
   }
   if (kind === "triangle") {
     setSvgAttrs(marker, { d: trianglePath(point, cssPxToSvgUnits(5)) });
+    return;
+  }
+  if (kind === "plus") {
+    const halfSize = cssPxToSvgUnits(5);
+    if (marker.dataset.markerArm === "horizontal") {
+      setSvgAttrs(marker, { x1: point.x - halfSize, y1: point.y, x2: point.x + halfSize, y2: point.y });
+    } else {
+      setSvgAttrs(marker, { x1: point.x, y1: point.y - halfSize, x2: point.x, y2: point.y + halfSize });
+    }
     return;
   }
   setSvgAttrs(marker, seriesPointMarkerAttrs(point, marker.dataset.markerArm));
@@ -1241,6 +1336,7 @@ function renderSeriesOverlay() {
   const series = stateRef.state?.series || [];
   const locked = llmJobActive() || seriesConfirmed();
   series.forEach((item, seriesIndex) => {
+    if (stateRef.hiddenSeriesIds.has(item.id)) return;
     const color = seriesColor(item, seriesIndex);
     const dashArray = seriesDashArray(item.line_style);
     const markerKind = seriesMarkerKind(item, seriesIndex);
@@ -1251,7 +1347,7 @@ function renderSeriesOverlay() {
         .filter((point) => point.crop_image_px)
         .map((point, index) => `${index === 0 ? "M" : "L"} ${point.crop_image_px.x} ${point.crop_image_px.y}`)
         .join(" ");
-      if (d) {
+      if (d && item.series_type !== "scatter") {
         svgEl("path", {
           class: `series-line ${locked ? "locked-overlay" : ""}`,
           d,
@@ -1265,12 +1361,13 @@ function renderSeriesOverlay() {
         const commonAttrs = {
           class: `series-point ${locked ? "locked-overlay" : "interactive"}`,
           stroke: color,
-          fill: markerKind === "x" ? "none" : "#fff",
+          fill: seriesMarkerFill(item, markerKind, color),
           ...(locked ? {} : { "data-drag": "series" }),
           "data-series-id": item.id,
           "data-segment-index": point.segment_index,
           "data-point-index": point.point_index,
           "data-marker-kind": markerKind,
+          "data-series-marker": "true",
           "data-tooltip-series-point": "true",
           "data-tooltip-x": formatTooltipChartValue(point.chart_x),
           "data-tooltip-y": formatTooltipChartValue(point.chart_y),
@@ -1459,20 +1556,34 @@ function renderCalibrationEditor() {
 function renderSeriesEditor() {
   const series = stateRef.state?.series || [];
   const locked = llmJobActive() || seriesConfirmed();
+  els.seriesEditor.querySelectorAll(".series-block[data-series-id]").forEach((block) => {
+    if (block.open) stateRef.expandedSeriesIds.add(block.dataset.seriesId);
+    else stateRef.expandedSeriesIds.delete(block.dataset.seriesId);
+  });
   els.seriesEditor.innerHTML = "";
   if (!series.length) {
     els.seriesEditor.innerHTML = `<div class="empty-state">No series</div>`;
     return;
   }
   series.forEach((item, seriesIndex) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "series-block-wrap";
+    const visibilityCheckbox = document.createElement("input");
+    visibilityCheckbox.className = "series-visibility-toggle";
+    visibilityCheckbox.type = "checkbox";
+    visibilityCheckbox.dataset.seriesVisible = item.id;
+    visibilityCheckbox.setAttribute("aria-label", `Show Series ${seriesIndex + 1} on chart overlay`);
+    visibilityCheckbox.title = `Show or hide Series ${seriesIndex + 1} on the chart overlay`;
+    visibilityCheckbox.checked = !stateRef.hiddenSeriesIds.has(item.id);
     const block = document.createElement("details");
     block.className = "series-block";
-    block.open = !seriesConfirmed();
+    block.dataset.seriesId = item.id;
+    block.open = stateRef.expandedSeriesIds.has(item.id);
     block.innerHTML = `
       <summary>
         <label class="series-title">Series ${seriesIndex + 1}: <input value="${escapeHtml(item.name)}" data-series-name="${item.id}" aria-label="Series ${seriesIndex + 1} name" ${locked ? "disabled" : ""}></label>
         ${seriesLegendPreviewMarkup(item, seriesIndex)}
-        <span class="mini-status">${(item.points || []).length} pts</span>
+        <span class="mini-status">${escapeHtml(item.series_type || "line")} · ${(item.points || []).length} pts</span>
       </summary>
       <div class="series-header">
         <button type="button" data-retry-series="${item.id}" ${locked ? "disabled" : ""}>Retry Auto Digitise</button>
@@ -1483,6 +1594,15 @@ function renderSeriesEditor() {
         <label>X axis <select data-series-x-axis="${item.id}" ${locked ? "disabled" : ""}>${axisOptionsMarkup("x", item.x_axis_id)}</select></label>
         <label>Y axis <select data-series-y-axis="${item.id}" ${locked ? "disabled" : ""}>${axisOptionsMarkup("y", item.y_axis_id)}</select></label>
       </div>
+      <div class="axis-picker-row">
+        <label>Series type
+          <select data-series-type="${item.id}" ${locked ? "disabled" : ""}>
+            <option value="line" ${(item.series_type || "line") === "line" ? "selected" : ""}>Line</option>
+            <option value="scatter" ${item.series_type === "scatter" ? "selected" : ""}>Scatter</option>
+          </select>
+        </label>
+      </div>
+      ${item.series_truncated ? `<div class="series-warning">Partial scatter series: first ${(item.points || []).length} of approximately ${escapeHtml(item.estimated_total_points ?? "more")} markers.</div>` : ""}
       <small>${escapeHtml(item.visual_description || "")}</small>
       <div class="point-list"></div>
     `;
@@ -1498,12 +1618,27 @@ function renderSeriesEditor() {
       `;
       list.append(row);
     }
-    els.seriesEditor.append(block);
+    wrapper.append(visibilityCheckbox, block);
+    els.seriesEditor.append(wrapper);
   });
   wireSeriesEditor();
 }
 
 function wireSeriesEditor() {
+  els.seriesEditor.querySelectorAll(".series-block[data-series-id]").forEach((block) => {
+    block.addEventListener("toggle", () => {
+      if (block.open) stateRef.expandedSeriesIds.add(block.dataset.seriesId);
+      else stateRef.expandedSeriesIds.delete(block.dataset.seriesId);
+    });
+  });
+  els.seriesEditor.querySelectorAll("[data-series-visible]").forEach((checkbox) => {
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) stateRef.hiddenSeriesIds.delete(checkbox.dataset.seriesVisible);
+      else stateRef.hiddenSeriesIds.add(checkbox.dataset.seriesVisible);
+      hidePointTooltip();
+      scheduleOverlayRender();
+    });
+  });
   els.seriesEditor.querySelectorAll("[data-series-name]").forEach((input) => {
     input.addEventListener("click", (event) => event.stopPropagation());
     input.addEventListener("pointerdown", (event) => event.stopPropagation());
@@ -1517,6 +1652,8 @@ function wireSeriesEditor() {
   els.seriesEditor.querySelectorAll("[data-delete-series]").forEach((button) => {
     button.addEventListener("click", () => {
       if (llmJobActive()) return;
+      stateRef.hiddenSeriesIds.delete(button.dataset.deleteSeries);
+      stateRef.expandedSeriesIds.delete(button.dataset.deleteSeries);
       stateRef.state.series = stateRef.state.series.filter((series) => series.id !== button.dataset.deleteSeries);
       render({ forceEditors: true });
       saveSeries("image", { forceEditors: true });
@@ -1536,8 +1673,22 @@ function wireSeriesEditor() {
       saveSeries("image", { forceEditors: true });
     });
   });
+  els.seriesEditor.querySelectorAll("[data-series-type]").forEach((select) => {
+    select.addEventListener("change", () => {
+      if (llmJobActive()) return;
+      const series = findSeries(select.dataset.seriesType);
+      if (!series) return;
+      series.series_type = select.value;
+      if (select.value === "line") {
+        series.series_truncated = false;
+        series.estimated_total_points = null;
+      }
+      render({ forceEditors: true });
+      saveSeries("image", { forceEditors: true });
+    });
+  });
   els.seriesEditor.querySelectorAll("[data-retry-series]").forEach((button) => {
-    button.addEventListener("click", () => retrySeriesDigitization(button.dataset.retrySeries));
+    button.addEventListener("click", () => openRetryChoice(button.dataset.retrySeries, button));
   });
   els.seriesEditor.querySelectorAll("[data-delete-point]").forEach((button) => {
     button.addEventListener("click", () => deletePoint(button.dataset.deletePoint));
@@ -1558,9 +1709,39 @@ function wireSeriesEditor() {
   });
 }
 
-async function retrySeriesDigitization(seriesId) {
-  if (llmJobActive() || !stateRef.runId || !seriesId) return;
-  await api(`/api/runs/${stateRef.runId}/jobs/series/${encodeURIComponent(seriesId)}`, { method: "POST" });
+function openRetryChoice(seriesId, trigger) {
+  if (llmJobActive() || !stateRef.runId || !findSeries(seriesId)) return;
+  stateRef.retryChoiceSeriesId = seriesId;
+  stateRef.retryChoicePreviousFocus = trigger || document.activeElement;
+  renderRetryChoiceModal();
+  renderSeriesChoiceModal();
+  updateModalPageState();
+  els.retryChoiceRefineBtn.focus();
+}
+
+function closeRetryChoice() {
+  if (llmJobActive()) return;
+  const previousFocus = stateRef.retryChoicePreviousFocus;
+  stateRef.retryChoiceSeriesId = null;
+  stateRef.retryChoicePreviousFocus = null;
+  renderRetryChoiceModal();
+  renderSeriesChoiceModal();
+  updateModalPageState();
+  if (previousFocus?.isConnected) previousFocus.focus();
+}
+
+async function submitSeriesRetry(mode) {
+  const seriesId = stateRef.retryChoiceSeriesId;
+  if (llmJobActive() || !stateRef.runId || !seriesId || !["restart", "refine"].includes(mode)) return;
+  stateRef.retryChoiceSeriesId = null;
+  stateRef.retryChoicePreviousFocus = null;
+  renderRetryChoiceModal();
+  updateModalPageState();
+  await api(`/api/runs/${stateRef.runId}/jobs/series/${encodeURIComponent(seriesId)}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ mode }),
+  });
   await loadRun(stateRef.runId, { force: true });
 }
 
@@ -1801,7 +1982,11 @@ function addManualSeries() {
     id,
     name: "Manual series",
     source: "manual",
+    series_type: "line",
     line_color: "#7c3aed",
+    marker_style: null,
+    series_truncated: false,
+    estimated_total_points: null,
     x_axis_id: defaultAxisId("x"),
     y_axis_id: defaultAxisId("y"),
     points: [],
@@ -1941,6 +2126,15 @@ function seriesDashArray(style) {
 }
 
 function seriesMarkerKind(item, seriesIndex) {
+  if (item.series_type === "scatter") {
+    const style = String(item.marker_style || "").toLowerCase();
+    if (style.includes("circle")) return "circle";
+    if (style.includes("square")) return "square";
+    if (style.includes("diamond")) return "diamond";
+    if (style.includes("triangle")) return "triangle";
+    if (style.includes("plus")) return "plus";
+    return "x";
+  }
   const series = stateRef.state?.series || [];
   const colorKey = String(seriesColor(item, seriesIndex)).trim().toLowerCase();
   const sameColor = series
@@ -1951,24 +2145,35 @@ function seriesMarkerKind(item, seriesIndex) {
   return SERIES_MARKER_KINDS[Math.max(0, rank) % SERIES_MARKER_KINDS.length];
 }
 
+function seriesMarkerFill(item, markerKind, color) {
+  if (["x", "plus"].includes(markerKind)) return "none";
+  if (item.series_type === "scatter" && String(item.marker_style || "").toLowerCase().includes("filled")) return color;
+  return "#fff";
+}
+
 function seriesLegendPreviewMarkup(item, seriesIndex) {
   const color = escapeHtml(seriesColor(item, seriesIndex));
   const dashArray = seriesDashArray(item.line_style);
   const dashAttr = dashArray ? ` stroke-dasharray="${dashArray}"` : "";
-  const marker = seriesLegendMarkerMarkup(seriesMarkerKind(item, seriesIndex), color);
+  const markerKind = seriesMarkerKind(item, seriesIndex);
+  const marker = seriesLegendMarkerMarkup(markerKind, color, seriesMarkerFill(item, markerKind, color));
+  const line = item.series_type === "scatter"
+    ? ""
+    : `<line x1="4" y1="10" x2="44" y2="10" stroke="${color}" stroke-width="4" stroke-linecap="round"${dashAttr}></line>`;
   return `
     <svg class="series-legend-sample" viewBox="0 0 48 20" aria-hidden="true" focusable="false">
-      <line x1="4" y1="10" x2="44" y2="10" stroke="${color}" stroke-width="4" stroke-linecap="round"${dashAttr}></line>
+      ${line}
       ${marker}
     </svg>
   `;
 }
 
-function seriesLegendMarkerMarkup(kind, color) {
-  if (kind === "circle") return `<circle cx="24" cy="10" r="4" fill="#fff" stroke="${color}" stroke-width="2"></circle>`;
-  if (kind === "square") return `<rect x="20" y="6" width="8" height="8" fill="#fff" stroke="${color}" stroke-width="2"></rect>`;
-  if (kind === "diamond") return `<path d="M 24 5 L 29 10 L 24 15 L 19 10 Z" fill="#fff" stroke="${color}" stroke-width="2"></path>`;
-  if (kind === "triangle") return `<path d="M 24 5 L 29 15 L 19 15 Z" fill="#fff" stroke="${color}" stroke-width="2"></path>`;
+function seriesLegendMarkerMarkup(kind, color, fill) {
+  if (kind === "circle") return `<circle cx="24" cy="10" r="4" fill="${fill}" stroke="${color}" stroke-width="2"></circle>`;
+  if (kind === "square") return `<rect x="20" y="6" width="8" height="8" fill="${fill}" stroke="${color}" stroke-width="2"></rect>`;
+  if (kind === "diamond") return `<path d="M 24 5 L 29 10 L 24 15 L 19 10 Z" fill="${fill}" stroke="${color}" stroke-width="2"></path>`;
+  if (kind === "triangle") return `<path d="M 24 5 L 29 15 L 19 15 Z" fill="${fill}" stroke="${color}" stroke-width="2"></path>`;
+  if (kind === "plus") return `<path d="M 18 10 L 30 10 M 24 4 L 24 16" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round"></path>`;
   return `
     <line x1="20" y1="6" x2="28" y2="14" stroke="${color}" stroke-width="2" stroke-linecap="round"></line>
     <line x1="20" y1="14" x2="28" y2="6" stroke="${color}" stroke-width="2" stroke-linecap="round"></line>
@@ -2246,6 +2451,74 @@ function groupBy(items, keyFn) {
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function describeColour(value) {
+  const rgb = parseColour(value);
+  if (!rgb) return null;
+  const [red, green, blue] = rgb.map((channel) => channel / 255);
+  const max = Math.max(red, green, blue);
+  const min = Math.min(red, green, blue);
+  const delta = max - min;
+  const saturation = max === 0 ? 0 : delta / max;
+  let hue = 0;
+  if (delta !== 0) {
+    if (max === red) hue = 60 * (((green - blue) / delta) % 6);
+    else if (max === green) hue = 60 * (((blue - red) / delta) + 2);
+    else hue = 60 * (((red - green) / delta) + 4);
+  }
+  if (hue < 0) hue += 360;
+
+  if (saturation < 0.12) {
+    if (max < 0.15) return "black";
+    if (max < 0.35) return "dark grey";
+    if (max < 0.65) return "grey";
+    if (max < 0.85) return "light grey";
+    return "white";
+  }
+
+  const earthyBrown = saturation >= 0.35 && max < 0.72
+    && ((hue >= 10 && hue < 45) || ((hue < 10 || hue >= 350) && saturation < 0.9));
+  const earthyOlive = saturation >= 0.25 && max < 0.68 && hue >= 45 && hue < 85;
+
+  let colour;
+  if (earthyBrown) colour = "brown";
+  else if (earthyOlive) colour = "olive";
+  else if (hue < 15 || hue >= 345) colour = "red";
+  else if (hue < 40) colour = "orange";
+  else if (hue < 65) colour = "yellow";
+  else if (hue < 90) colour = "yellow-green";
+  else if (hue < 150) colour = "green";
+  else if (hue < 180) colour = "blue-green";
+  else if (hue < 210) colour = "cyan";
+  else if (hue < 255) colour = "blue";
+  else if (hue < 285) colour = "purple";
+  else if (hue < 330) colour = "magenta";
+  else colour = "pink-red";
+
+  const brightness = max < 0.35 ? "dark " : max > 0.85 && saturation < 0.55 ? "light " : "";
+  const earthyColour = colour === "brown" || colour === "olive";
+  const intensity = earthyColour ? "" : saturation < 0.35 ? "muted " : saturation > 0.8 && max > 0.4 && max < 0.9 ? "vivid " : "";
+  return `${brightness}${intensity}${colour}`.trim();
+}
+
+function parseColour(value) {
+  let candidate = String(value || "").trim();
+  if (!candidate) return null;
+  if (!CSS.supports?.("color", candidate)) {
+    candidate = candidate.replace(/[\s-]+/g, "");
+    if (!CSS.supports?.("color", candidate)) return null;
+  }
+  const context = document.createElement("canvas").getContext("2d");
+  if (!context) return null;
+  context.fillStyle = candidate;
+  const normalized = context.fillStyle;
+  const hexMatch = normalized.match(/^#([0-9a-f]{6})$/i);
+  if (hexMatch) return [0, 2, 4].map((offset) => Number.parseInt(hexMatch[1].slice(offset, offset + 2), 16));
+  const shortHexMatch = normalized.match(/^#([0-9a-f]{3})$/i);
+  if (shortHexMatch) return [...shortHexMatch[1]].map((digit) => Number.parseInt(`${digit}${digit}`, 16));
+  const rgbMatch = normalized.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+  return rgbMatch ? rgbMatch.slice(1, 4).map(Number) : null;
 }
 
 function escapeHtml(value) {

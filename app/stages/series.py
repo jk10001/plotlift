@@ -1,9 +1,18 @@
 from __future__ import annotations
 
+import json
 import uuid
 
 from .. import coordinates
-from ..artifacts import attempt_dir, relative_path, save_attempt_json, save_state
+from ..artifacts import (
+    attempt_dir,
+    next_series_retry_round,
+    relative_path,
+    save_attempt_json,
+    save_json,
+    save_state,
+    series_retry_dir,
+)
 from ..color_utils import normalize_color
 from ..config import get_config
 from ..llm_conversation import prompt_cache_key, response_id, save_conversation_entry
@@ -12,6 +21,8 @@ from ..logging_utils import emit_event
 from ..models import (
     AttemptRecord,
     RunState,
+    ScatterSeriesDigitizationConversationResponse,
+    ScatterSeriesDigitizationOutput,
     SeriesDigitizationConversationResponse,
     SeriesDigitizationOutput,
     SeriesIdentification,
@@ -23,7 +34,7 @@ from ..models import (
 from ..openai_schema import strict_json_schema
 from ..overlay import COLORS, render_series_overlay
 from ..prompts import PromptPack
-from ..series_point_limits import series_data_point_limits
+from ..series_point_limits import line_series_data_point_limits, scatter_series_max_data_points
 from .crop import _scrub_request
 
 
@@ -53,7 +64,7 @@ def run_series_identification_stage(state: RunState, prompt_pack: PromptPack, cl
     state.pending_series = identification.series
 
     if not identification.series:
-        emit_event(root, "WARN", "No line series were identified", run_id=state.run_id, stage="series")
+        emit_event(root, "WARN", "No line or scatter series were identified", run_id=state.run_id, stage="series")
     else:
         emit_event(root, "STAGE", "Waiting for user series selection", run_id=state.run_id, stage="series")
     state.stage = "series_ready"
@@ -200,7 +211,7 @@ def _identify_all_series(
         save_state(state)
         emit_event(root, "ARTIFACT", "Updated series identification conversation artifact", run_id=state.run_id, stage="series", attempt=1, artifact_path=conversation_path)
         output = _validate_identified_series_axes(output, state)
-        emit_event(root, "STAGE", f"Identified {len(output.series)} line series", run_id=state.run_id, stage="series")
+        emit_event(root, "STAGE", f"Identified {len(output.series)} series", run_id=state.run_id, stage="series")
         return output
     except Exception as exc:  # noqa: BLE001
         response_path = save_attempt_json(state.run_id, "series_identification", 1, "error.json", {"error": str(exc)})
@@ -234,12 +245,21 @@ def _digitize_identified_series(
     series_total: int,
     series_id: str | None = None,
     append_to_state: bool = True,
+    retry_round: int | None = None,
+    retry_mode: str | None = None,
+    baseline_series: SeriesState | None = None,
+    baseline_overlay_path=None,
 ) -> SeriesState:
     cfg = get_config()
-    system_prompt = prompt_pack.render("series.digitization_system")
+    is_scatter = series_description.series_type == "scatter"
+    prompt_prefix = "scatter_digitization" if is_scatter else "line_digitization"
+    system_prompt = prompt_pack.render(f"series.{prompt_prefix}_system")
     target_series = _series_description_text(series_description, series_index, series_total)
-    latest: SeriesDigitizationOutput | None = None
-    latest_series_state: SeriesState | None = None
+    is_refinement = retry_mode == "refine"
+    if is_refinement and (baseline_series is None or baseline_overlay_path is None):
+        raise ValueError("refinement requires a baseline series and overlay")
+    latest = _series_state_to_output(baseline_series) if baseline_series is not None and is_refinement else None
+    latest_series_state = baseline_series.model_copy(deep=True) if baseline_series is not None and is_refinement else None
     previous_response_id: str | None = None
     previous_overlay_path = None
     conversation_history: list[dict] = []
@@ -247,27 +267,40 @@ def _digitize_identified_series(
     series_id = series_id or uuid.uuid4().hex[:8]
     cache_key = prompt_cache_key(state.run_id, "series", series_id)
     completed = False
+    valid_decision_received = False
     emit_event(root, "STAGE", f"Starting digitisation for {series_description.series_name}", run_id=state.run_id, stage="series")
 
     for attempt in range(1, cfg.max_series_attempts + 1):
-        prompt_key = "series.digitization_initial" if attempt == 1 else "series.digitization_confirm"
-        user_prompt = prompt_pack.render(prompt_key, target_series=target_series)
-        image_for_model = previous_overlay_path or crop_path
+        if attempt == 1 and is_refinement:
+            prompt_key = f"series.{prompt_prefix}_refine_initial"
+            user_prompt = prompt_pack.render(
+                prompt_key,
+                target_series=target_series,
+                baseline_json=json.dumps(latest.model_dump(mode="json"), indent=2, ensure_ascii=False),
+            )
+            images_for_model = [crop_path, baseline_overlay_path]
+        else:
+            prompt_key = f"series.{prompt_prefix}_{'initial' if attempt == 1 else 'confirm'}"
+            user_prompt = prompt_pack.render(prompt_key, target_series=target_series)
+            images_for_model = [previous_overlay_path or crop_path]
+        image_for_model = images_for_model[0]
         request_path = None
         response_path = None
         parsed_path = None
         try:
             if state.settings.mock_mode:
-                decision = _mock_series_digitization_decision(attempt)
+                decision = _mock_series_digitization_decision(attempt, series_description.series_type, refine=is_refinement)
                 request = {
                     "mock": True,
                     "system": system_prompt,
                     "prompt": user_prompt,
                     "target_series": target_series,
-                    "source_image_path": relative_path(image_for_model, root),
+                    "source_image_paths": [relative_path(path, root) for path in images_for_model],
                     "previous_response_id": previous_response_id,
                     "prompt_cache_key": cache_key,
                 }
+                if len(images_for_model) == 1:
+                    request["source_image_path"] = relative_path(image_for_model, root)
                 response = {
                     "mock": True,
                     "json": decision.model_dump(mode="json"),
@@ -278,23 +311,33 @@ def _digitize_identified_series(
                     settings=state.settings,
                     system_prompt=system_prompt,
                     user_prompt=user_prompt,
-                    image_path=image_for_model,
-                    schema_name="SeriesDigitizationDecision",
-                    schema=strict_json_schema(SeriesDigitizationConversationResponse),
+                    image_path=image_for_model if len(images_for_model) == 1 else None,
+                    image_paths=images_for_model if len(images_for_model) > 1 else None,
+                    schema_name="ScatterSeriesDigitizationDecision" if is_scatter else "SeriesDigitizationDecision",
+                    schema=strict_json_schema(
+                        ScatterSeriesDigitizationConversationResponse if is_scatter else SeriesDigitizationConversationResponse
+                    ),
                     previous_response_id=previous_response_id,
                     prompt_cache_key=cache_key,
                     conversation_history=conversation_history,
                 )
-                decision = SeriesDigitizationConversationResponse.model_validate(response["json"])
-            _validate_series_decision(decision, attempt)
+                decision = (
+                    ScatterSeriesDigitizationConversationResponse.model_validate(response["json"])
+                    if is_scatter
+                    else SeriesDigitizationConversationResponse.model_validate(response["json"])
+                )
+            _validate_series_decision(decision, attempt, allow_initial_review=is_refinement)
+            valid_decision_received = True
             request_artifact = _scrub_request(request)
-            request_artifact["source_image_path"] = relative_path(image_for_model, root)
+            request_artifact["source_image_paths"] = [relative_path(path, root) for path in images_for_model]
+            if len(images_for_model) == 1:
+                request_artifact["source_image_path"] = relative_path(image_for_model, root)
             request_artifact["previous_response_id"] = previous_response_id
             request_artifact["prompt_cache_key"] = cache_key
             request_artifact["target_series"] = target_series
-            request_path = save_attempt_json(state.run_id, "series", attempt, "request.json", request_artifact, series_id=series_id)
-            response_path = save_attempt_json(state.run_id, "series", attempt, "response.json", response, series_id=series_id)
-            parsed_path = save_attempt_json(state.run_id, "series", attempt, "parsed.json", decision.model_dump(mode="json"), series_id=series_id)
+            request_path = save_attempt_json(state.run_id, "series", attempt, "request.json", request_artifact, series_id=series_id, retry_round=retry_round)
+            response_path = save_attempt_json(state.run_id, "series", attempt, "response.json", response, series_id=series_id, retry_round=retry_round)
+            parsed_path = save_attempt_json(state.run_id, "series", attempt, "parsed.json", decision.model_dump(mode="json"), series_id=series_id, retry_round=retry_round)
             current_response_id = response_id(response)
 
             if decision.response_kind == "accept_previous":
@@ -314,7 +357,7 @@ def _digitize_identified_series(
             _upsert_series_preview(state, series_state, allow_insert=append_to_state)
             if state.series:
                 state.stage = "series_review"
-            overlay_path = attempt_dir(state.run_id, "series", attempt, series_id=series_id) / "overlay.png"
+            overlay_path = attempt_dir(state.run_id, "series", attempt, series_id=series_id, retry_round=retry_round) / "overlay.png"
             render_series_overlay(crop_path, [series_state], overlay_path)
             overlay_rel = relative_path(overlay_path, root)
             emit_event(root, "ARTIFACT", "Rendered current-series overlay", run_id=state.run_id, stage="series", attempt=attempt, artifact_path=overlay_rel)
@@ -323,13 +366,14 @@ def _digitize_identified_series(
                 run_id=state.run_id,
                 stage="series",
                 series_id=series_id,
+                retry_round=retry_round,
                 entries=conversation_entries,
                 entry={
                     "attempt": attempt,
                     "response_kind": decision.response_kind,
                     "revision_reason": decision.revision_reason,
                     "target_series": target_series,
-                    "source_image_path": relative_path(image_for_model, root),
+                    "source_image_paths": [relative_path(path, root) for path in images_for_model],
                     "overlay_path": overlay_rel,
                     "request_path": request_path,
                     "response_path": response_path,
@@ -347,7 +391,7 @@ def _digitize_identified_series(
                 warnings = [*warnings, decision.revision_reason]
             state.attempts.append(
                 AttemptRecord(
-                    id=f"series-{series_id}-{attempt:02d}",
+                    id=_series_attempt_id(series_id, attempt, retry_round),
                     stage="series",
                     attempt_number=attempt,
                     status="accepted" if should_accept or is_final_attempt else "needs_review",
@@ -358,6 +402,8 @@ def _digitize_identified_series(
                     validation_status="valid",
                     confidence=series_state.confidence,
                     warnings=warnings,
+                    retry_round=retry_round,
+                    retry_mode=retry_mode,
                 )
             )
             save_state(state)
@@ -373,7 +419,7 @@ def _digitize_identified_series(
                 conversation_history.append(
                     {
                         "user_prompt": user_prompt,
-                        "image_path": str(image_for_model),
+                        "image_paths": [str(path) for path in images_for_model],
                         "model_text": response["text"],
                     }
                 )
@@ -381,10 +427,10 @@ def _digitize_identified_series(
             previous_overlay_path = overlay_path
             emit_event(root, "STAGE", "Sending current-series overlay back for model confirmation", run_id=state.run_id, stage="series", attempt=attempt, artifact_path=overlay_rel)
         except Exception as exc:  # noqa: BLE001
-            response_path = save_attempt_json(state.run_id, "series", attempt, "error.json", {"error": str(exc)}, series_id=series_id)
+            response_path = save_attempt_json(state.run_id, "series", attempt, "error.json", {"error": str(exc)}, series_id=series_id, retry_round=retry_round)
             state.attempts.append(
                 AttemptRecord(
-                    id=f"series-{series_id}-{attempt:02d}",
+                    id=_series_attempt_id(series_id, attempt, retry_round),
                     stage="series",
                     attempt_number=attempt,
                     status="failed",
@@ -393,10 +439,14 @@ def _digitize_identified_series(
                     parsed_path=parsed_path,
                     validation_status="invalid",
                     warnings=[str(exc)],
+                    retry_round=retry_round,
+                    retry_mode=retry_mode,
                 )
             )
             emit_event(root, "ERROR", f"Series attempt failed: {exc}", run_id=state.run_id, stage="series", attempt=attempt)
             save_state(state)
+    if not valid_decision_received:
+        raise RuntimeError(f"series extraction failed without a valid response for {series_description.series_name}")
     if latest is None:
         raise RuntimeError(f"series extraction failed without a valid proposal for {series_description.series_name}")
     if not completed and latest_series_state:
@@ -418,7 +468,19 @@ def _upsert_series_preview(state: RunState, series_state: SeriesState, *, allow_
         state.series.append(series_state)
 
 
-def retry_series_digitization(state: RunState, prompt_pack: PromptPack, client: ChartLLMClient, series_id: str) -> RunState:
+def _series_attempt_id(series_id: str, attempt: int, retry_round: int | None) -> str:
+    if retry_round is None:
+        return f"series-{series_id}-{attempt:02d}"
+    return f"series-{series_id}-retry-{retry_round:02d}-{attempt:02d}"
+
+
+def retry_series_digitization(
+    state: RunState,
+    prompt_pack: PromptPack,
+    client: ChartLLMClient,
+    series_id: str,
+    mode: str = "restart",
+) -> RunState:
     if not state.crop or not state.crop.image:
         raise ValueError("approved crop is required before series extraction")
     if not state.calibration.has_approved_direction("x") or not state.calibration.has_approved_direction("y"):
@@ -426,41 +488,125 @@ def retry_series_digitization(state: RunState, prompt_pack: PromptPack, client: 
     target_index = next((index for index, series in enumerate(state.series) if series.id == series_id), None)
     if target_index is None:
         raise ValueError(f"series {series_id!r} does not exist")
-    original = state.series[target_index]
+    if mode not in {"restart", "refine"}:
+        raise ValueError("retry mode must be 'restart' or 'refine'")
+    original = state.series[target_index].model_copy(deep=True)
     root = get_config().runs_dir / state.run_id
     crop_path = root / state.crop.image.path
-    state.stage = "series_review"
-    save_state(state)
-    replacement = _digitize_identified_series(
-        state=state,
-        prompt_pack=prompt_pack,
-        client=client,
-        root=root,
-        crop_path=crop_path,
-        series_description=SeriesIdentification(
-            series_name=original.llm_series_name or original.name,
-            visual_description=original.visual_description or f"Retry digitisation for existing series {original.name}.",
-            line_color=original.line_color,
-            line_style=original.line_style,
-            x_axis_id=original.x_axis_id,
-            y_axis_id=original.y_axis_id,
-            axis_selection_reason=original.axis_selection_reason,
-            confidence=original.confidence,
-        ),
-        series_index=target_index + 1,
-        series_total=len(state.series),
-        series_id=original.id,
-        append_to_state=False,
+    retry_round = next_series_retry_round(state.run_id, series_id)
+    retry_root = series_retry_dir(state.run_id, series_id, retry_round)
+    save_json(
+        retry_root / "retry.json",
+        {"series_id": series_id, "retry_round": retry_round, "retry_mode": mode},
     )
-    state.series[target_index] = replacement
+    baseline_overlay_path = None
+    if mode == "refine":
+        baseline = _series_state_to_output(original)
+        save_json(retry_root / "baseline.json", baseline.model_dump(mode="json"))
+        baseline_overlay_path = retry_root / "baseline_overlay.png"
+        render_series_overlay(crop_path, [original], baseline_overlay_path)
+        emit_event(
+            root,
+            "ARTIFACT",
+            "Saved refinement baseline and overlay",
+            run_id=state.run_id,
+            stage="series",
+            artifact_path=relative_path(baseline_overlay_path, root),
+        )
     state.stage = "series_review"
     save_state(state)
-    emit_event(root, "STAGE", f"Replaced series {original.name} with retry result {replacement.name}", run_id=state.run_id, stage="series")
+    try:
+        digitized = _digitize_identified_series(
+            state=state,
+            prompt_pack=prompt_pack,
+            client=client,
+            root=root,
+            crop_path=crop_path,
+            series_description=SeriesIdentification(
+                series_name=original.llm_series_name or original.name,
+                visual_description=original.visual_description or f"Retry digitisation for existing series {original.name}.",
+                line_color=original.line_color,
+                line_style=original.line_style,
+                series_type=original.series_type,
+                marker_style=original.marker_style,
+                estimated_total_points=original.estimated_total_points,
+                x_axis_id=original.x_axis_id,
+                y_axis_id=original.y_axis_id,
+                axis_selection_reason=original.axis_selection_reason,
+                confidence=original.confidence,
+            ),
+            series_index=target_index + 1,
+            series_total=len(state.series),
+            series_id=original.id,
+            append_to_state=False,
+            retry_round=retry_round,
+            retry_mode=mode,
+            baseline_series=original if mode == "refine" else None,
+            baseline_overlay_path=baseline_overlay_path,
+        )
+        replacement = _merge_retry_result(original, digitized)
+        state.series[target_index] = replacement
+        emit_event(
+            root,
+            "STAGE",
+            f"Completed {mode} retry for series {original.name}",
+            run_id=state.run_id,
+            stage="series",
+        )
+    except Exception as exc:  # noqa: BLE001
+        warning = f"Retry did not produce a valid result for {original.name}; restored the previous series. {exc}"
+        state.series[target_index] = original
+        state.warnings.append(warning)
+        emit_event(root, "WARN", warning, run_id=state.run_id, stage="series")
+    state.stage = "series_review"
+    save_state(state)
     return state
 
 
+def _series_state_to_output(series: SeriesState) -> SeriesDigitizationOutput | ScatterSeriesDigitizationOutput:
+    points = [
+        SeriesPointProposal(
+            point_index=point.point_index,
+            segment_index=point.segment_index,
+            chart_x=point.chart_x,
+            chart_y=point.chart_y,
+        )
+        for point in series.points
+        if point.chart_x is not None and point.chart_y is not None
+    ]
+    if len(points) != len(series.points):
+        raise ValueError("all baseline points must have chart-space coordinates")
+    common = {
+        "points": points,
+        "confidence": series.confidence,
+        "warnings": list(series.warnings),
+        "unsupported_flags": [],
+    }
+    if series.series_type == "scatter":
+        return ScatterSeriesDigitizationOutput.model_construct(
+            **common,
+            series_truncated=series.series_truncated,
+            estimated_total_points=series.estimated_total_points,
+        )
+    return SeriesDigitizationOutput.model_construct(**common)
+
+
+def _merge_retry_result(original: SeriesState, digitized: SeriesState) -> SeriesState:
+    """Retain user-facing identity and appearance while replacing model-derived results."""
+    return original.model_copy(
+        deep=True,
+        update={
+            "points": digitized.points,
+            "confidence": digitized.confidence,
+            "warnings": digitized.warnings,
+            "series_truncated": digitized.series_truncated,
+            "estimated_total_points": digitized.estimated_total_points,
+        },
+    )
+
+
 def _series_output_to_state(
-    output: SeriesDigitizationOutput,
+    output: SeriesDigitizationOutput | ScatterSeriesDigitizationOutput,
     series_description: SeriesIdentification,
     series_id: str,
     state: RunState,
@@ -485,20 +631,54 @@ def _series_output_to_state(
             chart_y=proposal.chart_y,
         )
         points.append(point)
-    points.sort(key=lambda item: (item.segment_index, item.point_index))
+    series_truncated = False
+    estimated_total_points = series_description.estimated_total_points
+    if series_description.series_type == "scatter":
+        scatter_limit = scatter_series_max_data_points()
+        points.sort(
+            key=lambda item: (
+                item.crop_image_px.x if item.crop_image_px else float("inf"),
+                item.crop_image_px.y if item.crop_image_px else float("inf"),
+            )
+        )
+        raw_point_count = len(points)
+        points = points[:scatter_limit]
+        for point_index, point in enumerate(points):
+            point.point_index = point_index
+            point.segment_index = 0
+        output_estimate = output.estimated_total_points if isinstance(output, ScatterSeriesDigitizationOutput) else None
+        estimates = [value for value in (estimated_total_points, output_estimate, raw_point_count) if value is not None]
+        estimated_total_points = max(estimates) if estimates else raw_point_count
+        series_truncated = (
+            raw_point_count > scatter_limit
+            or estimated_total_points > scatter_limit
+            or (isinstance(output, ScatterSeriesDigitizationOutput) and output.series_truncated)
+        )
+    else:
+        points.sort(key=lambda item: (item.segment_index, item.point_index))
+        estimated_total_points = None
+    warnings = output.warnings + output.unsupported_flags
+    if series_truncated:
+        warnings.append(
+            f"Scatter series truncated to the first {scatter_series_max_data_points()} markers in visual reading order"
+        )
     return SeriesState(
         id=series_id,
         name=series_description.series_name or f"Series {len(state.series) + 1}",
+        series_type=series_description.series_type,
         llm_series_name=series_description.series_name,
         visual_description=series_description.visual_description,
         line_color=normalize_color(series_description.line_color, COLORS["series"][len(state.series) % len(COLORS["series"])]),
         line_style=series_description.line_style,
+        marker_style=series_description.marker_style,
+        series_truncated=series_truncated,
+        estimated_total_points=estimated_total_points,
         x_axis_id=x_axis_id,
         y_axis_id=y_axis_id,
         axis_selection_reason=series_description.axis_selection_reason,
         confidence=output.confidence if output.confidence is not None else series_description.confidence,
         points=points,
-        warnings=output.warnings + output.unsupported_flags,
+        warnings=warnings,
     )
 
 
@@ -510,28 +690,59 @@ def _mock_series_identification() -> SeriesIdentificationOutput:
                 visual_description="A rising blue line used for local pipeline testing.",
                 line_color="#0891b2",
                 line_style="solid",
+                series_type="line",
                 x_axis_id="x_flow",
                 y_axis_id="y_head",
                 axis_selection_reason="Mock series uses the default flow and head axes.",
                 confidence=0.81,
-            )
+            ),
+            SeriesIdentification(
+                series_name="Mock scatter B",
+                series_type="scatter",
+                visual_description="Four orange circular markers used for local pipeline testing.",
+                line_color="#ea580c",
+                marker_style="filled circle",
+                estimated_total_points=4,
+                x_axis_id="x_flow",
+                y_axis_id="y_head",
+                axis_selection_reason="Mock scatter uses the default flow and head axes.",
+                confidence=0.79,
+            ),
         ]
     )
 
 
-def _mock_series_digitization_decision(attempt: int) -> SeriesDigitizationConversationResponse:
-    if attempt > 1:
-        return SeriesDigitizationConversationResponse(response_kind="accept_previous", revision_reason=None, proposal=None)
-    min_points, _ = series_data_point_limits()
+def _mock_series_digitization_decision(
+    attempt: int,
+    series_type: str = "line",
+    *,
+    refine: bool = False,
+) -> SeriesDigitizationConversationResponse | ScatterSeriesDigitizationConversationResponse:
+    if attempt > 1 or refine:
+        response_type = ScatterSeriesDigitizationConversationResponse if series_type == "scatter" else SeriesDigitizationConversationResponse
+        return response_type(response_kind="accept_previous", revision_reason=None, proposal=None)
+    min_points, _ = line_series_data_point_limits()
+    point_count = min(4, scatter_series_max_data_points()) if series_type == "scatter" else min_points
     points = []
-    for index in range(min_points):
-        ratio = index / max(1, min_points - 1)
+    for index in range(point_count):
+        ratio = index / max(1, point_count - 1)
         points.append(
             SeriesPointProposal(
                 point_index=index,
                 chart_x={"value_raw": f"{(100 + ratio * 900):g}", "value_type": "number"},
                 chart_y={"value_raw": f"{(60 - ratio * 30 + (2 if index % 2 else 0)):g}", "value_type": "number"},
             )
+        )
+    if series_type == "scatter":
+        return ScatterSeriesDigitizationConversationResponse(
+            response_kind="proposal",
+            revision_reason="Initial mock scatter proposal.",
+            proposal=ScatterSeriesDigitizationOutput(
+                confidence=0.79,
+                points=points,
+                series_truncated=False,
+                estimated_total_points=point_count,
+            ),
         )
     return SeriesDigitizationConversationResponse(
         response_kind="proposal",
@@ -543,9 +754,17 @@ def _mock_series_digitization_decision(attempt: int) -> SeriesDigitizationConver
     )
 
 
-def _validate_series_decision(decision: SeriesDigitizationConversationResponse, attempt: int) -> None:
-    if attempt == 1 and decision.response_kind != "proposal":
-        raise ValueError("first series digitisation attempt must return proposal")
+def _validate_series_decision(
+    decision: SeriesDigitizationConversationResponse | ScatterSeriesDigitizationConversationResponse,
+    attempt: int,
+    *,
+    allow_initial_review: bool = False,
+) -> None:
+    if attempt == 1:
+        allowed = {"accept_previous", "revise_previous"} if allow_initial_review else {"proposal"}
+        if decision.response_kind not in allowed:
+            expected = "accept_previous or revise_previous" if allow_initial_review else "proposal"
+            raise ValueError(f"first series digitisation attempt must return {expected}")
     if attempt > 1 and decision.response_kind not in {"accept_previous", "revise_previous"}:
         raise ValueError("series review attempts must return accept_previous or revise_previous")
 
@@ -555,8 +774,11 @@ def _series_description_text(series: SeriesIdentification, series_index: int, se
         [
             f"Series {series_index} of {series_total}",
             f"Name: {series.series_name or 'unnamed series'}",
+            f"Series type: {series.series_type}",
             f"Colour: {series.line_color or 'unknown'}",
             f"Line style: {series.line_style or 'unknown'}",
+            f"Marker style: {series.marker_style or 'unknown'}",
+            f"Estimated total points: {series.estimated_total_points if series.estimated_total_points is not None else 'unknown'}",
             f"X axis ID: {series.x_axis_id or 'default x-axis'}",
             f"Y axis ID: {series.y_axis_id or 'default y-axis'}",
             f"Axis selection reason: {series.axis_selection_reason or 'not provided'}",

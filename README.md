@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-PlotLift converts line charts in images and PDF pages into structured numerical data. Its current focus is line charts, particularly pump curves. Support for other chart types is planned as the project develops.
+PlotLift converts line and scatter charts in images and PDF pages into structured numerical data. Its current focus includes line charts, scatter plots, mixed line/scatter charts, and pump curves.
 
 PlotLift combines vision-capable OpenAI or Gemini models with an interactive review interface. Digitisation is iterative: the model proposes a crop, calibration, or series trace, reviews an overlay of its result, and improves the proposal when needed. The user remains in control and can inspect, edit, and confirm every stage.
 
@@ -59,8 +59,9 @@ OPENAI_MOCK_MODE=false
 APP_RUNS_DIR=runs
 APP_SHOW_DEBUG_INFO=true
 PDF_DPI=200
-SERIES_MIN_DATA_POINTS=5
-SERIES_MAX_DATA_POINTS=10
+LINE_SERIES_MIN_DATA_POINTS=5
+LINE_SERIES_MAX_DATA_POINTS=10
+SCATTER_SERIES_MAX_DATA_POINTS=30
 ```
 
 Only the selected provider's key is required. Keep `.env` private; it is excluded by `.gitignore`.
@@ -82,8 +83,9 @@ PlotLift currently supports:
 - PNG, JPEG, WebP, and PDF uploads.
 - Page selection for multi-page PDFs.
 - Single-panel and multi-panel line charts.
+- Scatter plots and charts containing line and scatter series together.
 - Pump curves with multiple performance lines and axes.
-- Multiple visible line series.
+- Multiple visible line and scatter series, including both types on the same axes.
 - Multiple x-axes and y-axes, including secondary axes.
 - Numeric and date/time axes with linear scales.
 - Automatic crop detection, axis identification, axis calibration, and series tracing.
@@ -139,10 +141,10 @@ PlotLift renders calibration markers for review. The model can revise inaccurate
 
 **Auto Digitise Series** works in two parts:
 
-1. The model identifies all visible line series, describes their appearance, and assigns the appropriate x-axis and y-axis IDs.
+1. The model identifies all visible line and scatter series, classifies their type, describes their appearance, and assigns the appropriate x-axis and y-axis IDs.
 2. You choose which identified series to digitise.
 
-For each selected series, the model returns representative points as real `chart_x` and `chart_y` values. PlotLift projects those values through the selected axis calibrations and renders the resulting trace over the source chart.
+For each selected line, the model returns representative control points. For each selected scatter series, it returns every individually visible marker up to `SCATTER_SERIES_MAX_DATA_POINTS`. PlotLift projects the real `chart_x` and `chart_y` values through the selected axis calibrations and renders the result over the source chart. Scatter markers are not connected. If the visible marker count exceeds the configured maximum, the first markers in left-to-right, then top-to-bottom visual order are retained and the series is marked as truncated.
 
 The model reviews the overlay and either accepts the trace or returns a complete improved proposal. Up to three attempts are made for each series.
 
@@ -164,7 +166,7 @@ After confirming the series, download the digitised data as CSV or XLSX.
 The standard table contains one row per digitised point:
 
 ```text
-series_name, x, y, x_value_type, y_value_type, x_unit, y_unit, x_axis_name, y_axis_name
+series_name, series_type, series_truncated, x, y, x_value_type, y_value_type, x_unit, y_unit, x_axis_name, y_axis_name
 ```
 
 Enable **Debug Data** to add run, series, axis, and image-coordinate fields:
@@ -178,6 +180,8 @@ crop_image_px_x, crop_image_px_y, full_image_px_x, full_image_px_y
 A debug XLSX export also contains `metadata`, `series_summary`, and `axes` worksheets.
 
 The interface also has an **Archive** download. This is a diagnostic snapshot of the run directory rather than a normal data export. It can include the uploaded source, raw provider responses, prompts, overlays, logs, and state, so review it before sharing.
+
+`LINE_SERIES_MIN_DATA_POINTS` and `LINE_SERIES_MAX_DATA_POINTS` control representative line control points. `SCATTER_SERIES_MAX_DATA_POINTS` controls the per-series scatter cap. The older `SERIES_MIN_DATA_POINTS` and `SERIES_MAX_DATA_POINTS` names remain temporary deprecated fallbacks when their new equivalents are absent.
 
 ## Multi-Panel Charts
 

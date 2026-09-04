@@ -1,0 +1,33 @@
+{
+  "run_id": "5fa1ed9ea8",
+  "stage": "series",
+  "series_id": "c3b9a8f7",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 1 of 4\nName: Series 1\nSeries type: scatter\nColour: black\nLine style: unknown\nMarker style: filled circle\nEstimated total points: 50\nX axis ID: main_x_step\nY axis ID: main_y_value\nAxis selection reason: The circular markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.\nVisual description: Main panel: black filled circular markers, generally rising from low values at early steps to high values near steps 45–50.\nIdentification confidence: 0.99",
+      "source_image_paths": [
+        "crop/approved_crop.png"
+      ],
+      "overlay_path": "series/c3b9a8f7/attempt_01/overlay.png",
+      "request_path": "series/c3b9a8f7/attempt_01/request.json",
+      "response_path": "series/c3b9a8f7/attempt_01/response.json",
+      "parsed_path": "series/c3b9a8f7/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 1 of 4\nName: Series 1\nSeries type: scatter\nColour: black\nLine style: unknown\nMarker style: filled circle\nEstimated total points: 50\nX axis ID: main_x_step\nY axis ID: main_y_value\nAxis selection reason: The circular markers are plotted against the single main panel's Step horizontal axis and Value vertical axis.\nVisual description: Main panel: black filled circular markers, generally rising from low values at early steps to high values near steps 45–50.\nIdentification confidence: 0.99",
+      "source_image_paths": [
+        "series/c3b9a8f7/attempt_01/overlay.png"
+      ],
+      "overlay_path": "series/c3b9a8f7/attempt_02/overlay.png",
+      "request_path": "series/c3b9a8f7/attempt_02/request.json",
+      "response_path": "series/c3b9a8f7/attempt_02/response.json",
+      "parsed_path": "series/c3b9a8f7/attempt_02/parsed.json"
+    }
+  ]
+}

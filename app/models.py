@@ -5,7 +5,7 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-from .series_point_limits import series_data_point_limits
+from .series_point_limits import line_series_data_point_limits
 
 
 ProviderName = Literal["openai", "gemini"]
@@ -28,6 +28,7 @@ StageName = Literal[
 ]
 EventCategory = Literal["API", "USER", "ARTIFACT", "WARN", "ERROR", "STAGE", "SYSTEM"]
 StageDecision = Literal["proposal", "accept_previous", "revise_previous"]
+SeriesType = Literal["line", "scatter"]
 
 
 def utc_now_iso() -> str:
@@ -181,6 +182,8 @@ class AttemptRecord(BaseModel):
     validation_status: Literal["valid", "invalid", "skipped"] = "skipped"
     confidence: float | None = None
     warnings: list[str] = Field(default_factory=list)
+    retry_round: int | None = Field(default=None, ge=1)
+    retry_mode: Literal["restart", "refine"] | None = None
 
 
 class CropProposal(BaseModel):
@@ -421,12 +424,15 @@ class SeriesPoint(BaseModel):
 
 class SeriesIdentification(BaseModel):
     series_name: str | None = None
+    series_type: SeriesType = "line"
     visual_description: str | None = None
     line_color: str | None = Field(
         default=None,
-        description="Line colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+        description="Series colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
     )
     line_style: str | None = None
+    marker_style: str | None = None
+    estimated_total_points: int | None = Field(default=None, ge=0)
     x_axis_id: str | None = None
     y_axis_id: str | None = None
     axis_selection_reason: str | None = None
@@ -453,7 +459,7 @@ class SeriesDigitizationOutput(BaseModel):
 
     @model_validator(mode="after")
     def validate_series(self) -> "SeriesDigitizationOutput":
-        min_points, max_points = series_data_point_limits()
+        min_points, max_points = line_series_data_point_limits()
         if not min_points <= len(self.points) <= max_points:
             raise ValueError(f"series extraction requires {min_points} to {max_points} points")
         return self
@@ -473,13 +479,46 @@ class SeriesDigitizationConversationResponse(BaseModel):
         return self
 
 
+class ScatterSeriesDigitizationOutput(BaseModel):
+    points: list[SeriesPointProposal] = Field(default_factory=list)
+    series_truncated: bool = False
+    estimated_total_points: int | None = Field(default=None, ge=0)
+    confidence: float | None = Field(default=None, ge=0, le=1)
+    warnings: list[str] = Field(default_factory=list)
+    unsupported_flags: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def validate_series(self) -> "ScatterSeriesDigitizationOutput":
+        if not self.points:
+            raise ValueError("scatter series extraction requires at least one point")
+        return self
+
+
+class ScatterSeriesDigitizationConversationResponse(BaseModel):
+    response_kind: StageDecision
+    revision_reason: str | None
+    proposal: ScatterSeriesDigitizationOutput | None
+
+    @model_validator(mode="after")
+    def validate_decision(self) -> "ScatterSeriesDigitizationConversationResponse":
+        if self.response_kind in {"proposal", "revise_previous"} and self.proposal is None:
+            raise ValueError("proposal is required for proposal or revise_previous responses")
+        if self.response_kind == "accept_previous" and self.proposal is not None:
+            raise ValueError("proposal must be null when accepting the previous attempt")
+        return self
+
+
 class SeriesState(BaseModel):
     id: str
     name: str
+    series_type: SeriesType = "line"
     llm_series_name: str | None = None
     visual_description: str | None = None
     line_color: str | None = None
     line_style: str | None = None
+    marker_style: str | None = None
+    series_truncated: bool = False
+    estimated_total_points: int | None = Field(default=None, ge=0)
     x_axis_id: str | None = None
     y_axis_id: str | None = None
     axis_selection_reason: str | None = None

@@ -8,7 +8,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from .models import ModelsFile, RunSettings
-from .series_point_limits import series_data_point_limits
+from .series_point_limits import (
+    line_series_data_point_limits,
+    point_limit_configuration_warnings,
+    scatter_series_max_data_points,
+)
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -35,7 +39,13 @@ class AppConfig:
         self.max_crop_attempts = 3
         self.max_axis_attempts = 3
         self.max_series_attempts = 3
-        self.series_min_data_points, self.series_max_data_points = series_data_point_limits()
+        self.line_series_min_data_points, self.line_series_max_data_points = line_series_data_point_limits()
+        self.scatter_series_max_data_points = scatter_series_max_data_points()
+        self.configuration_warnings = point_limit_configuration_warnings()
+
+        # Deprecated API-facing aliases retained during the environment-variable migration.
+        self.series_min_data_points = self.line_series_min_data_points
+        self.series_max_data_points = self.line_series_max_data_points
 
 
 @lru_cache
