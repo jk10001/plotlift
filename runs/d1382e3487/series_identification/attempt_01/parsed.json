@@ -1,0 +1,86 @@
+{
+  "series": [
+    {
+      "series_name": "Input power",
+      "series_type": "line",
+      "visual_description": "Top Performance Curve panel; upper dark-gray curve, gently dipping before rising and then descending toward the right.",
+      "line_color": "dimgray",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": null,
+      "y_axis_id": "top_panel_y_power",
+      "axis_selection_reason": "The curve is in the top panel, whose vertical axis is calibrated as Power. No top-panel x-axis is provided among the available axes.",
+      "confidence": 0.98
+    },
+    {
+      "series_name": "Shaft power",
+      "series_type": "line",
+      "visual_description": "Top Performance Curve panel; lower gray curve, with a shallow dip and rise followed by a decline toward the right.",
+      "line_color": "gray",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": null,
+      "y_axis_id": "top_panel_y_power",
+      "axis_selection_reason": "The curve is in the top panel, whose vertical axis is calibrated as Power. No top-panel x-axis is provided among the available axes.",
+      "confidence": 0.98
+    },
+    {
+      "series_name": "Head",
+      "series_type": "line",
+      "visual_description": "Lower panel; blue straight descending line from the upper-left to the lower-right of the plot.",
+      "line_color": "blue",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "lower_panel_x_flow",
+      "y_axis_id": "lower_panel_y_head",
+      "axis_selection_reason": "The legend identifies Head; it uses the lower panel's Flow horizontal axis and left vertical Head scale.",
+      "confidence": 0.99
+    },
+    {
+      "series_name": "Hydraulic efficiency",
+      "series_type": "line",
+      "visual_description": "Lower panel; green arch-shaped curve that rises from the lower-left, peaks near the middle, then falls toward the right.",
+      "line_color": "green",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "lower_panel_x_flow",
+      "y_axis_id": "lower_panel_y_efficiency",
+      "axis_selection_reason": "The legend identifies Hydraulic efficiency; the outer right axis is labeled Efficiency [%].",
+      "confidence": 0.97
+    },
+    {
+      "series_name": "Overall efficiency",
+      "series_type": "line",
+      "visual_description": "Lower panel; orange arch-shaped curve below the green efficiency curve, peaking near the middle and descending toward the right.",
+      "line_color": "darkorange",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "lower_panel_x_flow",
+      "y_axis_id": "lower_panel_y_efficiency",
+      "axis_selection_reason": "The legend identifies Overall efficiency; it uses the lower panel's Flow axis and outer right Efficiency [%] scale.",
+      "confidence": 0.97
+    },
+    {
+      "series_name": "NPSHR",
+      "series_type": "line",
+      "visual_description": "Lower panel; purple shallow U-shaped curve, visible from the left-middle region through the right side of the plot.",
+      "line_color": "mediumorchid",
+      "line_style": "solid",
+      "marker_style": null,
+      "estimated_total_points": null,
+      "x_axis_id": "lower_panel_x_flow",
+      "y_axis_id": "lower_panel_y_npshr",
+      "axis_selection_reason": "The legend identifies NPSHR; it uses the lower panel's Flow axis and the inner right NPSHR [m] scale.",
+      "confidence": 0.97
+    }
+  ],
+  "warnings": [
+    "No calibrated x-axis is provided for the top Performance Curve panel."
+  ],
+  "unsupported_flags": []
+}

@@ -1,0 +1,164 @@
+{
+  "provider": "gemini",
+  "api": "interactions",
+  "coordinate_scale": "0-1000",
+  "model": "gemini-3.8-flash",
+  "input": [
+    {
+      "type": "image",
+      "data": "<base64 omitted; see attempt image artifacts>",
+      "mime_type": "image/png",
+      "resolution": "high"
+    },
+    {
+      "type": "text",
+      "text": "This is a review attempt. The image shows the previous crop overlay relative to the original image.\nIf the crop includes all relevant chart information and excludes unnecessary page clutter, use response_kind \"accept_previous\" with proposal null.\nOtherwise use response_kind \"revise_previous\" and provide a complete revised crop proposal with coordinates relative to the original full image.\n"
+    }
+  ],
+  "store": true,
+  "system_instruction": "You are a careful chart digitisation assistant. Your task is to identify the complete chart region in an uploaded image.\nKeep all information needed to understand the chart: title, legend, axis labels, tick labels, units, annotations, axes, and all plot panels. Ensure all required text is in the crop.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 1000 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn an ordinary first attempt, use response_kind \"proposal\" and provide a complete proposal object. A refinement prompt may instead explicitly allow \"accept_previous\" or \"revise_previous\" on its first attempt.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn crop coordinates relative to the full uploaded image in full_image_norm.\n",
+  "response_format": [
+    {
+      "type": "text",
+      "mime_type": "application/json",
+      "schema": {
+        "$defs": {
+          "CropProposal": {
+            "properties": {
+              "bbox": {
+                "$ref": "#/$defs/NormBBox"
+              },
+              "confidence": {
+                "anyOf": [
+                  {
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": "number"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Confidence"
+              },
+              "warnings": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Warnings",
+                "type": "array"
+              },
+              "unsupported_flags": {
+                "items": {
+                  "type": "string"
+                },
+                "title": "Unsupported Flags",
+                "type": "array"
+              }
+            },
+            "required": [
+              "bbox",
+              "confidence",
+              "warnings",
+              "unsupported_flags"
+            ],
+            "title": "CropProposal",
+            "type": "object"
+          },
+          "NormBBox": {
+            "properties": {
+              "left": {
+                "maximum": 1000,
+                "minimum": 0,
+                "title": "Left",
+                "type": "integer"
+              },
+              "top": {
+                "maximum": 1000,
+                "minimum": 0,
+                "title": "Top",
+                "type": "integer"
+              },
+              "right": {
+                "maximum": 1000,
+                "minimum": 0,
+                "title": "Right",
+                "type": "integer"
+              },
+              "bottom": {
+                "maximum": 1000,
+                "minimum": 0,
+                "title": "Bottom",
+                "type": "integer"
+              }
+            },
+            "required": [
+              "left",
+              "top",
+              "right",
+              "bottom"
+            ],
+            "title": "NormBBox",
+            "type": "object"
+          }
+        },
+        "properties": {
+          "response_kind": {
+            "enum": [
+              "proposal",
+              "accept_previous",
+              "revise_previous"
+            ],
+            "title": "Response Kind",
+            "type": "string"
+          },
+          "revision_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision Reason"
+          },
+          "proposal": {
+            "anyOf": [
+              {
+                "$ref": "#/$defs/CropProposal"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "response_kind",
+          "revision_reason",
+          "proposal"
+        ],
+        "title": "CropConversationResponse",
+        "type": "object"
+      }
+    }
+  ],
+  "generation_config": {
+    "thinking_level": "medium"
+  },
+  "prompt_cache_key": "plotlift:0c9c640ec4:crop",
+  "previous_tool_call_id": null,
+  "previous_tool_output": {
+    "status": "overlay_rendered",
+    "overlay_path": "crop/attempt_01/overlay.png",
+    "bbox_full_norm": {
+      "left": 10,
+      "top": 60,
+      "right": 894,
+      "bottom": 964
+    },
+    "message": "The crop overlay was rendered successfully and is attached in the next user message for review."
+  },
+  "source_image_path": "crop/attempt_01/overlay.png"
+}

@@ -1,0 +1,37 @@
+{
+  "run_id": "dcd4df9e61",
+  "stage": "axis_x_axis",
+  "series_id": null,
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "source_image_path": "crop/approved_crop.png",
+      "overlay_path": "axis_x_axis/attempt_01/overlay.png",
+      "request_path": "axis_x_axis/attempt_01/request.json",
+      "response_path": "axis_x_axis/attempt_01/response.json",
+      "parsed_path": "axis_x_axis/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "revise_previous",
+      "revision_reason": "In the previous proposal, the y-coordinate was placed below the axis labels near the bottom edge of the image instead of on the actual horizontal axis line. The axis line and ticks are located at y = 918.",
+      "source_image_path": "axis_x_axis/attempt_01/overlay.png",
+      "overlay_path": "axis_x_axis/attempt_02/overlay.png",
+      "request_path": "axis_x_axis/attempt_02/request.json",
+      "response_path": "axis_x_axis/attempt_02/response.json",
+      "parsed_path": "axis_x_axis/attempt_02/parsed.json"
+    },
+    {
+      "attempt": 3,
+      "response_kind": "revise_previous",
+      "revision_reason": "The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.",
+      "source_image_path": "axis_x_axis/attempt_02/overlay.png",
+      "overlay_path": "axis_x_axis/attempt_03/overlay.png",
+      "request_path": "axis_x_axis/attempt_03/request.json",
+      "response_path": "axis_x_axis/attempt_03/response.json",
+      "parsed_path": "axis_x_axis/attempt_03/parsed.json"
+    }
+  ]
+}

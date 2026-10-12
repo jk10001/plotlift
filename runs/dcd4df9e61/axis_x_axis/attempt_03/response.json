@@ -1,0 +1,128 @@
+{
+  "raw": {
+    "status": "completed",
+    "created": "2026-10-11T10:20:58Z",
+    "model": "gemini-3.8-flash",
+    "output_text": "{\n  \"response_kind\": \"revise_previous\",\n  \"revision_reason\": \"The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.\",\n  \"proposal\": {\n    \"axis\": \"x\",\n    \"points\": [\n      {\n        \"label\": \"x1\",\n        \"crop_image_norm\": {\n          \"x\": 100,\n          \"y\": 964\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0,\n          \"parsed_datetime\": null,\n          \"unit\": \"l/s\"\n        }\n      },\n      {\n        \"label\": \"x2\",\n        \"crop_image_norm\": {\n          \"x\": 862,\n          \"y\": 964\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"240\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 240,\n          \"parsed_datetime\": null,\n          \"unit\": \"l/s\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+    "service_tier": "standard",
+    "steps": [
+      {
+        "type": "thought"
+      },
+      {
+        "content": [
+          {
+            "text": "{\n  \"response_kind\": \"revise_previous\",\n  \"revision_reason\": \"The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.\",\n  \"proposal\": {\n    \"axis\": \"x\",\n    \"points\": [\n      {\n        \"label\": \"x1\",\n        \"crop_image_norm\": {\n          \"x\": 100,\n          \"y\": 964\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0,\n          \"parsed_datetime\": null,\n          \"unit\": \"l/s\"\n        }\n      },\n      {\n        \"label\": \"x2\",\n        \"crop_image_norm\": {\n          \"x\": 862,\n          \"y\": 964\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"240\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 240,\n          \"parsed_datetime\": null,\n          \"unit\": \"l/s\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+            "type": "text"
+          }
+        ],
+        "type": "model_output"
+      }
+    ],
+    "updated": "2026-10-11T10:20:58Z",
+    "usage": {
+      "input_tokens_by_modality": [
+        {
+          "modality": "text",
+          "tokens": 7737
+        },
+        {
+          "modality": "image",
+          "tokens": 3255
+        }
+      ],
+      "total_cached_tokens": 0,
+      "total_input_tokens": 10992,
+      "total_output_tokens": 366,
+      "total_thought_tokens": 6243,
+      "total_tokens": 17601,
+      "total_tool_use_tokens": 0
+    },
+    "object": "interaction"
+  },
+  "text": "{\n  \"response_kind\": \"revise_previous\",\n  \"revision_reason\": \"The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.\",\n  \"proposal\": {\n    \"axis\": \"x\",\n    \"points\": [\n      {\n        \"label\": \"x1\",\n        \"crop_image_norm\": {\n          \"x\": 100,\n          \"y\": 964\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0,\n          \"parsed_datetime\": null,\n          \"unit\": \"l/s\"\n        }\n      },\n      {\n        \"label\": \"x2\",\n        \"crop_image_norm\": {\n          \"x\": 862,\n          \"y\": 964\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"240\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 240,\n          \"parsed_datetime\": null,\n          \"unit\": \"l/s\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+  "json": {
+    "response_kind": "revise_previous",
+    "revision_reason": "The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.",
+    "proposal": {
+      "axis": "x",
+      "points": [
+        {
+          "label": "x1",
+          "crop_image_norm": {
+            "x": 100,
+            "y": 963
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          }
+        },
+        {
+          "label": "x2",
+          "crop_image_norm": {
+            "x": 861,
+            "y": 963
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "240",
+            "value_type": "number",
+            "parsed_value": 240,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          }
+        }
+      ],
+      "confidence": 0.99,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  },
+  "provider_json": {
+    "response_kind": "revise_previous",
+    "revision_reason": "The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.",
+    "proposal": {
+      "axis": "x",
+      "points": [
+        {
+          "label": "x1",
+          "crop_image_norm": {
+            "x": 100,
+            "y": 964
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          }
+        },
+        {
+          "label": "x2",
+          "crop_image_norm": {
+            "x": 862,
+            "y": 964
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "240",
+            "value_type": "number",
+            "parsed_value": 240,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          }
+        }
+      ],
+      "confidence": 0.99,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  }
+}

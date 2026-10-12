@@ -1,0 +1,48 @@
+{
+  "response_kind": "revise_previous",
+  "revision_reason": "The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.",
+  "proposal": {
+    "axis": "x",
+    "points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 100,
+          "y": 963
+        },
+        "crop_image_px": {
+          "x": 60.06006006006007,
+          "y": 668.0270270270271
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 861,
+          "y": 963
+        },
+        "crop_image_px": {
+          "x": 517.1171171171171,
+          "y": 668.0270270270271
+        },
+        "chart_value": {
+          "value_raw": "240",
+          "value_type": "number",
+          "parsed_value": 240.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        }
+      }
+    ],
+    "confidence": 0.99,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

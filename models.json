@@ -1,6 +1,67 @@
 {
   "models": [
     {
+      "id": "gpt-6.1-sol",
+      "label": "GPT-6.1 Sol",
+      "family": "gpt-6.1",
+      "provider": "openai",
+      "input_cost_per_million_tokens_usd": 2.0,
+      "cached_input_cost_per_million_tokens_usd": 0.1,
+      "output_cost_per_million_tokens_usd": 10.0,
+      "long_context_threshold_tokens": 272000,
+      "long_context_input_cost_per_million_tokens_usd": 4.0,
+      "long_context_cached_input_cost_per_million_tokens_usd": 0.2,
+      "long_context_output_cost_per_million_tokens_usd": 15.0,
+      "default": false,
+      "enabled": true,
+      "reasoning_efforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "high",
+        "auto",
+        "low",
+        "original"
+      ],
+      "default_image_detail": "high"
+    },
+    {
+      "id": "gpt-6-luna",
+      "label": "GPT-6 Luna",
+      "family": "gpt-6",
+      "provider": "openai",
+      "input_cost_per_million_tokens_usd": 0.1,
+      "cached_input_cost_per_million_tokens_usd": 0.01,
+      "output_cost_per_million_tokens_usd": 0.5,
+      "long_context_threshold_tokens": 272000,
+      "long_context_input_cost_per_million_tokens_usd": 0.2,
+      "long_context_cached_input_cost_per_million_tokens_usd": 0.02,
+      "long_context_output_cost_per_million_tokens_usd": 0.75,
+      "default": false,
+      "enabled": true,
+      "reasoning_efforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "high",
+        "auto",
+        "low",
+        "original"
+      ],
+      "default_image_detail": "high"
+    },
+    {
       "id": "gpt-5.6-sol",
       "label": "GPT-5.6 Sol",
       "family": "gpt-5.6",
@@ -236,9 +297,9 @@
       "default_image_detail": "high"
     },
     {
-      "id": "gemini-3.7-flash",
-      "label": "Gemini 3.7 Flash",
-      "family": "gemini-3.7",
+      "id": "gemini-3.8-flash",
+      "label": "Gemini 3.8 Flash",
+      "family": "gemini-3.8",
       "provider": "gemini",
       "input_cost_per_million_tokens_usd": 0.75,
       "cached_input_cost_per_million_tokens_usd": 0.075,

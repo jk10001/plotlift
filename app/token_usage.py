@@ -71,6 +71,15 @@ def openai_token_usage(response: dict[str, Any]) -> TokenUsage:
 
 
 def gemini_token_usage(response: dict[str, Any]) -> TokenUsage:
+    if "usage" in response:
+        usage = response.get("usage") or {}
+        return TokenUsage(
+            input_tokens=usage.get("total_input_tokens"),
+            cache_input_tokens=usage.get("total_cached_tokens"),
+            output_tokens=_sum_present(usage.get("total_output_tokens"), usage.get("total_thought_tokens")),
+            reasoning_tokens=usage.get("total_thought_tokens"),
+            thinking_label="thinking",
+        )
     usage = response.get("usage_metadata") or response.get("usageMetadata") or {}
     output_tokens = _first_present(usage, "candidates_token_count", "candidatesTokenCount")
     thinking_tokens = _first_present(usage, "thoughts_token_count", "thoughtsTokenCount")

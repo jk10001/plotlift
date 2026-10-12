@@ -1,0 +1,73 @@
+{
+  "run_id": "d1382e3487",
+  "stage": "crop",
+  "series_id": null,
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "source_image_path": "pages/page_001.png",
+      "overlay_path": "crop/attempt_01/overlay.png",
+      "request_path": "crop/attempt_01/request.json",
+      "response_path": "crop/attempt_01/response.json",
+      "parsed_path": "crop/attempt_01/parsed.json",
+      "function_call_id": "call_o0qUpqeX3tUe70HTYGSwdh54",
+      "function_call_output": {
+        "status": "overlay_rendered",
+        "overlay_path": "crop/attempt_01/overlay.png",
+        "bbox_full_norm": {
+          "left": 37,
+          "top": 19,
+          "right": 901,
+          "bottom": 965
+        },
+        "message": "The crop overlay was rendered successfully and is attached in the next user message for review."
+      }
+    },
+    {
+      "attempt": 2,
+      "response_kind": "revise_previous",
+      "revision_reason": "The previous crop clips the right-side NPSHR and efficiency axes/labels. Expand the right boundary to include all chart annotations and axis text while retaining the title and both panels.",
+      "source_image_path": "crop/attempt_01/overlay.png",
+      "overlay_path": "crop/attempt_02/overlay.png",
+      "request_path": "crop/attempt_02/request.json",
+      "response_path": "crop/attempt_02/response.json",
+      "parsed_path": "crop/attempt_02/parsed.json",
+      "function_call_id": "call_gjjsU2NqKgw8Lcevx5TdZ1vx",
+      "function_call_output": {
+        "status": "overlay_rendered",
+        "overlay_path": "crop/attempt_02/overlay.png",
+        "bbox_full_norm": {
+          "left": 37,
+          "top": 19,
+          "right": 952,
+          "bottom": 965
+        },
+        "message": "The crop overlay was rendered successfully and is attached in the next user message for review."
+      }
+    },
+    {
+      "attempt": 3,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "source_image_path": "crop/attempt_02/overlay.png",
+      "overlay_path": "crop/attempt_03/overlay.png",
+      "request_path": "crop/attempt_03/request.json",
+      "response_path": "crop/attempt_03/response.json",
+      "parsed_path": "crop/attempt_03/parsed.json",
+      "function_call_id": "call_J77JyuFjmsbBG01AhZgxy7CN",
+      "function_call_output": {
+        "status": "overlay_rendered",
+        "overlay_path": "crop/attempt_03/overlay.png",
+        "bbox_full_norm": {
+          "left": 37,
+          "top": 19,
+          "right": 952,
+          "bottom": 965
+        },
+        "message": "The crop overlay was rendered successfully and is attached in the next user message for review."
+      }
+    }
+  ]
+}

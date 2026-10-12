@@ -1,0 +1,33 @@
+{
+  "run_id": "d1382e3487",
+  "stage": "series",
+  "series_id": "8b114c44",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 2 of 4\nName: Hydraulic efficiency\nSeries type: line\nColour: green\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: lower_panel_x_flow\nY axis ID: lower_panel_y_efficiency\nAxis selection reason: The legend identifies Hydraulic efficiency; the outer right axis is labeled Efficiency [%].\nVisual description: Lower panel; green arch-shaped curve that rises from the lower-left, peaks near the middle, then falls toward the right.\nIdentification confidence: 0.97",
+      "source_image_paths": [
+        "crop/approved_crop.png"
+      ],
+      "overlay_path": "series/8b114c44/attempt_01/overlay.png",
+      "request_path": "series/8b114c44/attempt_01/request.json",
+      "response_path": "series/8b114c44/attempt_01/response.json",
+      "parsed_path": "series/8b114c44/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 2 of 4\nName: Hydraulic efficiency\nSeries type: line\nColour: green\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: lower_panel_x_flow\nY axis ID: lower_panel_y_efficiency\nAxis selection reason: The legend identifies Hydraulic efficiency; the outer right axis is labeled Efficiency [%].\nVisual description: Lower panel; green arch-shaped curve that rises from the lower-left, peaks near the middle, then falls toward the right.\nIdentification confidence: 0.97",
+      "source_image_paths": [
+        "series/8b114c44/attempt_01/overlay.png"
+      ],
+      "overlay_path": "series/8b114c44/attempt_02/overlay.png",
+      "request_path": "series/8b114c44/attempt_02/request.json",
+      "response_path": "series/8b114c44/attempt_02/response.json",
+      "parsed_path": "series/8b114c44/attempt_02/parsed.json"
+    }
+  ]
+}

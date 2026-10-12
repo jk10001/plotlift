@@ -1,0 +1,15 @@
+{
+  "response_kind": "proposal",
+  "revision_reason": null,
+  "proposal": {
+    "bbox": {
+      "left": 37,
+      "top": 19,
+      "right": 901,
+      "bottom": 965
+    },
+    "confidence": 0.98,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

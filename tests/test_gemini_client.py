@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-import sys
+import base64
+import copy
+import json
 from pathlib import Path
-from types import ModuleType, SimpleNamespace
+from types import SimpleNamespace
 
 import pytest
 
@@ -90,73 +92,142 @@ def test_gemini_35_flash_is_enabled_with_expected_options() -> None:
     validate_run_settings(RunSettings(model_id="gemini-3.5-flash", image_detail="high", reasoning_effort="medium"))
 
 
-def test_gemini_37_flash_is_enabled_with_expected_options() -> None:
-    model = load_models().get_enabled("gemini-3.7-flash")
+def test_gemini_38_flash_is_enabled_with_expected_options() -> None:
+    model = load_models().get_enabled("gemini-3.8-flash")
 
-    assert model.label == "Gemini 3.7 Flash"
-    assert model.family == "gemini-3.7"
+    assert model.label == "Gemini 3.8 Flash"
+    assert model.family == "gemini-3.8"
     assert model.provider == "gemini"
     assert model.reasoning_efforts == ["low", "medium", "high"]
     assert model.default_reasoning_effort == "medium"
     assert model.image_detail_options == ["auto", "low", "medium", "high", "ultra_high"]
     assert model.default_image_detail == "high"
-    validate_run_settings(RunSettings(model_id="gemini-3.7-flash", image_detail="ultra_high", reasoning_effort="medium"))
+    validate_run_settings(RunSettings(model_id="gemini-3.8-flash", image_detail="ultra_high", reasoning_effort="medium"))
     with pytest.raises(ValueError, match="reasoning effort"):
-        validate_run_settings(RunSettings(model_id="gemini-3.7-flash", image_detail="high", reasoning_effort="minimal"))
+        validate_run_settings(RunSettings(model_id="gemini-3.8-flash", image_detail="high", reasoning_effort="minimal"))
 
 
-def test_gemini_generate_content_config_uses_sdk_schema_fields() -> None:
-    client = GeminiChartClient(api_key="test-key", mock_mode=False)
-    config = client._config(
-        "Normalized coordinates are integer coordinates from 0 to 999 inclusive.",
-        strict_json_schema(CropConversationResponse),
-        RunSettings(model_id="gemini-3.5-flash", image_detail="high", reasoning_effort="medium"),
-    )
+@pytest.mark.parametrize("model", [m for m in load_models().enabled_models() if m.provider == "gemini"])
+def test_interactions_options_validate_with_installed_sdk(model, tmp_path):
+    from google.genai.interactions import CreateModelInteraction
 
-    assert config["response_mime_type"] == "application/json"
-    assert "response_json_schema" in config
-    assert "response_format" not in config
-
-
-def test_gemini_history_reconstruction_retains_all_images(tmp_path: Path, monkeypatch) -> None:
-    first = tmp_path / "first.png"
-    second = tmp_path / "second.png"
-    current = tmp_path / "current.png"
-    first.write_bytes(b"first")
-    second.write_bytes(b"second")
-    current.write_bytes(b"current")
-
-    class FakeBlob:
-        def __init__(self, **kwargs) -> None:
-            self.kwargs = kwargs
-
-    class FakePart:
-        def __init__(self, **kwargs) -> None:
-            self.kwargs = kwargs
-
-    class FakeContent:
-        def __init__(self, **kwargs) -> None:
-            self.role = kwargs["role"]
-            self.parts = kwargs["parts"]
-
-    fake_types = SimpleNamespace(Blob=FakeBlob, Part=FakePart, Content=FakeContent)
-    fake_google = ModuleType("google")
-    fake_genai = ModuleType("google.genai")
-    fake_genai.types = fake_types
-    fake_google.genai = fake_genai
-    monkeypatch.setitem(sys.modules, "google", fake_google)
-    monkeypatch.setitem(sys.modules, "google.genai", fake_genai)
-
+    path = tmp_path / "chart.png"
+    path.write_bytes(b"image")
     client = GeminiChartClient(api_key=None, mock_mode=True)
-    _, request_contents = client._contents(
-        "confirm",
-        [current],
-        "high",
-        history=[{"user_prompt": "refine", "image_paths": [str(first), str(second)], "model_text": "{}"}],
-    )
+    for effort in model.reasoning_efforts:
+        for detail in model.image_detail_options:
+            settings = RunSettings(model_id=model.id, image_detail=detail, reasoning_effort=effort)
+            config = client._config("0 to 999 inclusive", strict_json_schema(CropConversationResponse), settings)
+            payload = dict(model=model.id, input=client._input("inspect", [path], detail), store=True, **config)
+            CreateModelInteraction.model_validate(payload)
+            assert config["generation_config"] == {"thinking_level": effort}
+            assert "0 to 1000 inclusive" in config["system_instruction"]
+            assert payload["input"][0].get("resolution") == (None if detail == "auto" else detail)
+            assert not {"temperature", "top_p", "top_k", "candidate_count", "thinking_budget"}.intersection(config)
 
-    assert [part.get("inline_data", {}).get("data") for part in request_contents[0]["parts"][:-1]] == [
-        "<bytes omitted; see attempt image artifacts>",
-        "<bytes omitted; see attempt image artifacts>",
-    ]
-    assert len(request_contents[2]["parts"]) == 2
+
+class FakeInteractions:
+    def __init__(self, responses):
+        self.responses = iter(responses)
+        self.calls = []
+
+    def create(self, **payload):
+        self.calls.append(copy.deepcopy(payload))
+        raw = next(self.responses)
+        return SimpleNamespace(model_dump=lambda **kwargs: copy.deepcopy(raw), output_text=None)
+
+
+def interaction(text='{"x": 1000, "y": 500}', **updates):
+    raw = {
+        "id": "interaction-1", "status": "completed",
+        "steps": [
+            {"type": "thought", "signature": "private-signature", "summary": "not JSON"},
+            {"type": "model_output", "content": [{"type": "text", "text": text}]},
+        ],
+        "usage": {"total_input_tokens": 1000, "total_cached_tokens": 100,
+                  "total_output_tokens": 200, "total_thought_tokens": 50},
+    }
+    raw.update(updates)
+    return raw
+
+
+def test_interactions_chaining_images_and_artifacts(tmp_path):
+    from app.artifacts import save_json, load_json
+
+    images = [tmp_path / "first.png", tmp_path / "second.jpg"]
+    for path in images:
+        path.write_bytes(path.name.encode())
+    fake = FakeInteractions([interaction(), interaction(id="interaction-2"), interaction(id="new-chain")])
+    client = GeminiChartClient(api_key="test-key", mock_mode=False)
+    client._client = SimpleNamespace(interactions=fake)
+    kwargs = dict(settings=RunSettings(model_id="gemini-3.8-flash", image_detail="high"),
+                  system_prompt="system", schema_name="points", schema={"type": "object"})
+    request, response = client.call_structured(**kwargs, user_prompt="inspect", image_paths=images)
+    assert response["json"] == {"x": 999, "y": 500}
+    assert response["provider_json"] == {"x": 1000, "y": 500}
+    assert [base64.b64decode(i["data"]) for i in fake.calls[0]["input"][:-1]] == [p.name.encode() for p in images]
+    assert [i["mime_type"] for i in fake.calls[0]["input"][:-1]] == ["image/png", "image/jpeg"]
+    next_request, next_response = client.call_structured(
+        **kwargs, user_prompt="review", image_path=images[1], previous_response_id=response["response_id"],
+        conversation_history=[{"image_path": "must-not-read", "model_text": "old"}], prompt_cache_key="local-only")
+    assert fake.calls[1]["previous_interaction_id"] == "interaction-1"
+    assert len(fake.calls[1]["input"]) == 2
+    assert fake.calls[1]["input"][-1] == {"type": "text", "text": "review"}
+    assert "prompt_cache_key" not in fake.calls[1]
+    for key in ("system_instruction", "response_format", "generation_config", "store"):
+        assert fake.calls[0][key] == fake.calls[1][key]
+    client.call_structured(**kwargs, user_prompt="restart", image_path=images[0])
+    assert "previous_interaction_id" not in fake.calls[2]
+    artifact = tmp_path / "artifact.json"
+    save_json(artifact, {"request": next_request, "response": next_response, "wire": fake.calls[1]})
+    saved = json.dumps(load_json(artifact))
+    assert "interaction-1" not in saved and "interaction-2" not in saved
+    assert "private-signature" not in saved
+    assert base64.b64encode(images[1].name.encode()).decode() not in saved
+    assert response["raw"]["steps"][0]["signature"] == "private-signature"
+    assert "omitted" in request["input"][0]["data"]
+
+
+@pytest.mark.parametrize("raw, error", [
+    (interaction(status="failed"), "did not complete"),
+    (interaction(status="cancelled"), "did not complete"),
+    (interaction(status="in_progress"), "did not complete"),
+    (interaction(status="requires_action"), "did not complete"),
+    (interaction(id=None), "ID"),
+    (interaction(text=""), "text output"),
+    (interaction(steps=[]), "text output"),
+    (interaction(text="not json"), "Expecting value"),
+])
+def test_interactions_invalid_responses_fail(raw, error, tmp_path):
+    path = tmp_path / "chart.png"
+    path.write_bytes(b"image")
+    client = GeminiChartClient(api_key="test-key", mock_mode=False)
+    fake = FakeInteractions([raw])
+    client._client = SimpleNamespace(interactions=fake)
+    with pytest.raises((RuntimeError, ValueError), match=error):
+        client.call_structured(settings=RunSettings(model_id="gemini-3.8-flash"), system_prompt="system",
+                               user_prompt="inspect", image_path=path, schema_name="test", schema={"type": "object"})
+    assert len(fake.calls) == 1
+
+
+def test_interactions_crop_preserves_shared_contract(tmp_path):
+    path = tmp_path / "chart.png"
+    path.write_bytes(b"image")
+    raw = interaction(text='{"response_kind":"accept_previous","revision_reason":null,"proposal":null}')
+    client = GeminiChartClient(api_key="test-key", mock_mode=False)
+    fake = FakeInteractions([raw])
+    client._client = SimpleNamespace(interactions=fake)
+    _, response = client.call_crop_tool(settings=RunSettings(model_id="gemini-3.8-flash"),
+        system_prompt="system", user_prompt="review", image_path=path,
+        schema=strict_json_schema(CropConversationResponse), previous_response_id="prior")
+    CropConversationResponse.model_validate(response["arguments"])
+    assert response["response_id"] == "interaction-1"
+    assert response["function_call_id"] is None
+    assert "tools" not in fake.calls[0]
+    assert fake.calls[0]["previous_interaction_id"] == "prior"
+
+
+def test_empty_user_prompt_rejected(tmp_path):
+    client = GeminiChartClient(api_key=None, mock_mode=True)
+    with pytest.raises(ValueError, match="non-empty"):
+        client._input(" ", [tmp_path / "not-read.png"], "high")

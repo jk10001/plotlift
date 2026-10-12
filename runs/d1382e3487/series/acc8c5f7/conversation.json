@@ -1,0 +1,33 @@
+{
+  "run_id": "d1382e3487",
+  "stage": "series",
+  "series_id": "acc8c5f7",
+  "attempts": [
+    {
+      "attempt": 1,
+      "response_kind": "proposal",
+      "revision_reason": null,
+      "target_series": "Series 4 of 4\nName: NPSHR\nSeries type: line\nColour: mediumorchid\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: lower_panel_x_flow\nY axis ID: lower_panel_y_npshr\nAxis selection reason: The legend identifies NPSHR; it uses the lower panel's Flow axis and the inner right NPSHR [m] scale.\nVisual description: Lower panel; purple shallow U-shaped curve, visible from the left-middle region through the right side of the plot.\nIdentification confidence: 0.97",
+      "source_image_paths": [
+        "crop/approved_crop.png"
+      ],
+      "overlay_path": "series/acc8c5f7/attempt_01/overlay.png",
+      "request_path": "series/acc8c5f7/attempt_01/request.json",
+      "response_path": "series/acc8c5f7/attempt_01/response.json",
+      "parsed_path": "series/acc8c5f7/attempt_01/parsed.json"
+    },
+    {
+      "attempt": 2,
+      "response_kind": "accept_previous",
+      "revision_reason": null,
+      "target_series": "Series 4 of 4\nName: NPSHR\nSeries type: line\nColour: mediumorchid\nLine style: solid\nMarker style: unknown\nEstimated total points: unknown\nX axis ID: lower_panel_x_flow\nY axis ID: lower_panel_y_npshr\nAxis selection reason: The legend identifies NPSHR; it uses the lower panel's Flow axis and the inner right NPSHR [m] scale.\nVisual description: Lower panel; purple shallow U-shaped curve, visible from the left-middle region through the right side of the plot.\nIdentification confidence: 0.97",
+      "source_image_paths": [
+        "series/acc8c5f7/attempt_01/overlay.png"
+      ],
+      "overlay_path": "series/acc8c5f7/attempt_02/overlay.png",
+      "request_path": "series/acc8c5f7/attempt_02/request.json",
+      "response_path": "series/acc8c5f7/attempt_02/response.json",
+      "parsed_path": "series/acc8c5f7/attempt_02/parsed.json"
+    }
+  ]
+}

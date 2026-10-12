@@ -1,0 +1,100 @@
+{
+  "raw": {
+    "status": "completed",
+    "created": "2026-10-11T07:52:47Z",
+    "model": "gemini-3.8-flash",
+    "output_text": "{\n  \"axes\": [\n    {\n      \"axis_id\": \"x_axis\",\n      \"direction\": \"x\",\n      \"name\": \"Flow rate\",\n      \"unit\": \"gallon/h\",\n      \"quantity\": \"Flow rate\",\n      \"location_description\": \"Bottom horizontal axis measuring flow rate in gallon/h\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    },\n    {\n      \"axis_id\": \"y_axis\",\n      \"direction\": \"y\",\n      \"name\": \"Pressure\",\n      \"unit\": \"psi\",\n      \"quantity\": \"Pressure\",\n      \"location_description\": \"Left vertical axis measuring pressure in psi\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+    "service_tier": "standard",
+    "steps": [
+      {
+        "type": "thought"
+      },
+      {
+        "content": [
+          {
+            "text": "{\n  \"axes\": [\n    {\n      \"axis_id\": \"x_axis\",\n      \"direction\": \"x\",\n      \"name\": \"Flow rate\",\n      \"unit\": \"gallon/h\",\n      \"quantity\": \"Flow rate\",\n      \"location_description\": \"Bottom horizontal axis measuring flow rate in gallon/h\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    },\n    {\n      \"axis_id\": \"y_axis\",\n      \"direction\": \"y\",\n      \"name\": \"Pressure\",\n      \"unit\": \"psi\",\n      \"quantity\": \"Pressure\",\n      \"location_description\": \"Left vertical axis measuring pressure in psi\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+            "type": "text"
+          }
+        ],
+        "type": "model_output"
+      }
+    ],
+    "updated": "2026-10-11T07:52:47Z",
+    "usage": {
+      "input_tokens_by_modality": [
+        {
+          "modality": "text",
+          "tokens": 411
+        },
+        {
+          "modality": "image",
+          "tokens": 1056
+        }
+      ],
+      "total_cached_tokens": 0,
+      "total_input_tokens": 1467,
+      "total_output_tokens": 232,
+      "total_thought_tokens": 355,
+      "total_tokens": 2054,
+      "total_tool_use_tokens": 0
+    },
+    "object": "interaction"
+  },
+  "text": "{\n  \"axes\": [\n    {\n      \"axis_id\": \"x_axis\",\n      \"direction\": \"x\",\n      \"name\": \"Flow rate\",\n      \"unit\": \"gallon/h\",\n      \"quantity\": \"Flow rate\",\n      \"location_description\": \"Bottom horizontal axis measuring flow rate in gallon/h\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    },\n    {\n      \"axis_id\": \"y_axis\",\n      \"direction\": \"y\",\n      \"name\": \"Pressure\",\n      \"unit\": \"psi\",\n      \"quantity\": \"Pressure\",\n      \"location_description\": \"Left vertical axis measuring pressure in psi\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+  "json": {
+    "axes": [
+      {
+        "axis_id": "x_axis",
+        "direction": "x",
+        "name": "Flow rate",
+        "unit": "gallon/h",
+        "quantity": "Flow rate",
+        "location_description": "Bottom horizontal axis measuring flow rate in gallon/h",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "y_axis",
+        "direction": "y",
+        "name": "Pressure",
+        "unit": "psi",
+        "quantity": "Pressure",
+        "location_description": "Left vertical axis measuring pressure in psi",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  },
+  "provider_json": {
+    "axes": [
+      {
+        "axis_id": "x_axis",
+        "direction": "x",
+        "name": "Flow rate",
+        "unit": "gallon/h",
+        "quantity": "Flow rate",
+        "location_description": "Bottom horizontal axis measuring flow rate in gallon/h",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "y_axis",
+        "direction": "y",
+        "name": "Pressure",
+        "unit": "psi",
+        "quantity": "Pressure",
+        "location_description": "Left vertical axis measuring pressure in psi",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

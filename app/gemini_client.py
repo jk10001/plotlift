@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import copy
 import json
 from pathlib import Path
@@ -33,7 +34,7 @@ class GeminiChartClient:
         if self._client is None:
             from google import genai
 
-            self._client = genai.Client(api_key=self.api_key, http_options={"api_version": "v1alpha"})
+            self._client = genai.Client(api_key=self.api_key)
         return self._client
 
     def call_crop_tool(
@@ -88,26 +89,32 @@ class GeminiChartClient:
     ) -> tuple[dict[str, Any], dict[str, Any]]:
         emit_event(self.run_dir, "API", f"Calling {settings.model_id} for {schema_name}", run_id=self.run_id)
         paths = _ordered_image_paths(image_path, image_paths)
-        contents, request_contents = self._contents(user_prompt, paths, settings.image_detail, history=conversation_history)
-        config = self._config(system_prompt, schema, settings)
-        request: dict[str, Any] = {
-            "provider": "gemini",
+        # Interactions retains the full history and thought signatures server-side.
+        # Only send the new turn, even when the shared stage interface supplies history.
+        inputs = self._input(user_prompt, paths, settings.image_detail)
+        payload = {
             "model": settings.model_id,
-            "coordinate_scale": f"0-{GEMINI_COORDINATE_MAX}",
-            "contents": request_contents,
-            "config": self._scrub_config(config),
+            "input": inputs,
+            "store": True,
+            **self._config(system_prompt, schema, settings),
         }
         if previous_response_id:
-            request["previous_response_id"] = previous_response_id
+            payload["previous_interaction_id"] = previous_response_id
+        logged_payload = copy.deepcopy(payload)
+        for item in logged_payload["input"]:
+            if item["type"] == "image":
+                item["data"] = "<base64 omitted; see attempt image artifacts>"
+        request: dict[str, Any] = {
+            "provider": "gemini",
+            "api": "interactions",
+            "coordinate_scale": f"0-{GEMINI_COORDINATE_MAX}",
+            **logged_payload,
+        }
         if prompt_cache_key:
             request["prompt_cache_key"] = prompt_cache_key
 
-        response = self.client.models.generate_content(
-            model=settings.model_id,
-            contents=contents,
-            config=config,
-        )
-        response_dict = response.model_dump(mode="json") if hasattr(response, "model_dump") else {}
+        response = self.client.interactions.create(**payload)
+        response_dict = response.model_dump(mode="json", exclude_none=True)
         model = load_models().get_enabled(settings.model_id)
         cost = self._cost_tracker.record_gemini(response_dict, model)
         emit_event(
@@ -118,7 +125,13 @@ class GeminiChartClient:
             call_cost_usd=cost.call_cost_usd,
             run_cost_usd=cost.run_cost_usd,
         )
-        text = getattr(response, "text", None) or self._extract_text(response_dict)
+        if response_dict.get("status") != "completed":
+            raise RuntimeError(f"Gemini interaction did not complete (status={response_dict.get('status', 'missing')})")
+        if not response_dict.get("id"):
+            raise RuntimeError("Gemini interaction did not return an ID")
+        text = getattr(response, "output_text", None) or self._extract_text(response_dict)
+        if not text.strip():
+            raise RuntimeError("Gemini interaction did not contain text output")
         provider_json = json.loads(text)
         internal_json = gemini_to_internal_coordinates(provider_json)
         return request, {
@@ -126,86 +139,50 @@ class GeminiChartClient:
             "text": text,
             "json": internal_json,
             "provider_json": provider_json,
-            "response_id": response_dict.get("id") or response_dict.get("response_id"),
+            "response_id": response_dict["id"],
         }
 
-    def _contents(
-        self,
-        user_prompt: str,
-        image_paths: list[Path],
-        detail: str,
-        *,
-        history: list[dict[str, Any]] | None = None,
-    ) -> tuple[list[Any], list[dict[str, Any]]]:
-        from google.genai import types
-
-        contents: list[Any] = []
-        request_contents: list[dict[str, Any]] = []
-        for turn in history or []:
-            turn_paths = turn.get("image_paths") or [turn["image_path"]]
-            user_content, request_user_content = self._user_content(
-                types, turn["user_prompt"], [Path(path) for path in turn_paths], detail
-            )
-            contents.append(user_content)
-            request_contents.append(request_user_content)
-            contents.append(types.Content(role="model", parts=[types.Part(text=turn["model_text"])]))
-            request_contents.append({"role": "model", "parts": [{"text": turn["model_text"]}]})
-        user_content, request_user_content = self._user_content(types, user_prompt, image_paths, detail)
-        contents.append(user_content)
-        request_contents.append(request_user_content)
-        return contents, request_contents
-
-    def _user_content(self, types: Any, user_prompt: str, image_paths: list[Path], detail: str) -> tuple[Any, dict[str, Any]]:
-        image_parts = []
-        request_image_parts = []
-        for image_path in image_paths:
-            mime_type = _mime_type(image_path)
-            image_parts.append(
-                types.Part(
-                    inline_data=types.Blob(mime_type=mime_type, data=image_path.read_bytes()),
-                    **_media_resolution_kwargs(detail),
-                )
-            )
-            request_image_parts.append(
-                {
-                    "inline_data": {"mime_type": mime_type, "data": "<bytes omitted; see attempt image artifacts>"},
-                    **_media_resolution_kwargs(detail),
-                }
-            )
-        content = types.Content(role="user", parts=[*image_parts, types.Part(text=user_prompt)])
-        request_content = {
-            "role": "user",
-            "parts": [*request_image_parts, {"text": user_prompt}],
-        }
-        return content, request_content
+    def _input(self, user_prompt: str, image_paths: list[Path], detail: str) -> list[dict[str, Any]]:
+        if not user_prompt.strip():
+            raise ValueError("Gemini requires a non-empty user prompt")
+        images = [
+            {
+                "type": "image",
+                "data": base64.b64encode(path.read_bytes()).decode("ascii"),
+                "mime_type": _mime_type(path),
+                **_media_resolution_kwargs(detail),
+            }
+            for path in image_paths
+        ]
+        return [*images, {"type": "text", "text": user_prompt}]
 
     def _config(self, system_prompt: str, schema: dict[str, Any], settings: RunSettings) -> dict[str, Any]:
         config: dict[str, Any] = {
             "system_instruction": _gemini_coordinate_prompt(system_prompt),
-            "response_mime_type": "application/json",
-            "response_json_schema": gemini_schema(schema),
+            "response_format": [{
+                "type": "text",
+                "mime_type": "application/json",
+                "schema": gemini_schema(schema),
+            }],
         }
         thinking_config = _thinking_config(settings)
         if thinking_config:
-            config["thinking_config"] = thinking_config
+            config["generation_config"] = thinking_config
         return config
 
-    def _scrub_config(self, config: dict[str, Any]) -> dict[str, Any]:
-        scrubbed = copy.deepcopy(config)
-        return scrubbed
-
     def _extract_text(self, response: dict[str, Any]) -> str:
-        candidates = response.get("candidates") or []
+        # Match output_text: only the trailing model output, never thought summaries.
         fragments: list[str] = []
-        for candidate in candidates:
-            content = candidate.get("content") or {}
-            for part in content.get("parts") or []:
-                text = part.get("text")
-                if text:
-                    fragments.append(text)
+        for step in reversed(response.get("steps") or []):
+            if step.get("type") != "model_output":
+                break
+            for content in reversed(step.get("content") or []):
+                if content.get("type") != "text":
+                    return "".join(reversed(fragments))
+                fragments.append(content.get("text") or "")
         if not fragments:
-            raise RuntimeError("Gemini response did not contain text output")
-        return "".join(fragments)
+            raise RuntimeError("Gemini interaction did not contain text output")
+        return "".join(reversed(fragments))
 
 
 def gemini_schema(schema: dict[str, Any]) -> dict[str, Any]:
@@ -278,15 +255,11 @@ def _gemini_coordinate_prompt(prompt: str) -> str:
 
 
 def _media_resolution_kwargs(detail: str) -> dict[str, Any]:
-    level = {
-        "low": "media_resolution_low",
-        "medium": "media_resolution_medium",
-        "high": "media_resolution_high",
-        "ultra_high": "media_resolution_ultra_high",
-    }.get(detail)
-    if not level:
+    if detail == "auto":
         return {}
-    return {"media_resolution": {"level": level}}
+    if detail not in {"low", "medium", "high", "ultra_high"}:
+        raise ValueError(f"Unsupported Gemini image detail: {detail}")
+    return {"resolution": detail}
 
 
 def _thinking_config(settings: RunSettings) -> dict[str, Any] | None:

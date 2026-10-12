@@ -1,0 +1,108 @@
+{
+  "raw": {
+    "status": "completed",
+    "created": "2026-10-11T08:03:22Z",
+    "model": "gemini-3.8-flash",
+    "output_text": "{\n  \"series\": [\n    {\n      \"series_name\": \"60 Hz\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Solid black curve showing the 60 Hz pump performance, starting around 78 psi at 0 gallon/h and dropping towards ~6 psi near 6400 gallon/h.\",\n      \"line_color\": \"black\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_flow_rate\",\n      \"y_axis_id\": \"y_pressure\",\n      \"axis_selection_reason\": \"Mapped to the flow rate x-axis and pressure y-axis.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"series_name\": \"50 Hz\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Dashed black curve showing the 50 Hz pump performance, starting around 57 psi at 0 gallon/h and dropping towards ~8 psi near 5850 gallon/h.\",\n      \"line_color\": \"black\",\n      \"line_style\": \"dashed\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_flow_rate\",\n      \"y_axis_id\": \"y_pressure\",\n      \"axis_selection_reason\": \"Mapped to the flow rate x-axis and pressure y-axis.\",\n      \"confidence\": 0.98\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+    "service_tier": "standard",
+    "steps": [
+      {
+        "type": "thought"
+      },
+      {
+        "content": [
+          {
+            "text": "{\n  \"series\": [\n    {\n      \"series_name\": \"60 Hz\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Solid black curve showing the 60 Hz pump performance, starting around 78 psi at 0 gallon/h and dropping towards ~6 psi near 6400 gallon/h.\",\n      \"line_color\": \"black\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_flow_rate\",\n      \"y_axis_id\": \"y_pressure\",\n      \"axis_selection_reason\": \"Mapped to the flow rate x-axis and pressure y-axis.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"series_name\": \"50 Hz\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Dashed black curve showing the 50 Hz pump performance, starting around 57 psi at 0 gallon/h and dropping towards ~8 psi near 5850 gallon/h.\",\n      \"line_color\": \"black\",\n      \"line_style\": \"dashed\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_flow_rate\",\n      \"y_axis_id\": \"y_pressure\",\n      \"axis_selection_reason\": \"Mapped to the flow rate x-axis and pressure y-axis.\",\n      \"confidence\": 0.98\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+            "type": "text"
+          }
+        ],
+        "type": "model_output"
+      }
+    ],
+    "updated": "2026-10-11T08:03:22Z",
+    "usage": {
+      "input_tokens_by_modality": [
+        {
+          "modality": "text",
+          "tokens": 560
+        },
+        {
+          "modality": "image",
+          "tokens": 1075
+        }
+      ],
+      "total_cached_tokens": 0,
+      "total_input_tokens": 1635,
+      "total_output_tokens": 388,
+      "total_thought_tokens": 211,
+      "total_tokens": 2234,
+      "total_tool_use_tokens": 0
+    },
+    "object": "interaction"
+  },
+  "text": "{\n  \"series\": [\n    {\n      \"series_name\": \"60 Hz\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Solid black curve showing the 60 Hz pump performance, starting around 78 psi at 0 gallon/h and dropping towards ~6 psi near 6400 gallon/h.\",\n      \"line_color\": \"black\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_flow_rate\",\n      \"y_axis_id\": \"y_pressure\",\n      \"axis_selection_reason\": \"Mapped to the flow rate x-axis and pressure y-axis.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"series_name\": \"50 Hz\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Dashed black curve showing the 50 Hz pump performance, starting around 57 psi at 0 gallon/h and dropping towards ~8 psi near 5850 gallon/h.\",\n      \"line_color\": \"black\",\n      \"line_style\": \"dashed\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_flow_rate\",\n      \"y_axis_id\": \"y_pressure\",\n      \"axis_selection_reason\": \"Mapped to the flow rate x-axis and pressure y-axis.\",\n      \"confidence\": 0.98\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+  "json": {
+    "series": [
+      {
+        "series_name": "60 Hz",
+        "series_type": "line",
+        "visual_description": "Solid black curve showing the 60 Hz pump performance, starting around 78 psi at 0 gallon/h and dropping towards ~6 psi near 6400 gallon/h.",
+        "line_color": "black",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "x_flow_rate",
+        "y_axis_id": "y_pressure",
+        "axis_selection_reason": "Mapped to the flow rate x-axis and pressure y-axis.",
+        "confidence": 0.98
+      },
+      {
+        "series_name": "50 Hz",
+        "series_type": "line",
+        "visual_description": "Dashed black curve showing the 50 Hz pump performance, starting around 57 psi at 0 gallon/h and dropping towards ~8 psi near 5850 gallon/h.",
+        "line_color": "black",
+        "line_style": "dashed",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "x_flow_rate",
+        "y_axis_id": "y_pressure",
+        "axis_selection_reason": "Mapped to the flow rate x-axis and pressure y-axis.",
+        "confidence": 0.98
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  },
+  "provider_json": {
+    "series": [
+      {
+        "series_name": "60 Hz",
+        "series_type": "line",
+        "visual_description": "Solid black curve showing the 60 Hz pump performance, starting around 78 psi at 0 gallon/h and dropping towards ~6 psi near 6400 gallon/h.",
+        "line_color": "black",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "x_flow_rate",
+        "y_axis_id": "y_pressure",
+        "axis_selection_reason": "Mapped to the flow rate x-axis and pressure y-axis.",
+        "confidence": 0.98
+      },
+      {
+        "series_name": "50 Hz",
+        "series_type": "line",
+        "visual_description": "Dashed black curve showing the 50 Hz pump performance, starting around 57 psi at 0 gallon/h and dropping towards ~8 psi near 5850 gallon/h.",
+        "line_color": "black",
+        "line_style": "dashed",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "x_flow_rate",
+        "y_axis_id": "y_pressure",
+        "axis_selection_reason": "Mapped to the flow rate x-axis and pressure y-axis.",
+        "confidence": 0.98
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "raw": {
+    "status": "completed",
+    "created": "2026-10-11T08:02:26Z",
+    "model": "gemini-3.8-flash",
+    "output_text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"x\",\n    \"points\": [\n      {\n        \"label\": \"x1\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 850\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0,\n          \"parsed_datetime\": null,\n          \"unit\": \"gallon/h\"\n        }\n      },\n      {\n        \"label\": \"x2\",\n        \"crop_image_norm\": {\n          \"x\": 964,\n          \"y\": 850\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"6750\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 6750,\n          \"parsed_datetime\": null,\n          \"unit\": \"gallon/h\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+    "service_tier": "standard",
+    "steps": [
+      {
+        "type": "thought"
+      },
+      {
+        "content": [
+          {
+            "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"x\",\n    \"points\": [\n      {\n        \"label\": \"x1\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 850\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0,\n          \"parsed_datetime\": null,\n          \"unit\": \"gallon/h\"\n        }\n      },\n      {\n        \"label\": \"x2\",\n        \"crop_image_norm\": {\n          \"x\": 964,\n          \"y\": 850\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"6750\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 6750,\n          \"parsed_datetime\": null,\n          \"unit\": \"gallon/h\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+            "type": "text"
+          }
+        ],
+        "type": "model_output"
+      }
+    ],
+    "updated": "2026-10-11T08:02:26Z",
+    "usage": {
+      "input_tokens_by_modality": [
+        {
+          "modality": "text",
+          "tokens": 548
+        },
+        {
+          "modality": "image",
+          "tokens": 1075
+        }
+      ],
+      "total_cached_tokens": 0,
+      "total_input_tokens": 1623,
+      "total_output_tokens": 316,
+      "total_thought_tokens": 2115,
+      "total_tokens": 4054,
+      "total_tool_use_tokens": 0
+    },
+    "object": "interaction"
+  },
+  "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"x\",\n    \"points\": [\n      {\n        \"label\": \"x1\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 850\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0,\n          \"parsed_datetime\": null,\n          \"unit\": \"gallon/h\"\n        }\n      },\n      {\n        \"label\": \"x2\",\n        \"crop_image_norm\": {\n          \"x\": 964,\n          \"y\": 850\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"6750\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 6750,\n          \"parsed_datetime\": null,\n          \"unit\": \"gallon/h\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+  "json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "x",
+      "points": [
+        {
+          "label": "x1",
+          "crop_image_norm": {
+            "x": 145,
+            "y": 849
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          }
+        },
+        {
+          "label": "x2",
+          "crop_image_norm": {
+            "x": 963,
+            "y": 849
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "6750",
+            "value_type": "number",
+            "parsed_value": 6750,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          }
+        }
+      ],
+      "confidence": 0.99,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  },
+  "provider_json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "x",
+      "points": [
+        {
+          "label": "x1",
+          "crop_image_norm": {
+            "x": 145,
+            "y": 850
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          }
+        },
+        {
+          "label": "x2",
+          "crop_image_norm": {
+            "x": 964,
+            "y": 850
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "6750",
+            "value_type": "number",
+            "parsed_value": 6750,
+            "parsed_datetime": null,
+            "unit": "gallon/h"
+          }
+        }
+      ],
+      "confidence": 0.99,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  }
+}

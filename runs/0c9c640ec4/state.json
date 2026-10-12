@@ -1,0 +1,375 @@
+{
+  "run_id": "0c9c640ec4",
+  "created_at": "2026-10-11T07:51:53.302901+00:00",
+  "updated_at": "2026-10-11T07:53:21.097187+00:00",
+  "stage": "y_calibration_review",
+  "active_job": "axis_calibration",
+  "settings": {
+    "model_id": "gemini-3.8-flash",
+    "image_detail": "high",
+    "reasoning_effort": "medium",
+    "mock_mode": false
+  },
+  "prompt_metadata": {
+    "prompt_pack": "prompts.yaml",
+    "prompt_version": "2026-08-29-series-retry-refinement-v1",
+    "prompt_hash": "b0f6803ebe974149"
+  },
+  "upload_filename": "pump_curve_05.png",
+  "original_path": "uploads/original.png",
+  "pages": [
+    {
+      "path": "pages/page_001.png",
+      "width": 1050,
+      "height": 570,
+      "label": "Image"
+    }
+  ],
+  "selected_page_index": 0,
+  "canonical_image": {
+    "path": "pages/page_001.png",
+    "width": 1050,
+    "height": 570,
+    "label": "Image"
+  },
+  "crop": {
+    "bbox_full_norm": {
+      "left": 5,
+      "top": 50,
+      "right": 914,
+      "bottom": 979
+    },
+    "bbox_full_px": {
+      "left": 5.25025025025025,
+      "top": 28.47847847847848,
+      "right": 959.7457457457458,
+      "bottom": 557.6086086086086
+    },
+    "image": {
+      "path": "crop/approved_crop.png",
+      "width": 955,
+      "height": 530,
+      "label": null
+    },
+    "approved": true,
+    "warnings": []
+  },
+  "calibration": {
+    "identified_axes": [
+      {
+        "axis_id": "x_axis",
+        "direction": "x",
+        "name": "Flow rate",
+        "unit": "gallon/h",
+        "quantity": "Flow rate",
+        "location_description": "Bottom horizontal axis measuring flow rate in gallon/h",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "y_axis",
+        "direction": "y",
+        "name": "Pressure",
+        "unit": "psi",
+        "quantity": "Pressure",
+        "location_description": "Left vertical axis measuring pressure in psi",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "calibrated_axes": [
+      {
+        "axis_id": "x_axis",
+        "direction": "x",
+        "name": "Flow rate",
+        "unit": "gallon/h",
+        "quantity": "Flow rate",
+        "location_description": "Bottom horizontal axis measuring flow rate in gallon/h",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 138,
+              "y": 897
+            },
+            "crop_image_px": {
+              "x": 131.78378378378378,
+              "y": 474.987987987988
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "gallon/h"
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 788,
+              "y": 897
+            },
+            "crop_image_px": {
+              "x": 752.5045045045044,
+              "y": 474.987987987988
+            },
+            "chart_value": {
+              "value_raw": "5400",
+              "value_type": "number",
+              "parsed_value": 5400.0,
+              "parsed_datetime": null,
+              "unit": "gallon/h"
+            }
+          }
+        ],
+        "approved": false,
+        "confidence": 0.99,
+        "warnings": []
+      },
+      {
+        "axis_id": "y_axis",
+        "direction": "y",
+        "name": "Pressure",
+        "unit": "psi",
+        "quantity": "Pressure",
+        "location_description": "Left vertical axis measuring pressure in psi",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 138,
+              "y": 881
+            },
+            "crop_image_px": {
+              "x": 131.78378378378378,
+              "y": 466.5155155155155
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "psi"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 138,
+              "y": 60
+            },
+            "crop_image_px": {
+              "x": 131.78378378378378,
+              "y": 31.77177177177177
+            },
+            "chart_value": {
+              "value_raw": "90",
+              "value_type": "number",
+              "parsed_value": 90.0,
+              "parsed_datetime": null,
+              "unit": "psi"
+            }
+          }
+        ],
+        "approved": false,
+        "confidence": 0.99,
+        "warnings": []
+      }
+    ],
+    "x_points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 138,
+          "y": 897
+        },
+        "crop_image_px": {
+          "x": 131.78378378378378,
+          "y": 474.987987987988
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 788,
+          "y": 897
+        },
+        "crop_image_px": {
+          "x": 752.5045045045044,
+          "y": 474.987987987988
+        },
+        "chart_value": {
+          "value_raw": "5400",
+          "value_type": "number",
+          "parsed_value": 5400.0,
+          "parsed_datetime": null,
+          "unit": "gallon/h"
+        }
+      }
+    ],
+    "y_points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 138,
+          "y": 881
+        },
+        "crop_image_px": {
+          "x": 131.78378378378378,
+          "y": 466.5155155155155
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 138,
+          "y": 60
+        },
+        "crop_image_px": {
+          "x": 131.78378378378378,
+          "y": 31.77177177177177
+        },
+        "chart_value": {
+          "value_raw": "90",
+          "value_type": "number",
+          "parsed_value": 90.0,
+          "parsed_datetime": null,
+          "unit": "psi"
+        }
+      }
+    ],
+    "approved_x": false,
+    "approved_y": false,
+    "warnings": []
+  },
+  "pending_series": [],
+  "series": [],
+  "attempts": [
+    {
+      "id": "crop-01",
+      "stage": "crop",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "crop/attempt_01/request.json",
+      "response_path": "crop/attempt_01/response.json",
+      "parsed_path": "crop/attempt_01/parsed.json",
+      "overlay_path": "crop/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 1.0,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "crop-02",
+      "stage": "crop",
+      "attempt_number": 2,
+      "status": "needs_review",
+      "request_path": "crop/attempt_02/request.json",
+      "response_path": "crop/attempt_02/response.json",
+      "parsed_path": "crop/attempt_02/parsed.json",
+      "overlay_path": "crop/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 1.0,
+      "warnings": [
+        "The bottom boundary cut through the x-axis label 'Flow rate (gallon/h)', the right boundary was too tight around the '6750' tick label, and the top boundary was tight against the title. Expanding the crop boundaries ensures all labels, titles, and tick values are fully enclosed."
+      ],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "crop-03",
+      "stage": "crop",
+      "attempt_number": 3,
+      "status": "accepted",
+      "request_path": "crop/attempt_03/request.json",
+      "response_path": "crop/attempt_03/response.json",
+      "parsed_path": "crop/attempt_03/parsed.json",
+      "overlay_path": "crop/attempt_03/overlay.png",
+      "validation_status": "valid",
+      "confidence": 1.0,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis-identification-01",
+      "stage": "axis_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "axis_identification/attempt_01/request.json",
+      "response_path": "axis_identification/attempt_01/response.json",
+      "parsed_path": "axis_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis_x_axis-01",
+      "stage": "axis_x_axis",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_x_axis/attempt_01/request.json",
+      "response_path": "axis_x_axis/attempt_01/response.json",
+      "parsed_path": "axis_x_axis/attempt_01/parsed.json",
+      "overlay_path": "axis_x_axis/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis_x_axis-02",
+      "stage": "axis_x_axis",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_x_axis/attempt_02/request.json",
+      "response_path": "axis_x_axis/attempt_02/response.json",
+      "parsed_path": "axis_x_axis/attempt_02/parsed.json",
+      "overlay_path": "axis_x_axis/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis_y_axis-01",
+      "stage": "axis_y_axis",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_y_axis/attempt_01/request.json",
+      "response_path": "axis_y_axis/attempt_01/response.json",
+      "parsed_path": "axis_y_axis/attempt_01/parsed.json",
+      "overlay_path": "axis_y_axis/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    }
+  ],
+  "warnings": [],
+  "active_step_status": "Calibrating axis 2 of 2..."
+}

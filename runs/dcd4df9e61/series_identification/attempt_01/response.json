@@ -1,0 +1,82 @@
+{
+  "raw": {
+    "status": "completed",
+    "created": "2026-10-11T10:22:33Z",
+    "model": "gemini-3.8-flash",
+    "output_text": "{\n  \"series\": [\n    {\n      \"series_name\": \"720/515mm\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Single continuous light grey/silver line sloping downward from approximately (0 l/s, 43.5 m) to (230 l/s, 21.8 m), labeled with 82.1% Eff. and 720/515mm.\",\n      \"line_color\": \"silver\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_axis\",\n      \"y_axis_id\": \"y_axis\",\n      \"axis_selection_reason\": \"Plot spans the bottom horizontal flow rate axis [l/s] and the left vertical head axis [m].\",\n      \"confidence\": 0.95\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+    "service_tier": "standard",
+    "steps": [
+      {
+        "type": "thought"
+      },
+      {
+        "content": [
+          {
+            "text": "{\n  \"series\": [\n    {\n      \"series_name\": \"720/515mm\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Single continuous light grey/silver line sloping downward from approximately (0 l/s, 43.5 m) to (230 l/s, 21.8 m), labeled with 82.1% Eff. and 720/515mm.\",\n      \"line_color\": \"silver\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_axis\",\n      \"y_axis_id\": \"y_axis\",\n      \"axis_selection_reason\": \"Plot spans the bottom horizontal flow rate axis [l/s] and the left vertical head axis [m].\",\n      \"confidence\": 0.95\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+            "type": "text"
+          }
+        ],
+        "type": "model_output"
+      }
+    ],
+    "updated": "2026-10-11T10:22:33Z",
+    "usage": {
+      "input_tokens_by_modality": [
+        {
+          "modality": "text",
+          "tokens": 558
+        },
+        {
+          "modality": "image",
+          "tokens": 1085
+        }
+      ],
+      "total_cached_tokens": 0,
+      "total_input_tokens": 1643,
+      "total_output_tokens": 240,
+      "total_thought_tokens": 460,
+      "total_tokens": 2343,
+      "total_tool_use_tokens": 0
+    },
+    "object": "interaction"
+  },
+  "text": "{\n  \"series\": [\n    {\n      \"series_name\": \"720/515mm\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Single continuous light grey/silver line sloping downward from approximately (0 l/s, 43.5 m) to (230 l/s, 21.8 m), labeled with 82.1% Eff. and 720/515mm.\",\n      \"line_color\": \"silver\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"x_axis\",\n      \"y_axis_id\": \"y_axis\",\n      \"axis_selection_reason\": \"Plot spans the bottom horizontal flow rate axis [l/s] and the left vertical head axis [m].\",\n      \"confidence\": 0.95\n    }\n  ],\n  \"warnings\": [],\n  \"unsupported_flags\": []\n}",
+  "json": {
+    "series": [
+      {
+        "series_name": "720/515mm",
+        "series_type": "line",
+        "visual_description": "Single continuous light grey/silver line sloping downward from approximately (0 l/s, 43.5 m) to (230 l/s, 21.8 m), labeled with 82.1% Eff. and 720/515mm.",
+        "line_color": "silver",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "x_axis",
+        "y_axis_id": "y_axis",
+        "axis_selection_reason": "Plot spans the bottom horizontal flow rate axis [l/s] and the left vertical head axis [m].",
+        "confidence": 0.95
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  },
+  "provider_json": {
+    "series": [
+      {
+        "series_name": "720/515mm",
+        "series_type": "line",
+        "visual_description": "Single continuous light grey/silver line sloping downward from approximately (0 l/s, 43.5 m) to (230 l/s, 21.8 m), labeled with 82.1% Eff. and 720/515mm.",
+        "line_color": "silver",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "x_axis",
+        "y_axis_id": "y_axis",
+        "axis_selection_reason": "Plot spans the bottom horizontal flow rate axis [l/s] and the left vertical head axis [m].",
+        "confidence": 0.95
+      }
+    ],
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

@@ -1,0 +1,787 @@
+{
+  "run_id": "dcd4df9e61",
+  "created_at": "2026-10-11T10:18:55.975007+00:00",
+  "updated_at": "2026-10-11T10:24:20.256964+00:00",
+  "stage": "series_review",
+  "active_job": null,
+  "settings": {
+    "model_id": "gemini-3.8-flash",
+    "image_detail": "high",
+    "reasoning_effort": "medium",
+    "mock_mode": false
+  },
+  "prompt_metadata": {
+    "prompt_pack": "prompts.yaml",
+    "prompt_version": "2026-08-29-series-retry-refinement-v1",
+    "prompt_hash": "b0f6803ebe974149"
+  },
+  "upload_filename": "pump_curve_06.png",
+  "original_path": "uploads/original.png",
+  "pages": [
+    {
+      "path": "pages/page_001.png",
+      "width": 747,
+      "height": 783,
+      "label": "Image"
+    }
+  ],
+  "selected_page_index": 0,
+  "canonical_image": {
+    "path": "pages/page_001.png",
+    "width": 747,
+    "height": 783,
+    "label": "Image"
+  },
+  "crop": {
+    "bbox_full_norm": {
+      "left": 90,
+      "top": 71,
+      "right": 894,
+      "bottom": 958
+    },
+    "bbox_full_px": {
+      "left": 67.2072072072072,
+      "top": 55.57757757757757,
+      "right": 667.5915915915916,
+      "bottom": 749.9059059059059
+    },
+    "image": {
+      "path": "crop/approved_crop.png",
+      "width": 601,
+      "height": 694,
+      "label": null
+    },
+    "approved": true,
+    "warnings": []
+  },
+  "calibration": {
+    "identified_axes": [
+      {
+        "axis_id": "x_axis",
+        "direction": "x",
+        "name": "Flow rate",
+        "unit": "l/s",
+        "quantity": "flow rate",
+        "location_description": "Bottom horizontal axis",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.95
+      },
+      {
+        "axis_id": "y_axis",
+        "direction": "y",
+        "name": "Head",
+        "unit": "m",
+        "quantity": "head",
+        "location_description": "Left vertical axis",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.95
+      }
+    ],
+    "calibrated_axes": [
+      {
+        "axis_id": "x_axis",
+        "direction": "x",
+        "name": "Flow rate",
+        "unit": "l/s",
+        "quantity": "flow rate",
+        "location_description": "Bottom horizontal axis",
+        "points": [
+          {
+            "label": "x1",
+            "crop_image_norm": {
+              "x": 100,
+              "y": 963
+            },
+            "crop_image_px": {
+              "x": 60.06006006006007,
+              "y": 668.0270270270271
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "l/s"
+            }
+          },
+          {
+            "label": "x2",
+            "crop_image_norm": {
+              "x": 861,
+              "y": 963
+            },
+            "crop_image_px": {
+              "x": 517.1171171171171,
+              "y": 668.0270270270271
+            },
+            "chart_value": {
+              "value_raw": "240",
+              "value_type": "number",
+              "parsed_value": 240.0,
+              "parsed_datetime": null,
+              "unit": "l/s"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": [
+          "The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.",
+          "Accepted latest valid calibration for Flow rate (l/s) after reaching the confirmation attempt limit"
+        ]
+      },
+      {
+        "axis_id": "y_axis",
+        "direction": "y",
+        "name": "Head",
+        "unit": "m",
+        "quantity": "head",
+        "location_description": "Left vertical axis",
+        "points": [
+          {
+            "label": "y1",
+            "crop_image_norm": {
+              "x": 101,
+              "y": 926
+            },
+            "crop_image_px": {
+              "x": 60.66066066066066,
+              "y": 642.3603603603603
+            },
+            "chart_value": {
+              "value_raw": "0",
+              "value_type": "number",
+              "parsed_value": 0.0,
+              "parsed_datetime": null,
+              "unit": "m"
+            }
+          },
+          {
+            "label": "y2",
+            "crop_image_norm": {
+              "x": 101,
+              "y": 167
+            },
+            "crop_image_px": {
+              "x": 60.66066066066066,
+              "y": 115.84684684684686
+            },
+            "chart_value": {
+              "value_raw": "40",
+              "value_type": "number",
+              "parsed_value": 40.0,
+              "parsed_datetime": null,
+              "unit": "m"
+            }
+          }
+        ],
+        "approved": true,
+        "confidence": 0.99,
+        "warnings": []
+      }
+    ],
+    "x_points": [
+      {
+        "label": "x1",
+        "crop_image_norm": {
+          "x": 100,
+          "y": 963
+        },
+        "crop_image_px": {
+          "x": 60.06006006006007,
+          "y": 668.0270270270271
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        }
+      },
+      {
+        "label": "x2",
+        "crop_image_norm": {
+          "x": 861,
+          "y": 963
+        },
+        "crop_image_px": {
+          "x": 517.1171171171171,
+          "y": 668.0270270270271
+        },
+        "chart_value": {
+          "value_raw": "240",
+          "value_type": "number",
+          "parsed_value": 240.0,
+          "parsed_datetime": null,
+          "unit": "l/s"
+        }
+      }
+    ],
+    "y_points": [
+      {
+        "label": "y1",
+        "crop_image_norm": {
+          "x": 101,
+          "y": 926
+        },
+        "crop_image_px": {
+          "x": 60.66066066066066,
+          "y": 642.3603603603603
+        },
+        "chart_value": {
+          "value_raw": "0",
+          "value_type": "number",
+          "parsed_value": 0.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      },
+      {
+        "label": "y2",
+        "crop_image_norm": {
+          "x": 101,
+          "y": 167
+        },
+        "crop_image_px": {
+          "x": 60.66066066066066,
+          "y": 115.84684684684686
+        },
+        "chart_value": {
+          "value_raw": "40",
+          "value_type": "number",
+          "parsed_value": 40.0,
+          "parsed_datetime": null,
+          "unit": "m"
+        }
+      }
+    ],
+    "approved_x": true,
+    "approved_y": true,
+    "warnings": []
+  },
+  "pending_series": [],
+  "series": [
+    {
+      "id": "ea65b1de",
+      "name": "720/515mm",
+      "series_type": "line",
+      "llm_series_name": "720/515mm",
+      "visual_description": "Single continuous light grey/silver line sloping downward from approximately (0 l/s, 43.5 m) to (230 l/s, 21.8 m), labeled with 82.1% Eff. and 720/515mm.",
+      "line_color": "#c0c0c0",
+      "line_style": "solid",
+      "marker_style": null,
+      "series_truncated": false,
+      "estimated_total_points": null,
+      "x_axis_id": "x_axis",
+      "y_axis_id": "y_axis",
+      "axis_selection_reason": "Plot spans the bottom horizontal flow rate axis [l/s] and the left vertical head axis [m].",
+      "confidence": 0.95,
+      "source": "llm",
+      "points": [
+        {
+          "point_index": 0,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 100,
+            "y": 101
+          },
+          "crop_image_px": {
+            "x": 60.06006006006007,
+            "y": 69.77691441441436
+          },
+          "chart_x": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "43.5",
+            "value_type": "number",
+            "parsed_value": 43.5,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 1,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 163,
+            "y": 133
+          },
+          "crop_image_px": {
+            "x": 98.14814814814815,
+            "y": 92.15373873873875
+          },
+          "chart_x": {
+            "value_raw": "20",
+            "value_type": "number",
+            "parsed_value": 20.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "41.8",
+            "value_type": "number",
+            "parsed_value": 41.8,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 2,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 227,
+            "y": 165
+          },
+          "crop_image_px": {
+            "x": 136.23623623623624,
+            "y": 114.53056306306303
+          },
+          "chart_x": {
+            "value_raw": "40",
+            "value_type": "number",
+            "parsed_value": 40.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "40.1",
+            "value_type": "number",
+            "parsed_value": 40.1,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 3,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 290,
+            "y": 194
+          },
+          "crop_image_px": {
+            "x": 174.32432432432432,
+            "y": 134.27481981981975
+          },
+          "chart_x": {
+            "value_raw": "60",
+            "value_type": "number",
+            "parsed_value": 60.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "38.6",
+            "value_type": "number",
+            "parsed_value": 38.6,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 4,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 354,
+            "y": 222
+          },
+          "crop_image_px": {
+            "x": 212.4124124124124,
+            "y": 154.01907657657654
+          },
+          "chart_x": {
+            "value_raw": "80",
+            "value_type": "number",
+            "parsed_value": 80.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "37.1",
+            "value_type": "number",
+            "parsed_value": 37.1,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 5,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 417,
+            "y": 250
+          },
+          "crop_image_px": {
+            "x": 250.5005005005005,
+            "y": 173.76333333333326
+          },
+          "chart_x": {
+            "value_raw": "100",
+            "value_type": "number",
+            "parsed_value": 100.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "35.6",
+            "value_type": "number",
+            "parsed_value": 35.6,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 6,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 480,
+            "y": 279
+          },
+          "crop_image_px": {
+            "x": 288.58858858858855,
+            "y": 193.50759009009005
+          },
+          "chart_x": {
+            "value_raw": "120",
+            "value_type": "number",
+            "parsed_value": 120.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "34.1",
+            "value_type": "number",
+            "parsed_value": 34.1,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 7,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 544,
+            "y": 311
+          },
+          "crop_image_px": {
+            "x": 326.6766766766767,
+            "y": 215.88441441441438
+          },
+          "chart_x": {
+            "value_raw": "140",
+            "value_type": "number",
+            "parsed_value": 140.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "32.4",
+            "value_type": "number",
+            "parsed_value": 32.4,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 8,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 607,
+            "y": 345
+          },
+          "crop_image_px": {
+            "x": 364.7647647647648,
+            "y": 239.5775225225225
+          },
+          "chart_x": {
+            "value_raw": "160",
+            "value_type": "number",
+            "parsed_value": 160.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "30.6",
+            "value_type": "number",
+            "parsed_value": 30.6,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 9,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 671,
+            "y": 383
+          },
+          "crop_image_px": {
+            "x": 402.85285285285283,
+            "y": 265.90319819819814
+          },
+          "chart_x": {
+            "value_raw": "180",
+            "value_type": "number",
+            "parsed_value": 180.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "28.6",
+            "value_type": "number",
+            "parsed_value": 28.6,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 10,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 734,
+            "y": 427
+          },
+          "crop_image_px": {
+            "x": 440.9409409409409,
+            "y": 296.17772522522523
+          },
+          "chart_x": {
+            "value_raw": "200",
+            "value_type": "number",
+            "parsed_value": 200.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "26.3",
+            "value_type": "number",
+            "parsed_value": 26.3,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 11,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 782,
+            "y": 465
+          },
+          "crop_image_px": {
+            "x": 469.507007007007,
+            "y": 322.50340090090083
+          },
+          "chart_x": {
+            "value_raw": "215",
+            "value_type": "number",
+            "parsed_value": 215.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "24.3",
+            "value_type": "number",
+            "parsed_value": 24.3,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        },
+        {
+          "point_index": 12,
+          "segment_index": 0,
+          "crop_image_norm": {
+            "x": 832,
+            "y": 512
+          },
+          "crop_image_px": {
+            "x": 499.97747747747746,
+            "y": 355.41049549549547
+          },
+          "chart_x": {
+            "value_raw": "231",
+            "value_type": "number",
+            "parsed_value": 231.0,
+            "parsed_datetime": null,
+            "unit": "l/s"
+          },
+          "chart_y": {
+            "value_raw": "21.8",
+            "value_type": "number",
+            "parsed_value": 21.8,
+            "parsed_datetime": null,
+            "unit": "m"
+          }
+        }
+      ],
+      "warnings": []
+    }
+  ],
+  "attempts": [
+    {
+      "id": "axis-identification-01",
+      "stage": "axis_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "axis_identification/attempt_01/request.json",
+      "response_path": "axis_identification/attempt_01/response.json",
+      "parsed_path": "axis_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis_x_axis-01",
+      "stage": "axis_x_axis",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_x_axis/attempt_01/request.json",
+      "response_path": "axis_x_axis/attempt_01/response.json",
+      "parsed_path": "axis_x_axis/attempt_01/parsed.json",
+      "overlay_path": "axis_x_axis/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis_x_axis-02",
+      "stage": "axis_x_axis",
+      "attempt_number": 2,
+      "status": "needs_review",
+      "request_path": "axis_x_axis/attempt_02/request.json",
+      "response_path": "axis_x_axis/attempt_02/response.json",
+      "parsed_path": "axis_x_axis/attempt_02/parsed.json",
+      "overlay_path": "axis_x_axis/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [
+        "In the previous proposal, the y-coordinate was placed below the axis labels near the bottom edge of the image instead of on the actual horizontal axis line. The axis line and ticks are located at y = 918."
+      ],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis_x_axis-03",
+      "stage": "axis_x_axis",
+      "attempt_number": 3,
+      "status": "accepted",
+      "request_path": "axis_x_axis/attempt_03/request.json",
+      "response_path": "axis_x_axis/attempt_03/response.json",
+      "parsed_path": "axis_x_axis/attempt_03/parsed.json",
+      "overlay_path": "axis_x_axis/attempt_03/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [
+        "The previous calibration at y = 918 placed the axis inside the plot area. The correct bottom horizontal axis line is at y = 964, aligned with the bottom border of the grid and the tick marks for the x-axis.",
+        "Accepted latest valid calibration for Flow rate (l/s) after reaching the confirmation attempt limit"
+      ],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis_y_axis-01",
+      "stage": "axis_y_axis",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "axis_y_axis/attempt_01/request.json",
+      "response_path": "axis_y_axis/attempt_01/response.json",
+      "parsed_path": "axis_y_axis/attempt_01/parsed.json",
+      "overlay_path": "axis_y_axis/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "axis_y_axis-02",
+      "stage": "axis_y_axis",
+      "attempt_number": 2,
+      "status": "accepted",
+      "request_path": "axis_y_axis/attempt_02/request.json",
+      "response_path": "axis_y_axis/attempt_02/response.json",
+      "parsed_path": "axis_y_axis/attempt_02/parsed.json",
+      "overlay_path": "axis_y_axis/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.99,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "series-identification-01",
+      "stage": "series_identification",
+      "attempt_number": 1,
+      "status": "accepted",
+      "request_path": "series_identification/attempt_01/request.json",
+      "response_path": "series_identification/attempt_01/response.json",
+      "parsed_path": "series_identification/attempt_01/parsed.json",
+      "overlay_path": null,
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "series-ea65b1de-01",
+      "stage": "series",
+      "attempt_number": 1,
+      "status": "needs_review",
+      "request_path": "series/ea65b1de/attempt_01/request.json",
+      "response_path": "series/ea65b1de/attempt_01/response.json",
+      "parsed_path": "series/ea65b1de/attempt_01/parsed.json",
+      "overlay_path": "series/ea65b1de/attempt_01/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "series-ea65b1de-02",
+      "stage": "series",
+      "attempt_number": 2,
+      "status": "needs_review",
+      "request_path": "series/ea65b1de/attempt_02/request.json",
+      "response_path": "series/ea65b1de/attempt_02/response.json",
+      "parsed_path": "series/ea65b1de/attempt_02/parsed.json",
+      "overlay_path": "series/ea65b1de/attempt_02/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": [
+        "Between x = 40 and x = 160, the line was running slightly below the target series curve. Adjusting the y-coordinates upward by approximately 0.2 to 0.4 m to precisely cover the silver line."
+      ],
+      "retry_round": null,
+      "retry_mode": null
+    },
+    {
+      "id": "series-ea65b1de-03",
+      "stage": "series",
+      "attempt_number": 3,
+      "status": "accepted",
+      "request_path": "series/ea65b1de/attempt_03/request.json",
+      "response_path": "series/ea65b1de/attempt_03/response.json",
+      "parsed_path": "series/ea65b1de/attempt_03/parsed.json",
+      "overlay_path": "series/ea65b1de/attempt_03/overlay.png",
+      "validation_status": "valid",
+      "confidence": 0.95,
+      "warnings": [],
+      "retry_round": null,
+      "retry_mode": null
+    }
+  ],
+  "warnings": [],
+  "active_step_status": null
+}

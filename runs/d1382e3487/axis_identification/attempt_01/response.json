@@ -1,0 +1,327 @@
+{
+  "raw": {
+    "created_at": 1791704773.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying axes in a cropped line or scatter chart before calibration.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify every visible x-axis and y-axis in every panel, including secondary axes on the top, bottom, left, or right.\nFor each axis, provide a stable axis_id, direction, name, unit, quantity being measured, and a brief location description.\nIn multi-panel charts include panel location or panel title in location_description.\nIf multiple axes measure the same quantity in different units, mark exactly one metric axis closest to the chart body as is_primary_for_digitization=true.\nMark other duplicate axes as is_primary_for_digitization=false and explain the ignore_reason.\nIf multiple axes measure different quantities, mark all of them as is_primary_for_digitization=true because different curves may use them.\nPrefer metric units over imperial or US customary units. If more than one metric axis measures the same quantity, choose the one closest to the chart body.\nDo not return calibration points in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0d057582ba94d8b8006acb3ec632cc87d0a4e7473c69bc6c4e",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqyz7X8FboUvKqTk_tuvLlHRmf2qL2EYvtXsoLzR4m1z-0ttioZTbRiDS2YR7Qq2gxvqR5zjA_sfb6PEFdnT2yyo2Zxr2s1-AIk-KsVkweQmGeTcG44AnU13oy1hvcD5GL95TixklEJ7v6WUQ4iSEtdWYat-ylEKdxsTPHCSjCRqWeAaMvEcPQ6ljvYgW_9DZbWo0v3xk9DsHu3ZCDUPbK0LSN8J5mKf13eD0Ss6CuLmzzuKSAFVvKnk_T49RNE15LVuXjinGznyzIqbks2yBATk1dI5VcOg4lwZ2QD7FBPgoUvHje14t40QwHRBNM3weVewlrnrmDtL5gCSRAB1Rbx3hd-_DiOCeqhvI_vwtOvZ8bCyvfpHh1gq-3w0ALG5xmmxyl4YlmftZ-qvWhoDnQ0nbZMWljz_2dWFBdKabGCa-v8g0BhI1VkYnqsYXn3udPKsivLpy2xntubv2RzPUlYxBbHhqNvQ42zqSLSj3H99u7Jn6bLxk0lL_F-o-eUHgdAoboEKVjjD2m79WnSFiqxovji9XtwD1Xyo7MDtQNlrxYOXlIKx-OAAJB-n5znl-FJkAiYAUC8oz5wKK3mO17TlA9sETK-lyjlYtmeKzl9AqlWa-eP52sFVQ_kBp-mip8jylZV0KH9oupZBiPXymZs2qWWcvMWOdgbzTZ5-mXdnJPXG0Gr1UKarDTXN5NQITIGYHg0o1eGZKBX_57BV_d1gegwh0XpDB_oGDNZ4x5zFjQ6qSOgufJUZsbX4dBN8J9UeFd63RKKAG9liK6TWCA5Q_LcT7Pa65PguGnSQ-zeeDaHrJR3yRQF8disuXKulclcXd9QeDMQWBRi27iu80kJD3v6xnOqZlnFans_7dgfN6s02-M8IjPx6ML8DIREPK-nDAjKJTSye18yiLKOxYY7EXcaCaGIzcMivtdRGfBVVZ48Kcp2x4AHoTW4R1NsLtISqzVkY0ILawcicNkZqoRwrTnzmGlkMGZE1R45EI7jNvCc9L4GyoK7JGkHyrtuAkJEO7G5SEWLdq3h-Dgz3VQqwbPr8tyhlXDFGXWTepu4mqA4mVGwT5ls3-7-PEGCmI63kjMr0MADn1LrcnrmEMva1czp8wHtGvuuQJbsTdrevjqJ0gxswpW8kD3G-t7I0iO7N4mOryeytPvFASsKNOeykEZUHZ7b4tLZK4u51fxj3VEETC4udVobLxFTqWLzxlUrwo22eZpdoGdFU9OpFQj9hVvRc4q0dIsIWXsjRSXOpSZPpBxbd4twCW_eG8DOig3QmgTCiK4ndIMEJhpLolTBChoowGW5PdrXTQ3ApS3EsEHeVOMn-5a__Z5YV72kJfOEhX5tg4F6YeIBUvcqY60fAbleqbkL0V1JpAw2N2m7VtGYCf47vdjRy3nlKsy81l5J-D5DokTNm76P08X_VIfQ8lV6w-Nj_PcJp9L84HmN-09VZHkS09XXSBtg_YmYFz7TuXbSI-QhOWV5RSHEhW3qUzH1piRP7fSEQP5JyK9NQdnzBCozTGgfkYRKvUrDbV-lSRbp1U1PMV3FHdQ04a5B9QiIaRdEYtZLQVL4GXzqK-_usqu__lMacS3l66bRSwW58dv287MhZoXIyU6_ujCNrKR934GUmdMGFqChFQohY09kozcU8Kgo0lIFrJ6rdKmeYfKAPiTYij-8Qy3z0DnTZBultscH3_tu9S0UNwZjMZS9NT5KpsZ_OWWN65DvMieMt6pO9S3xz-7F1ZcZ7uOJ3LNs_2C1kryuIKwWo5mB4SQ8LVRoJSyKdhcR_hMexOdinb6eW5lH-PlXYE76k3WP6TNJBK5ENeAMZ8Wxy-7ts24XOCu35zEADHsA5HKf-PaVDco6K3JPGW5YfITmgULwrZd3VigGaw_s4YYPXyg4FjBT7sQ7g19NgTXBuiWeVXSom1qM7jo8J-O9c1FlLMz5ujkLj59tjYSXfjHXde_hCiH5Jz9sm1FaBhRvOOqkaZqRcZQTdqh3D8q8rCQsXX37GyNPtPHbGF8NVxc_YnoTEYZKKx5aZ076C9-ghDLP5qlw8NwICMX2_x6KOlUYj3_4N5LARL-2pY6t3zRy70UkspeYhzRjyF7WiBevnwI3MGbS1BYDoVvCZL0J16LlyRqPQWoCzVrYIuLsR8t70PLJnEHpEoYQBmCM0UYeJZ5iRBHX9DqdyeWLgu2Rl6unJ3rsxufQKGmhZSn5g87janGEqCp4nrGTZbf6hyK8wlswKMpULkDCQJK4Vx8ut1AZTqzsllUZJvDX073w24OkBBCsenVk-xmiglC0WDSxjONvxITzK9sH7uqjSm_nGrU_r2qhqVJB3ZH5cpZ88oSvqUE-cPI8UdFu6YEfh7vOxujV8Ww65sh5BXOADvTf6el14KJPKzxvnIEpLPYpzH0yM28lUfcwt6NpnR6epCkNGh_uKnVCNvrvct8lTm5NZ71_pUxcJCGh_8cwn6YUUQ-scpo4aA6ZA9dvXkjvXZ8WrZ_M_5tst7jLfABzIzOFZMWA4ZnftILfalxgt7Xsq2egRPLPwaPOMLMPVAiHPLa4bzFEViVtheQJzity16OxJGojjQ0AKgBterQsPt_NBI6_8SXnJ8N6KGLJemn7RNJ3PWarFlkR4CbMqnRBDOCsAE1yA1hbcPtahBQzrnfrdSFiBwWAZKfvIUi1CZf877mrTLjWNYBjf6zR8YSaiKOHJ5tbMO0e2AYI1Oxa5J-rLQpg60qKqxFm9E9356xfbvdP-WH3vzFbvI8eu8f1jA8HILYBRaTh9-eT1utSXHSlsCORxPuDhfWRTHdV6uvS9EncfFhtZZxO9M7E5uG5hGqtiGYNUe-XYXfUt3oNiNcdGS0mvRyMw5Dp3a5h76SKhuLmSbb4aQj4hN0Q0ggoWhiTgHSMM4oercbFcBFASVm8Oe0afI2ILscrkP6oC84bA3B8lLOb1T6FCLq-01H0znnDDpcVXaQ7ucmPByUro4Wb0YOxFZkLk3xAT_4sF2UJFjcUpc0JCLUpzeDw9do6VidjSQBjbd5Aau5IZsY-ZET_oE078bX4r9yH-nz0nmMHj_yp33IJm5jhrEcRWkODEIhAEhUaJI9us5DBoYnHRRErSMbD246_FZM7a8zeTijkJBVugJUNympIYeRQ08lqcCb1MizzjsTGLY2aVxSU55fZpC7OmBxxyCYg_EJeBVyHqdvZE2UdccdZV-F38tGtBH0Y1JycXhGH9wF-2Zl1b-Aclo8nG8qL5EvdYq_YiPucUojHqMg5KA8P5WNy771Yd2G8EpwBsNtqGK6xyO8mjPZg8vq76mMtUhbF9JR3bv6_ndjMa8CzVLu1UdpgieJGL3ps8iBwQN6QxKd2fLP0-yq8kHl88Npr5oBuM06tnSuKw-mGyGrl5F1JSNrzEY4GhYnehv4eDilwaCPlT0uyi8H_Lj-_c0XHHN0GPZbErBOS0VUn0oNOug1bI_OozgYzbELjCKj4K7eGbfgAQRZzD2w21ZxsWMKALcWJ1ds5mhD2IZJxCwHh9pVhaycqbP4Tm0_d1sONhw0vvKm3WjAqFnpQCOhaGfM29gSKeJ39nUPLQso-Jtf1GA0PI0dd8Ijp2S_oLX0519SRkm9pcSOsIyfLlSJqgrYQNjTgsntNeFsuhCioKYMYZUWVzxV3XHnwrM99OTYzHLQEpFIyMheYD9nA59VBFlWavOluzRGEv51dBaUz2XaBL22S1sp_gW77w9f1OzYQhCYVNrFge7itBjKDLgz10SNV_I39-eMjcRvAmtxKLgvrkYmozpljPB6lTyj3PfeT1Yt1t9OqChQbFyDi3-yfTiCc8cZ2MG2mW73-hHpLJujS9FzFaW9Kf2LnR8Gc4a-Qj5vFJlFzOtQ_8JSYx-AMFrkrDsUSLVWdSk4MkEzdUD9w1m1Fb-_fdNpdvXglHGbzm3LGyt3JDbURrpRyYO6DwFcS4WgdnJ64Mv15Su_zMHHhPgSougsO7f_v9Zp2Y7MRvVdfNLziekK5kLHySZJW-lmkyekwIZDNekUjygZVcD3gCNhcPwqFWqJf8wNtYpHqFgktXBd1q_5_1gmdz2Nv_MGDdIKV0kBqO1LUL5laCunaZTJpvx7v4RpAJBD4Tz5v1hmCB-GgF03TOWDwu0RbBnqMBGXtht1va1639gB7kW95fIEG4GNvf6uMt7JXK77dAdZ8WQlcUmX2MNu1QJGGmmusIlMy-kETteuSlYU2xTifmCE1te7fLsyc8iOzyGna-DHolOWsi9Fs5Y0KGwvvV6fhX4Zb7bVp65yQMbjmd-MUu7vPUj4Um24VlmrllZgHbKKUQi1VsF-DHqnPD1_Z9z45I69SZGojKYieK0bDnI8HOCwXJ09YG3_Q0zHl_bMcK_6DA2HwDmI7PJtpiENW4CUzUBp_yBOjPOPUAyWDMWRw3zosF-4AJ2tI_rnDeiPzUBVwk26AywddEc8bVJtPOCBb6_Cc0WoTebkUlYtWmV6BR1zquulFuREHIcUKGPdySuga0yuB63ZNPJORSA17wdVaEOYAMuP0l-ZS00xQZeSqAHO1YA8J5UIv4XaPknwtLfghV0I-QiGGu-LcawS9qLnVePBhkzArsGMG8IgL7ozaTAF4BfzTCaWWL7O-CrG1740JSe-YIv6TDfjmgcWmu2FWoU53soeu4BdLKUh5lpvIWzIPEl7Nia7PUoF-EvNEENRnUx6l-bN_Fwyb_wmUfi8HOo_OjRe9n1OMbHHuDBjGGcej8M310QSggbPwym8AxcIjk6vrGZ1WvPBPVjP3h1Ue37zVxsSlmq3R5E5vcrnO7c-GK9VvUVnzdj1AS_mqF_8ozE8C_fKkh362VrwU49RLk59ptZi78Tl-mQb47Be3gXusCo-PwDvzHZXf1__RYH3b4wpH3cl5BdVFqG0UkK5KjYhAj48iM2WFg5y6P4N8-snHG2E3miENwPvOi3TNGsCG-7SOw-zf9dpVKM7EBs8w5RujUd-NtKBjbYxgMnqcFLMN9LjLjnmjZLmwJfYF02UKt8LpJWVfo3OAuJGCoT6gWDo3vY9p_Lo4snFHU3wnkRMyqyMOUxGJGmSTTgnn3RxqSZkADGP79B1VjJsy1W_A3jiTlVe2tlNnVnG33p6YxXuZN3QQerB4F4jMkAVZo9AfNwznUxE6pE4QMkwhPFHoIqruIDYc291V81GZTknE41GZapno9YrmsLRHxJaBLf_TBrWTckXiHbCqNTGnZdFpAT7nqIhBlbmHwqc0fr6msp2X_U92dLFneoLcHSTuCH6FEK1pWQZ9ZnPG3K__m3b2FDm5BvR5Ba0ijt0LXGmw4p31ynL-PsGbdzvpQj-TBr0pW07m-jM4ze6M6jgCmoH80cGhWVQ-6YGUHsCPoJyce5PZfdSw5Kj43HZfgZPDTL3sIRRBQhB02u8owcNHS_2_LnVsV6TTWTNFWf0px8kIB9gcChX-S5hi2mYpJCDx_CidLae5PmE2vnn0rMc6bSxjeunziX5iWbe1idwovG4mdzDcFs2YinwUb5GX-DKdPmAXgP5AqaNRbiNih7C4eEeG0644Lfv3ZiVX6EvEjjhnqAhOKvQMWa_nvIJYpbVL-R0sbVEpToxakhyPYH3B7c-PfXfFzrZFo8upXT4wsmFkTtkMPUHVcoz6wmTuLnAtZzfVTajpeRt5ZHF4K-aam1_8aRh6KEIfrnyS6jUBGDIXFkbW7fqJqotPUT-T0DhCSmV2zun7BmPm1uuXuf7WxnNNEQmYjfJ_99Z4dtfk_YjdLQ1coDKr98MBPNYLzN5r8QjowT5KccWy5bOmKTJNnSFYuZxybnv3GCUuRPwFb1Xc1lEnr8eNpwc05yGQ9vnYqMZ0QpzEiOzfj56Tjqm8Csm8101Foy439BlhJTJHC95AdLjpyOnIqdWYYtrzSKK7o4Dr0gFXod9ft98kJH_K1NsVEa0fixAVF7qhRy_-V2v2dRwN4gOIK_f7PH8iEj8IdXYptH2f-1CpF9JMnUlinIWTIv_3198TBylwCCq2n2HhlOUihBDyqfkoeyLyuREFHejCLMFuDgUxcyTNaJ5pGDwmi5GS-IvLrscbI2HXSUCbIE_jiPuUKGLxCUS8sd1kz03_RSeao6-AkPIhuB6oCHtWhWV3gWHHCsUdAOFVBezpSYYyngIIwuomJzFNNHnQEPPLveuJcchpZqVpMIOyS6eyNAPtRR8Fl4K56X39uoPcogRRJHaB27WVd5udbWjtK7ga0CI-LQWVxqAOplPcRgTCAsc84fNFSDSuZ6zElV0CrBrIXRjGxfYgD7l5PRc4yDe8bC7VpsLRx_WGPBF1Y7_TViFp1-_pMUYFDrlZoiBNa2Mm6lAJCTupkBVCby5wwIzp30CUbdxYWNiyzmQ47p_JJWqNITwymHJ4UZdt4ymzVODNv1zcyuFVxxaUqyuCxe5nrKBeloP18i0J-U9sBOJXeoxW3PQRLe7OdNA2cX_iXegfaN3bbupz_hPJSUQnhYo-nb3Babi5mzS0xvYlOnalWamzsKYbHPBbORVIOCxK4uLgqI6pkenjoy6ykX1yg12792xPUrx_t2oo2DjxyL40bZMxErYsKhpgZnmWhQhthaEnlO_YGi468zVbfIXN3TtmHUiXa2kyfsz9wKDq9R5HSU3IytAcaINbwRYUXlM2REZcZ2qgnbb4kuqZdpUtoMDorOD247Y05W980ja2JNmzZNyGYUoBMrfNxkGpfNTzWjPO14Y1C6s_Em8HKAaNXXukeTcDtCKvoFSMi5UzphbxT19PjBhJMbV8K7uUx29Pv8YVd0fOc7crzc-W5v8q_CMsZ5xeo-D8mtTcAkxIyoQdghEuUJ0T0MvRVfhz2sslUZo3vDF1dw83VTKdskesOIBN3nvYYIC0ZX8dZdoqNIiTtmrCeHCwKZVay4WBF9TUUUpMxNpEzGBv28Vw7SI5jKHAdbt1whH9GD4qyLqK1XeCmZN23QT1cdZPzDT-eFkANxO1EHxPqjtRpUfMsbybNNAk9gMuuNyb23qWhE4wdC14dPuhWyk66ZQpdELdBD_JNs6V7EY3XuZIx6e2HYhzPFhTmJtSsZdpq_7BNUTYSlPqBZn5eT-8p_17lnq8QsabeNejqCLf6ZiSwwUQkkKiZhysG1_XvUfYsYqKgLjMX_l1bAB96SS-OWZQgQotlZ1JEnAv3BqSmYG7evQB-ad2FO492cC-KEfK5KHH1MCZbv1-BWwRSOa32wmhAgz3ixsjD_AYaqMqa4KAFtwpulsesMMoNg8JwgGZx5FdInrAPLhN2f-A3gpAEwmQrLMvoXRea1qgArdsAH_V_Rt_e4eF5OocMEg8j6O1lcmXGbE8aNdYuQrgd5eMdbRpV9BkkxwIqWQt2tKywFAshVDhzyFe4FJjMgA0TaqRqNsWfsbktFAwdDkjCDjGJGdZWBROz0Qu7P_NwsFjWvn0Lg522PumvvTjT6zSni8a3p_wmUiArxmcj3pt_NBYlz6w_0JDolq2z-ewTWxgFdF114tYNFfrj7WFW5OZ0G4iHxN-d9r_7hvH5BmBvrYoNX0qRkynzeAADBLAWCzvtev_w2qkVoBK7hL-Z2IdB3xrDM7ZJnr--GGgzFWkwUdtAXIAcprjQZ9g63X1cW2K11EJerHXJ8I7CQGMaNFWwHsWcQat8_Y8tpjdIrM2Rc=",
+        "status": null
+      },
+      {
+        "id": "rs_0d057582ba94d8b8006acb3eca978c87d093a2f2974f69bf20",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqyz7X4KkfEGQqniRCPy6SStXi9tWSCMwaB8mwsdG9E0kzD3FaxWSuW0ZodRNMWf5AUrNr2PUSoO1sBe86Is1BzkkMqhPhcY-jWzrysXZ7m_aiDDOFyPTXvWqHrJPF76PQNf2M-Bo_J98xlm8c1DMqzC5rqr6qrHSLRczwfPEKp91989T4rbZLRobM11yZ-_X3tX_Ac5i5WuirQ5pT0fqozr11Yt7h2I-XUZuU-NepzdsVMCUm1pw_kcqqxGypG3BkbTGMTuhJajzSvLrP2RmKp4TdTRKKruSgRUZ6y_fQgIr6ZNdIaMC3zvD6v4B3QQwepdcoaorK6kJKxgCaEGeDTUCpXM1l2v6JPSfjT0wXF4wOuaqoBzxkOKdyPEtlKJ6ZhhBoZLD9tv5Z9oPoO2WJcTgutdNK2NXK-NsbLoczEolUSiXad8qsFbCyst0HNGtfIN5-rInzMs3ka7UFaYPkvZ7WIXIJN-g1eYs0CY4tWHdBtxu9gxKh3McOf8V7ZxeWRxm2q0OhHpql_9uoUqfPug96HXDdVFUn87nhTMUwJMIWIQOc01Ne0y2hIoXJXMWt0JtrDDu7EF9-BoRydBGDjQjz3bAw_BmdjGGErsY7qwEVkWUtD03jqXTCBopxmr_sYs-cdHdEBbam4_SK_qcgKGCcyWk67swpo6rvCLefFJcZZrFuMhh2RIIf84FZehGVgNSKhSwdX5LGYiIG4lEq7qVEcSiyPdJa5MjP7VSXYobPir6vxvZDcmDdxRt37IswVY0D0w_4HFuJSW2rip50w6CcTnaA1gfsLR24zRTPfD5Qo0hF5sC9oSbEWZVC7wQ3cGBXp3_BLBgwUocP1IUNjJL9WYDeMy7_NywUnrG9z7D142-8YMxgGcvswEGmuOt34dl46UVR9vvmRLC_WeGSd_owBdksN17t_M88vqQumowD1lelwfucg6LESvcvAE8U5zM1MI4qFzRu7xstb48sLV-JP4EwvFv-u5zkEy4PaV_AmPN35bUvokAUVaYVCnh9brweuNRzD1VlqWHEI12AnVbUnOw_npkdpZqsyanF7a3s34iB0wQX92Pj6Yn937_x7qHBvePOhcBXzv9cJevh8xwQPnTwPF7YrzgXCDIJvUmrV12PK5RKX2ohRJOem9n_-0hlcB4Av6tgfVJDM0FpRM0jMGb0Jt0PX-PwoZAWU3yYJa_iNXzlI-W8Km9XkOsvMmeYmoIZ01urII_S55lEynb9-dkNVVff2GZh85xDbcpjilMscnwmXuvNyOp52s-tPpmGaJFBR_-IDBDWkdJsZ8xeU2FqQg9wrUQI1pQWIrplqqhL6kEQLwu4YGPD3NjWYmWkX2RVfXHRQYegyKl22yxZJ7RibKJdP1unpeFZznIqQ6_0gwk8cYHeB-MGyYNgnCK6wnc64PmUFDSjnmuGXvYd4jsIa2R8Pqkr2HFtNndq8SiCaPWJNdM0oa2w1F9h3G2Osy-l-XuZU5q701Xq-YZn4Wy7uqiA_HviMYmcGqMUBrdLop3P-8TFMLv8z3ZjX4S2Olmm83JstWJqw927iAJuQXg1lqVyOz4irSX2Ba1nnO_2O7nMYhGpZrkZZUKu_250GKlfFd-LMQhnfI2RiEmQdE2_amzHmuxqk8JKJrIvvFBBSMVoyT8qVg1j1PBgLBhAuhHbATMlWH_kJVQhdjKiihZ9_4TUt0bc8DjLNhAHPENEo_1b-7wHWiUQ-WH6IwOF1xuSueJlqTRcBMW9nuk1Sq346px9d7EsKE0BUcmbLbiJV5ujr9EmtzOFQ_ZUIZHTf-St7j7WCX-nIBQBOf9Pz3wP2mtnynHx8a0P40EY3gZCnjvL5nQ6r7Jk-CVe5pEnDRk0du741kaQ0KtgmbWFoqUB8xz_WSQSMDv4vnPl4URr3LyxSwV5GFgok-NtuMd4qU2l3N1go7T2PZndd9bAFCe1ajlSxSKJK4ZFm2cYOl09wmmGbA1doPRIp6uKT-vCnhvpeh0Z9vwN-JdPtG5uLpTt5Bk23vkqkamPvLdw2YIZT1waU9IDRgR1SvGd9dHDsSD-GQanV89og4DLsCbz9IuLcfsDh8zG2PpHtKm9HdlOPENUUndHktniAqr_pNZxdq_jc1iDKwyy_rTkqIXjS36Xz-rvoY2QW6xtOLo4btQE_MNQshOBnDoBsNpOBpYXS-BgCP9EaGo1aXEP5d4Wmp-5mdTYWGSyJ8qhQB2cvu5RFLaIi7tnHPYXKwgWDNq_rXSSghP0pfgMsx7wqtx0J3fgau0mHpG1YxxQlmCX1PDNWibHCC-fC_x-i9rlBbIJuXBh24WhTZAg3GX5BnSbU-OwNrEXkStTxZFvFvJ8jwhaQdUS-8oe8RLJi77ig7cT1HAE3g86nfp-KmbPEMAdzWRYl99JxyzMOJwV5N7B39GSAN-u2WjAcaSHqupOKMJmt8CEOYbxHN90dvyf05mEl-rJAISzZweRpl4PtDdjBs9DQMBrm3hBwGV-Kih6sCYsw1-B_AiyIAn1MF49ymoAY_4bNwKHqps32v4A4VLOIxWpPUIi9jeT9cmEu8FTcxyLXKlEUcxyHK4x7xOMp5ZMIAGX0MDcKHTwAm0ujDXwh0mhhoGUU-uTsR0kuQw91yRyXt8JwY4UXJTBLSFm_XM-ZddmT11RckgfbHCnsXRiWNkR61vPNfNiNs6yonFr93kn_2PueYZFSlAaboyANisSdRTrZXel3ppm7RBGwrMFUtQlepE9GA4p4Q-7G33uasZ9tgYc8BMRdGAuPrMUf4EJHPzmLrXqKv2jHEGZVAAM48-ZShJwVIxjXAIVRV7UhXQHaXf2Ops4BHi7dmJbt2lY01VyNu7z1HFUfkAmXtdFqeqHJ5T1orL99ApBymLZr8gR2Nt8QkJlnfpiH6pETaGkEltpoAQoYKLy3-jlhsYO7vYCCYJUZnYh3E8_rVv2meIjr3Uss7R5_TfKpYWG-8Zd9PI1ebdAbcuPtAiXPNfruvPT-7duRGjoitDaFv9TLBBHKTlkF54pW39x5SaUAExLV4XcI2AkJWdmFoTlwnzxho8Ok3MpCqaGXtFbWJdebnnbkMjdUao-J6K6CKkygly7ZxyvZSHEZQ6o3vT8kU-P-zmNKTYqM_HXMBv-33swEUpgqxQLkLAaFEtZv8EqeZhJt92lswkaKi42ZhTjn_e991faWPDt4P6SY2vWk5G8H7ZM4JPrCEzqaBu-eZI4mT2yrJtXxEg2Eca2fKZMEHzYSd9_fqRPd178AqoAy0LPc9l2oFXyBTxz9SDv8H5TJNLhYYZsNEIOwLTecl9V5QKI6fMKF8O12rZREgNCkjp-1XtnLa4-FGOJ7Jt9xzG7slPNVAxdcGa-dJm8-8Y0X3oZ6VlR3PXvS_lakfxH7EdQ1h90zyMW6NKmdIWkfzn1G-h7foccwyYj1fBkTkoUzodMzrFD11Johfso7K6ZxenWyL90StsfTwsErjLNvatWKOqB5U4HAwLf4TQuhS0PITmOL5Cth_6LWbuLfjktvFrfHzJYzVL17R2YWQzM7gbHLd8-3So290SinE1BxF-vY9oXsylbcRF3e-b7_0usu3uF_rkAsLgTJmk8lU4qs8uSnhMrJTTesk_UnrsPkFm3vlVeXhCzbQ119zFU9HXH3OL2sJHGL7DIAiM_VeyPEURvQRF-9pEYXN5RX-UJH2Qk_JqRpU5uOtKlhC-geR4ftG830_R4SxtfhslAO6YmxmZnVmxOqgvu5Q4JmgyTPa5h6n7NOkZCN0UsstCYHqvISKrs_-tAqDT4el91WfE2WTYXwFKzm_thUN7HnFh_w_GKrfgeCkJA3CjeKry-4xRugVg7ydKZBNKQ9eO192QgTzwZI_F-limNUTM5-Mn0NkO78jU7gxIE6mg3zL81LDyrV8PRFgH4gYDWaBo4CksMcjFnkqk9urW6gMNnFi74Wera1hg4SA4HrLrAj9wibHNZD9k_sV1ADjTUsrXrsykO2K_sli4FyJdsjHUBHWK7YvOhQo7XI3xDgLYNKZqzJ0sf9S8iZaqJEhQGtfzzRzlVChTDVP69ZDfA71qQvZgevl9LoeEKEo9Z5GpJxue1yjNxYB7VZteNn6N9nSj2GZQYyFzxD8XuOUDS4QjymG-B8ED3yjnfoNTjkO4AKc2FW-dNKxNnE8lVY4NHxqALNnPnuMTqzOGKDlBDqJPJgTLgoHkjG7gy7qqRYVNVKkJEIBz2Fkdb5z59jnVr9oRluS5LJVQ2BH9RqBi7thKLeS2bxIz-UGgEYAOf6qC7rsrkYrxZe2rP-ErgzDkxUObHsgE6Y5ix9g-p79IFJGv_EQsOcTU8vDlp6rGRaIVcrRp-W1Mjvl0gOD0DiZ9v5AZd8pUOnaUxD15VDVQs_bPr83u7Cq-BRtYOKbvCyPjwrbtylgEjLOjJWLj1gFmjhrkwibVJITj_uyTEoUJPcP5qUH1XhoYJxkZfcXbQgOUHfnVBzjok08Tpz5pcLCbqRKK2k3bOkNOPTd2ZwTorkJxcLsGJHZiOO_Yctc1JhvevpWtxbwoaxvN_m-Soa8fzNp4qgs2nzEbltCqRb5pTzjo7o-YUSaSZTYAgTJbryCTqn7Z3NgPSja03w7B6h0IpUMmITpUO5SoSTy_X9tQ5LQHb1RfSv-JcUDNMqCAgdBHtatGcMPLz13_yi_HlZUInSef3Fqqn_MUlkoQZGX-URk-SRJc3ciUYTn-L_CsLWCEH_4ztCv5pvkC7xWntb12l7nULiPkg5ZlVew9FW76sqqNYfYum__HlA1le_6T0d-FuuTAQau-dREF3qZgeSn9BWmRAfpXIcmez4MEctwpgHTsSQjfrA6CoFpm9oSHUSxYkr7IS72VjXUjsczlkVot9VuhA6lMQlZTpVjQ-r7G3eHlas3YFe-lHgyZ_1Kuu59SS0hKWTEoL7n7EoMzVq_PLHr5aWxNHAHS5XKLWcRp5Z9WKZT-tjMhQfvl-3SJVB45K1Ud3x5gkXHygA6IY0DMqQwSbvscCHYxTDKWawCZn9c0-oAalserZ53w9G2zBBxXVakKKnvTncqsBvI-nKaTGY807stNHB8H4I4S0FS5MohNNkoWe6G982GBySz9FhbzbpJ3PDBTa-mH3NhZTwDrRTN8a7ISft9VHmAP92dEhOd-lLImzJj-zMD8MZ1RZlWn8IbABa5GlVf45K4Ljc5CV9TPtwMvqZ-GVV8Dq12y12k6hueQYnLgaXsaF-tHbyfQI1DxgfH-3kLbwr7lZvytZjTFR6GrJx7v5v6cqp1RkzbbRjk6wqhHVhmwTUIU9twS0qy6sVJWati5B1BEgek9oBYIT6aVF-rpE7dBGRvPJKObq2KGeETe9pbEhMhrPQzmV_3KdgypnQFPDvwJegoi7dOaIXS2nsECaXNlZxTf4UOuLlP0VzwQrBaRxIzwgv8l_jFEuzyqN1A9HuM82k8h_eUOT9rpv82hZwUNbDup7Eq4fAHJiOVydMYZXzHoDl8X-qt6E7BKKTmGs7pUv3mF5NIU0xJeSsnXrGqbvmUR07nUzRuKKUhsGFW9QT0_g2fcZNRQ7Mmyb_cgrsvty_f5Ebnkfsk9XSl2WbRwHwXRxRffBAKIbFadosWKri1l355a1vj_mSxs5_9nLTdvqRvVfIPWWyreSGfvwL3rpqWNbXQ-_MUcXNaSDg6m7Mp9WNg4ibYi6PzgpxPBLFjCAjs5ddCDgruTSuysGIK9nq0oFEjd2cKNAJQZCZj66j-hdbcCW-95YYEv-SMPaP0JgKwWRXR0ugkge9gZDsStxRYEoCxGZNlH1nyAMc-RuPVppUEtJVqskEC8-DuiYQQ_jGirdAgeTK1bl7FxcdGXgdMHd0SZj8aWDZHjbO10Dda6CaIcceKywGwYzO0n-YQbpWai7e1H-8VcMX-te-wOgYB0I_stzeNtRw3EYGsbNF7rK2Jiun3h8K2--ppxqhUZShthA3dkJQ0005f4YFvhiMRVE0FuOj89oqX3yEVQQ9LyQwVnORRO5MwDE__cJ6GuaM3hjpig6vG91GANK7KOYcRAVuFO8aJbFssVizmtEFKaLeB-iqHv_NrnBxLztK-Yn2RqfeXb0UG_BKyNFe3ttbIxR0QQFshNVQzNOAhTB-89OnPT9PBGn-ikzWvi0rNU-y5NjPbocH8H7dNpYbkp_TwclvGCVaFw15MQwadCkAhOnt13zGM13bxsJTuiXnepwmWnEI7RHYVS-at1T8vTxeQ7OupVF3HpWXKC-eHWGoSOgwkrqewnczyC2oO1EGOd5bQ47guVdyUDaQKE-NDUYjNYMcADsdYNbkL9ZxopqE3Q7JTPC2Gm1qsnNDGwWODVyFLuosWgKEyphc7YULftiF3SiegXFxGpp5l0Pf6uWxfxJsZmMXQmJjeLCfl5bz75UoU9YqQ5XXu4QTkOUxFN622wm-DeLCggClHOQ-XY4zfSrrnpToPkUIZdcVRrdGYUbSoGR3K6iRyH7MJu1xhPc19q1aupirXBmj7lx6GhrMgSYhzo5gYS6DYhpbsdi6znHWM608r3X1PxuJcWSA19xWS-YVV__DwIHrSB3F9xF2gHSCbVgRw8oJ1rnseh9J6LQyY7DUMF1e4IVegSJ8Pst0W_sI4tDfX5ohl9O5m-vxYxQ3PCDLlNuEx1F5iY0-Nvtlf5uMXUP2AtJSSoduunX-OALLpaqTShQNLo-wDof20FpShXSYIezFCfemKMNsggtk5aYHjX1IW2JFgSRHZ4V9Mae0Icl69AsvwFASup5pErNTNus0dlzN20rWrYrjfwSRF8SKaRDb7y8tWmFhdKd-fh9qUlvifKYdaSGWIuBHpyeHCViUZE0waOWyZz7mLLr3Xz8f9BWe8-eWnlCmdnQdnyIHSv0yE-_lBCo0KoR4baBZ-EKchyQX7kzLwBl6wPlBLXugZfwJtWSRaDWxsPSD-zxrOcuE3n2eySXtQvCVPDM_Y6H7GE1UfPIfWgMj7ZoThG4hd-1IfdIxbbuisAbWDbZXpXRF0p79zh8KxAQcx1u-7GfBaoZyhXeNAZZTMQ6rCgqL7XNeMzngVQU6wOxHbNdBzMq0DS4Sd3JYVmZGHE1IydKAVYnTLbKhqYcvzPpr2Z-kOxgNKP5NBIutm2yj8G6uP4EJIM3pysEonWvLSIF8vGhic09jc-wBTcJ2jcObYgDg2Fg8gVJ4y8t6MTCb2aevpr_k1zJ63d7mKyBU960GXlr8Z-mgy6HNcfFmFb_ihRj4DjbYYOKb2M9PnYGrFnoKsXuwprAxpKkQEP2R11pxT7Ym8XWgidqAOEUTKHXMZ4noYScvYSbO-ir_mtCQqAj1uKFa_sSYYML0Aq1F7Va5afyyRaWO5iIQru-vHZBPnM0UI5HinIQXyN3TU5X_PdUM_QlF8w9zs1wXGeb-pArSSyYZ2F8Y8gBNPkSY2tYEM-m8dt9u_dSKVUt5My0bEcu5XG-kqG9LAQbGFjv29oB7uLrep7gnICsQvS3DDmaKQnfaGfxLCoQs8bDLSwq2LFXMqYZEPjwmOrY_xCnFTfgaQ_QDRovi5_QpdnQweki_l2RnKFUTO1Kak1p5rUmstYoIC-dak3q1mTSR0HfGXC3rYwnfPnoGE2jemRUsdHmaFqqqOioFDquYRT6mn7HdH_24HmWFtGs5O3zMnO0tfOMgVBuCDlz23UXN8rk6K-KBSoKdysG3_pt5VFfP5aPQOSAycysnaPpz01uihY7iE25o3w4Ya05snJE5uL-6NAuZXDxv-KxJAeWLXwXjNDpB5uOor2S_I78b_3eWNQo0SJclZm7aIz3q7l4xJEdr--uGX0EwmcvDt8NX7zMh358U946-uHDCx8adC6TaRPEpfWf0GaLMXI6DO4dkDcvJixAEyE4s2pcZJ1wCYEt3HaLaaJe3EJ7cjbctMPoTbw-gtpwY4KCFbcQD6bn-sXDrdnrB5DLSX_1ExM3odrF84VTNOaEwGLgF6jkFW9Vr0FtAox5gVzeWVXTJKD6PhTJZIrAA2H4_eGgE1u-TO2SaH-UWfvLXcF00Z7UjuPqopyIbWC5-myCdUhxRyy5C2s6c7HEmoyn_NnL11h9ts4n3de8Q42kNIKEdbawwGt48b-uwLiCGAhJviZdQJeONeCJYXWtIXXH0T_neKeKZwNVc4IuVawH4SimHyzvs6k7g7RemEhPrdmTk9PKwQw7FPEMwTzbX7rBoVdn4WMjL3TamgXFAK6DU72wFdkrhTtiGE_MAusf-V0J0KS17MN894CqZh1cDkYs-8S8xHm_4RYoyNwyJjTXqrSamy_paa2LmFaag9pv3QChyS148Mo1u7g9bdnp-rLzw9uP4O1zwlbtkJElz9Y2yjGTQReUqhwgrAQS4Aay6uGPtLRRiQ6_vcCF_i3DfEvA4K74FRB4ZUKaLCkGZ3IPsEQ5aSg04Z2OQF8Ze90=",
+        "status": null
+      },
+      {
+        "id": "rs_0d057582ba94d8b8006acb3ecf2b0887d0b43912e26b10ac57",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqyz7XCUSUvsnJO9Uu-KLeQev54zTQGpQv9qIDQtDgjuJFQlbj69y6owjYQr4tuspl6t2wdN8d54jY5Q-7PCCXcQkRMyJJS-5jGRO_oDDb9xOl_LGCRBK6KCV5eK7p9R9mLi8Y7xzRL-Iz8oLj9yal109ObrDQskNpwm4ZedZuYFG-LUWsoZ3DVaQ-CmmvvG1o3oca7vNZBGtpzFziEAyNk9Ez23Sgg4qvcggkgaiCUJ8kHmvb0ygqOVlFiJxaCNSFTvWJoM_nB0w389xd-9A287fO1rjEetIdhc8w2kt86LZDkS2O8-s9RcB9CTloVqWF-n3gjZi03txsnPCfPRqLUoaYLREVOVzYR_o-_mDMZpwGgJRQcGOaGeFz38kZSYR7o6XMqWyZAIkiLSi_P_sLun6iQ9g51PeLAcUp0hKxCz7KPzlwCtJVZ5EjzMSm-yEIbA_vcsDz0ulV2LNa-HgMrJtiwF3jG_Wt7BwvGiTsjsTT4FtU-TK-fI1oU-vSin-lRt6iISL4y3IyMH1Z56gmqf8-liQ72C7nnoS3uGX-MlLPBKd8wRRwPtunei1XGBXUG70r10tyVOc5owL48aMnTkB2ZDhMKCilidqBrMcbexJkb9JRsbRZV10InmNlwzDAQLRMBa14tNVHK9Bz_ig5oAEQgn14vOA9hEiiuB5-5oL-6VRlFh0O9lzHgAFdd7cLnt7usHIgANSj5LJFokhiizGGBdR2Buai5aa0KQWrHnA8aYnjaI45OKBdRc6neh38NDM5kX4Ye7DN1tWnY39FbryqFjsIWy3KiMZbfFDd-AqKdh0JZeiWlWPkndTl4bwgJwS6jhuOaUaYoqGkF_qRH_gb1ZXQF3ouJhCrW1F8hLu9JNMFn_IsuSZY2lbMzfwfJRZ0e5s-Y20y9gh39AVmtS5XVap7hFddrffhncyh61N52L1ctKMgWRYRyPjcvVs9nHqVYxA5kzQ5owfyIT3jXtU4bujF1VU_zKh2P1EveCwQuNYuqXkno3NbmcCqBXEXxiSBLtBIL21h6l8XT7hNmASIl4pAZynnM3EtH7Iirq-5yVuNIZRGIVopOdY2xAq2NgaANGSj_I5J8Q1VsTeamrgwa1lOZPKUykeE-jOzlhMf4Ffo2OoSJIdB-8DH8WI7i5F9oWLd33qUiCoIvWuJ1AiiLDE5KZa0-UGnk_yeu1GZ83xAuG_UpMx5sUxQTAnQubT0GACGdt-eoYABVqauX6EZ1EUQfl9H3xX7tUWF49g7N2ou96_mzZOlQPZ60gvEiV1rRtBl8foI1RxDBKbyn8xdHnsFITY9DsWTIhgIFLS4BRLDO_cTsCKXgot_Edt0bu2V84X3jhPgJPiiQkR009_mG6ndyUWrAoWxuCRB--oYy53IaM8u_LiOB2kPwQrJUf31LSOhtbsEBiQRQSLVvUJsw0H6vNXFmLsHD27sAle7xT3lkX2m4ZaOSC8yXzeW2Bep8kZ7xBG9gc7XwI5GkqBk2dJRR7FE5mc4F3wjZlcyIOt1NTkJvc38tpECxVgD_-6bwducwHQO4e2uQd2H52GQgfQ-jcRRkQdn9-ZSPD9xe6aL1UKgo81CdTQcARbmFxfU5P3tnhClURUlL1EmXv2rlrlthktUVGy-_-MOzCv3xuG9oO0BrAaTQUeFi5LSeeBn02UxuzIpW8GngnHlQ6uIy0kUDX1QE2D0ThnNR6bCCbYSpPKB0e7ilpQyvCaJNtM0-aXhCsM-bvtYV5J9Telft109XqmPz-pRTw1fA8sjZoKKpJqcMxFD-_u3ByxW2CsrHlVDfQyS_DtFH1GKclnI-BK1vE1cx7Bb9oU3Ox7j9pfwx9q_kx1s2osTlZupsTN73TQKPLeT1KnXXkTu8uxU3yfWrmbYpjriy7IoSBulHTquLZn5EJolTniHZklQCWFk8AkQwkLIVNWlyzgakURJfK9Gjwut3Nu3cNXBXHE837gyjZGpfxfvRG0-YJZP-kSCATJC9cP6fgWcQm4TXf_egskx8X_O5Q0NlHgltnnOA-LH_4yFctBLN5qr7u4Jm6XZRniwRdFh4hlCqKmDke20jBmqBMq2xNK-cJty1yoLoX9vDfHZDlE8GEuaoj7qES9nlUvaXYu-HaYxLyOVVSYgGLkdJuiqjdbB2opkkCPr6CBfZnCG5GcGd1UUARjzoHw5deKry-FdYvgkK1dD4eYa2UkZTf1CEKDE3VQNtlzCwya9q3di9KG1wUyEO216wCIn-XH_vNTBeYW4v1L_Jn6s8nLQmsW0O4ZSOrziYLETWH3QXgKezgB2NtSKM-YpMFk_gJP7g_mEM4PaMJpd1r2fGzsJL0Hllgu8vGxo80oZSebBb_PTivD6K1EAs2SqjlijQgFg5ucO68dJSAxUW5IDxz4hjqhHDd6Wz--Qvat-xL5Iz2z-ItkfSF8R0r9rvjOJKUPrEWakoBJo2n6FZN_aBi9K_S0-NjPSKssMjFKVZKF34BALa2SR0bQ_XB4Cw2yB7D1YtH8BzGdUMA73aea_TBmijNJP4uhsi3WoFXSU28BYpxT9CoYSMYq3QZWjcXvXXXb1bTGyEKY3fOJdbOXz7BfcIZhzxUGwBmIWZx57Xdhaykpt0Vz_q0nh8cqUHAjgh4Zoyq_GWbfAplKdAgl2qwYgsAhYmHztnj793nW2HMUOThAwaBXTyZWxugL7xILaz5rnmOImpDjtVF1IEHvCD-di1nLbzI9p8ADax0l2k7qtWZXgCYwRi4FMLuObjpuQuj_tNtcv4cz22TyGEua7MpO_3a1S-IpkBcSskayy0qA1sKYBpRIGN1g6i1XzhrxiQHqTNVO1OwrHUDSh4i-fSDNP0efQbtG8Wz0DGamML8uYStBTV8N1FERSfH702_sI8_UbYIW9f_ycPXlg-DnNtteBwg6d-RN69dUpmFJiTvQ0Tb--Ymi4BHoBhFBnk1aBThbaB74-BbUWKl2_ZPX0nsAHvuvLejclA65fHxtXVblgcR3qIaOisBEgpKuLkvvHHfsxVksDV1kz7Cip29RseYIwDtog1L7CLAmALGXe6T0vJ-FE2ku2q0XULs4BHyl13W1-NgPWqyiZeSn8cthymF7de2XuuAFLOn4eLri95_WBEBxA0GYZTrbhcp7WrJ9EcuDgd5N6QmRIwryrRYI0uANpsi3IAMp1lIpGb19ne3RM8JGwQ5kAAud_vbpd40ht41K0mlu4aIhNCiWp7RIQ5dqWgegDNRCiREX-ktrkZYR1DFh5KMAx3QFCfILjNuzqc8h08CukUWyoD5ssQ4zl-I6vOmF7yMuUycHx08MR2ZmPiaSxYn5YKPlRA0kZPRBj5XCt4leHtYJ_x0Zn34gbTh3J-O3PmsSlMuwjdjwBT_BX4Tvr8qieZvdnAktqe-2RQ9FmtLgfJDI6M6RzcdMURfWI37xC2QrvLZyhLFWc8OHdfdUeY-w5GJaTN6dmEE93dOMncU9I_TUhONaiyLljwO9h9AV6t5cftm58kIoiENW3PXq4QZxF232uCDX4HrUb8oI13R0JS5lj0_bbRQVxh_SRbWjyvEN51Qao9h_uWqhMxT9EyU2yzlbA4oI5fIZLBnqYGzX8YguyqS09YGVHmltmVvZNygXXi33B7by_KpTb5JETkxX3jYRcYXkZO1E0vXDTSAMk-myuQ5X4W-3i9ukMiOHwTLnqENipXPUY_TngZMMpVJx-bwygjWwS7ZjFKM2YBEt2P6K35CmTVl06BXg0vG8lcZCIWUYR-FVIJ95mqE6KrakjC7wp0j7UtP77b6P3kFR0w1ICg70B_-qtNnG5oXf3X2nRm7LVs_hhK9Gm-oYGgoIvKP04wctGERBw9-WEFqDqWBuoLcdyN8LXyk9tWXX0cABK2kU4qP_sxSk5ytsXRFClNndHvha6KF6lCnAO-bN1hAgr2uV5RKfG67tWi3QG9LI0E_J0eVISmc0mxEfFCIHoJXCjI8jFLQrJlCJ_0L_2mMSqxAgZlVGyOAaaR7KvfF6NVzQwqvlFhxEAhZN8NWF-FslAZJdee6O0h0chgBMPqFf4vGJK_aLp9yIsI6WDMNF7lNFTWxVlp21t82ei2ubPnIxRYYcDZtjFtvFN9lZzw-vyf1XBGzblIvXsNm8LVrOwxGT6UtGaiBRacEAJKnknNXCMTNMp2tWLpcGfCmMKaVyWGQnIDyU4apoXbp-3kzaZiUYq_GZTSj5KtgKy_hR8J9pSHAP7bXtLA8Ri0IF1rc77evzPlL3bZ2IHuEPAC6v1EDC3ntoqp9F27pzIbKaXT9ruk0SvaEq9gPE0CfoCnYZxE5M4L4RdiLXgvpQ9bcvMUJwUU3UC0RkJ5OXt1_ZVTfcOvsm6Bsxf7Roqrt3sZpqGU55z_iZiCcicUNttTVuy3b8qPB5uISZa4xga1A1m66pzfsWLrrETrh6Kw0RITMoXot9PPSWkq_y8YpaMdlSrVHDrRP5eS--Icoh4TTv_wGcBntcVt05OqunODZf4sedCL6T1A2QWIYKuNptN_VWuUak_NQbfsNUEgDkv6DkYuFNRH-KMPMmWO3Ob7owyuTV6VPe10sr99o8FZPn0bfFjt_S27Af-Cfqm1jYFVDB3g44iCgNLjaj29AE5rFkDOOnytaZ-gDNO4H665ueH4LDcV34HFAQTX_9kEMG1SS7qJYsODoM59A_OGP9Vzt1gI6URFJMMeGe6IVvzI0nT2BhhSZcwArCRdRFNRe38dtddJXHZha9Rk79T3MdzD9UoSdpocgtATjB3ymGlH_W0F55mfnVQI4if8HsiOO45NZ9I8b9o07ElYoY3UDCnwXs6IdsNTKWJty2s-N--HQTUOtqh49ndT24gj9b5YTduOkXMsc88eyTLWfgaE_puiBF0OKDvhlc3blfubfl57xUbsdlpQnMckj0MXTUwfMckr6NvpWxRfzOrTfncEWQY1qpP4yRnWfELs5IHYCuXoLb9VT2-FlBjDXdmSHnHi00Nhxpcg8B41oTBcyvKDN9xIMAc65Yo8UHl1ouFzgoftEF2htHiuVi7NYejog4ciUArPCuYXbDhOrob2o2WnKZjHX1N6dGvmWi5V1aZdYyseIAakhZoK7hRSdwEK-PqXH5im43krjSPXVkXwpyNMy_xSvZ6Dyt8s1KXjwR1GAA1jv75DII7Wxf8RZXAWqJ6LUZ9B_zhD8kMAk0owdt8ChN7nHINJEbIOnYZtYKJbYVKpTnHzfbY9jqQtp3DoQbupWZBIJyIgnr_gkbzyAejg8oD4lhj5eYwRzRXXQlT9wcrwryrxcbBCr_PLw-6BR0urKGZOLdg_8QKKDWdoOTyvg5GKIE_UrXapBy3sGFEms5qkXcYESzZCiVoTTpQYHHTRu9EFroxatcsiyZqQh2vsAPCDKuKD9RfkRgL8vwaA4HPFCKomoECRVjO-p41Vzq6lbXKwqrwjO6AGMs1ufeKfij7oupxVHJ3N5N50kZfR_KYSS0pxX_eLq16eZakR0NKsOu8q7jI96Pe1QfafeJ8Wd0sgv04rvKVX0PYGH9tC0UF649CPBujpa6jicxozbbFdmA_EoZErFuisiQ-p5QqkAaXtrwzec2B1NvxbL522T2SNLERE8E6umba-4fm1Ew9pTE9eyw0Wp79tbN1fy0UfS2PAiT0uLEMnM-RPFZl0ZdtvHYIXViCX_gEpCFxbivkK05X5fqhohj4-tWUzulEVfFb3IpBSxnX2E2ksnTjDx_C9Sdso2K2OUrnC1BFvsE7kHvZBPPnA1jUWRF4QBel_M3NfZwp0EitoVbLyYhnpjJb3DJkSWI5YmkcThEPls2Uu6YDIfx5mAimNtqaOB74_7kLACPMv6xE_d0QjJAMCq-mc5G0_DRIx2KsQoj-hfbyLc-98wLW_buylUn8DwjzaCgrrVs_gZE52D846i4GTdqbUwtOppVtqG0Ji7LUoJkgfjCvBgUbWtVFOVl_SLCg3rROAaE_lW-WV8JqpRZ935WvOw31lv_1LBoffFpN-tILsKiqdZWdCj9nQqa7hyHJo0IBII5aT2egwEYRIYji1wGGOJoLg7n-6ErlRX7dkhnpV16g7TbPppQN2DwzT8KqsMjKeMCXs66fcjjKGPkNjYKXAJa2j-y9bgi5tVWCq0up0kfq-dV1sCAyENOCNE7mCg8l4VG-GJs1PmWfT9aIjQBjGquSCri8inziR83X_O1thJkeXcDkJWvqtonGKUeFrujCD76Dr_l23ZsOICiUhF_IV8IW3kyM21bcNAzSO4unuxAF2448e2ZBUiDY6ENhFz1tGL9SEyQxIVvh8hpgg469FOhxbcb1Ya9PgngIjPO6W_ee7rk3jku0UndzMrsK4X5vW99gc7KCC9Bo6EAx-gQcm98LsyCDBL9L0zLjPfASJInROzBwzlqBLHs3AjIXUtiyunGkQxzVsC2F_xktqliznpKsZqVdNZKvvQnOo3CHa7sCl-CcIWpFCay7K5cFCQwyKahD4U8ILAGLdHOkPGW42eHTFQ3Dsh5f4zYkBUU0ZF8mvqm6INuLyZAiR1vflVGnVkG0cQlr6WKKs072QYCbIgYYWh-Y7d7YE-Rm7JOw3SYx0CSo3BaieKZGNjsM0kyVzhPNWdIGSkc1zol_5eGPqoVm-UNvmQ_Esb4jfxEwEkV_aBnZTbyXYVx7vDPhduFLLwSQ326EvNYtADaJrFalA166tPRsyESjaWmBVPj8F-6_WFH3UqepSWR7h1YkipXHLMZJD2VUJtxCqoCMq7HZsSePXWArw8Rl-M1GEd3j-ERzMNTeNLXrEOJGeg2UcdzU0OPjBVH2_yrsgsdFv5UljILZP69VnlVELSR0eE0svo1fs23VItEGVF9gGs6xqiIDG9KiYoKie2cpfYWqbUvjP8VHJZUQ2jp4wZ_11eOjnCyFP_2FrhEEJJdd_tsLdlO1MI13TUhZoFf4OZxSN0RI6Ut7-aFpCFZYK7jvRk3HDrALHwJbFZtQAcaIu85pnzmBAyVNpe57UCnaRig9z9TluqvSJ7xqkL9a2R0ob_VntnPBgZPriVV_bzz_M6xOGW6lQ8q9i3f-_817vKs5EnOElcUdgJoWRYj8HIg48oxyYSeh9akGlEAjkOA9G1wL9zvlvqU3J48z089pHNh1bgrN-RI9E1I0pYolBzFhrEni7rwVvUQwbCbX1aUdg8RKJX7CZL1iEsgw9S8DOABa8w==",
+        "status": null
+      },
+      {
+        "id": "msg_0d057582ba94d8b8006acb3ed2fb6087d0bd89d28730ff12f9",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\n  \"axes\": [\n    {\n      \"axis_id\": \"top_panel_x_flow\",\n      \"direction\": \"x\",\n      \"name\": \"Flow\",\n      \"unit\": \"l/s\",\n      \"quantity\": \"Flow rate\",\n      \"location_description\": \"Horizontal axis of the top Performance Curve panel; its tick labels and axis title are not shown. Flow and unit are inferred from alignment with the lower panel.\",\n      \"is_primary_for_digitization\": false,\n      \"ignore_reason\": \"No visible tick values, so this axis cannot be calibrated independently; use the labeled lower-panel flow axis.\",\n      \"confidence\": 0.7\n    },\n    {\n      \"axis_id\": \"top_panel_y_power\",\n      \"direction\": \"y\",\n      \"name\": \"Power\",\n      \"unit\": \"hp\",\n      \"quantity\": \"Power\",\n      \"location_description\": \"Left vertical axis of the top Performance Curve panel, labeled POWER, with [hp] shown near the upper-left of the plot.\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.98\n    },\n    {\n      \"axis_id\": \"lower_panel_x_flow\",\n      \"direction\": \"x\",\n      \"name\": \"Flow\",\n      \"unit\": \"l/s\",\n      \"quantity\": \"Flow rate\",\n      \"location_description\": \"Horizontal axis along the bottom of the lower panel, labeled FLOW [l/s].\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    },\n    {\n      \"axis_id\": \"lower_panel_y_head\",\n      \"direction\": \"y\",\n      \"name\": \"Head\",\n      \"unit\": \"m\",\n      \"quantity\": \"Head\",\n      \"location_description\": \"Left vertical axis of the lower panel; the [m] unit and scale are visible, while the axis title is partly cropped at the left edge.\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.86\n    },\n    {\n      \"axis_id\": \"lower_panel_y_npshr\",\n      \"direction\": \"y\",\n      \"name\": \"NPSHR\",\n      \"unit\": \"m\",\n      \"quantity\": \"Net positive suction head required\",\n      \"location_description\": \"Inner right vertical axis of the lower panel, along the plot border, labeled NPSHR [m] with a 0–15 scale.\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    },\n    {\n      \"axis_id\": \"lower_panel_y_efficiency\",\n      \"direction\": \"y\",\n      \"name\": \"Efficiency\",\n      \"unit\": \"%\",\n      \"quantity\": \"Efficiency\",\n      \"location_description\": \"Outer right vertical axis of the lower panel, offset to the right of the plot border, labeled EFF [%] with a 0–70 scale.\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    }\n  ],\n  \"warnings\": [\n    \"The top panel has no visible horizontal-axis title or tick values; its flow identity and unit are inferred from alignment with the lower panel.\",\n    \"The lower-panel left-axis title is partly cropped, though its [m] unit and scale are visible.\"\n  ],\n  \"unsupported_flags\": [\n    \"unreadable_or_missing_axis_labels\"\n  ]\n}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1791704791.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:d1382e3487:axis_identification",
+    "prompt_cache_options": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "AxisIdentification",
+        "schema_": {
+          "$defs": {
+            "IdentifiedAxis": {
+              "properties": {
+                "axis_id": {
+                  "title": "Axis Id",
+                  "type": "string"
+                },
+                "direction": {
+                  "enum": [
+                    "x",
+                    "y"
+                  ],
+                  "title": "Direction",
+                  "type": "string"
+                },
+                "name": {
+                  "title": "Name",
+                  "type": "string"
+                },
+                "unit": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Unit"
+                },
+                "quantity": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Quantity"
+                },
+                "location_description": {
+                  "title": "Location Description",
+                  "type": "string"
+                },
+                "is_primary_for_digitization": {
+                  "title": "Is Primary For Digitization",
+                  "type": "boolean"
+                },
+                "ignore_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Ignore Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "required": [
+                "axis_id",
+                "direction",
+                "name",
+                "unit",
+                "quantity",
+                "location_description",
+                "is_primary_for_digitization",
+                "ignore_reason",
+                "confidence"
+              ],
+              "title": "IdentifiedAxis",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "axes": {
+              "items": {
+                "$ref": "#/$defs/IdentifiedAxis"
+              },
+              "title": "Axes",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "AxisIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "axes",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 1572,
+      "input_tokens_details": {
+        "cache_write_tokens": 1569,
+        "cached_tokens": 0
+      },
+      "output_tokens": 2222,
+      "output_tokens_details": {
+        "reasoning_tokens": 1481
+      },
+      "total_tokens": 3794
+    },
+    "user": null,
+    "access_programs": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\n  \"axes\": [\n    {\n      \"axis_id\": \"top_panel_x_flow\",\n      \"direction\": \"x\",\n      \"name\": \"Flow\",\n      \"unit\": \"l/s\",\n      \"quantity\": \"Flow rate\",\n      \"location_description\": \"Horizontal axis of the top Performance Curve panel; its tick labels and axis title are not shown. Flow and unit are inferred from alignment with the lower panel.\",\n      \"is_primary_for_digitization\": false,\n      \"ignore_reason\": \"No visible tick values, so this axis cannot be calibrated independently; use the labeled lower-panel flow axis.\",\n      \"confidence\": 0.7\n    },\n    {\n      \"axis_id\": \"top_panel_y_power\",\n      \"direction\": \"y\",\n      \"name\": \"Power\",\n      \"unit\": \"hp\",\n      \"quantity\": \"Power\",\n      \"location_description\": \"Left vertical axis of the top Performance Curve panel, labeled POWER, with [hp] shown near the upper-left of the plot.\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.98\n    },\n    {\n      \"axis_id\": \"lower_panel_x_flow\",\n      \"direction\": \"x\",\n      \"name\": \"Flow\",\n      \"unit\": \"l/s\",\n      \"quantity\": \"Flow rate\",\n      \"location_description\": \"Horizontal axis along the bottom of the lower panel, labeled FLOW [l/s].\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    },\n    {\n      \"axis_id\": \"lower_panel_y_head\",\n      \"direction\": \"y\",\n      \"name\": \"Head\",\n      \"unit\": \"m\",\n      \"quantity\": \"Head\",\n      \"location_description\": \"Left vertical axis of the lower panel; the [m] unit and scale are visible, while the axis title is partly cropped at the left edge.\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.86\n    },\n    {\n      \"axis_id\": \"lower_panel_y_npshr\",\n      \"direction\": \"y\",\n      \"name\": \"NPSHR\",\n      \"unit\": \"m\",\n      \"quantity\": \"Net positive suction head required\",\n      \"location_description\": \"Inner right vertical axis of the lower panel, along the plot border, labeled NPSHR [m] with a 0–15 scale.\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    },\n    {\n      \"axis_id\": \"lower_panel_y_efficiency\",\n      \"direction\": \"y\",\n      \"name\": \"Efficiency\",\n      \"unit\": \"%\",\n      \"quantity\": \"Efficiency\",\n      \"location_description\": \"Outer right vertical axis of the lower panel, offset to the right of the plot border, labeled EFF [%] with a 0–70 scale.\",\n      \"is_primary_for_digitization\": true,\n      \"ignore_reason\": null,\n      \"confidence\": 0.99\n    }\n  ],\n  \"warnings\": [\n    \"The top panel has no visible horizontal-axis title or tick values; its flow identity and unit are inferred from alignment with the lower panel.\",\n    \"The lower-panel left-axis title is partly cropped, though its [m] unit and scale are visible.\"\n  ],\n  \"unsupported_flags\": [\n    \"unreadable_or_missing_axis_labels\"\n  ]\n}",
+  "json": {
+    "axes": [
+      {
+        "axis_id": "top_panel_x_flow",
+        "direction": "x",
+        "name": "Flow",
+        "unit": "l/s",
+        "quantity": "Flow rate",
+        "location_description": "Horizontal axis of the top Performance Curve panel; its tick labels and axis title are not shown. Flow and unit are inferred from alignment with the lower panel.",
+        "is_primary_for_digitization": false,
+        "ignore_reason": "No visible tick values, so this axis cannot be calibrated independently; use the labeled lower-panel flow axis.",
+        "confidence": 0.7
+      },
+      {
+        "axis_id": "top_panel_y_power",
+        "direction": "y",
+        "name": "Power",
+        "unit": "hp",
+        "quantity": "Power",
+        "location_description": "Left vertical axis of the top Performance Curve panel, labeled POWER, with [hp] shown near the upper-left of the plot.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.98
+      },
+      {
+        "axis_id": "lower_panel_x_flow",
+        "direction": "x",
+        "name": "Flow",
+        "unit": "l/s",
+        "quantity": "Flow rate",
+        "location_description": "Horizontal axis along the bottom of the lower panel, labeled FLOW [l/s].",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "lower_panel_y_head",
+        "direction": "y",
+        "name": "Head",
+        "unit": "m",
+        "quantity": "Head",
+        "location_description": "Left vertical axis of the lower panel; the [m] unit and scale are visible, while the axis title is partly cropped at the left edge.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.86
+      },
+      {
+        "axis_id": "lower_panel_y_npshr",
+        "direction": "y",
+        "name": "NPSHR",
+        "unit": "m",
+        "quantity": "Net positive suction head required",
+        "location_description": "Inner right vertical axis of the lower panel, along the plot border, labeled NPSHR [m] with a 0–15 scale.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      },
+      {
+        "axis_id": "lower_panel_y_efficiency",
+        "direction": "y",
+        "name": "Efficiency",
+        "unit": "%",
+        "quantity": "Efficiency",
+        "location_description": "Outer right vertical axis of the lower panel, offset to the right of the plot border, labeled EFF [%] with a 0–70 scale.",
+        "is_primary_for_digitization": true,
+        "ignore_reason": null,
+        "confidence": 0.99
+      }
+    ],
+    "warnings": [
+      "The top panel has no visible horizontal-axis title or tick values; its flow identity and unit are inferred from alignment with the lower panel.",
+      "The lower-panel left-axis title is partly cropped, though its [m] unit and scale are visible."
+    ],
+    "unsupported_flags": [
+      "unreadable_or_missing_axis_labels"
+    ]
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "raw": {
+    "created_at": 1791704869.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are identifying every visible line and scatter series in a cropped chart.\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nIdentify all line and scatter series in every visible panel. Do not stop after five or any other arbitrary count.\nClassify a series as line when its data is visibly connected, including lines that also have markers. Classify unconnected data markers as scatter. A fitted or reference line over scatter data is a separate line series.\nFor each series, provide its name, series_type, colour, line style, marker style, estimated point count, and visual description.\nThe line_color value must be either a Pillow named colour accepted by PIL.ImageColor, such as red, blue, darkgreen, or lightgray, or a hex colour such as #2563eb. Do not use informal colour descriptions that Pillow cannot parse.\nUse marker_style to describe scatter marker shape and fill, such as filled circle, hollow square, diamond, triangle, plus, or x. It may be null for a line without relevant markers.\nSet estimated_total_points to the number of individually visible scatter markers. It may be null for line series.\nAlso identify which available x-axis and y-axis applies to each series using the provided axis_id values.\nUse the legend, labels, panel titles, line appearance, markers, and visual position to distinguish series.\nDo not return point coordinates in this step.\nIdentify unsupported conditions: unsupported chart content, logarithmic axes, categorical axes, broken axes, unreadable labels, or charts where the requested line or scatter data cannot be visually traced.\nIf such a condition is present, return warnings and set unsupported flags where the schema allows it.\n\n",
+    "metadata": {},
+    "model": "gpt-6-luna",
+    "object": "response",
+    "output": [
+      {
+        "id": "rs_0fbff84200001f76006acb3f267d9c87d0bf074270b90fec9f",
+        "summary": [],
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABqyz8vuq9xL4giWoZmHQVcj5zeVGHOwKJJkz8w7FJXjwThZHh-BVapGbLcw-O88HxKqosv6pg4FZUovslVkEkMLNqhrIfWDPTHxqu4jNVCIUrpzjsEJfQc_CU2mEeG5FTewDOFmc3o2lOLyUVGjnWngnIHbiHibjAk8S19_cKyJ6sweKZU4_6Md2tv-MaMomoc52CeuFQgkum1wnkS5D-rJy57w2yy5jruxG-3jMiaAJOMScilv2YLGffAq8tw_FuGLURC1e3CxIm-O28R3-sTjf-KxM5gQylML_pvefTnO4o3UKekle8MfdRqS8ZgRG54uH4DUgg3iGDt4FEtWLE1cWgRGDUwcWGYrbakkf1-D9GIRL48QQDJLZgjVJUVCBFUUfQaGU3_NUW5YHu6vVZgApWfgMTFujRNlQdKzSDiS2UgRGLrSTLzFZ_Db_yJiA7IZqcWlDSA_E7jP4T_vS25F9Yhc31602ysMS3C_FYI-7BrLMtAvpcLZreMqIVfAFClAWBdmdE-gPDGieFViZKwO4kwybbAyQ2sXC64Dk2hvz-UnejWZ2n8nttQOVrWIH8APrz_2I4UX2FOlg8Rxkqbo52pfveF3UaN3n1hppjjGg1S84hvG0A7eVR0yJPSYCi7y9ZTAKsyG6DIR16P_HYXA6J47Qd9ctKPs6XW7YO7slxQvmPnwNwOqvPU4melXdM-oH1bvSpBAzDL-fH487RnKz5RzdEGZJq8wa_gAbZTFS78X0yis4EilY0pP1_jc5T3kPrQBo0AGKDAwW2C7f6ZKonnGnz9RurAHmPc57e5dUYKze011TyFD9X0LXur7SzE5CcSIiYC_kR_M55zkXk6GHtv73qPpZBd2EHdLas6DMW63vnVuHbC53wp_2tsslkrppfYQ9vgHG0G1kpHoMvoSymEilRxzT4s9qKZabmE5H8X4h0mOz0pqTcw0ocvkttCkOE-jDm_jm7xIYbtQOkh7Ig1BscZ1i-mV5gpSXwsb8jm_BeRGuSxtDdt4WUc05-jRXmuq--0t5x5hcWX7t_UjOptHKzewVfm7iqaT92VoR6fKryfxwDoTEFb9W2Tj2LPSJfcmikHUlvSMGVAULCM42_6E4QSFe4wnMorkd6PzkX1rbxnC3m1tlSOKJP-5unqMp153nXRhDKEnAlSOIM8iSy7WMOov_p42DPEhLAZIhq71PJOmSoSXJ6tUupyIOtE5zemcN1D-S9Oom_n0Hp-gbbLfKDR_SQi9UvSWrlGqJcu7PT2qxjfX1SeoNCE3k3NbcJOCBXk5IUOKAA1xgPmcGZrTCUy2ml9st8kOnBPVC-eZGCFjrJfQJhLzlzbVpNqgrXR1AJl36mgxn6kZBfXZPQpweEkiZbe4O1K72fRZy--ue37UxxLIt6xX_mM_a1qeFGuVzKpWyZM8kJNTC-Kds-cY2WUUxDGXo1yn0vtSozfmR5zmgwfw2_LrRMTezeIoa49GHr5ldPIwU5u2TTYPriqW7jvV-1S16BH0kG0xNLdbhmUbPhdaW93fJcJmelUD2mNAqyRP2qedvlSjMa9t9tmvMWesgZzcYAvujKSOASnBBwdKAZkkKqTt52no4e_uImMDOSdOpCVcWxu6hmVyH9sQzexsnltqmnMt1SoXaagyeqTIWVT9J89639Rh8Uo3J82BKSxaBZqBDV4q_qL2wS0u1JdGxY3wB6HdVFoqa4lWB69ZJUFt6n3pCaS8SvHhKu3kLAXKjcNOgJbS0HpGTComx1gHiKLAPS_xzB5nqkIi7RGB_vTkGbet1dDEdgPSFj8hNdsIVDcy6xT_ts3IxicpiImnP_6VM0ZwxDRAxGTfdVR80FNGBB_86BPzKzSiw84k1il7C6ums1o4Zva4WauGpndElcj2qpHBrV0hj8t7TWxzvVpRm86zbuexYnAdp1VFXwHPxDp-SXegmCMtP68deT9Cbrg6rKEXkz9qbj2LW2mvvqn0lNDAyOe2iF829mPymxBZbBzGL83jvMvF5j2mZ9HYX5ptEvaJnKCeorBawRtMfyMn34PARucb1UcRm83kZa7CV9j5OOlvgEg4ayvZjO21dN3QYg6NifjEwXpLyFNIoWueM_egHFFK2TtIW-4LBLfC_szAlmUvzohY2_9gZV_oV3WTBD10u2AdU_uV-flYoINMYZOq-4wIJCqKY7HrcBhIsYEHsihpnhml8f2lmE3dk50QCP1jaTz7K_UqxxldDRm2-gmTr9-rIWvL9GiA1iBBULiF9b7r1-G0tp069tn50S8K-WZefEgg_2gdMUcV-QE_6v3Sz6bzJ9npSSnnhTP2lpZyJcVv9pxa8SNYJLruAwdYM6EDHcdMdiTIcUs-c3ZbEM8Kqu0IazaQbpd4UfV9aZZLqxTbFR6vhhGy82DW0vLQWMCf0qc7G08m0vWc8Rn5A2a4vfYeGG7lm4XLRdLs0gnj4RN90dfgBLPvw5zjl4JsVda7eT0abOmuZXRBqVqiitpLSLuVMcy5P68_KBWSKBf-VGjwKTod8dTwGW78WKC3-QE1ZXtHyBjxGpWoxoV7NWrpjmjcGO0-Sg6XR3jBMSmKrMgxGALKBQdGr_RUkxDUTx9A-nPTiQwDovN4zI2d1BcUdIDe94HQd8z05gGMYPrDL0ylfW78yiOA0KWrK3_Fj2-ank56Wtzrw_eLHLd0Xj7vlJkEOhdSPTPo-PXOmzXixzabCmD4jaK0LTamm0dbpyJbMRBg5pISaBTcaeP2Ls4shI0mpCIIvN_YXqxGCfo69XrcJjF84808yfpVSBpGO5cSc5lRDqfSp9WFp75cVQYV8G_k30W30zR6BcOzoBFvdn1klfdXLPzQSUGR0gmS3O0AERZAqiFu7LokNVb07ApVGdbJ9_XBlaaMbM0M-TfMlpuJ5liuCc8MzpL6evwVmZj176XHvxDx2RJ6UWKAJ-o3-r4ReWlf0BkgTHaJ7YcbetPgXODylXjm88sdpoBrbhCcaSPb3GZ-hkbKhPetPc72tX9OoLmyWLjLh1O4VQYNo_gWtcfS7uCQliHa39aiVvMocFG4R1bUFLuOVJUrGuvPiusZ28v5kUzu3TepWZW8-x6R5FW4n8sfbxrmuzNuoSwfzYdA-y8uTiYGJDQWgICFj3eLPd8Z3YkC0uP2w31Rk1olUh88kYWvQw_w0I2eK55AVX4Ym7WWf_q7weKtEmtmaDzraHHC5KcnRZdyzanV2r79bMGFJVUgEKEu9JT6cfZNHF7dW9jzgnRjzK_KyiPYn6lgv5xBc4QGuQMASm9uvEEiFcq9mAyefRWnOhH6HYu-NruDb9Y5ijiyzxGsXBuJAKf9uf6stnU7XU3TCSMHNixYnv-YgN8pFE9tqCJnU7oluhWinCFgnIQ4FQ9Picaw1Rr904V85mdwukp74i3A0292Gtp-d6WnsS11mqG2NKmEmNbY7Mn6YkVLneJ2eWjXpj92LmuhZpyFtLrz0UTw6ZzQPVeh80b8u0ceL5PBJ7WykeNJS8tQnRB2JHYHnuLmErootuXbWj-IjEIECMnbH1jniEQdIO-vnNA3e8k0trXur6RP_wuqT43ptp_j8vK2LRmDq6qcUDzgJdj0I0T_tbeOadPNihEp5uXcQaax3zsJLyXf_iqE3zIUFtWTPgI-iB4FVHfI87ZPiSQiHXji0T1HBfBzKHqlQtqMNZxCiv3DiYgiC-0FTnsq2BrrUne36Bt6-oNJg0XRuh7evPcsMqBY6Xl8h5UN1mhJET3_l4xC9VN-Vu-pEGuzm4uUwVKPVfAi7-8dTPQOFXOgplHnw7fZUqcau2RsdhQgpKP1jSdakq3ZUeQSxxh6o5U97tFHxq31xxVNth8lhiuO7xyzYubfIHojKdXH9JcqMOUFspwdf0lXqvXmYqWwkk1VkNiDHgzeQP3YlzzH_9gvP-Vo8edxTvCZ0B_YeLIIXrzqEvJfhzFG8j9bJfwWVWiEh5p0Cyp6Vr9u-ngN_RWUMhvtpw7BgonDheXJmp-oTckqi8B3qi2bYxvy0afmGq5v6ww569HKcCwNXJ-er_k7NGUlLBpsgsnE7jzm-QLictn3YURf_XgeA5o3vfrtQzWKiFg_XOClRJxDuFm6hlMbSgN_X1odD9iTzS7UPqhtNEC72nHE2ivYoOEapWU9H8AnNrFm4kRSr0uD6XeNHSzC8zB3WaveAoMRLqwEl4blSOWF4WMOoyHVpXe9MZ0FSHrUdqlvHzwfxP-bBWVvLm4kuf5GFSQ2jOLleKAUoYp7c-P8Z3INnScYVttHQP3cIAD04Woj6jDi5PvixQIi4j7akMAa12n2Y6JnH08x4JDje1QfKgTU2FYxJNBNHglWNXaE2aweEAZnUEkZeeg0JkZDJqLXbLpj_U3TrMBe0WKyjf51psS27W7MzR7yFR7bCYW2zU-FSDODpqyEw6lx7hvymixq-_IJ1pS8Cb3oALbgdlR_QdsJnbdlk6uu7pm1WlYf3v7JCON5rMSUrZxP4jQcc_PFEt8JUyBVBjPQg==",
+        "status": null
+      },
+      {
+        "id": "msg_0fbff84200001f76006acb3f291f8487d09caccdeacf23691e",
+        "content": [
+          {
+            "annotations": [],
+            "text": "{\n  \"series\": [\n    {\n      \"series_name\": \"Input power\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Top Performance Curve panel; upper dark-gray curve, gently dipping before rising and then descending toward the right.\",\n      \"line_color\": \"dimgray\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": null,\n      \"y_axis_id\": \"top_panel_y_power\",\n      \"axis_selection_reason\": \"The curve is in the top panel, whose vertical axis is calibrated as Power. No top-panel x-axis is provided among the available axes.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"series_name\": \"Shaft power\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Top Performance Curve panel; lower gray curve, with a shallow dip and rise followed by a decline toward the right.\",\n      \"line_color\": \"gray\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": null,\n      \"y_axis_id\": \"top_panel_y_power\",\n      \"axis_selection_reason\": \"The curve is in the top panel, whose vertical axis is calibrated as Power. No top-panel x-axis is provided among the available axes.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"series_name\": \"Head\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Lower panel; blue straight descending line from the upper-left to the lower-right of the plot.\",\n      \"line_color\": \"blue\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"lower_panel_x_flow\",\n      \"y_axis_id\": \"lower_panel_y_head\",\n      \"axis_selection_reason\": \"The legend identifies Head; it uses the lower panel's Flow horizontal axis and left vertical Head scale.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"series_name\": \"Hydraulic efficiency\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Lower panel; green arch-shaped curve that rises from the lower-left, peaks near the middle, then falls toward the right.\",\n      \"line_color\": \"green\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"lower_panel_x_flow\",\n      \"y_axis_id\": \"lower_panel_y_efficiency\",\n      \"axis_selection_reason\": \"The legend identifies Hydraulic efficiency; the outer right axis is labeled Efficiency [%].\",\n      \"confidence\": 0.97\n    },\n    {\n      \"series_name\": \"Overall efficiency\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Lower panel; orange arch-shaped curve below the green efficiency curve, peaking near the middle and descending toward the right.\",\n      \"line_color\": \"darkorange\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"lower_panel_x_flow\",\n      \"y_axis_id\": \"lower_panel_y_efficiency\",\n      \"axis_selection_reason\": \"The legend identifies Overall efficiency; it uses the lower panel's Flow axis and outer right Efficiency [%] scale.\",\n      \"confidence\": 0.97\n    },\n    {\n      \"series_name\": \"NPSHR\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Lower panel; purple shallow U-shaped curve, visible from the left-middle region through the right side of the plot.\",\n      \"line_color\": \"mediumorchid\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"lower_panel_x_flow\",\n      \"y_axis_id\": \"lower_panel_y_npshr\",\n      \"axis_selection_reason\": \"The legend identifies NPSHR; it uses the lower panel's Flow axis and the inner right NPSHR [m] scale.\",\n      \"confidence\": 0.97\n    }\n  ],\n  \"warnings\": [\n    \"No calibrated x-axis is provided for the top Performance Curve panel.\"\n  ],\n  \"unsupported_flags\": []\n}",
+            "type": "output_text",
+            "logprobs": []
+          }
+        ],
+        "role": "assistant",
+        "status": "completed",
+        "type": "message",
+        "phase": "final_answer"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": "auto",
+    "tools": [],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1791704879.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:d1382e3487:series_identification",
+    "prompt_cache_options": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "name": "SeriesIdentification",
+        "schema_": {
+          "$defs": {
+            "SeriesIdentification": {
+              "properties": {
+                "series_name": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Series Name"
+                },
+                "series_type": {
+                  "enum": [
+                    "line",
+                    "scatter"
+                  ],
+                  "title": "Series Type",
+                  "type": "string"
+                },
+                "visual_description": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Visual Description"
+                },
+                "line_color": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "description": "Series colour as either a Pillow named colour accepted by PIL.ImageColor, or a hex colour such as #2563eb.",
+                  "title": "Line Color"
+                },
+                "line_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Line Style"
+                },
+                "marker_style": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Marker Style"
+                },
+                "estimated_total_points": {
+                  "anyOf": [
+                    {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Estimated Total Points"
+                },
+                "x_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "X Axis Id"
+                },
+                "y_axis_id": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Y Axis Id"
+                },
+                "axis_selection_reason": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Axis Selection Reason"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                }
+              },
+              "title": "SeriesIdentification",
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "series_name",
+                "series_type",
+                "visual_description",
+                "line_color",
+                "line_style",
+                "marker_style",
+                "estimated_total_points",
+                "x_axis_id",
+                "y_axis_id",
+                "axis_selection_reason",
+                "confidence"
+              ]
+            }
+          },
+          "properties": {
+            "series": {
+              "items": {
+                "$ref": "#/$defs/SeriesIdentification"
+              },
+              "title": "Series",
+              "type": "array"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            },
+            "unsupported_flags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Unsupported Flags",
+              "type": "array"
+            }
+          },
+          "title": "SeriesIdentificationOutput",
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "series",
+            "warnings",
+            "unsupported_flags"
+          ]
+        },
+        "type": "json_schema",
+        "description": null,
+        "strict": true
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 2037,
+      "input_tokens_details": {
+        "cache_write_tokens": 2034,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1148,
+      "output_tokens_details": {
+        "reasoning_tokens": 235
+      },
+      "total_tokens": 3185
+    },
+    "user": null,
+    "access_programs": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "text": "{\n  \"series\": [\n    {\n      \"series_name\": \"Input power\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Top Performance Curve panel; upper dark-gray curve, gently dipping before rising and then descending toward the right.\",\n      \"line_color\": \"dimgray\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": null,\n      \"y_axis_id\": \"top_panel_y_power\",\n      \"axis_selection_reason\": \"The curve is in the top panel, whose vertical axis is calibrated as Power. No top-panel x-axis is provided among the available axes.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"series_name\": \"Shaft power\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Top Performance Curve panel; lower gray curve, with a shallow dip and rise followed by a decline toward the right.\",\n      \"line_color\": \"gray\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": null,\n      \"y_axis_id\": \"top_panel_y_power\",\n      \"axis_selection_reason\": \"The curve is in the top panel, whose vertical axis is calibrated as Power. No top-panel x-axis is provided among the available axes.\",\n      \"confidence\": 0.98\n    },\n    {\n      \"series_name\": \"Head\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Lower panel; blue straight descending line from the upper-left to the lower-right of the plot.\",\n      \"line_color\": \"blue\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"lower_panel_x_flow\",\n      \"y_axis_id\": \"lower_panel_y_head\",\n      \"axis_selection_reason\": \"The legend identifies Head; it uses the lower panel's Flow horizontal axis and left vertical Head scale.\",\n      \"confidence\": 0.99\n    },\n    {\n      \"series_name\": \"Hydraulic efficiency\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Lower panel; green arch-shaped curve that rises from the lower-left, peaks near the middle, then falls toward the right.\",\n      \"line_color\": \"green\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"lower_panel_x_flow\",\n      \"y_axis_id\": \"lower_panel_y_efficiency\",\n      \"axis_selection_reason\": \"The legend identifies Hydraulic efficiency; the outer right axis is labeled Efficiency [%].\",\n      \"confidence\": 0.97\n    },\n    {\n      \"series_name\": \"Overall efficiency\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Lower panel; orange arch-shaped curve below the green efficiency curve, peaking near the middle and descending toward the right.\",\n      \"line_color\": \"darkorange\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"lower_panel_x_flow\",\n      \"y_axis_id\": \"lower_panel_y_efficiency\",\n      \"axis_selection_reason\": \"The legend identifies Overall efficiency; it uses the lower panel's Flow axis and outer right Efficiency [%] scale.\",\n      \"confidence\": 0.97\n    },\n    {\n      \"series_name\": \"NPSHR\",\n      \"series_type\": \"line\",\n      \"visual_description\": \"Lower panel; purple shallow U-shaped curve, visible from the left-middle region through the right side of the plot.\",\n      \"line_color\": \"mediumorchid\",\n      \"line_style\": \"solid\",\n      \"marker_style\": null,\n      \"estimated_total_points\": null,\n      \"x_axis_id\": \"lower_panel_x_flow\",\n      \"y_axis_id\": \"lower_panel_y_npshr\",\n      \"axis_selection_reason\": \"The legend identifies NPSHR; it uses the lower panel's Flow axis and the inner right NPSHR [m] scale.\",\n      \"confidence\": 0.97\n    }\n  ],\n  \"warnings\": [\n    \"No calibrated x-axis is provided for the top Performance Curve panel.\"\n  ],\n  \"unsupported_flags\": []\n}",
+  "json": {
+    "series": [
+      {
+        "series_name": "Input power",
+        "series_type": "line",
+        "visual_description": "Top Performance Curve panel; upper dark-gray curve, gently dipping before rising and then descending toward the right.",
+        "line_color": "dimgray",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": null,
+        "y_axis_id": "top_panel_y_power",
+        "axis_selection_reason": "The curve is in the top panel, whose vertical axis is calibrated as Power. No top-panel x-axis is provided among the available axes.",
+        "confidence": 0.98
+      },
+      {
+        "series_name": "Shaft power",
+        "series_type": "line",
+        "visual_description": "Top Performance Curve panel; lower gray curve, with a shallow dip and rise followed by a decline toward the right.",
+        "line_color": "gray",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": null,
+        "y_axis_id": "top_panel_y_power",
+        "axis_selection_reason": "The curve is in the top panel, whose vertical axis is calibrated as Power. No top-panel x-axis is provided among the available axes.",
+        "confidence": 0.98
+      },
+      {
+        "series_name": "Head",
+        "series_type": "line",
+        "visual_description": "Lower panel; blue straight descending line from the upper-left to the lower-right of the plot.",
+        "line_color": "blue",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "lower_panel_x_flow",
+        "y_axis_id": "lower_panel_y_head",
+        "axis_selection_reason": "The legend identifies Head; it uses the lower panel's Flow horizontal axis and left vertical Head scale.",
+        "confidence": 0.99
+      },
+      {
+        "series_name": "Hydraulic efficiency",
+        "series_type": "line",
+        "visual_description": "Lower panel; green arch-shaped curve that rises from the lower-left, peaks near the middle, then falls toward the right.",
+        "line_color": "green",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "lower_panel_x_flow",
+        "y_axis_id": "lower_panel_y_efficiency",
+        "axis_selection_reason": "The legend identifies Hydraulic efficiency; the outer right axis is labeled Efficiency [%].",
+        "confidence": 0.97
+      },
+      {
+        "series_name": "Overall efficiency",
+        "series_type": "line",
+        "visual_description": "Lower panel; orange arch-shaped curve below the green efficiency curve, peaking near the middle and descending toward the right.",
+        "line_color": "darkorange",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "lower_panel_x_flow",
+        "y_axis_id": "lower_panel_y_efficiency",
+        "axis_selection_reason": "The legend identifies Overall efficiency; it uses the lower panel's Flow axis and outer right Efficiency [%] scale.",
+        "confidence": 0.97
+      },
+      {
+        "series_name": "NPSHR",
+        "series_type": "line",
+        "visual_description": "Lower panel; purple shallow U-shaped curve, visible from the left-middle region through the right side of the plot.",
+        "line_color": "mediumorchid",
+        "line_style": "solid",
+        "marker_style": null,
+        "estimated_total_points": null,
+        "x_axis_id": "lower_panel_x_flow",
+        "y_axis_id": "lower_panel_y_npshr",
+        "axis_selection_reason": "The legend identifies NPSHR; it uses the lower panel's Flow axis and the inner right NPSHR [m] scale.",
+        "confidence": 0.97
+      }
+    ],
+    "warnings": [
+      "No calibrated x-axis is provided for the top Performance Curve panel."
+    ],
+    "unsupported_flags": []
+  }
+}

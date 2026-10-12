@@ -1,0 +1,54 @@
+{
+  "raw": {
+    "status": "completed",
+    "created": "2026-10-11T10:24:18Z",
+    "model": "gemini-3.8-flash",
+    "output_text": "{\n  \"response_kind\": \"accept_previous\",\n  \"revision_reason\": null,\n  \"proposal\": null\n}",
+    "service_tier": "standard",
+    "steps": [
+      {
+        "type": "thought"
+      },
+      {
+        "content": [
+          {
+            "text": "{\n  \"response_kind\": \"accept_previous\",\n  \"revision_reason\": null,\n  \"proposal\": null\n}",
+            "type": "text"
+          }
+        ],
+        "type": "model_output"
+      }
+    ],
+    "updated": "2026-10-11T10:24:18Z",
+    "usage": {
+      "input_tokens_by_modality": [
+        {
+          "modality": "image",
+          "tokens": 3255
+        },
+        {
+          "modality": "text",
+          "tokens": 10027
+        }
+      ],
+      "total_cached_tokens": 0,
+      "total_input_tokens": 13282,
+      "total_output_tokens": 30,
+      "total_thought_tokens": 58,
+      "total_tokens": 13370,
+      "total_tool_use_tokens": 0
+    },
+    "object": "interaction"
+  },
+  "text": "{\n  \"response_kind\": \"accept_previous\",\n  \"revision_reason\": null,\n  \"proposal\": null\n}",
+  "json": {
+    "response_kind": "accept_previous",
+    "revision_reason": null,
+    "proposal": null
+  },
+  "provider_json": {
+    "response_kind": "accept_previous",
+    "revision_reason": null,
+    "proposal": null
+  }
+}

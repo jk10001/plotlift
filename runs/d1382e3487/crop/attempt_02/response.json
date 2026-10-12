@@ -1,0 +1,247 @@
+{
+  "raw": {
+    "created_at": 1791704726.0,
+    "error": null,
+    "incomplete_details": null,
+    "instructions": "You are a careful chart digitisation assistant. Your task is to identify the complete chart region in an uploaded image.\nKeep all information needed to understand the chart: title, legend, axis labels, tick labels, units, annotations, axes, and all plot panels. Ensure all required text is in the crop.\nUse image coordinates with origin at the top-left. Image x increases to the right and image y increases downward.\nNormalized coordinates are integer coordinates from 0 to 999 inclusive.\nDo not confuse image y direction with chart-space y direction.\n\nUse the response_kind field to describe what you are doing in this stage conversation.\nOn an ordinary first attempt, use response_kind \"proposal\" and provide a complete proposal object. A refinement prompt may instead explicitly allow \"accept_previous\" or \"revise_previous\" on its first attempt.\nOn review attempts, use response_kind \"accept_previous\" with proposal null if the previous overlay is accurate.\nOn review attempts, use response_kind \"revise_previous\" with a complete replacement proposal object if the previous overlay needs improvement.\nNever provide a partial patch: every proposal or revision must be complete and internally consistent.\n\nMultiple plot panels or small multiples are supported. Treat each visible panel as part of the same chart run.\nDistinguish panels using clear location language such as top-left panel, right panel, lower panel, or panel title.\nWhen naming axes or series in a multi-panel chart, include enough panel context in axis_id, location_description, series_name, or visual_description to avoid ambiguity.\n\nReturn crop coordinates relative to the full uploaded image in full_image_norm.\n",
+    "metadata": {},
+    "model": "gpt-6-luna",
+    "object": "response",
+    "output": [
+      {
+        "arguments": "{\"response_kind\":\"revise_previous\",\"revision_reason\":\"The previous crop clips the right-side NPSHR and efficiency axes/labels. Expand the right boundary to include all chart annotations and axis text while retaining the title and both panels.\",\"proposal\":{\"bbox\":{\"left\":37,\"top\":19,\"right\":952,\"bottom\":965},\"confidence\":0.97,\"warnings\":[],\"unsupported_flags\":[]}}",
+        "call_id": "call_gjjsU2NqKgw8Lcevx5TdZ1vx",
+        "name": "propose_crop",
+        "type": "function_call",
+        "id": "fc_04ad62f1384d53ff006acb3e98c49487d0b506e00da525cd1b",
+        "caller": null,
+        "namespace": null,
+        "status": "completed"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "temperature": 1.0,
+    "tool_choice": {
+      "name": "propose_crop",
+      "type": "function"
+    },
+    "tools": [
+      {
+        "name": "propose_crop",
+        "parameters": {
+          "$defs": {
+            "CropProposal": {
+              "properties": {
+                "bbox": {
+                  "$ref": "#/$defs/NormBBox"
+                },
+                "confidence": {
+                  "anyOf": [
+                    {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ],
+                  "title": "Confidence"
+                },
+                "warnings": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Warnings",
+                  "type": "array"
+                },
+                "unsupported_flags": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Unsupported Flags",
+                  "type": "array"
+                }
+              },
+              "required": [
+                "bbox",
+                "confidence",
+                "warnings",
+                "unsupported_flags"
+              ],
+              "title": "CropProposal",
+              "type": "object",
+              "additionalProperties": false
+            },
+            "NormBBox": {
+              "properties": {
+                "left": {
+                  "maximum": 999,
+                  "minimum": 0,
+                  "title": "Left",
+                  "type": "integer"
+                },
+                "top": {
+                  "maximum": 999,
+                  "minimum": 0,
+                  "title": "Top",
+                  "type": "integer"
+                },
+                "right": {
+                  "maximum": 999,
+                  "minimum": 0,
+                  "title": "Right",
+                  "type": "integer"
+                },
+                "bottom": {
+                  "maximum": 999,
+                  "minimum": 0,
+                  "title": "Bottom",
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "left",
+                "top",
+                "right",
+                "bottom"
+              ],
+              "title": "NormBBox",
+              "type": "object",
+              "additionalProperties": false
+            }
+          },
+          "properties": {
+            "response_kind": {
+              "enum": [
+                "proposal",
+                "accept_previous",
+                "revise_previous"
+              ],
+              "title": "Response Kind",
+              "type": "string"
+            },
+            "revision_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Revision Reason"
+            },
+            "proposal": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/CropProposal"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "response_kind",
+            "revision_reason",
+            "proposal"
+          ],
+          "title": "CropConversationResponse",
+          "type": "object",
+          "additionalProperties": false
+        },
+        "strict": true,
+        "type": "function",
+        "allowed_callers": null,
+        "defer_loading": null,
+        "description": "Return the crop-stage decision and, when needed, a complete chart crop bounding box in full_image_norm.",
+        "output_schema": null
+      }
+    ],
+    "top_p": 0.98,
+    "background": false,
+    "completed_at": 1791704729.0,
+    "conversation": null,
+    "max_output_tokens": null,
+    "max_tool_calls": null,
+    "moderation": null,
+    "prompt": null,
+    "prompt_cache_key": "plotlift:d1382e3487:crop",
+    "prompt_cache_options": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "all_turns",
+      "effort": "medium",
+      "generate_summary": null,
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "status": "completed",
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "top_logprobs": 0,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 3007,
+      "input_tokens_details": {
+        "cache_write_tokens": 1286,
+        "cached_tokens": 1588
+      },
+      "output_tokens": 94,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 3101
+    },
+    "user": null,
+    "access_programs": null,
+    "billing": {
+      "payer": "developer"
+    },
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0,
+    "store": true,
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    }
+  },
+  "arguments": {
+    "response_kind": "revise_previous",
+    "revision_reason": "The previous crop clips the right-side NPSHR and efficiency axes/labels. Expand the right boundary to include all chart annotations and axis text while retaining the title and both panels.",
+    "proposal": {
+      "bbox": {
+        "left": 37,
+        "top": 19,
+        "right": 952,
+        "bottom": 965
+      },
+      "confidence": 0.97,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  },
+  "function_call_id": "call_gjjsU2NqKgw8Lcevx5TdZ1vx"
+}

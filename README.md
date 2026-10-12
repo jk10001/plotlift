@@ -318,4 +318,6 @@ Attempt directories contain the resolved request, raw response, parsed result, v
 - `.env` contains local API keys and runtime settings.
 - `requirements.txt` contains Python dependencies.
 
-The default enabled model is currently `gpt-5.5`; change the `default` flag in `models.json` to select another default.
+The model dropdown includes [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna), and [GPT-5.6 Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra). GPT-6.1 Sol supports reasoning efforts from `low` through `max`; GPT-6 Luna and GPT-5.6 Terra also support `none`.
+
+The default enabled model is currently `gpt-5.6-luna`; change the `default` flag in `models.json` to select another default.

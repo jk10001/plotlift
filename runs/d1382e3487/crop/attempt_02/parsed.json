@@ -1,0 +1,15 @@
+{
+  "response_kind": "revise_previous",
+  "revision_reason": "The previous crop clips the right-side NPSHR and efficiency axes/labels. Expand the right boundary to include all chart annotations and axis text while retaining the title and both panels.",
+  "proposal": {
+    "bbox": {
+      "left": 37,
+      "top": 19,
+      "right": 952,
+      "bottom": 965
+    },
+    "confidence": 0.97,
+    "warnings": [],
+    "unsupported_flags": []
+  }
+}

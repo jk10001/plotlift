@@ -10,7 +10,10 @@ from .config import get_config
 from .logging_utils import emit_event
 from .models import RunState
 
-REDACTED_JSON_KEYS = {"response_id", "previous_response_id", "thought_signature", "thoughtSignature"}
+REDACTED_JSON_KEYS = {
+    "response_id", "previous_response_id", "interaction_id", "previous_interaction_id",
+    "thought_signature", "thoughtSignature",
+}
 
 
 def new_run_id() -> str:
@@ -47,6 +50,11 @@ def _redact_json_node(data: Any, path: tuple[str, ...]) -> Any:
         redacted: dict[str, Any] = {}
         for key, value in data.items():
             if key in REDACTED_JSON_KEYS:
+                continue
+            if key == "signature" and data.get("type") == "thought":
+                continue
+            if key == "data" and data.get("type") == "image":
+                redacted[key] = "<base64 omitted; see attempt image artifacts>"
                 continue
             if key == "id" and path and path[-1] == "raw":
                 continue

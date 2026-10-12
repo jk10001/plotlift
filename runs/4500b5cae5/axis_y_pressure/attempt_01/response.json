@@ -1,0 +1,128 @@
+{
+  "raw": {
+    "status": "completed",
+    "created": "2026-10-11T08:02:49Z",
+    "model": "gemini-3.8-flash",
+    "output_text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"y\",\n    \"points\": [\n      {\n        \"label\": \"y1\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 852\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"psi\"\n        }\n      },\n      {\n        \"label\": \"y2\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 127\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"90\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 90.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"psi\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+    "service_tier": "standard",
+    "steps": [
+      {
+        "type": "thought"
+      },
+      {
+        "content": [
+          {
+            "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"y\",\n    \"points\": [\n      {\n        \"label\": \"y1\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 852\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"psi\"\n        }\n      },\n      {\n        \"label\": \"y2\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 127\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"90\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 90.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"psi\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+            "type": "text"
+          }
+        ],
+        "type": "model_output"
+      }
+    ],
+    "updated": "2026-10-11T08:02:49Z",
+    "usage": {
+      "input_tokens_by_modality": [
+        {
+          "modality": "text",
+          "tokens": 542
+        },
+        {
+          "modality": "image",
+          "tokens": 1075
+        }
+      ],
+      "total_cached_tokens": 0,
+      "total_input_tokens": 1617,
+      "total_output_tokens": 312,
+      "total_thought_tokens": 871,
+      "total_tokens": 2800,
+      "total_tool_use_tokens": 0
+    },
+    "object": "interaction"
+  },
+  "text": "{\n  \"response_kind\": \"proposal\",\n  \"revision_reason\": null,\n  \"proposal\": {\n    \"axis\": \"y\",\n    \"points\": [\n      {\n        \"label\": \"y1\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 852\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"0\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 0.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"psi\"\n        }\n      },\n      {\n        \"label\": \"y2\",\n        \"crop_image_norm\": {\n          \"x\": 145,\n          \"y\": 127\n        },\n        \"crop_image_px\": null,\n        \"chart_value\": {\n          \"value_raw\": \"90\",\n          \"value_type\": \"number\",\n          \"parsed_value\": 90.0,\n          \"parsed_datetime\": null,\n          \"unit\": \"psi\"\n        }\n      }\n    ],\n    \"confidence\": 0.99,\n    \"warnings\": [],\n    \"unsupported_flags\": []\n  }\n}",
+  "json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "y",
+      "points": [
+        {
+          "label": "y1",
+          "crop_image_norm": {
+            "x": 145,
+            "y": 851
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "label": "y2",
+          "crop_image_norm": {
+            "x": 145,
+            "y": 127
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "90",
+            "value_type": "number",
+            "parsed_value": 90.0,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        }
+      ],
+      "confidence": 0.99,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  },
+  "provider_json": {
+    "response_kind": "proposal",
+    "revision_reason": null,
+    "proposal": {
+      "axis": "y",
+      "points": [
+        {
+          "label": "y1",
+          "crop_image_norm": {
+            "x": 145,
+            "y": 852
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "0",
+            "value_type": "number",
+            "parsed_value": 0.0,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        },
+        {
+          "label": "y2",
+          "crop_image_norm": {
+            "x": 145,
+            "y": 127
+          },
+          "crop_image_px": null,
+          "chart_value": {
+            "value_raw": "90",
+            "value_type": "number",
+            "parsed_value": 90.0,
+            "parsed_datetime": null,
+            "unit": "psi"
+          }
+        }
+      ],
+      "confidence": 0.99,
+      "warnings": [],
+      "unsupported_flags": []
+    }
+  }
+}

@@ -29,7 +29,7 @@ def test_openai_call_cost_uses_discounted_cached_input() -> None:
 
 
 def test_gemini_call_cost_includes_thinking_tokens() -> None:
-    model = load_models().get_enabled("gemini-3.7-flash")
+    model = load_models().get_enabled("gemini-3.8-flash")
     response = {
         "usageMetadata": {
             "promptTokenCount": 1_000,
@@ -72,3 +72,22 @@ def test_run_cost_resumes_from_the_event_log(tmp_path: Path) -> None:
     assert first.call_cost_usd == pytest.approx(0.0014)
     assert second.run_cost_usd == pytest.approx(0.0028)
     assert "run total=$0.002800" in second.message
+
+
+@pytest.mark.parametrize("usage, expected", [
+    ({"total_input_tokens": 1000, "total_cached_tokens": 100, "total_output_tokens": 200, "total_thought_tokens": 50}, 0.00162),
+    ({"total_output_tokens": 200}, 0.00075),
+    ({"total_thought_tokens": 50}, 0.0001875),
+    ({}, None),
+])
+def test_interactions_token_cost(usage, expected):
+    model = load_models().get_enabled("gemini-3.8-flash")
+    tracker = RunCostTracker(None)
+    first = tracker.record_gemini({"usage": usage}, model)
+    second = tracker.record_gemini({"usage": usage}, model)
+    if expected is None:
+        assert first.call_cost_usd is None
+        assert second.run_cost_usd == 0
+    else:
+        assert first.call_cost_usd == pytest.approx(expected)
+        assert second.run_cost_usd == pytest.approx(2 * expected)
