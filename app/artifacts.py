@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
+import tempfile
 import uuid
 from pathlib import Path
 from typing import Any
@@ -37,8 +39,16 @@ def ensure_run_dirs(run_id: str) -> Path:
 
 def save_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as handle:
-        json.dump(redact_saved_json(data), handle, indent=2, ensure_ascii=False)
+    # Readers must never see a partially written state, including when a job is killed.
+    fd, temporary = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            json.dump(redact_saved_json(data), handle, indent=2, ensure_ascii=False)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        Path(temporary).unlink(missing_ok=True)
 
 
 def redact_saved_json(data: Any) -> Any:

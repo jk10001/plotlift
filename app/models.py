@@ -542,6 +542,7 @@ class RunState(BaseModel):
     updated_at: str = Field(default_factory=utc_now_iso)
     stage: StageName = "uploaded"
     active_job: str | None = None
+    active_job_id: str | None = None
     settings: RunSettings
     prompt_metadata: PromptMetadata
     upload_filename: str
