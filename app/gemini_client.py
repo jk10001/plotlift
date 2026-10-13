@@ -14,6 +14,7 @@ from .token_usage import RunCostTracker
 GEMINI_COORDINATE_MAX = 1000
 INTERNAL_COORDINATE_MAX = 999
 GEMINI_MAX_BOUNDED_ARRAY_ITEMS = 20
+GEMINI_ARGON_TIMEOUT_SECONDS = 15 * 60
 
 
 class GeminiChartClient:
@@ -113,7 +114,10 @@ class GeminiChartClient:
         if prompt_cache_key:
             request["prompt_cache_key"] = prompt_cache_key
 
-        response = self.client.interactions.create(**payload)
+        # Argon can spend several minutes thinking. The Interactions request
+        # timeout uses seconds and is a transport option, separate from the body.
+        request_options = {"timeout": GEMINI_ARGON_TIMEOUT_SECONDS} if settings.model_id == "gemini-4-argon" else {}
+        response = self.client.interactions.create(**payload, **request_options)
         response_dict = response.model_dump(mode="json", exclude_none=True)
         model = load_models().get_enabled(settings.model_id)
         cost = self._cost_tracker.record_gemini(response_dict, model)

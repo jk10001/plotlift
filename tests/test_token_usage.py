@@ -55,6 +55,19 @@ def test_long_context_call_uses_the_models_higher_pricing_tier() -> None:
     assert cost.call_cost_usd == pytest.approx(0.818004)
 
 
+def test_argon_cost_uses_introductory_prices_including_cached_input_and_thinking() -> None:
+    model = load_models().get_enabled("gemini-4-argon")
+    response = {"usage": {
+        "total_input_tokens": 1_000, "total_cached_tokens": 100,
+        "total_output_tokens": 200, "total_thought_tokens": 50,
+    }}
+
+    cost = RunCostTracker(None).record_gemini(response, model)
+
+    assert cost.call_cost_usd == pytest.approx(0.00431)
+    assert "total output inc. thinking=250" in cost.message
+
+
 def test_run_cost_resumes_from_the_event_log(tmp_path: Path) -> None:
     model = load_models().get_enabled("gpt-5.6-luna")
     response = {"usage": {"input_tokens": 1_000, "output_tokens": 1_000}}

@@ -267,6 +267,31 @@
       "default_image_detail": "high"
     },
     {
+      "id": "gemini-4-argon",
+      "label": "Gemini 4 Argon",
+      "family": "gemini-4",
+      "provider": "gemini",
+      "input_cost_per_million_tokens_usd": 2.0,
+      "cached_input_cost_per_million_tokens_usd": 0.1,
+      "output_cost_per_million_tokens_usd": 10.0,
+      "default": false,
+      "enabled": true,
+      "reasoning_efforts": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default_reasoning_effort": "medium",
+      "image_detail_options": [
+        "auto",
+        "low",
+        "medium",
+        "high",
+        "ultra_high"
+      ],
+      "default_image_detail": "high"
+    },
+    {
       "id": "gemini-3.1-pro-preview",
       "label": "Gemini 3.1 Pro Preview",
       "family": "gemini-3.1",

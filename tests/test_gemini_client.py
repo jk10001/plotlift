@@ -126,13 +126,27 @@ def test_interactions_options_validate_with_installed_sdk(model, tmp_path):
             assert not {"temperature", "top_p", "top_k", "candidate_count", "thinking_budget"}.intersection(config)
 
 
+def test_gemini_argon_settings_support_only_documented_thinking_levels() -> None:
+    model = load_models().get_enabled("gemini-4-argon")
+    assert model.provider == "gemini"
+    assert model.default_reasoning_effort == "medium"
+    assert model.default_image_detail == "high"
+    for effort in ("low", "medium", "high"):
+        validate_run_settings(RunSettings(model_id=model.id, image_detail="high", reasoning_effort=effort))
+    for effort in ("none", "minimal", "xhigh", "max"):
+        with pytest.raises(ValueError, match="reasoning effort"):
+            validate_run_settings(RunSettings(model_id=model.id, image_detail="high", reasoning_effort=effort))
+
+
 class FakeInteractions:
     def __init__(self, responses):
         self.responses = iter(responses)
         self.calls = []
+        self.timeouts = []
 
-    def create(self, **payload):
+    def create(self, *, timeout=None, **payload):
         self.calls.append(copy.deepcopy(payload))
+        self.timeouts.append(timeout)
         raw = next(self.responses)
         return SimpleNamespace(model_dump=lambda **kwargs: copy.deepcopy(raw), output_text=None)
 
@@ -151,7 +165,8 @@ def interaction(text='{"x": 1000, "y": 500}', **updates):
     return raw
 
 
-def test_interactions_chaining_images_and_artifacts(tmp_path):
+@pytest.mark.parametrize("model_id", ["gemini-3.8-flash", "gemini-4-argon"])
+def test_interactions_chaining_images_and_artifacts(tmp_path, model_id):
     from app.artifacts import save_json, load_json
 
     images = [tmp_path / "first.png", tmp_path / "second.jpg"]
@@ -160,7 +175,7 @@ def test_interactions_chaining_images_and_artifacts(tmp_path):
     fake = FakeInteractions([interaction(), interaction(id="interaction-2"), interaction(id="new-chain")])
     client = GeminiChartClient(api_key="test-key", mock_mode=False)
     client._client = SimpleNamespace(interactions=fake)
-    kwargs = dict(settings=RunSettings(model_id="gemini-3.8-flash", image_detail="high"),
+    kwargs = dict(settings=RunSettings(model_id=model_id, image_detail="high"),
                   system_prompt="system", schema_name="points", schema={"type": "object"})
     request, response = client.call_structured(**kwargs, user_prompt="inspect", image_paths=images)
     assert response["json"] == {"x": 999, "y": 500}
@@ -178,6 +193,10 @@ def test_interactions_chaining_images_and_artifacts(tmp_path):
         assert fake.calls[0][key] == fake.calls[1][key]
     client.call_structured(**kwargs, user_prompt="restart", image_path=images[0])
     assert "previous_interaction_id" not in fake.calls[2]
+    assert fake.timeouts == ([900] * 3 if model_id == "gemini-4-argon" else [None] * 3)
+    assert fake.calls[0]["model"] == model_id
+    assert "cached_content" not in fake.calls[0]
+    assert not {"temperature", "top_p", "top_k", "max_output_tokens"}.intersection(fake.calls[0].get("generation_config", {}))
     artifact = tmp_path / "artifact.json"
     save_json(artifact, {"request": next_request, "response": next_response, "wire": fake.calls[1]})
     saved = json.dumps(load_json(artifact))
