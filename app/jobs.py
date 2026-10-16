@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import multiprocessing
 import os
 import re
@@ -9,6 +10,7 @@ import shutil
 import threading
 import time
 import uuid
+from collections import deque
 from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
@@ -21,6 +23,9 @@ from .artifacts import save_json
 from .config import get_config
 from .logging_utils import emit_event
 from .models import RunState
+
+
+logger = logging.getLogger(__name__)
 
 
 class FileLease:
@@ -73,6 +78,7 @@ class JobManager:
         self._locks: dict[str, threading.RLock] = {}
         self._registry_lock = threading.Lock()
         self._jobs: dict[str, Job] = {}
+        self._cancelled_jobs: deque[tuple[str, str]] = deque(maxlen=256)
         self._closing = False
         self._owner = None
         self._worker_target = worker_target
@@ -176,6 +182,7 @@ class JobManager:
                 self._restore(run_id, path, "Operation could not start. Previous results restored.")
                 self._jobs.pop(run_id, None)
                 parent_control.close()
+                self._cleanup_job(path)
                 raise
             job.monitor = threading.Thread(target=self._monitor, args=(run_id, job), daemon=True)
             job.monitor.start()
@@ -204,13 +211,16 @@ class JobManager:
                     raise HTTPException(409, "Operation requires recovery before it can be cancelled")
                 journal = self.root / ".jobs" / job_id / "job.json" if re.fullmatch(r"[0-9a-f]{32}", job_id) else None
                 previous = json.loads(journal.read_text()) if journal and journal.exists() else {}
-                outcome = "cancelled" if previous.get("run_id") == run_id and previous.get("phase") == "cancelled" else "already_finished"
+                with self._registry_lock:
+                    cancelled = (run_id, job_id) in self._cancelled_jobs
+                outcome = "cancelled" if cancelled or (previous.get("run_id") == run_id and previous.get("phase") == "cancelled") else "already_finished"
                 return {"ok": True, "outcome": outcome, "state": state.model_dump(mode="json")}
             self._set_phase(job.path, "cancelling")
             self._stop(job)
             # No writer can survive restoration, even when cancel races completion.
             self._restore(run_id, job.path, "Operation cancelled. Previous results restored.")
             job.control.close()
+            self._cleanup_job(job.path)
             self._jobs.pop(run_id, None)
             return {"ok": True, "outcome": "cancelled", "state": self.read_state(run_id).model_dump(mode="json")}
 
@@ -236,12 +246,12 @@ class JobManager:
                     message = f"Finished job {job.name}" if result["ok"] else f"Job {job.name} failed: {result['error']}"
                     self._repair_log(self.run_path(run_id))
                     emit_event(self.run_path(run_id), "STAGE" if result["ok"] else "ERROR", message, run_id=run_id, stage=job.name)
-                    self._discard_snapshot(job.path)
             except Exception as exc:  # noqa: BLE001
                 # Keep ownership and snapshot available for a retry/recovery.
                 emit_event(self.run_path(run_id), "ERROR", f"Job finalization requires recovery: {exc}", run_id=run_id)
                 return
             job.control.close()
+            self._cleanup_job(job.path)
             self._jobs.pop(run_id, None)
 
     def _set_phase(self, path: Path, phase: str) -> None:
@@ -275,13 +285,36 @@ class JobManager:
         self._repair_log(root)
         emit_event(root, "USER", message, run_id=run_id)
         self._set_phase(path, "cancelled")
-        self._discard_snapshot(path)
+        self._remember_cancelled(run_id, path.name)
 
-    @staticmethod
-    def _discard_snapshot(path: Path) -> None:
-        # A committed outcome stays committed if cleanup is temporarily blocked.
-        # Startup retries leftover cleanup using the durable phase marker.
-        shutil.rmtree(path / "snapshot", ignore_errors=True)
+    def _remember_cancelled(self, run_id: str, job_id: str) -> None:
+        # Keep repeated cancellation requests idempotent without retaining folders.
+        with self._registry_lock:
+            self._cancelled_jobs.append((run_id, job_id))
+
+    def _cleanup_job(self, path: Path) -> None:
+        jobs_root = self.root / ".jobs"
+        if path.resolve().parent != jobs_root or not re.fullmatch(r"[0-9a-f]{32}", path.name):
+            raise ValueError("Invalid job cleanup path")
+        try:
+            journal = path / "job.json"
+            data = json.loads(journal.read_text())
+            if data["phase"] not in {"finished", "cancelled"}:
+                return
+            # Delete the journal last, so an interrupted/blocked cleanup can be
+            # retried at startup without treating committed results as unfinished.
+            for item in path.iterdir():
+                if item == journal:
+                    continue
+                if item.is_dir() and not item.is_symlink():
+                    shutil.rmtree(item)
+                else:
+                    item.unlink()
+            journal.unlink()
+            path.rmdir()
+        except OSError:
+            # Cleanup must never undo a committed outcome or lock the run.
+            logger.warning("Job folder cleanup deferred until startup: %s", path, exc_info=True)
 
     @staticmethod
     def _repair_log(root: Path) -> None:
@@ -299,8 +332,9 @@ class JobManager:
             if data["run_id"] in self._jobs:
                 continue
             if data["phase"] in {"finished", "cancelled"}:
-                if (journal.parent / "snapshot").exists():
-                    shutil.rmtree(journal.parent / "snapshot")
+                if data["phase"] == "cancelled":
+                    self._remember_cancelled(data["run_id"], journal.parent.name)
+                self._cleanup_job(journal.parent)
                 continue
             # On parent death the worker's watchdog exits and releases its lease.
             deadline = time.monotonic() + 5
@@ -313,6 +347,8 @@ class JobManager:
                     if time.monotonic() >= deadline:
                         raise RuntimeError("An old worker is still active; refusing unsafe rollback")
                     time.sleep(0.1)
+            # Release worker.lock before deleting it (required on Windows).
+            self._cleanup_job(journal.parent)
         # Older thread-based jobs never created a journal. Missing/terminal job
         # records can also leave busy metadata behind; recover these separately.
         for state_path in sorted(self.root.glob("*/state.json")):
@@ -330,6 +366,14 @@ class JobManager:
         self._owner = FileLease(self.root / ".jobs" / "server.lock")
         self._owner.__enter__()
         try:
+            # A crash between deleting job.json and removing its directory can
+            # leave an empty folder. Only attempt this before accepting jobs.
+            for path in (self.root / ".jobs").iterdir():
+                if re.fullmatch(r"[0-9a-f]{32}", path.name) and path.resolve().parent == self.root / ".jobs":
+                    try:
+                        path.rmdir()  # Nonempty job folders are handled by recovery.
+                    except OSError:
+                        pass
             self.recover()
         except Exception:
             self._owner.__exit__()

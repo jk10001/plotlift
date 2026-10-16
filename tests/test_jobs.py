@@ -96,6 +96,7 @@ def test_cancel_stops_worker_restores_files_and_keeps_costs(manager, operation):
     wait_until(lambda: (job.path / "ready").exists())
     result = manager.cancel("test-run", job_id)
     assert not job.process.is_alive()
+    assert not job.path.exists()
     assert result["outcome"] == "cancelled"
     restored = manager.read_state("test-run").model_dump()
     restored.pop("updated_at")
@@ -122,14 +123,16 @@ def test_completion_wins_and_failure_preserves_existing_behavior(manager):
     wait_until(lambda: (job.path / "ready").exists())
     (job.path / "release").touch()
     wait_until(lambda: "test-run" not in manager._jobs)
+    assert not job.path.exists()
     assert manager.cancel("test-run", job_id)["outcome"] == "already_finished"
     assert (manager.run_path("test-run") / "old.txt").read_text() == "overwritten"
-    manager.start("test-run", "test", "crash")
+    failed_job_id = manager.start("test-run", "test", "crash")
     wait_until(lambda: "test-run" not in manager._jobs)
     state = manager.read_state("test-run")
     assert state.stage == "error"
     assert state.active_job_id is None
     assert "Worker exited unexpectedly" in state.warnings
+    assert not (manager.root / ".jobs" / failed_job_id).exists()
 
 
 def test_cancel_wins_before_completion_is_committed(manager):
@@ -180,6 +183,7 @@ def test_recovery_restores_an_interrupted_rollback(manager):
     with (manager.run_path("test-run") / "events.jsonl").open("ab") as handle:
         handle.write(b'{"incomplete":')
     manager.recover()
+    assert not job.path.exists()
     assert manager.read_state("test-run").stage == "crop_review"
     assert (manager.run_path("test-run") / "old.txt").read_text() == "original"
     events = [json.loads(line) for line in (manager.run_path("test-run") / "events.jsonl").read_text().splitlines()]
@@ -362,3 +366,91 @@ def test_non_owner_does_not_clear_an_unknown_busy_run(tmp_path):
     state.active_job = "crop"
     save_json(tmp_path / state.run_id / "state.json", state.model_dump(mode="json"))
     assert JobManager(tmp_path).read_state(state.run_id).active_job == "crop"
+
+
+@pytest.mark.parametrize("phase", ["finished", "cancelled"])
+@pytest.mark.parametrize("run_exists", [True, False])
+def test_startup_removes_terminal_jobs_and_preserves_runs(tmp_path, phase, run_exists):
+    state = make_run(tmp_path)
+    state_path = tmp_path / state.run_id / "state.json"
+    before = state_path.read_bytes()
+    job_id = "a" * 32
+    job_path = tmp_path / ".jobs" / job_id
+    save_json(job_path / "job.json", {
+        "run_id": state.run_id if run_exists else "deleted-run", "job_id": job_id, "phase": phase,
+    })
+    # Terminal snapshots are disposable, even if the original run was deleted.
+    save_json(job_path / "snapshot" / "state.json", {"old": "snapshot"})
+    save_json(job_path / "result.json", {"ok": True})
+    (job_path / "worker.lock").touch()
+    empty_job_path = tmp_path / ".jobs" / ("b" * 32)
+    empty_job_path.mkdir()  # Interrupted cleanup after deleting its journal.
+    manager = JobManager(tmp_path)
+    manager.open()
+    try:
+        assert not job_path.exists()
+        assert not empty_job_path.exists()
+        assert state_path.read_bytes() == before
+        assert (tmp_path / ".jobs" / "server.lock").exists()
+        assert not (tmp_path / "deleted-run").exists()
+        manager.recover()  # A second cleanup is harmless.
+    finally:
+        manager.close()
+
+
+@pytest.mark.parametrize("cancel", [False, True])
+def test_blocked_cleanup_keeps_terminal_journal_and_retries(manager, monkeypatch, cancel):
+    job_id = manager.start("test-run", "test", "crop")
+    job = manager._jobs["test-run"]
+    wait_until(lambda: (job.path / "ready").exists())
+    from app import jobs
+    rmtree = jobs.shutil.rmtree
+
+    def blocked_snapshot(path, *args, **kwargs):
+        if Path(path) == job.path / "snapshot":
+            raise PermissionError("snapshot temporarily locked")
+        return rmtree(path, *args, **kwargs)
+
+    monkeypatch.setattr(jobs.shutil, "rmtree", blocked_snapshot)
+    if cancel:
+        assert manager.cancel("test-run", job_id)["outcome"] == "cancelled"
+    else:
+        (job.path / "release").touch()
+        wait_until(lambda: "test-run" not in manager._jobs)
+    assert json.loads((job.path / "job.json").read_text())["phase"] == ("cancelled" if cancel else "finished")
+    assert (job.path / "snapshot").exists()
+    with manager.edit("test-run"):
+        pass  # Cleanup failure must not leave the run locked.
+    before = (manager.run_path("test-run") / "state.json").read_bytes()
+    manager.recover()  # A still-blocked cleanup must not break startup/recovery.
+    assert (job.path / "job.json").exists()
+    monkeypatch.setattr(jobs.shutil, "rmtree", rmtree)
+    manager.recover()
+    assert not job.path.exists()
+    assert (manager.run_path("test-run") / "state.json").read_bytes() == before
+
+
+def test_recovery_preserves_active_job_snapshot(manager):
+    job_id = manager.start("test-run", "test", "crop")
+    job = manager._jobs["test-run"]
+    wait_until(lambda: (job.path / "ready").exists())
+    manager.recover()
+    assert job.process.is_alive()
+    assert (job.path / "snapshot" / "state.json").exists()
+    assert json.loads((job.path / "job.json").read_text())["phase"] == "running"
+    manager.cancel("test-run", job_id)
+
+
+def test_process_start_failure_restores_run_and_cleans_job(manager, monkeypatch):
+    before = (manager.run_path("test-run") / "old.txt").read_text()
+
+    def fail_start(*args, **kwargs):
+        raise OSError("process could not start")
+
+    monkeypatch.setattr("multiprocessing.process.BaseProcess.start", fail_start)
+    with pytest.raises(OSError, match="process could not start"):
+        manager.start("test-run", "test", "crop")
+    assert not manager._jobs
+    assert manager.read_state("test-run").active_job is None
+    assert (manager.run_path("test-run") / "old.txt").read_text() == before
+    assert list((manager.root / ".jobs").iterdir()) == [manager.root / ".jobs" / "server.lock"]

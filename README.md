@@ -57,11 +57,11 @@ OPENAI_API_KEY=
 GEMINI_API_KEY=
 OPENAI_MOCK_MODE=false
 APP_RUNS_DIR=runs
-APP_SHOW_DEBUG_INFO=true
+APP_SHOW_DEBUG_INFO=false
 PDF_DPI=200
-LINE_SERIES_MIN_DATA_POINTS=5
-LINE_SERIES_MAX_DATA_POINTS=10
-SCATTER_SERIES_MAX_DATA_POINTS=30
+LINE_SERIES_MIN_DATA_POINTS=2
+LINE_SERIES_MAX_DATA_POINTS=100
+SCATTER_SERIES_MAX_DATA_POINTS=100
 ```
 
 Only the selected provider's key is required. Keep `.env` private; it is excluded by `.gitignore`.
@@ -102,7 +102,7 @@ A run passes through five reviewable stages.
 
 ### 1. Upload And Page Selection
 
-Create a run by uploading an image or PDF and choosing a model, image-detail setting, and reasoning effort. For reasonable results at low cost, use `gpt-5.6-luna`.
+Create a run by uploading an image or PDF and choosing a model, image-detail setting, and reasoning effort. For reasonable results at low cost, use `gpt-6-luna`.
 
 Images are converted to a canonical PNG. PDF pages are rasterised at the configured DPI. For a multi-page PDF, select the page containing the chart to digitise.
 
@@ -219,7 +219,7 @@ Crop, axis-calibration, and series-digitisation conversations use a consistent d
 - A review returns `accept_previous` with no replacement, or `revise_previous` with a complete replacement.
 - Partial patches are not accepted.
 
-OpenAI calls use the Responses API with structured output, `store: true`, response chaining, and stable prompt-cache keys. Gemini calls use native multimodal requests and preserve the conversation history required for review attempts.
+OpenAI calls use the Responses API with structured output, `store: true`, response chaining, and stable prompt-cache keys. Gemini calls use the Interactions API with structured JSON output and `store: true` for server-side conversation storage. Review attempts send new prompts and images while linking previous turns through `previous_interaction_id`. Gemini prompt-cache keys are recorded locally but are not sent to the API.
 
 ## Mock Mode And Smoke Test
 
@@ -309,7 +309,9 @@ runs/<run_id>/
   exports/
 ```
 
-Attempt directories contain the resolved request, raw response, parsed result, validation status, and any generated overlay. Conversation files record response IDs, source images, prompt-cache keys, and review decisions.
+Attempt directories contain the resolved request, provider response, parsed result, validation status, and any generated overlay. Conversation files record source images, prompt-cache keys, and review decisions. Saved JSON artifacts omit response and interaction IDs and thought signatures, and replace inline base64 image data with a placeholder.
+
+`runs/.jobs/` holds temporary job records and rollback snapshots while background operations run. Job folders are removed automatically after completion, failure, or cancellation. Startup recovers interrupted operations before removing their folders and retries cleanup of finished or cancelled jobs left behind by an interrupted or blocked cleanup. The shared `server.lock` remains in `.jobs/`.
 
 ## Configuration
 
@@ -317,7 +319,5 @@ Attempt directories contain the resolved request, raw response, parsed result, v
 - `prompts.yaml` contains the versioned prompts for crop, axes, and series stages.
 - `.env` contains local API keys and runtime settings.
 - `requirements.txt` contains Python dependencies.
-
-The model dropdown includes [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna), and [GPT-5.6 Terra](https://developers.openai.com/api/docs/models/gpt-5.6-terra). GPT-6.1 Sol supports reasoning efforts from `low` through `max`; GPT-6 Luna and GPT-5.6 Terra also support `none`.
 
 The default enabled model is currently `gpt-6-luna`; change the `default` flag in `models.json` to select another default.
