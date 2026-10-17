@@ -21,6 +21,20 @@ COLORS: dict[str, str] = {
 }
 
 
+def read_events(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+    lines = path.read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
+    events = []
+    for line in lines:
+        # The final append may still be in progress or have been interrupted.
+        if not line.endswith("\n"):
+            break
+        if line.strip():
+            events.append(json.loads(line))
+    return events
+
+
 def emit_event(
     run_dir: Path | None,
     category: EventCategory,

@@ -203,14 +203,11 @@ def test_digitisation_prompts_are_provider_neutral_and_refinement_explains_basel
 def test_retry_endpoint_defaults_to_restart_accepts_refine_and_rejects_invalid_mode(monkeypatch) -> None:
     modes: list[str] = []
 
-    def fake_retry(state, prompts, client, series_id, mode="restart"):
-        modes.append(mode)
-        return state
-
-    def run_inline(run_id, name, fn, *, initial_status=None) -> None:
-        fn(object(), object(), object())
-
-    monkeypatch.setattr(main_module, "retry_series_digitization", fake_retry)
+    def run_inline(run_id, name, operation, parameters=None, *, initial_status=None) -> str:
+        assert operation == "series_retry"
+        assert parameters["series_id"] == "series-id"
+        modes.append(parameters["mode"])
+        return "a" * 32
     monkeypatch.setattr(main_module, "_start_job", run_inline)
     client = TestClient(main_module.app)
 

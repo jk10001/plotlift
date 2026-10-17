@@ -151,10 +151,12 @@
               <div class="busy-stack">
                 <div class="busy-spinner" aria-hidden="true"></div>
                 <div id="imageBusyStatus" class="busy-status" aria-live="polite"></div>
+                <button id="cancelJobBtn" type="button" class="secondary-button">Cancel</button>
               </div>
             </div>
           </div>
           <div class="chart-toolbar" aria-label="Chart zoom controls">
+            <span id="jobNotice" role="status" aria-live="polite" hidden></span>
             <button id="zoomOutBtn" type="button" aria-label="Zoom out" title="Zoom out">−</button>
             <span id="zoomLevel" aria-live="polite">100%</span>
             <button id="zoomInBtn" type="button" aria-label="Zoom in" title="Zoom in">+</button>
@@ -236,6 +238,6 @@
     <script>
       window.INITIAL_RUN_ID = {{ initial_run_id | tojson }};
     </script>
-    <script src="/static/app.js?v=20260901-series-collapse-state-v1"></script>
+    <script src="/static/app.js?v=20261013-cancel-rollback"></script>
   </body>
 </html>

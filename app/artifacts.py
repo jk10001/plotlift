@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
+import tempfile
 import uuid
 from pathlib import Path
 from typing import Any
@@ -10,7 +12,10 @@ from .config import get_config
 from .logging_utils import emit_event
 from .models import RunState
 
-REDACTED_JSON_KEYS = {"response_id", "previous_response_id", "thought_signature", "thoughtSignature"}
+REDACTED_JSON_KEYS = {
+    "response_id", "previous_response_id", "interaction_id", "previous_interaction_id",
+    "thought_signature", "thoughtSignature",
+}
 
 
 def new_run_id() -> str:
@@ -34,8 +39,16 @@ def ensure_run_dirs(run_id: str) -> Path:
 
 def save_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as handle:
-        json.dump(redact_saved_json(data), handle, indent=2, ensure_ascii=False)
+    # Readers must never see a partially written state, including when a job is killed.
+    fd, temporary = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+            json.dump(redact_saved_json(data), handle, indent=2, ensure_ascii=False)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        Path(temporary).unlink(missing_ok=True)
 
 
 def redact_saved_json(data: Any) -> Any:
@@ -47,6 +60,11 @@ def _redact_json_node(data: Any, path: tuple[str, ...]) -> Any:
         redacted: dict[str, Any] = {}
         for key, value in data.items():
             if key in REDACTED_JSON_KEYS:
+                continue
+            if key == "signature" and data.get("type") == "thought":
+                continue
+            if key == "data" and data.get("type") == "image":
+                redacted[key] = "<base64 omitted; see attempt image artifacts>"
                 continue
             if key == "id" and path and path[-1] == "raw":
                 continue

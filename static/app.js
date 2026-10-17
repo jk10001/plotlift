@@ -8,6 +8,11 @@ const stateRef = {
   pan: null,
   renderFrame: null,
   localSaveCount: 0,
+  localSaveError: null,
+  jobStarting: false,
+  cancellingJobId: null,
+  stateRequestVersion: 0,
+  assetRevision: 0,
   chartZoom: 1,
   chartAssetKey: null,
   foregroundCalibrationAxisId: null,
@@ -68,6 +73,8 @@ const els = {
   overlaySvg: document.querySelector("#overlaySvg"),
   imageBusyOverlay: document.querySelector("#imageBusyOverlay"),
   imageBusyStatus: document.querySelector("#imageBusyStatus"),
+  cancelJobBtn: document.querySelector("#cancelJobBtn"),
+  jobNotice: document.querySelector("#jobNotice"),
   pointTooltip: document.querySelector("#pointTooltip"),
   dragLoupe: document.querySelector("#dragLoupe"),
   zoomOutBtn: document.querySelector("#zoomOutBtn"),
@@ -176,6 +183,7 @@ function wireEvents() {
     stateRef.sidebarOpen.series = els.seriesDetails.open;
   });
   els.cropJobBtn.addEventListener("click", () => startJob("crop"));
+  els.cancelJobBtn.addEventListener("click", cancelActiveJob);
   els.approveCropBtn.addEventListener("click", onCropConfirmOrEdit);
   els.axisJobBtn.addEventListener("click", () => startJob("calibration"));
   els.approveAxisBtn.addEventListener("click", onAxisConfirmOrEdit);
@@ -243,16 +251,22 @@ async function onUpload(event) {
 }
 
 async function loadRun(runId, options = {}) {
+  if (stateRef.cancellingJobId) return;
   if (!options.force && shouldDeferStateRefresh()) return;
+  const version = ++stateRef.stateRequestVersion;
   const result = await api(`/api/runs/${runId}`);
+  if (version !== stateRef.stateRequestVersion || stateRef.cancellingJobId) return;
   if (!options.force && shouldDeferStateRefresh()) return;
   if (stateRef.runId !== runId) {
+    stateRef.localSaveError = null;
+    els.jobNotice.hidden = true;
     stateRef.sidebarOpen = { calibration: null, series: null };
     stateRef.foregroundCalibrationAxisId = null;
     stateRef.hiddenSeriesIds.clear();
     stateRef.expandedSeriesIds.clear();
     resetChartViewport();
   }
+  if (stateRef.state?.active_job_id && stateRef.state.active_job_id !== result.state.active_job_id) stateRef.assetRevision += 1;
   stateRef.runId = runId;
   stateRef.state = result.state;
   if (options.updateHistory !== false) history.replaceState(null, "", `/runs/${stateRef.runId}`);
@@ -297,6 +311,9 @@ function renderPreviousRunMenu() {
 }
 
 function resetRunView() {
+  stateRef.stateRequestVersion += 1;
+  stateRef.localSaveError = null;
+  els.jobNotice.hidden = true;
   stateRef.runId = null;
   stateRef.state = null;
   stateRef.foregroundCalibrationAxisId = null;
@@ -326,10 +343,56 @@ async function loadEvents() {
   renderEvents(result.events);
 }
 
-async function startJob(path) {
-  if (!stateRef.runId) return;
-  await api(`/api/runs/${stateRef.runId}/jobs/${path}`, { method: "POST" });
-  await loadRun(stateRef.runId, { force: true });
+async function startJob(path, body) {
+  if (!stateRef.runId || llmJobActive()) return;
+  const runId = stateRef.runId;
+  stateRef.jobStarting = true;
+  stateRef.stateRequestVersion += 1;
+  els.jobNotice.hidden = true;
+  renderControls();
+  try {
+    // Draft saves already in flight must be included in the rollback snapshot.
+    while (stateRef.localSaveCount > 0) await new Promise((resolve) => setTimeout(resolve, 30));
+    if (stateRef.localSaveError) throw new Error("Save your latest edits successfully before starting an operation.");
+    if (runId !== stateRef.runId) return;
+    await api(`/api/runs/${runId}/jobs/${path}`, {
+      method: "POST",
+      ...(body === undefined ? {} : { headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }),
+    });
+    await loadRun(runId, { force: true });
+  } finally {
+    stateRef.jobStarting = false;
+    render();
+  }
+}
+
+async function cancelActiveJob() {
+  const runId = stateRef.runId;
+  const jobId = stateRef.state?.active_job_id;
+  if (!runId || !jobId || stateRef.cancellingJobId) return;
+  stateRef.cancellingJobId = jobId;
+  stateRef.stateRequestVersion += 1;
+  renderImageBusyState();
+  try {
+    const result = await api(`/api/runs/${runId}/jobs/cancel`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ job_id: jobId }),
+    });
+    if (stateRef.runId !== runId) return;
+    stateRef.state = result.state;
+    stateRef.assetRevision += 1;
+    stateRef.seriesChoiceKey = null;
+    els.jobNotice.textContent = result.outcome === "cancelled"
+      ? "" : "Operation had already finished.";
+    els.jobNotice.hidden = result.outcome === "cancelled";
+  } catch (error) {
+    els.jobNotice.textContent = `Cancellation failed: ${error.message}`;
+    els.jobNotice.hidden = false;
+  } finally {
+    stateRef.cancellingJobId = null;
+    stateRef.stateRequestVersion += 1;
+    render({ forceEditors: true });
+    await loadEvents();
+  }
 }
 
 async function confirmSeriesChoice() {
@@ -339,12 +402,7 @@ async function confirmSeriesChoice() {
     .filter((index) => index !== null);
   if (!selectedIndexes.length) return;
   stateRef.seriesChoiceKey = null;
-  await api(`/api/runs/${stateRef.runId}/jobs/series-selection`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ selected_indexes: selectedIndexes }),
-  });
-  await loadRun(stateRef.runId, { force: true });
+  await startJob("series-selection", { selected_indexes: selectedIndexes });
 }
 
 async function cancelSeriesChoice() {
@@ -436,6 +494,7 @@ async function saveCropDraft() {
   const state = stateRef.state;
   if (!state?.crop) return;
   if (state.crop.approved) return;
+  if (stateRef.localSaveCount === 0) stateRef.localSaveError = null;
   stateRef.localSaveCount += 1;
   try {
     const result = await api(`/api/runs/${stateRef.runId}/crop-draft`, {
@@ -447,6 +506,9 @@ async function saveCropDraft() {
     stateRef.sidebarOpen.calibration = true;
     stateRef.sidebarOpen.series = true;
     render();
+  } catch (error) {
+    stateRef.localSaveError = error;
+    throw error;
   } finally {
     stateRef.localSaveCount -= 1;
   }
@@ -458,6 +520,7 @@ async function saveCalibrationDraft(axis) {
   const axisState = findCalibratedAxis(axis);
   const points = axisState?.points || [];
   if (!axisState || !points.length) return;
+  if (stateRef.localSaveCount === 0) stateRef.localSaveError = null;
   stateRef.localSaveCount += 1;
   try {
     const result = await api(`/api/runs/${stateRef.runId}/calibration/${axis}/draft`, {
@@ -469,6 +532,9 @@ async function saveCalibrationDraft(axis) {
     stateRef.sidebarOpen.calibration = true;
     stateRef.sidebarOpen.series = true;
     render();
+  } catch (error) {
+    stateRef.localSaveError = error;
+    throw error;
   } finally {
     stateRef.localSaveCount -= 1;
   }
@@ -478,6 +544,7 @@ async function saveSeries(source, options = {}) {
   if (llmJobActive()) return;
   if (!stateRef.runId || !stateRef.state) return;
   if (seriesConfirmed() && !options.markComplete) return;
+  if (stateRef.localSaveCount === 0) stateRef.localSaveError = null;
   stateRef.localSaveCount += 1;
   try {
     const result = await api(`/api/runs/${stateRef.runId}/series`, {
@@ -488,6 +555,9 @@ async function saveSeries(source, options = {}) {
     stateRef.state = result.state;
     stateRef.sidebarOpen.series = options.markComplete ? false : true;
     render({ forceEditors: Boolean(options.forceEditors) });
+  } catch (error) {
+    stateRef.localSaveError = error;
+    throw error;
   } finally {
     stateRef.localSaveCount -= 1;
   }
@@ -1443,7 +1513,7 @@ function hidePointTooltip() {
 
 function renderControls() {
   const state = stateRef.state;
-  const active = Boolean(state?.active_job);
+  const active = llmJobActive();
   const cropDone = cropApproved();
   const axesDone = axisCalibrationApproved();
   const seriesDone = seriesConfirmed();
@@ -1487,6 +1557,9 @@ function renderImageBusyState() {
   els.imageStage.classList.toggle("is-busy", show);
   els.imageBusyOverlay.hidden = !show;
   els.imageBusyStatus.textContent = show ? activeStepStatusText() : "";
+  if (stateRef.cancellingJobId) els.imageBusyStatus.textContent = "Cancelling…";
+  els.cancelJobBtn.disabled = Boolean(stateRef.cancellingJobId || !stateRef.state?.active_job_id);
+  els.cancelJobBtn.textContent = stateRef.cancellingJobId ? "Cancelling…" : "Cancel";
   if (show) positionImageBusyOverlay();
 }
 
@@ -1737,12 +1810,7 @@ async function submitSeriesRetry(mode) {
   stateRef.retryChoicePreviousFocus = null;
   renderRetryChoiceModal();
   updateModalPageState();
-  await api(`/api/runs/${stateRef.runId}/jobs/series/${encodeURIComponent(seriesId)}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ mode }),
-  });
-  await loadRun(stateRef.runId, { force: true });
+  await startJob(`series/${encodeURIComponent(seriesId)}`, { mode });
 }
 
 function showDebugInfo() {
@@ -2106,7 +2174,7 @@ function currentDraggedPointImagePosition(fallbackPoint) {
 }
 
 function llmJobActive() {
-  return Boolean(stateRef.state?.active_job);
+  return Boolean(stateRef.state?.active_job || stateRef.jobStarting || stateRef.cancellingJobId);
 }
 
 function seriesColor(item, seriesIndex) {
@@ -2307,7 +2375,7 @@ function cssAttr(value) {
 
 function fileUrl(path) {
   if (!stateRef.runId || !path) return "";
-  return `/api/runs/${stateRef.runId}/files/${path.split("/").map(encodeURIComponent).join("/")}`;
+  return `/api/runs/${stateRef.runId}/files/${path.split("/").map(encodeURIComponent).join("/")}?v=${stateRef.assetRevision}`;
 }
 
 function pxPointToNorm(point, width, height) {
